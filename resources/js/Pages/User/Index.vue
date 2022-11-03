@@ -1,6 +1,5 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
 import { Head, Link } from '@inertiajs/inertia-vue3';
 
 defineProps({
@@ -12,34 +11,46 @@ const createUser = () =>  {
 }
 
 </script>
+
 <template>
-    <Head title="User" />
+    <Head title="Dashboard" />
 
     <AuthenticatedLayout>
-        <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                User
-            </h2>
+        <template #breadcrumbs>
+            <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb my-0 ms-2">
+                      <li class="breadcrumb-item">
+                          <!-- if breadcrumb is single--><span>Dashboard</span>
+                      </li>
+                      <li class="breadcrumb-item active"><span>User</span></li>
+                  </ol>
+              </nav>
         </template>
 
-        <div class="py-12">
-            <div class="flex items-center justify-end max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <!-- <PrimaryButton class="ml-4" @click="createUser"> Create User</PrimaryButton> -->
-                
-                    <Link :href="route('logout')" method="get" as="button">
-                        Create User
-                    </Link>
-                
-            </div>
-
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 bg-white border-b border-gray-200">
-                        <ul v-if="users.length > 0">
-                            <li v-for="(user, keyUser) in users" :key="keyUser">
-                                {{ "&bull; "+ user.name + " | " + user.username + " | " + user.employee}}
-                            </li>
-                        </ul>
+        <div class="col-md-12 text-end mb-2">
+            <Link class="btn btn-dark" :href="route('user.create')" method="get" as="button">
+                Create User
+            </Link>
+        </div>
+        <div class="card mb-4">
+            <div class="card-header"><strong>User</strong><span class="small ms-1">List</span></div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Fullname</th>
+                                <th>Username</th>
+                            </tr>
+                        </thead>
+                        <tbody v-if="users.length > 0">
+                            <tr v-for="(user, keyUser) in users" :key="keyUser">
+                                <td>{{user.name}}</td>
+                                <td>{{user.username}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                     </div>
                 </div>
             </div>

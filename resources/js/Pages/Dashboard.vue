@@ -7,18 +7,24 @@ import { Head } from '@inertiajs/inertia-vue3';
     <Head title="Dashboard" />
 
     <AuthenticatedLayout>
-        <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Dashboard
-            </h2>
+        <template #breadcrumbs>
+            <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb my-0 ms-2">
+                      <li class="breadcrumb-item active">
+                          <!-- if breadcrumb is single--><span>Dashboard</span>
+                      </li>
+                      <!-- <li class="breadcrumb-item active"><span>Dashboard</span></li> -->
+                  </ol>
+              </nav>
         </template>
 
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 bg-white border-b border-gray-200">
-                        <div class="decoration-4">HRMS</div>
-                        “HRMS” stands for Human Resources Management System. It refers to a suite of software that organizations use to manage internal HR functions. From employee data management to payroll, recruitment, benefits, training, talent management, employee engagement, and employee attendance, HRMS software helps HR professionals manage the modern workforce. Also called a human resources information system (HRIS), HRMS systems put information about a company's most valuable assets in front of the people who need them.
+        <div class="card mb-4">
+            <div class="card-header"><strong>Card</strong><span class="small ms-1">Body</span></div>
+            <div class="card-body">
+                <p class="text-medium-emphasis small">The main block of a card is the <code>.card-body</code>. Use it whenever you need a padded section within a card.</p>
+                <div class="example">
+                    <div class="card">
+                        <div class="card-body">This is some text within a card body.</div>
                     </div>
                 </div>
             </div>

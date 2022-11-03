@@ -1,10 +1,6 @@
 <script setup>
-import Checkbox from '@/Components/Checkbox.vue';
 import GuestLayout from '@/Layouts/GuestLayout.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
+import InputError from '@/Components_lara/InputError.vue';
 import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
 
 defineProps({
@@ -14,8 +10,7 @@ defineProps({
 
 const form = useForm({
     username: '',
-    password: '',
-    remember: false
+    password: ''
 });
 
 const submit = () => {
@@ -24,40 +19,66 @@ const submit = () => {
     });
 };
 </script>
-
+<style>
+    .sml{
+        font-size: 12px;
+    }
+</style>
 <template>
     <GuestLayout>
-        <Head title="Log in" />
+        <div class="bg-light min-vh-100 d-flex flex-row align-items-center">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="card-group d-block d-md-flex row">
+                            <div class="card col-md-4 p-4 mb-0">
+                                <div class="card-body">
+                                    <form @submit.prevent="submit">
+                                        <div class="mt-4">
+                                            <h1>Login</h1>
+                                            <p class="text-medium-emphasis mb-2">Sign In to your account</p>
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text">
+                                                    <svg class="icon">
+                                                        <use xlink:href="theme/vendors/@coreui/icons/svg/free.svg#cil-user"></use>
+                                                    </svg>
+                                                </span>
+                                                <input class="form-control" type="text" placeholder="Username" id="username" v-model="form.username" required autofocus autocomplete="username">
+                                            </div>
+                                            <InputError class="mt-1" :message="form.errors.username" />
 
-        <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
-            {{ status }}
+                                            <div class="input-group mb-4">
+                                                <span class="input-group-text">
+                                                    <svg class="icon">
+                                                        <use xlink:href="theme/vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use>
+                                                    </svg>
+                                                </span>
+                                                <input class="form-control" type="password" placeholder="Password" id="password" v-model="form.password" required autocomplete="current-password">
+                                            </div>
+                                            <InputError class="mt-1" :message="form.errors.password" />
+
+                                            <div class="row">
+                                                <div class="col-12 text-end">
+                                                    <button class="btn btn-primary px-4" type="submit" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">Login</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="card col-md-8 text-white bg-primary py-5">
+                                <div class="card-body text-base">
+                                    <div>
+                                        <h2>HRMS</h2>
+                                        <p class="mb-3">“HRMS” stands for Human Resources Management System. It refers to a suite of software that organizations use to manage internal HR functions. From employee data management to payroll, recruitment, benefits, training, talent management, employee engagement, and employee attendance, HRMS software helps HR professionals manage the modern workforce. Also called a human resources information system (HRIS), HRMS systems put information about a company's most valuable assets in front of the people who need them.</p>
+                                        <small class="bg-info px-1 sml">https://www.oracle.com/in/human-capital-management/hrms</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <form @submit.prevent="submit">
-            <div>
-                <InputLabel for="username" value="Username" />
-                <TextInput id="username" type="text" class="mt-1 block w-full" v-model="form.username" required autofocus autocomplete="username" />
-                <InputError class="mt-2" :message="form.errors.username" />
-            </div>
-
-            <div class="mt-4">
-                <InputLabel for="password" value="Password" />
-                <TextInput id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="current-password" />
-                <InputError class="mt-2" :message="form.errors.password" />
-            </div>
-
-            <div class="block mt-4">
-                <label class="flex items-center">
-                    <Checkbox name="remember" v-model:checked="form.remember" />
-                    <span class="ml-2 text-sm text-gray-600">Remember me</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Log in
-                </PrimaryButton>
-            </div>
-        </form>
     </GuestLayout>
 </template>

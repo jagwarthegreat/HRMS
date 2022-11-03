@@ -1,27 +1,30 @@
 <script setup>
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head } from '@inertiajs/inertia-vue3';
-
-defineProps({
-    
-});
-
+import AuthenticatedLayout from './../../Layouts/AuthenticatedLayout.vue';
+import { Head, Link } from '@inertiajs/inertia-vue3';
 </script>
+
 <template>
     <Head title="Create User" />
 
     <AuthenticatedLayout>
-        <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Create User
-            </h2>
+        <template #breadcrumbs>
+            <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb my-0 ms-2">
+                      <li class="breadcrumb-item">
+                          <!-- if breadcrumb is single--><span>Dashboard</span>
+                      </li>
+                      <li class="breadcrumb-item"><span>User</span></li>
+                      <li class="breadcrumb-item active"><span>Create User</span></li>
+                  </ol>
+              </nav>
         </template>
 
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 bg-white border-b border-gray-200">
-                        asd
+        <div class="card mb-4">
+            <div class="card-header"><strong>User</strong><span class="small ms-1">Details</span></div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        asdad
                     </div>
                 </div>
             </div>

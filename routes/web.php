@@ -33,8 +33,8 @@ Route::get('/dashboard', function () {
 
 // USER MANAGEMENT ROUTE
 Route::prefix('user')->middleware('auth')->group(function () {
-    Route::get('/', [UserController::class, 'index']);
-    Route::get('/create', [UserController::class, 'create']);
+    Route::get('/', [UserController::class, 'index'])->name('user.index');
+    Route::get('/create', [UserController::class, 'create'])->name('user.create');
 });
 
 require __DIR__ . '/auth.php';

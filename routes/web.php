@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\PermisionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -31,10 +33,23 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware('auth')->name('dashboard');
 
+// PERMISSIONS
+Route::prefix('permission')->middleware('auth')->group(function () {
+    Route::get('/', [PermisionController::class, 'index'])->name('permission.index');
+    Route::get('/create', [PermisionController::class, 'create'])->name('permission.create');
+});
+
+
 // USER MANAGEMENT ROUTE
 Route::prefix('user')->middleware('auth')->group(function () {
     Route::get('/', [UserController::class, 'index'])->name('user.index');
     Route::get('/create', [UserController::class, 'create'])->name('user.create');
+});
+
+// EMPLOYEE MANAGEMENT
+Route::prefix('employee')->middleware('auth')->group(function () {
+    Route::get('/', [EmployeeController::class, 'index'])->name('employee.index');
+    Route::get('/create', [EmployeeController::class, 'create'])->name('employee.create');
 });
 
 require __DIR__ . '/auth.php';

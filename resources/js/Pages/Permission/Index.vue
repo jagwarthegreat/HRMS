@@ -3,7 +3,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link } from "@inertiajs/inertia-vue3";
 
 defineProps({
-  users: Array,
+  permissions: Array,
 });
 
 const createUser = () => {
@@ -21,7 +21,7 @@ const createUser = () => {
           <li class="breadcrumb-item">
             <!-- if breadcrumb is single--><span>Dashboard</span>
           </li>
-          <li class="breadcrumb-item active"><span>User</span></li>
+          <li class="breadcrumb-item active"><span>Permissions</span></li>
         </ol>
       </nav>
     </template>
@@ -29,31 +29,34 @@ const createUser = () => {
     <div class="col-md-12 text-end mb-2">
       <Link
         class="btn btn-dark btn-sm"
-        :href="route('user.create')"
+        :href="route('permission.create')"
         method="get"
         as="button"
       >
-        Create User
+        Create Permission
       </Link>
     </div>
 
     <div class="col-12">
       <div class="card mb-4">
-        <div class="card-header">User List</div>
+        <div class="card-header">Permissions List</div>
         <div class="card-body">
           <div class="row">
             <div class="col-md-12">
               <table class="table table-hover">
                 <thead>
                   <tr>
-                    <th>Fullname</th>
-                    <th>Username</th>
+                    <th>ID</th>
+                    <th>TITLE</th>
                   </tr>
                 </thead>
-                <tbody v-if="users.length > 0">
-                  <tr v-for="(user, keyUser) in users" :key="keyUser">
-                    <td>{{ user.name }}</td>
-                    <td>{{ user.username }}</td>
+                <tbody v-if="permissions.length > 0">
+                  <tr
+                    v-for="(permission, keyPermission) in permissions"
+                    :key="keyPermission"
+                  >
+                    <td>{{ permission.id }}</td>
+                    <td>{{ permission.title }}</td>
                   </tr>
                 </tbody>
               </table>

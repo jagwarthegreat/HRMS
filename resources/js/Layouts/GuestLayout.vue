@@ -1,9 +1,7 @@
 <script>
-import { Link } from '@inertiajs/inertia-vue3';
+import { Link } from "@inertiajs/inertia-vue3";
 </script>
 
 <template>
-   <div>
-      <slot />
-   </div>
+  <slot />
 </template>

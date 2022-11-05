@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\PermisionController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -25,7 +26,6 @@ Route::get('/', function () {
     //     'laravelVersion' => Application::VERSION,
     //     'phpVersion' => PHP_VERSION,
     // ]);
-
     return redirect('/login');
 });
 
@@ -35,20 +35,27 @@ Route::get('/dashboard', function () {
 
 // PERMISSIONS
 Route::prefix('permission')->middleware('auth')->group(function () {
-    Route::get('/', [PermisionController::class, 'index'])->name('permission.index');
+    Route::get('/', [PermisionController::class, 'index'])->name('permission');
     Route::get('/create', [PermisionController::class, 'create'])->name('permission.create');
+    Route::post('/store', [PermisionController::class, 'store'])->name('permission.store');
 });
 
+// ROLES
+Route::prefix('role')->middleware('auth')->group(function () {
+    Route::get('/', [RoleController::class, 'index'])->name('role');
+    Route::get('/create', [RoleController::class, 'create'])->name('role.create');
+    Route::post('/store', [RoleController::class, 'store'])->name('role.store');
+});
 
 // USER MANAGEMENT ROUTE
 Route::prefix('user')->middleware('auth')->group(function () {
-    Route::get('/', [UserController::class, 'index'])->name('user.index');
+    Route::get('/', [UserController::class, 'index'])->name('user');
     Route::get('/create', [UserController::class, 'create'])->name('user.create');
 });
 
 // EMPLOYEE MANAGEMENT
 Route::prefix('employee')->middleware('auth')->group(function () {
-    Route::get('/', [EmployeeController::class, 'index'])->name('employee.index');
+    Route::get('/', [EmployeeController::class, 'index'])->name('employee');
     Route::get('/create', [EmployeeController::class, 'create'])->name('employee.create');
 });
 

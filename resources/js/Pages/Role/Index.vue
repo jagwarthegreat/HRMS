@@ -3,16 +3,16 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link } from "@inertiajs/inertia-vue3";
 
 defineProps({
-  users: Array,
+  roles: Array,
 });
 
 const createUser = () => {
-  alert("create user");
+  alert("create role");
 };
 </script>
 
 <template>
-  <Head title="Dashboard" />
+  <Head title="Role" />
 
   <AuthenticatedLayout>
     <template #breadcrumbs>
@@ -21,7 +21,7 @@ const createUser = () => {
           <li class="breadcrumb-item">
             <!-- if breadcrumb is single--><span>Dashboard</span>
           </li>
-          <li class="breadcrumb-item active"><span>User</span></li>
+          <li class="breadcrumb-item active"><span>Role</span></li>
         </ol>
       </nav>
     </template>
@@ -29,31 +29,33 @@ const createUser = () => {
     <div class="col-md-12 text-end mb-2">
       <Link
         class="btn btn-dark btn-sm"
-        :href="route('user.create')"
+        :href="route('role.create')"
         method="get"
         as="button"
       >
-        Create User
+        Create Role
       </Link>
     </div>
 
     <div class="col-12">
       <div class="card mb-4">
-        <div class="card-header">User List</div>
+        <div class="card-header">Role List</div>
         <div class="card-body">
           <div class="row">
             <div class="col-md-12">
               <table class="table table-hover">
                 <thead>
                   <tr>
-                    <th>Fullname</th>
-                    <th>Username</th>
+                    <th>ID</th>
+                    <th>TITLE</th>
+                    <th>PERMISSIONS</th>
                   </tr>
                 </thead>
-                <tbody v-if="users.length > 0">
-                  <tr v-for="(user, keyUser) in users" :key="keyUser">
-                    <td>{{ user.name }}</td>
-                    <td>{{ user.username }}</td>
+                <tbody v-if="roles.length > 0">
+                  <tr v-for="(role, keyRole) in roles" :key="keyRole">
+                    <td>{{ role.id }}</td>
+                    <td>{{ role.title }}</td>
+                    <td>{{ role.permissions }}</td>
                   </tr>
                 </tbody>
               </table>

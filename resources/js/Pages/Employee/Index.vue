@@ -17,14 +17,8 @@ const createEmployee = () =>  {
 
     <AuthenticatedLayout>
         <template #breadcrumbs>
-            <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb my-0 ms-2">
-                      <li class="breadcrumb-item">
-                          <!-- if breadcrumb is single--><span>Dashboard</span>
-                      </li>
-                      <li class="breadcrumb-item active"><span>Employee</span></li>
-                  </ol>
-              </nav>
+            <li class="breadcrumb-item"><Link :href="route('dashboard')">Dashboard</Link></li>
+            <li class="breadcrumb-item active" aria-current="page">Employee</li>
         </template>
 
         <div class="col-md-12 text-end mb-2">

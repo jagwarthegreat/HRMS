@@ -16,7 +16,10 @@ const form = useForm({
 
 const submit = () => {
   form.post(route("login"), {
-    onFinish: () => form.reset("password"),
+    onFinish: () => {
+      form.reset("password");
+      location.reload();
+    }
   });
 };
 </script>
@@ -24,26 +27,10 @@ const submit = () => {
 .sml {
   font-size: 12px;
 }
-
-.loginUi {
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding: 10%;
-  z-index: 1060;
-  display: block;
-  width: 100%;
-  height: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
-  outline: 0;
-  color: unset;
-  background: #fff;
-}
 </style>
 <template>
   <div class="loginUi">
-    <div class="min-vh-80 d-flex flex-row align-items-center">
+    <div class="min-vh-100 d-flex flex-row align-items-center">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-10">

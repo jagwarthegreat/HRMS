@@ -1,6 +1,6 @@
 <script setup>
 import AuthenticatedLayout from "./../../Layouts/AuthenticatedLayout.vue";
-import { Head, Linkm, useForm } from "@inertiajs/inertia-vue3";
+import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 
 const form = useForm({
   title: "",
@@ -18,19 +18,13 @@ const permissionStore = () => {
 
   <AuthenticatedLayout>
     <template #breadcrumbs>
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb my-0 ms-2">
-          <li class="breadcrumb-item">
-            <!-- if breadcrumb is single--><span>Dashboard</span>
-          </li>
-          <li class="breadcrumb-item"><span>Permission</span></li>
-          <li class="breadcrumb-item active"><span>Create Permission</span></li>
-        </ol>
-      </nav>
+      <li class="breadcrumb-item"><Link :href="route('dashboard')">Dashboard</Link></li>
+      <li class="breadcrumb-item"><Link :href="route('permission')">Permission</Link></li>
+      <li class="breadcrumb-item active" aria-current="page">Create</li>
     </template>
 
     <div class="col-md-12 text-start mb-2">
-      <a class="btn btn-dark btn-sm" :href="route('permission')"> Go back </a>
+      <Link class="btn btn-dark btn-sm" :href="route('permission')"> Go back </Link>
     </div>
 
     <div class="col-12">

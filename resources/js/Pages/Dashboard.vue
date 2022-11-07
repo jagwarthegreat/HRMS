@@ -9,14 +9,7 @@ import { ref, onMounted, on } from "vue";
 
   <AuthenticatedLayout>
     <template #breadcrumbs>
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb my-0 ms-2">
-          <li class="breadcrumb-item active">
-            <!-- if breadcrumb is single--><span>Dashboard</span>
-          </li>
-          <!-- <li class="breadcrumb-item active"><span>Dashboard</span></li> -->
-        </ol>
-      </nav>
+      <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
     </template>
 
     <div class="card mb-4">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Permission;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Role;
@@ -10,26 +11,26 @@ class RoleController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Role/Index', [
-            'roles' => Role::where('id', '>', '0')->orderBy('id', 'desc')->get()
-        ]);
+        $permissions = Permission::where('id', '>', '0')->get();
+        $roles = Role::where('id', '>', '0')->orderBy('id', 'desc')->get();
+        return Inertia::render('Role/Index', compact('roles', 'permissions'));
     }
 
     public function create()
     {
-        return Inertia::render('Role/Create');
+        $permissions = Permission::where('id', '>', '0')->get();
+        return Inertia::render('Role/Create', compact('permissions'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required',
-            'permissions' => 'required'
+            'roletitle' => 'required',
         ]);
 
         $role = Role::create([
-            'title' => $request->title,
-            'permissions' => $request->title,
+            'title' => $request->roletitle,
+            'permissions' => implode(',', $request->rolepermission),
         ]);
 
         // return response()->json([

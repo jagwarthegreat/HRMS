@@ -11,9 +11,9 @@ class UserController extends Controller
 {
     public function index()
     {
-        return Inertia::render('User/Index', [
-            'users' => User::where('id', '>', '0')->with('employee')->get()
-        ]);
+        $users = User::where('id', '>', '0')->with('employee')->get();
+
+        return Inertia::render('User/Index', compact('users'));
     }
 
     public function create()

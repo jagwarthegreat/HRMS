@@ -10,9 +10,9 @@ class PermisionController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Permission/Index', [
-            'permissions' => Permission::where('id', '>', '0')->orderBy('id', 'desc')->get()
-        ]);
+        $permissions = Permission::where('id', '>', '0')->orderBy('id', 'desc')->get();
+
+        return Inertia::render('Permission/Index', compact('permissions'));
     }
 
     public function create()

@@ -10,9 +10,9 @@ class EmployeeController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Employee/Index', [
-            'employees' => Employee::where('id', '>', '0')->get()
-        ]);
+        $employees = Employee::where('id', '>', '0')->get();
+
+        return Inertia::render('Employee/Index', compact('employees'));
     }
 
     public function create()

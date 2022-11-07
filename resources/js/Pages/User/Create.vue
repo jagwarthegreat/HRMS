@@ -8,16 +8,14 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
 
     <AuthenticatedLayout>
         <template #breadcrumbs>
-            <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb my-0 ms-2">
-                      <li class="breadcrumb-item">
-                          <!-- if breadcrumb is single--><span>Dashboard</span>
-                      </li>
-                      <li class="breadcrumb-item"><span>User</span></li>
-                      <li class="breadcrumb-item active"><span>Create User</span></li>
-                  </ol>
-              </nav>
+            <li class="breadcrumb-item"><Link :href="route('dashboard')">Dashboard</Link></li>
+            <li class="breadcrumb-item"><Link :href="route('user')">User</Link></li>
+            <li class="breadcrumb-item active" aria-current="page">Create</li>
         </template>
+
+        <div class="col-md-12 text-start mb-2">
+            <Link class="btn btn-dark btn-sm" :href="route('user')"> Go back </Link>
+        </div>
 
         <div class="card mb-4">
             <div class="card-header"><strong>User</strong><span class="small ms-1">Details</span></div>

@@ -1,14 +1,26 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link } from "@inertiajs/inertia-vue3";
+import { unref, ref } from 'vue'
 
-defineProps({
+const props = defineProps({
   roles: Array,
+  permissions: Array
 });
 
 const createUser = () => {
   alert("create role");
 };
+
+function getPermisionTitle(id) {
+
+  props.permissions.forEach((permission, index) => {
+    if(permission.id == id){
+      console.log("MATCHED :: (" + id+") queried form loop :: in array (" + permission.id + ")");
+      return permission.title;
+    }
+  });
+}
 </script>
 
 <template>
@@ -16,14 +28,8 @@ const createUser = () => {
 
   <AuthenticatedLayout>
     <template #breadcrumbs>
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb my-0 ms-2">
-          <li class="breadcrumb-item">
-            <!-- if breadcrumb is single--><span>Dashboard</span>
-          </li>
-          <li class="breadcrumb-item active"><span>Role</span></li>
-        </ol>
-      </nav>
+      <li class="breadcrumb-item"><Link :href="route('dashboard')">Dashboard</Link></li>
+      <li class="breadcrumb-item active" aria-current="page">Role</li>
     </template>
 
     <div class="col-md-12 text-end mb-2">
@@ -55,7 +61,11 @@ const createUser = () => {
                   <tr v-for="(role, keyRole) in roles" :key="keyRole">
                     <td>{{ role.id }}</td>
                     <td>{{ role.title }}</td>
-                    <td>{{ role.permissions }}</td>
+                    <td>
+                      <span v-for="(permission, keyPermission) in role.permissions.split(',')" :key="keyPermission" class="badge bg-dark ms-1">
+                        {{ permission }}
+                      </span>  
+                    </td>
                   </tr>
                 </tbody>
               </table>

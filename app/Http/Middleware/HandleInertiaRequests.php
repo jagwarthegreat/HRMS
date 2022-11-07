@@ -14,7 +14,7 @@ class HandleInertiaRequests extends Middleware
      *
      * @var string
      */
-    protected $rootView = 'app';
+    // protected $rootView = 'app';
 
     /**
      * Determine the current asset version.
@@ -47,12 +47,12 @@ class HandleInertiaRequests extends Middleware
         ]);
     }
 
-    // public function rootView(Request $request)
-    // {
-    //     if (Route::currentRouteName() == "login") {
-    //         return 'login';
-    //     }
+    public function rootView(Request $request)
+    {
+        if (Route::currentRouteName() == "login") {
+            return 'login';
+        }
 
-    //     return 'app';
-    // }
+        return 'app';
+    }
 }

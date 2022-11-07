@@ -1,20 +1,34 @@
 <script setup>
 import AuthenticatedLayout from "./../../Layouts/AuthenticatedLayout.vue";
-import { Head, Linkm, useForm } from "@inertiajs/inertia-vue3";
+import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 import { ref, onMounted } from "vue";
+
+defineProps({
+  permissions: Array,
+});
 
 const roleform = useForm({
   roletitle: "",
+  rolepermission: "",
 });
 
 const roleStore = () => {
   roleform.post(route("role.store"), {
-    onFinish: () => roleform.reset("title"),
+    onFinish: () => {
+      roleform.reset("roletitle");
+      roleform.reset("rolepermission");
+    },
   });
 };
 
 onMounted(() => {
   $(".form-multi-select").select2();
+
+  $("#rolepermission").change(
+      function () {
+        roleform.rolepermission = $("#rolepermission").val();
+      }.bind(this)
+  );
 });
 // $(".js-example-basic-multiple").select2();
 </script>
@@ -24,19 +38,13 @@ onMounted(() => {
 
   <AuthenticatedLayout>
     <template #breadcrumbs>
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb my-0 ms-2">
-          <li class="breadcrumb-item">
-            <!-- if breadcrumb is single--><span>Dashboard</span>
-          </li>
-          <li class="breadcrumb-item"><span>Role</span></li>
-          <li class="breadcrumb-item active"><span>Create Role</span></li>
-        </ol>
-      </nav>
+      <li class="breadcrumb-item"><Link :href="route('dashboard')">Dashboard</Link></li>
+      <li class="breadcrumb-item"><Link :href="route('role')">Role</Link></li>
+      <li class="breadcrumb-item active" aria-current="page">Create</li>
     </template>
 
     <div class="col-md-12 text-start mb-2">
-      <a class="btn btn-dark btn-sm" :href="route('role')"> Go back </a>
+      <Link class="btn btn-dark btn-sm" :href="route('role')"> Go back </Link>
     </div>
 
     <div class="col-12">
@@ -48,7 +56,7 @@ onMounted(() => {
               <div class="col-md-12">
                 <div class="mb-3">
                   <label for="roletitle" class="form-label">Title</label>
-                  <input type="text" class="form-control" id="roletitle" />
+                  <input type="text" class="form-control" id="roletitle" v-model="roleform.roletitle" />
                 </div>
                 <div class="mb-3">
                   <label for="rolepermissions" class="form-label"
@@ -58,10 +66,17 @@ onMounted(() => {
                     class="form-multi-select"
                     multiple
                     data-coreui-search="true"
+                    v-if="permissions.length > 0"
+                    id="rolepermission" 
+                    v-model="roleform.rolepermission"
+                    name="rolePerrmission[]"
                   >
-                    <option value="AL">Alabama</option>
-                    <option value="AS">AUSTIRia</option>
-                    <option value="WY">Wyoming</option>
+                    <option 
+                      v-for="(permission, keyPermission) in permissions" 
+                      :key="keyPermission" 
+                      :value="permission.id">
+                      {{ permission.title }}
+                    </option>
                   </select>
                 </div>
               </div>

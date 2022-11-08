@@ -47,5 +47,5 @@
     - User profile
 
 - Reports
-- help desk
+- help desk /knowledge base
 - announcements

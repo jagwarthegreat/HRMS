@@ -22,7 +22,7 @@ const roleStore = () => {
 };
 
 onMounted(() => {
-  $(".form-multi-select").select2();
+  $("#rolepermission").select2();
 
   $("#rolepermission").change(
       function () {
@@ -30,7 +30,6 @@ onMounted(() => {
       }.bind(this)
   );
 });
-// $(".js-example-basic-multiple").select2();
 </script>
 
 <template>
@@ -59,17 +58,16 @@ onMounted(() => {
                   <input type="text" class="form-control" id="roletitle" v-model="roleform.roletitle" />
                 </div>
                 <div class="mb-3">
-                  <label for="rolepermissions" class="form-label"
+                  <label for="rolepermission" class="form-label"
                     >Permissions</label
                   >
                   <select
-                    class="form-multi-select"
+                    class="form-control"
                     multiple
                     data-coreui-search="true"
                     v-if="permissions.length > 0"
                     id="rolepermission" 
                     v-model="roleform.rolepermission"
-                    name="rolePerrmission[]"
                   >
                     <option 
                       v-for="(permission, keyPermission) in permissions" 

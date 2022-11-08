@@ -51,6 +51,7 @@ Route::prefix('role')->middleware('auth')->group(function () {
 Route::prefix('user')->middleware('auth')->group(function () {
     Route::get('/', [UserController::class, 'index'])->name('user');
     Route::get('/create', [UserController::class, 'create'])->name('user.create');
+    Route::post('/store', [UserController::class, 'store'])->name('user.store');
 });
 
 // EMPLOYEE MANAGEMENT

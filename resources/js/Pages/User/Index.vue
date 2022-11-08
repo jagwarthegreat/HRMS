@@ -4,6 +4,7 @@ import { Head, Link } from "@inertiajs/inertia-vue3";
 
 defineProps({
   users: Array,
+  canCreate: Boolean
 });
 
 const createUser = () => {
@@ -11,6 +12,12 @@ const createUser = () => {
 };
 </script>
 
+<style scoped>
+  .badge{
+    font-weight: 400;
+    line-height: normal;
+  }
+</style>
 <template>
   <Head title="Dashboard" />
 
@@ -19,8 +26,8 @@ const createUser = () => {
       <li class="breadcrumb-item"><Link :href="route('dashboard')">Dashboard</Link></li>
       <li class="breadcrumb-item active" aria-current="page">User</li>
     </template>
-
-    <div class="col-md-12 text-end mb-2">
+    <!-- {Auth::user()->can('user_management_access')} -->
+    <div class="col-md-12 text-end mb-2" v-if="canCreate">
       <Link
         class="btn btn-dark btn-sm"
         :href="route('user.create')"
@@ -28,7 +35,7 @@ const createUser = () => {
         Create User
       </Link>
     </div>
-
+   
     <div class="col-12">
       <div class="card mb-4">
         <div class="card-header">User List</div>
@@ -40,12 +47,18 @@ const createUser = () => {
                   <tr>
                     <th>Fullname</th>
                     <th>Username</th>
+                    <th>Role</th>
                   </tr>
                 </thead>
                 <tbody v-if="users.length > 0">
                   <tr v-for="(user, keyUser) in users" :key="keyUser">
                     <td>{{ user.name }}</td>
                     <td>{{ user.username }}</td>
+                    <td>
+                      <span v-for="(role, keyRole) in user.roles" :key="keyRole" class="badge bg-dark ms-1 pt-0">
+                        {{ role.title }}
+                      </span>
+                    </td>
                   </tr>
                 </tbody>
               </table>

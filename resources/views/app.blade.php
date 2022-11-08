@@ -56,50 +56,61 @@
           </a>
         </li>
 
-        <!-- USER MANAGEMENT -->
-        <li class="nav-group">
-          <a class="nav-link nav-group-toggle" href="#">
-            <svg class="nav-icon">
-              <use
-                xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-user"
-              ></use>
-            </svg>
-            User Management
-          </a>
-          <ul class="nav-group-items">
-            <li class="nav-item">
-              <a class="nav-link" href="{{route('permission')}}" target="_top">
-                <svg class="nav-icon">
-                  <use
-                    xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-lock-unlocked"
-                  ></use>
-                </svg>
-                Permissions</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{route('role')}}" target="_top">
-                <svg class="nav-icon">
-                  <use
-                    xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-briefcase"
-                  ></use>
-                </svg>
-                Roles</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{route('user')}}" target="_top">
-                <svg class="nav-icon">
-                  <use
-                    xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-people"
-                  ></use>
-                </svg>
-                Users</a
-              >
-            </li>
-          </ul>
-        </li>
-        <!-- /USER MANAGEMENT -->
+        @can('user_management_access')
+          <!-- USER MANAGEMENT -->
+          <li class="nav-group">
+            <a class="nav-link nav-group-toggle" href="#">
+              <svg class="nav-icon">
+                <use
+                  xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-user"
+                ></use>
+              </svg>
+              User Management
+            </a>
+            <ul class="nav-group-items">
+              @can('permission_access')
+                <li class="nav-item">
+                  <a class="nav-link" href="{{route('permission')}}" target="_top">
+                    <svg class="nav-icon">
+                      <use
+                        xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-lock-unlocked"
+                      ></use>
+                    </svg>
+                    Permissions</a
+                  >
+                </li>
+              @endcan
+              
+              @can('role_access')
+                <li class="nav-item">
+                  <a class="nav-link" href="{{route('role')}}" target="_top">
+                    <svg class="nav-icon">
+                      <use
+                        xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-briefcase"
+                      ></use>
+                    </svg>
+                    Roles</a
+                  >
+                </li>
+              @endcan
+
+              @can('user_access')
+              <li class="nav-item">
+                <a class="nav-link" href="{{route('user')}}" target="_top">
+                  <svg class="nav-icon">
+                    <use
+                      xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-people"
+                    ></use>
+                  </svg>
+                  Users</a
+                >
+              </li>
+              @endcan
+              
+            </ul>
+          </li>
+          <!-- /USER MANAGEMENT -->
+        @endcan
 
         <!-- <li class="nav-title">MASTERDATA</li> -->
         <li class="nav-group">

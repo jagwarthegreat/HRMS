@@ -4,20 +4,68 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Employee;
+use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Inertia\Inertia;
+use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
 {
     public function index()
     {
-        $users = User::where('id', '>', '0')->with('employee')->get();
+        abort_if(
+            Gate::denies('user_management_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
 
-        return Inertia::render('User/Index', compact('users'));
+        $users = User::where('id', '>', '0')->with(['employee', 'roles'])->get();
+        $canCreate = Gate::allows('user_management_access');
+
+        return Inertia::render('User/Index', compact('users', 'canCreate'));
     }
 
     public function create()
     {
-        return Inertia::render('User/Create');
+        abort_if(
+            Gate::denies('user_create'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
+
+        $roles = Role::all();
+        $employees = Employee::all();
+        return Inertia::render('User/Create', compact('roles', 'employees'));
+    }
+
+    public function store(Request $request)
+    {
+        abort_if(
+            Gate::denies('user_create'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
+
+        $request->validate([
+            'employee' => 'required',
+            'roles' => 'required',
+            'username' => 'required',
+            'password' => 'required',
+        ]);
+
+        $emp = Employee::find($request->employee);
+        $user_fullname = $emp->firstname . " " . $emp->middlename . " " . $emp->lastname;
+
+        $user = User::create([
+            'employee_id' => $request->employee,
+            'name' => $user_fullname,
+            'username' => $request->username,
+            'password' => bcrypt($request->password),
+        ]);
+
+        $user->roles()->sync($request->roles);
+        return redirect('user');
     }
 }

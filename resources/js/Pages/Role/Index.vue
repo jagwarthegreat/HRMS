@@ -5,24 +5,21 @@ import { unref, ref } from 'vue'
 
 const props = defineProps({
   roles: Array,
-  permissions: Array
+  canCreate: Boolean,
 });
 
 const createUser = () => {
   alert("create role");
 };
 
-function getPermisionTitle(id) {
-
-  props.permissions.forEach((permission, index) => {
-    if(permission.id == id){
-      console.log("MATCHED :: (" + id+") queried form loop :: in array (" + permission.id + ")");
-      return permission.title;
-    }
-  });
-}
 </script>
 
+<style scoped>
+  .badge{
+    font-weight: 400;
+    line-height: normal;
+  }
+</style>
 <template>
   <Head title="Role" />
 
@@ -32,7 +29,7 @@ function getPermisionTitle(id) {
       <li class="breadcrumb-item active" aria-current="page">Role</li>
     </template>
 
-    <div class="col-md-12 text-end mb-2">
+    <div class="col-md-12 text-end mb-2" v-if="canCreate">
       <Link
         class="btn btn-dark btn-sm"
         :href="route('role.create')"
@@ -53,7 +50,7 @@ function getPermisionTitle(id) {
                 <thead>
                   <tr>
                     <th>ID</th>
-                    <th>TITLE</th>
+                    <th style="width: 20%;">TITLE</th>
                     <th>PERMISSIONS</th>
                   </tr>
                 </thead>
@@ -62,8 +59,8 @@ function getPermisionTitle(id) {
                     <td>{{ role.id }}</td>
                     <td>{{ role.title }}</td>
                     <td>
-                      <span v-for="(permission, keyPermission) in role.permissions.split(',')" :key="keyPermission" class="badge bg-dark ms-1">
-                        {{ permission }}
+                      <span v-for="(permission, keyPermission) in role.permissions" :key="keyPermission" class="badge bg-dark ms-1 pt-0">
+                        {{ permission.title }}
                       </span>  
                     </td>
                   </tr>

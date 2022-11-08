@@ -124,7 +124,7 @@
           </a>
           <ul class="nav-group-items">
             <li class="nav-item">
-              <a class="nav-link" :href="route('position')" target="_top">
+              <a class="nav-link" href="{{route('position')}}" target="_top">
                 <svg class="nav-icon">
                   <use
                     xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-badge"
@@ -134,7 +134,7 @@
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" :href="route('employee')" target="_top">
+              <a class="nav-link" href="{{route('employee')}}" target="_top">
                 <svg class="nav-icon">
                   <use
                     xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-user"

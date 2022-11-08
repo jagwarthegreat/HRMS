@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\PermisionController;
+use App\Http\Controllers\Position;
+use App\Http\Controllers\PositionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
@@ -58,6 +60,12 @@ Route::prefix('user')->middleware('auth')->group(function () {
 Route::prefix('employee')->middleware('auth')->group(function () {
     Route::get('/', [EmployeeController::class, 'index'])->name('employee');
     Route::get('/create', [EmployeeController::class, 'create'])->name('employee.create');
+});
+
+// POSITION
+Route::prefix('position')->middleware('auth')->group(function () {
+    Route::get('/', [PositionController::class, 'index'])->name('position');
+    Route::get('/create', [PositionController::class, 'create'])->name('position.create');
 });
 
 require __DIR__ . '/auth.php';

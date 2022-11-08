@@ -22,7 +22,7 @@ class UserTableSeeder extends Seeder
                 "name" => "SUPER USER",
                 "email_verified_at" => NULL,
                 "username" => "su",
-                "password" => "$2y$10$GUxtPo1GXNgCvelfJoBtDO71vKEQyK.LgVrmdIc/ZfuFIDPzlrtqS",
+                "password" => '$2y$10$GUxtPo1GXNgCvelfJoBtDO71vKEQyK.LgVrmdIc/ZfuFIDPzlrtqS',
                 "remember_token" => NULL,
                 "created_at" => "2022-11-02 13:07:31",
                 "updated_at" => "2022-11-02 13:07:32",

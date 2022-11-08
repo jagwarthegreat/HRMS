@@ -56,9 +56,96 @@
           </a>
         </li>
 
+        {{-- EMPLOYEE MANAGEMENT --}}
+        <li class="nav-group">
+          <a class="nav-link nav-group-toggle" href="#">
+            <svg class="nav-icon">
+              <use
+                xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-people"
+              ></use>
+            </svg>
+            Employee Management
+          </a>
+          <ul class="nav-group-items">
+            <li class="nav-item">
+              <a class="nav-link" href="{{route('position')}}" target="_top">
+                <svg class="nav-icon">
+                  <use
+                    xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-badge"
+                  ></use>
+                </svg>
+                Position</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{route('employee')}}" target="_top">
+                <svg class="nav-icon">
+                  <use
+                    xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-user"
+                  ></use>
+                </svg>
+                Employees</a
+              >
+            </li>
+          </ul>
+        </li>
+        {{-- /EMPLOYEE MANAGEMENT --}}
+
+        {{-- CLIENT MANAGEMENT --}}
+        <li class="nav-item">
+          <a class="nav-link" href="{{route('dashboard')}}">
+            <svg class="nav-icon">
+              <use
+                xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-list-rich"></use>
+            </svg>
+            Clients
+          </a>
+        </li>
+        {{-- /CLIENT MANAGEMENT --}}
+
+        {{-- DEPARTMENT MANAGEMENT --}}
+        <li class="nav-item">
+          <a class="nav-link" href="{{route('department')}}">
+            <svg class="nav-icon">
+              <use
+                xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-building"></use>
+            </svg>
+            Department
+          </a>
+        </li>
+        {{-- /DEPARTMENT MANAGEMENT --}}
+
+        {{-- DOCUMENT MANAGEMENT --}}
+        <li class="nav-group">
+          <a class="nav-link nav-group-toggle" href="#">
+            <svg class="nav-icon">
+              <use
+                xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-description"
+              ></use>
+            </svg>
+            Documents
+          </a>
+          <ul class="nav-group-items">
+            <li class="nav-item">
+              <a class="nav-link" href="{{route('docs.employee')}}" target="_top">
+                <svg class="nav-icon"></svg>
+                Employee</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{route('docs.client')}}" target="_top">
+                <svg class="nav-icon"></svg>
+                Client
+                </a>
+            </li>
+          </ul>
+        </li>
+        {{-- /DOCUMENT MANAGEMENT --}}
+
+        {{-- THIS SECTION SITS AT THE BOTTOM --}}
+        {{-- USER MANAGEMENT --}}
         @can('user_management_access')
           <!-- USER MANAGEMENT -->
-          <li class="nav-group">
+          <li class="nav-group mt-auto">
             <a class="nav-link nav-group-toggle" href="#">
               <svg class="nav-icon">
                 <use
@@ -111,70 +198,8 @@
           </li>
           <!-- /USER MANAGEMENT -->
         @endcan
+        {{-- /USER MANAGEMENT --}}
 
-        <!-- <li class="nav-title">MASTERDATA</li> -->
-        <li class="nav-group">
-          <a class="nav-link nav-group-toggle" href="#">
-            <svg class="nav-icon">
-              <use
-                xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-people"
-              ></use>
-            </svg>
-            Employee Management
-          </a>
-          <ul class="nav-group-items">
-            <li class="nav-item">
-              <a class="nav-link" href="{{route('position')}}" target="_top">
-                <svg class="nav-icon">
-                  <use
-                    xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-badge"
-                  ></use>
-                </svg>
-                Position</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{route('employee')}}" target="_top">
-                <svg class="nav-icon">
-                  <use
-                    xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-user"
-                  ></use>
-                </svg>
-                Employees</a
-              >
-            </li>
-          </ul>
-        </li>
-
-        <li class="nav-item mt-auto">
-          <a
-            class="nav-link"
-            href="https://coreui.io/docs/templates/installation/"
-            target="_blank"
-          >
-            <svg class="nav-icon">
-              <use
-                xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-description"
-              ></use>
-            </svg>
-            Docs</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link nav-link-danger"
-            href="https://coreui.io/pro/"
-            target="_top"
-          >
-            <svg class="nav-icon">
-              <use
-                xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-layers"
-              ></use>
-            </svg>
-            Try CoreUI
-            <div class="fw-semibold">PRO</div>
-          </a>
-        </li>
       </ul>
       <button
         class="sidebar-toggler"
@@ -260,33 +285,32 @@
                       xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-bell"
                     ></use>
                   </svg>
-                  Updates<span class="badge badge-sm bg-info ms-2">42</span></a
-                ><a class="dropdown-item" href="#">
+                  Updates<span class="badge badge-sm bg-info ms-2">42</span>
+                </a>
+                <a class="dropdown-item" href="#">
                   <svg class="icon me-2">
                     <use
                       xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-envelope-open"
                     ></use>
                   </svg>
-                  Messages<span class="badge badge-sm bg-success ms-2"
-                    >42</span
-                  ></a
-                ><a class="dropdown-item" href="#">
+                  Messages<span class="badge badge-sm bg-success ms-2">42</span>
+                </a>
+                <a class="dropdown-item" href="#">
                   <svg class="icon me-2">
                     <use
                       xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-task"
                     ></use>
                   </svg>
-                  Tasks<span class="badge badge-sm bg-danger ms-2">42</span></a
-                ><a class="dropdown-item" href="#">
+                  Tasks<span class="badge badge-sm bg-danger ms-2">42</span>
+                </a>
+                <a class="dropdown-item" href="#">
                   <svg class="icon me-2">
                     <use
                       xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-comment-square"
                     ></use>
                   </svg>
-                  Comments<span class="badge badge-sm bg-warning ms-2"
-                    >42</span
-                  ></a
-                >
+                  Notice<span class="badge badge-sm bg-warning ms-2">42</span>
+                </a>
                 <div class="dropdown-header bg-light py-2">
                   <div class="fw-semibold">Settings</div>
                 </div>
@@ -296,42 +320,17 @@
                       xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-user"
                     ></use>
                   </svg>
-                  Profile</a
-                ><a class="dropdown-item" href="#">
+                  Profile
+                </a>
+                <a class="dropdown-item" href="#">
                   <svg class="icon me-2">
                     <use
                       xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-settings"
                     ></use>
                   </svg>
-                  Settings</a
-                ><a class="dropdown-item" href="#">
-                  <svg class="icon me-2">
-                    <use
-                      xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-credit-card"
-                    ></use>
-                  </svg>
-                  Payments<span class="badge badge-sm bg-secondary ms-2"
-                    >42</span
-                  ></a
-                ><a class="dropdown-item" href="#">
-                  <svg class="icon me-2">
-                    <use
-                      xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-file"
-                    ></use>
-                  </svg>
-                  Projects<span class="badge badge-sm bg-primary ms-2"
-                    >42</span
-                  ></a
-                >
+                  Settings
+                </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">
-                  <svg class="icon me-2">
-                    <use
-                      xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-lock-locked"
-                    ></use>
-                  </svg>
-                  Lock Account</a
-                >
                 <a
                   class="dropdown-item"
                   href="#"
@@ -361,8 +360,7 @@
       </div>
       <footer class="footer">
         <div>
-          HRMS <a href="https://juancoder.com">Juancoder IT Solutions</a> ©2022
-          creativeLabs.
+          &copy;2022 HRMS <a href="https://juancoder.com">Juancoder IT Solutions</a>
         </div>
       </footer>
     </div>

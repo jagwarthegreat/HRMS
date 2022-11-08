@@ -38,6 +38,8 @@
 - Time schedules
 - post job vacancies
 - recruitment management
+- set working days
+- set holiday list
 ---
 
 ### SYSTEM :
@@ -49,3 +51,17 @@
 - Reports
 - help desk /knowledge base
 - announcements
+
+- SETTINGS
+    - company info
+---
+
+### MODULES :
+- DASHBOARD
+    - recent application
+    - calendar
+    - widget for total employee
+    - widget for total client
+    - expenses
+
+- NOTICE BOARD

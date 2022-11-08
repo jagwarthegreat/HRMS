@@ -7,6 +7,7 @@ use App\Http\Controllers\PositionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -32,7 +33,8 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+    $user = Auth::user();
+    return Inertia::render('Dashboard', compact('user'));
 })->middleware('auth')->name('dashboard');
 
 // PERMISSIONS
@@ -67,6 +69,17 @@ Route::prefix('position')->middleware('auth')->group(function () {
     Route::get('/', [PositionController::class, 'index'])->name('position');
     Route::get('/create', [PositionController::class, 'create'])->name('position.create');
     Route::post('/store', [PositionController::class, 'store'])->name('position.store');
+});
+
+// DOCUMENTS
+Route::prefix('docs')->middleware('auth')->group(function () {
+    Route::get('/employee', [PositionController::class, 'index'])->name('docs.employee');
+    Route::get('/client', [PositionController::class, 'create'])->name('docs.client');
+});
+
+// DEPARTMENT
+Route::prefix('department')->middleware('auth')->group(function () {
+    Route::get('/', [PositionController::class, 'index'])->name('department');
 });
 
 require __DIR__ . '/auth.php';

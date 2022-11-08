@@ -20,7 +20,7 @@
     - files /etc
 
 - Department
-    - assign employee (if within company premise)
+    - assign employee (if within company premises)
     - department org chart
     - department records
 

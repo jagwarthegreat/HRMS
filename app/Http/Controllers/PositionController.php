@@ -47,7 +47,9 @@ class PositionController extends Controller
             'title' => 'required'
         ]);
 
-        Position::create($request->all());
+        Position::create([
+            'title' => $request->title
+        ]);
         return redirect('position');
     }
 }

@@ -14,7 +14,7 @@ defineProps({
   <AuthenticatedLayout>
     <template #breadcrumbs>
       <li class="breadcrumb-item"><Link :href="route('dashboard')">Dashboard</Link></li>
-      <li class="breadcrumb-item active" aria-current="page">Permission</li>
+      <li class="breadcrumb-item active" aria-current="page">Position</li>
     </template>
 
     <div class="col-md-12 text-end mb-2" v-if="canCreate">

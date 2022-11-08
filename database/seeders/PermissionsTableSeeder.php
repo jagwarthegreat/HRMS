@@ -118,6 +118,36 @@ class PermissionsTableSeeder extends Seeder
                 "created_at" => "2022-11-08 07:27:26",
                 "updated_at" => "2022-11-08 07:27:26",
             ),
+            array(
+                "id" => 18,
+                "title" => "position_access",
+                "created_at" => "2022-11-08 08:26:52",
+                "updated_at" => "2022-11-08 08:26:52",
+            ),
+            array(
+                "id" => 19,
+                "title" => "position_create",
+                "created_at" => "2022-11-08 08:27:05",
+                "updated_at" => "2022-11-08 08:27:05",
+            ),
+            array(
+                "id" => 20,
+                "title" => "position_edit",
+                "created_at" => "2022-11-08 08:27:18",
+                "updated_at" => "2022-11-08 08:27:18",
+            ),
+            array(
+                "id" => 21,
+                "title" => "position_show",
+                "created_at" => "2022-11-08 08:27:29",
+                "updated_at" => "2022-11-08 08:27:29",
+            ),
+            array(
+                "id" => 22,
+                "title" => "position_delete",
+                "created_at" => "2022-11-08 08:27:41",
+                "updated_at" => "2022-11-08 08:27:41",
+            ),
         );
 
         Permission::insert($permissions);

@@ -66,6 +66,7 @@ Route::prefix('employee')->middleware('auth')->group(function () {
 Route::prefix('position')->middleware('auth')->group(function () {
     Route::get('/', [PositionController::class, 'index'])->name('position');
     Route::get('/create', [PositionController::class, 'create'])->name('position.create');
+    Route::post('/store', [PositionController::class, 'store'])->name('position.store');
 });
 
 require __DIR__ . '/auth.php';

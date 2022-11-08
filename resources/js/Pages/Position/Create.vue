@@ -6,32 +6,32 @@ const form = useForm({
   title: "",
 });
 
-const permissionStore = () => {
-  form.post(route("permission.store"), {
+const positionStore = () => {
+  form.post(route("position.store"), {
     onFinish: () => form.reset("title"),
   });
 };
 </script>
 
 <template>
-  <Head title="Create Permission" />
+  <Head title="Create Position" />
 
   <AuthenticatedLayout>
     <template #breadcrumbs>
       <li class="breadcrumb-item"><Link :href="route('dashboard')">Dashboard</Link></li>
-      <li class="breadcrumb-item"><Link :href="route('permission')">Permission</Link></li>
+      <li class="breadcrumb-item"><Link :href="route('position')">Position</Link></li>
       <li class="breadcrumb-item active" aria-current="page">Create</li>
     </template>
 
     <div class="col-md-12 text-start mb-2">
-      <Link class="btn btn-dark btn-sm" :href="route('permission')"> Go back </Link>
+      <Link class="btn btn-dark btn-sm" :href="route('position')"> Go back </Link>
     </div>
 
     <div class="col-12">
       <div class="card mb-4">
-        <div class="card-header">Permission Details</div>
+        <div class="card-header">Position Details</div>
         <div class="card-body">
-          <form @submit.prevent="permissionStore">
+          <form @submit.prevent="positionStore">
             <div class="row">
               <div class="col-md-12">
                 <div class="mb-3">

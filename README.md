@@ -36,6 +36,8 @@
 - Absent management
 - Leave management
 - Time schedules
+- post job vacancies
+- recruitment management
 ---
 
 ### SYSTEM :
@@ -45,3 +47,5 @@
     - User profile
 
 - Reports
+- help desk
+- announcements

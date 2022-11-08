@@ -35,6 +35,7 @@
 - PAYROLL
 - Absent management
 - Leave management
+- Time schedules
 ---
 
 ### SYSTEM :
@@ -42,3 +43,5 @@
     - Permissions
     - Roles
     - User profile
+
+- Reports

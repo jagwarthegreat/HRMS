@@ -24,7 +24,7 @@ const props = defineProps({
             <div class="card-body p-0 d-flex align-items-center">
               <div class="bg-info text-white p-4 me-3">
                 <svg class="icon icon-xl">
-                  <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-laptop"></use>
+                  <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-people"></use>
                 </svg>
               </div>
               <div>
@@ -40,7 +40,7 @@ const props = defineProps({
             <div class="card-body p-0 d-flex align-items-center">
               <div class="bg-info text-white p-4 me-3">
                 <svg class="icon icon-xl">
-                  <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-laptop"></use>
+                  <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-user"></use>
                 </svg>
               </div>
               <div>
@@ -56,7 +56,7 @@ const props = defineProps({
             <div class="card-body p-0 d-flex align-items-center">
               <div class="bg-info text-white p-4 me-3">
                 <svg class="icon icon-xl">
-                  <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-laptop"></use>
+                  <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-briefcase"></use>
                 </svg>
               </div>
               <div>
@@ -72,12 +72,12 @@ const props = defineProps({
             <div class="card-body p-0 d-flex align-items-center">
               <div class="bg-info text-white p-4 me-3">
                 <svg class="icon icon-xl">
-                  <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-laptop"></use>
+                  <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-lan"></use>
                 </svg>
               </div>
               <div>
                 <div class="fs-6 fw-semibold text-info">10</div>
-                <div class="text-medium-emphasis text-uppercase fw-semibold small">ONBOARDING</div>
+                <div class="text-medium-emphasis text-uppercase fw-semibold small">APPLICANTS</div>
               </div>
             </div>
           </div>

@@ -13,7 +13,7 @@ const createEmployee = () =>  {
 </script>
 
 <template>
-    <Head title="Dashboard" />
+    <Head title="Employee" />
 
     <AuthenticatedLayout>
         <template #breadcrumbs>

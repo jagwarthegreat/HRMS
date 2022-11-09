@@ -45,7 +45,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <Head title="Create Role" />
+  <Head title="Create User" />
 
   <AuthenticatedLayout>
     <template #breadcrumbs>
@@ -85,6 +85,9 @@ onMounted(() => {
                       {{ employee.firstname + " "  + employee.middlename + " " + employee.lastname + " (" + employee.gender + ")"}}
                     </option>
                   </select>
+                  <div class="row" v-else>
+                    <small class="text-danger ms-1">No Employee found.</small>
+                  </div>
                 </div>
                 <div class="mb-3">
                   <label for="roletitle" class="form-label">Username</label>
@@ -114,6 +117,9 @@ onMounted(() => {
                       {{ role.title }}
                     </option>
                   </select>
+                  <div class="row" v-else>
+                    <small class="text-danger ms-1">No Roles found.</small>
+                  </div>
                 </div>
               </div>
               <div class="col-12 text-base">

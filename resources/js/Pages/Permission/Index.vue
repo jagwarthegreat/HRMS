@@ -11,7 +11,7 @@ const createUser = () => {
 };
 </script>
 <template>
-  <Head title="Dashboard" />
+  <Head title="Permission" />
 
   <AuthenticatedLayout>
     <template #breadcrumbs>

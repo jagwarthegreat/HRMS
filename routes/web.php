@@ -23,14 +23,15 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    // return Inertia::render('Welcome', [
-    //     'canLogin' => Route::has('login'),
-    //     'canRegister' => Route::has('register'),
-    //     'laravelVersion' => Application::VERSION,
-    //     'phpVersion' => PHP_VERSION,
-    // ]);
-    return redirect('/login');
-});
+    return Inertia::render('Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+        'appName' => config('app.name')
+    ]);
+    // return redirect('/login');
+})->name('welcome');
 
 Route::get('/dashboard', function () {
     $user = Auth::user();
@@ -80,6 +81,17 @@ Route::prefix('docs')->middleware('auth')->group(function () {
 // DEPARTMENT
 Route::prefix('department')->middleware('auth')->group(function () {
     Route::get('/', [PositionController::class, 'index'])->name('department');
+});
+
+// RECRUITMENT
+Route::prefix('job')->middleware('auth')->group(function () {
+    Route::get('/vacancy', [PositionController::class, 'index'])->name('job.vacancy');
+    Route::get('/applicants', [PositionController::class, 'create'])->name('job.applicants');
+});
+
+// CLIENTS
+Route::prefix('client')->middleware('auth')->group(function () {
+    Route::get('/', [PositionController::class, 'index'])->name('client');
 });
 
 require __DIR__ . '/auth.php';

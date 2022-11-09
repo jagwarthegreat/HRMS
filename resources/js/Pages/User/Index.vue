@@ -19,7 +19,7 @@ const createUser = () => {
   }
 </style>
 <template>
-  <Head title="Dashboard" />
+  <Head title="User" />
 
   <AuthenticatedLayout>
     <template #breadcrumbs>

@@ -49,7 +49,7 @@ class HandleInertiaRequests extends Middleware
 
     public function rootView(Request $request)
     {
-        if (Route::currentRouteName() == "login") {
+        if (Route::current()->uri == "login" || Route::current()->uri == "/") {
             return 'login';
         }
 

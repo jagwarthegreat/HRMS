@@ -63,6 +63,8 @@ Route::prefix('user')->middleware('auth')->group(function () {
 Route::prefix('employee')->middleware('auth')->group(function () {
     Route::get('/', [EmployeeController::class, 'index'])->name('employee');
     Route::get('/create', [EmployeeController::class, 'create'])->name('employee.create');
+    Route::post('/store', [EmployeeController::class, 'store'])->name('employee.store');
+    Route::get('/show/{id}', [EmployeeController::class, 'show'])->name('employee.show');
 });
 
 // POSITION

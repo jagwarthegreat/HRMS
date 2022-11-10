@@ -108,7 +108,7 @@
         {{-- /DEPARTMENT MANAGEMENT --}}
 
         {{-- RECRUITMENT MANAGEMENT --}}
-        <li class="nav-group">
+        {{-- <li class="nav-group">
           <a class="nav-link nav-group-toggle" href="#">
             <svg class="nav-icon">
               <use
@@ -130,7 +130,7 @@
                 </a>
             </li>
           </ul>
-        </li>
+        </li> --}}
         {{-- /RECRUITMENT MANAGEMENT --}}
 
         {{-- THIS SECTION SITS AT THE BOTTOM --}}
@@ -193,7 +193,7 @@
           {{-- /USER MANAGEMENT --}}
 
           {{-- DOCUMENT MANAGEMENT --}}
-          <li class="nav-group">
+          {{-- <li class="nav-group">
             <a class="nav-link nav-group-toggle" href="#">
               <svg class="nav-icon">
                 <use
@@ -215,7 +215,7 @@
                   </a>
               </li>
             </ul>
-          </li>
+          </li> --}}
           {{-- /DOCUMENT MANAGEMENT --}}
         {{-- /THIS SECTION SITS AT THE BOTTOM --}}
 

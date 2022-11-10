@@ -5,7 +5,7 @@ import { Link } from "@inertiajs/inertia-vue3";
 <template>
   <!-- CONTENT -->
   <div class="wrapper d-flex flex-column min-vh-100 bg-light">
-    <header class="header header-sticky mb-3">
+    <!-- <header class="header header-sticky mb-3">
         <div class="container-fluid">
             <Link class="header-brand" :href="route('welcome')"> {{$page.props.appName}} </Link>
             <ul class="header-nav d-none d-md-flex ms-auto">
@@ -14,7 +14,7 @@ import { Link } from "@inertiajs/inertia-vue3";
                 <li class="nav-item"><Link class="nav-link" href="#">Help</Link></li>
             </ul>
         </div>
-    </header>
+    </header> -->
     <div class="body flex-grow-1 px-0">
         <div class="container-fluid">
             <div class="row">

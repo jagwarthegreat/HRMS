@@ -6,24 +6,27 @@ defineProps({
     employees: []
 });
 
-const createEmployee = () =>  {
+const createEmployee = () => {
     alert("create user");
 }
 
 </script>
 
 <template>
+
     <Head title="Employee" />
 
     <AuthenticatedLayout>
         <template #breadcrumbs>
-            <li class="breadcrumb-item"><Link :href="route('dashboard')">Dashboard</Link></li>
+            <li class="breadcrumb-item">
+                <Link :href="route('dashboard')">Dashboard</Link>
+            </li>
             <li class="breadcrumb-item active" aria-current="page">Employee</li>
         </template>
 
         <div class="col-md-12 text-end mb-2">
             <Link class="btn btn-dark btn-sm" :href="route('employee.create')" method="get" as="button">
-                Create Employee
+            Create Employee
             </Link>
         </div>
         <div class="card mb-4">
@@ -32,19 +35,20 @@ const createEmployee = () =>  {
                 <div class="row">
                     <div class="col-md-12">
                         <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>Fullname</th>
-                                <th>Employment Status</th>
-                            </tr>
-                        </thead>
-                        <tbody v-if="employees.length > 0">
-                            <tr v-for="(employee, keyEmployee) in employees" :key="keyEmployee">
-                                <td>{{employee.firstname +" "+ employee.middlename +" "+ employee.lastname}}</td>
-                                <td>{{employee.employment_status}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                            <thead>
+                                <tr>
+                                    <th>Fullname</th>
+                                    <th>Employment Status</th>
+                                </tr>
+                            </thead>
+                            <tbody v-if="employees.length > 0">
+                                <tr v-for="(employee, keyEmployee) in employees" :key="keyEmployee">
+                                    <td>{{ employee.firstname + " " + employee.middlename + " " + employee.lastname }}
+                                    </td>
+                                    <td>{{ employee.employment_status }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

@@ -26,7 +26,7 @@ const submit = () => {
 <template>
   <GuestLayout>
     <div class="loginUi">
-      <div class="min-vh-10 d-flex flex-row align-items-center">
+      <div class="min-vh-100 d-flex flex-row align-items-center">
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-lg-4">

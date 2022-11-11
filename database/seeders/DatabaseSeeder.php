@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Location;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -28,6 +29,10 @@ class DatabaseSeeder extends Seeder
             UserTableSeeder::class,
             RoleUserTableSeeder::class,
             PositionTableSeeder::class,
+            EmployeeStatusTableSeeder::class,
+            LocationTableSeeder::class,
+            DepartmentTableSeeder::class,
+            PayTypeTableSeeder::class,
         ]);
     }
 }

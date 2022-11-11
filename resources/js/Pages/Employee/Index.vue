@@ -67,7 +67,7 @@ const createEmployee = () => {
                   <td>{{ employee.lastname }}</td>
                   <td>{{ employee.lastname }}</td>
                   <td>
-                    <a
+                    <Link
                       class="btn btn-sm btn-default ms-auto me-1"
                       :href="route('employee.show', employee.id)"
                     >
@@ -77,8 +77,8 @@ const createEmployee = () => {
                         ></use>
                       </svg>
                       view
-                    </a>
-                    <a
+                    </Link>
+                    <Link
                       class="btn btn-sm btn-default ms-auto me-1 text-danger"
                       href="#"
                     >
@@ -88,7 +88,7 @@ const createEmployee = () => {
                         ></use>
                       </svg>
                       Delete
-                    </a>
+                    </Link>
                   </td>
                 </tr>
               </tbody>

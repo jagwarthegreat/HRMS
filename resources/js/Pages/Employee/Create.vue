@@ -3,6 +3,15 @@ import AuthenticatedLayout from "./../../Layouts/AuthenticatedLayout.vue";
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 import { ref, onMounted } from "vue";
 
+defineProps({
+  employee_status: Array,
+  departments: Array,
+  positions: Array,
+  locations: Array,
+  employees: Array,
+  paytypes: Array,
+});
+
 const empform = useForm({
   firstname: "",
   middlename: "",
@@ -17,13 +26,16 @@ const empform = useForm({
   tin: "",
   pagibig: "",
   philhealth: "",
-  elementary: "",
-  elem_year_graduated: "",
-  highschool: "",
-  hs_year_graduated: "",
-  college: "",
-  college_year_graduated: "",
-  degree: "",
+  employeeType: "",
+  employeeStatus: "",
+  doh: "",
+  department: "",
+  jobTitle: "",
+  location: "",
+  reportingTo: "",
+  payRate: "",
+  payType: "",
+  shift: "",
 });
 
 const submit = () => {
@@ -43,13 +55,16 @@ const submit = () => {
         "tin",
         "pagibig",
         "philhealth",
-        "elementary",
-        "elem_year_graduated",
-        "highschool",
-        "hs_year_graduated",
-        "college",
-        "college_year_graduated",
-        "degree",
+        "employeeType",
+        "employeeStatus",
+        "doh",
+        "department",
+        "jobTitle",
+        "location",
+        "reportingTo",
+        "payRate",
+        "payType",
+        "shift",
       ]);
     },
   });
@@ -66,6 +81,46 @@ const submit = () => {
   width: 100%;
   height: 100%;
   border-radius: 50em;
+}
+
+.accordion-button {
+  font-weight: 600;
+  color: #272829;
+  background-color: rgb(255 255 255 / 87%);
+}
+
+.accordion-item {
+  border-top: 1px solid #ddd;
+}
+
+.accordion {
+  --cui-accordion-active-color: #768192;
+}
+
+.accordion-body {
+  overflow-y: auto;
+}
+
+a.btn.btn-sm.btn-default.ms-auto.me-1 {
+  border: 1px solid #ddd !important;
+}
+
+.basicInfoLabel {
+  width: 200px;
+  vertical-align: baseline;
+  display: flex;
+  justify-content: space-between;
+  color: #768192;
+}
+
+.basicInfoData {
+  padding-left: 10px;
+  font-weight: 500;
+}
+
+th,
+td {
+  padding: 7px;
 }
 </style>
 
@@ -121,10 +176,10 @@ const submit = () => {
           <form @submit.prevent="submit">
             <div class="accordion mb-3" id="employeeDetailAccordion">
               <!-- personal detial -->
-              <div class="accordion-item">
+              <div class="accordion-item mb-3">
                 <h2 class="accordion-header" id="panelsStayOpen-headingOne">
                   <button
-                    class="accordion-button"
+                    class="accordion-button p-2"
                     type="button"
                     data-coreui-toggle="collapse"
                     data-coreui-target="#panelsStayOpen-collapseOne"
@@ -281,118 +336,182 @@ const submit = () => {
                           v-model="empform.philhealth"
                         />
                       </div>
+                      <div class="col-md-4">
+                        <label for="employeeType" class="form-label"
+                          >Employee Type</label
+                        >
+                        <select
+                          class="form-select"
+                          id="employeeType"
+                          v-model="empform.employeeType"
+                        >
+                          <option value="">Full Time</option>
+                          <option value="">Part Time</option>
+                          <option value="">On Contract</option>
+                          <option value="">Trainee</option>
+                        </select>
+                      </div>
+                      <div class="col-md-4">
+                        <label for="employeeStatus" class="form-label"
+                          >Employee Status</label
+                        >
+                        <select
+                          class="form-select"
+                          id="employeeStatus"
+                          v-model="empform.employeeStatus"
+                        >
+                          <option
+                            v-for="(status, keyStatus) in employee_status"
+                            :key="keyStatus"
+                            :value="status.id"
+                          >
+                            {{ status.title }}
+                          </option>
+                        </select>
+                      </div>
+                      <div class="col-md-4">
+                        <label for="dob" class="form-label">Date of Hire</label>
+                        <input
+                          type="date"
+                          class="form-control"
+                          id="doh"
+                          v-model="empform.doh"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
               <!-- /personal detial -->
 
-              <!-- education background -->
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="panelsStayOpen-headingEduc">
+              <!-- work detial -->
+              <div class="accordion-item mb-3">
+                <h2 class="accordion-header" id="panelsStayOpen-headingWorkAdd">
                   <button
-                    class="accordion-button"
+                    class="accordion-button p-2"
                     type="button"
                     data-coreui-toggle="collapse"
-                    data-coreui-target="#panelsStayOpen-collapseEduc"
+                    data-coreui-target="#panelsStayOpen-collapseWorkAdd"
                     aria-expanded="true"
-                    aria-controls="panelsStayOpen-collapseEduc"
+                    aria-controls="panelsStayOpen-collapseWorkAdd"
                   >
-                    Educational Background
+                    Work
                   </button>
                 </h2>
                 <div
-                  id="panelsStayOpen-collapseEduc"
+                  id="panelsStayOpen-collapseWorkAdd"
                   class="accordion-collapse collapse show"
-                  aria-labelledby="panelsStayOpen-headingEduc"
+                  aria-labelledby="panelsStayOpen-headingWorkAdd"
                 >
                   <div class="accordion-body">
                     <div class="row g-3">
-                      <div class="col-md-8">
-                        <label for="elementary" class="form-label"
-                          >Elementary</label
+                      <div class="col-md-4">
+                        <label for="department" class="form-label"
+                          >Department</label
                         >
+                        <select
+                          class="form-select"
+                          id="department"
+                          v-model="empform.department"
+                        >
+                          <option
+                            v-for="(department, keyDepartment) in departments"
+                            :key="keyDepartment"
+                            :value="department.id"
+                          >
+                            {{ department.title }}
+                          </option>
+                        </select>
+                      </div>
+                      <div class="col-md-4">
+                        <label for="jobTitle" class="form-label"
+                          >Job Title</label
+                        >
+                        <select
+                          class="form-select"
+                          id="jobTitle"
+                          v-model="empform.jobTitle"
+                        >
+                          <option
+                            v-for="(position, keyPosition) in positions"
+                            :key="keyPosition"
+                            :value="position.id"
+                          >
+                            {{ position.title }}
+                          </option>
+                        </select>
+                      </div>
+                      <div class="col-md-4">
+                        <label for="location" class="form-label"
+                          >Location</label
+                        >
+                        <select
+                          class="form-select"
+                          id="location"
+                          v-model="empform.location"
+                        >
+                          <option
+                            v-for="(location, keylocation) in locations"
+                            :key="keylocation"
+                            :value="location.id"
+                          >
+                            {{ location.title }}
+                          </option>
+                        </select>
+                      </div>
+                      <div class="col-md-4">
+                        <label for="reportingTo" class="form-label"
+                          >Reporting To</label
+                        >
+                        <select
+                          class="form-select"
+                          id="reportingTo"
+                          v-model="empform.reportingTo"
+                        >
+                          <option
+                            v-for="(employee, keyEmployee) in employees"
+                            :key="keyEmployee"
+                            :value="employee.id"
+                          >
+                            {{ employee.firstname }}
+                          </option>
+                        </select>
+                      </div>
+                      <div class="col-md-4">
+                        <label for="payRate" class="form-label">Pay Rate</label>
                         <input
                           type="text"
                           class="form-control"
-                          id="elementary"
-                          v-model="empform.elementary"
+                          id="payRate"
+                          v-model="empform.payRate"
                         />
                       </div>
                       <div class="col-md-4">
-                        <label for="elem_year_graduated" class="form-label"
-                          >Year Graduated</label
+                        <label for="payType" class="form-label">Pay Type</label>
+                        <select
+                          class="form-select"
+                          id="payType"
+                          v-model="empform.payType"
                         >
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="elem_year_graduated"
-                          v-model="empform.elem_year_graduated"
-                        />
-                      </div>
-                      <div class="col-md-8">
-                        <label for="highschool" class="form-label"
-                          >Highschool</label
-                        >
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="highschool"
-                          v-model="empform.highschool"
-                        />
-                      </div>
-                      <div class="col-md-4">
-                        <label for="hs_year_graduated" class="form-label"
-                          >Year Graduated</label
-                        >
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="hs_year_graduated"
-                          v-model="empform.hs_year_graduated"
-                        />
-                      </div>
-                      <div class="col-md-8">
-                        <label for="college" class="form-label">College</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="college"
-                          v-model="empform.college"
-                        />
-                      </div>
-                      <div class="col-md-4">
-                        <label for="college_year_graduated" class="form-label"
-                          >Year Graduated</label
-                        >
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="college_year_graduated"
-                          v-model="empform.college_year_graduated"
-                        />
-                      </div>
-                      <div class="col-12">
-                        <label for="degree" class="form-label"
-                          >Degree Received</label
-                        >
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="degree"
-                          v-model="empform.degree"
-                        />
+                          <option
+                            v-for="(paytype, keypaytype) in paytypes"
+                            :key="keypaytype"
+                            :value="paytype.id"
+                          >
+                            {{ paytype.title }}
+                          </option>
+                        </select>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <!-- /education background -->
+              <!-- /work detial -->
             </div>
 
             <div class="col-12">
-              <button type="submit" class="btn btn-primary">
-                Save changes
+              <button type="submit" class="btn btn-sm btn-primary">
+                Create Employee
               </button>
             </div>
           </form>

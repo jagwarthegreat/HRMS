@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Employee;
+use App\Models\EmployeeStatus;
+use App\Models\Location;
+use App\Models\PayType;
+use App\Models\Position;
 
 class EmployeeController extends Controller
 {
@@ -17,11 +22,19 @@ class EmployeeController extends Controller
 
     public function create()
     {
-        return Inertia::render('Employee/Create');
+        $employeeType = [];
+        $employee_status = EmployeeStatus::all();
+        $departments =  Department::all();
+        $positions =  Position::all();
+        $locations =  Location::all();
+        $employees =  Employee::all();
+        $paytypes =  PayType::all();
+        return Inertia::render('Employee/Create', compact('employee_status', 'departments', 'positions', 'locations', 'employees', 'paytypes'));
     }
 
     public function store(Request $request)
     {
+        dd($request);
         $emp_code = "EMP" . date('Ymdhis');
         $request->validate([
             "firstname" => ['required'],
@@ -69,6 +82,6 @@ class EmployeeController extends Controller
     {
         $employee = Employee::find($employee_id);
 
-        return Inertia::render('Employee/Show', compact('employee'));
+        return Inertia::render('Employee/Profile/Index', compact('employee'));
     }
 }

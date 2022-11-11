@@ -77,7 +77,7 @@ a.nav-link {
                       alt="user@email.com"
                     />
                   </div>
-                  <div class="d-flex flex-column">
+                  <div class="d-flex flex-column justify-content-center">
                     <h4>
                       <b>{{ employee.firstname + " " + employee.lastname }}</b>
                     </h4>

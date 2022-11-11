@@ -6,7 +6,9 @@ use App\Models\Department;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Employee;
+use App\Models\EmployeeDependent;
 use App\Models\EmployeeStatus;
+use App\Models\EmployeeType;
 use App\Models\Location;
 use App\Models\PayType;
 use App\Models\Position;
@@ -22,34 +24,55 @@ class EmployeeController extends Controller
 
     public function create()
     {
-        $employeeType = [];
+        $employeeTypes = EmployeeType::all();
         $employee_status = EmployeeStatus::all();
         $departments =  Department::all();
         $positions =  Position::all();
         $locations =  Location::all();
         $employees =  Employee::all();
         $paytypes =  PayType::all();
-        return Inertia::render('Employee/Create', compact('employee_status', 'departments', 'positions', 'locations', 'employees', 'paytypes'));
+        return Inertia::render('Employee/Create', compact('employeeTypes', 'employee_status', 'departments', 'positions', 'locations', 'employees', 'paytypes'));
     }
 
     public function store(Request $request)
     {
-        dd($request);
+        // dd($request);
         $emp_code = "EMP" . date('Ymdhis');
         $request->validate([
             "firstname" => ['required'],
             "middlename" => ['required'],
             "lastname" => ['required'],
-            "email" => ['email'],
+            "contact" => ['required'],
+            "email" => ['required', 'email'],
             "address" => ['required'],
             "dob" => ['required'],
             "gender" => ['required'],
             "civil_status" => ['required'],
-            "sss" => ['required'],
-            "tin" => ['required'],
-            "pagibig" => ['required'],
-            "philhealth" => ['required'],
         ]);
+
+        // "firstname",
+        // "middlename",
+        // "lastname",
+        // "contact",
+        // "email",
+        // "address",
+        // "dob",
+        // "gender",
+        // "civil_status",
+        // "sss",
+        // "tin",
+        // "pagibig",
+        // "philhealth",
+        // "employeeType",
+        // "employeeStatus",
+        // "doh",
+        // "ced",
+        // "department",
+        // "jobTitle",
+        // "location",
+        // "reportingTo",
+        // "payRate",
+        // "payType"
 
         Employee::create([
             "employee_code" => $emp_code,
@@ -66,13 +89,8 @@ class EmployeeController extends Controller
             "tin_number" => $request->tin,
             "pagibig_number" => $request->pagibig,
             "philhealth_number" => $request->philhealth,
-            "educ_elementary" => $request->elementary,
-            "educ_elem_year" => $request->elem_year_graduated,
-            "educ_highschool" => $request->highschool,
-            "educ_hs_year" => $request->hs_year_graduated,
-            "educ_college" => $request->college,
-            "educ_college_year" => $request->college_year_graduated,
-            "educ_college_degree" => $request->degree,
+            "date_of_hire" => $request->doh,
+            "contract_end_date" => $request->ced,
         ]);
 
         return redirect('employee');
@@ -80,8 +98,23 @@ class EmployeeController extends Controller
 
     public function show($employee_id)
     {
-        $employee = Employee::find($employee_id);
+        $employee = Employee::with([
+            'dependents',
+            'work_experiences',
+            'educ_backgrounds',
+            'emp_status_histories',
+            'emp_type_histories',
+            'emp_compensation_histories',
+            'emp_job_histories'
+        ])->find($employee_id);
+
+        // dd($employee);
 
         return Inertia::render('Employee/Profile/Index', compact('employee'));
+    }
+
+    public function employementTypeStore($request)
+    {
+        EmployeeType::create([]);
     }
 }

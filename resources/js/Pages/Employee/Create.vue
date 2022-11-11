@@ -4,6 +4,7 @@ import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 import { ref, onMounted } from "vue";
 
 defineProps({
+  employeeTypes: Array,
   employee_status: Array,
   departments: Array,
   positions: Array,
@@ -29,13 +30,13 @@ const empform = useForm({
   employeeType: "",
   employeeStatus: "",
   doh: "",
+  ced: "",
   department: "",
   jobTitle: "",
   location: "",
   reportingTo: "",
   payRate: "",
   payType: "",
-  shift: "",
 });
 
 const submit = () => {
@@ -58,6 +59,7 @@ const submit = () => {
         "employeeType",
         "employeeStatus",
         "doh",
+        "ced",
         "department",
         "jobTitle",
         "location",
@@ -345,10 +347,15 @@ td {
                           id="employeeType"
                           v-model="empform.employeeType"
                         >
-                          <option value="">Full Time</option>
-                          <option value="">Part Time</option>
-                          <option value="">On Contract</option>
-                          <option value="">Trainee</option>
+                          <option
+                            v-for="(
+                              employeetype, keyEmployeetype
+                            ) in employeeTypes"
+                            :key="keyEmployeetype"
+                            :value="employeetype.id"
+                          >
+                            {{ employeetype.title }}
+                          </option>
                         </select>
                       </div>
                       <div class="col-md-4">
@@ -376,6 +383,17 @@ td {
                           class="form-control"
                           id="doh"
                           v-model="empform.doh"
+                        />
+                      </div>
+                      <div class="col-md-4">
+                        <label for="dob" class="form-label"
+                          >Contract End Date</label
+                        >
+                        <input
+                          type="date"
+                          class="form-control"
+                          id="ced"
+                          v-model="empform.ced"
                         />
                       </div>
                     </div>

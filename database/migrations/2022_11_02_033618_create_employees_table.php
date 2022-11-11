@@ -25,17 +25,12 @@ return new class extends Migration
             $table->date('date_of_birth');
             $table->string('gender', 1);
             $table->string('civil_status', 10);
-            $table->string('sss_number', 100);
-            $table->string('tin_number', 100);
-            $table->string('pagibig_number', 100);
-            $table->string('philhealth_number', 100);
-            $table->string('educ_elementary', 200);
-            $table->string('educ_elem_year', 6);
-            $table->string('educ_highschool', 200);
-            $table->string('educ_hs_year', 6);
-            $table->string('educ_college', 200);
-            $table->string('educ_college_year', 6);
-            $table->string('educ_college_degree', 200);
+            $table->string('sss_number', 100)->nullable();
+            $table->string('tin_number', 100)->nullable();
+            $table->string('pagibig_number', 100)->nullable();
+            $table->string('philhealth_number', 100)->nullable();
+            $table->date('date_of_hire');
+            $table->date('contract_end_date')->nullable();
             $table->timestamps();
         });
     }

@@ -12,6 +12,18 @@ import RequirementsTab from "./Tabs/RequirementsTab.vue";
 defineProps({
   employee: Array,
 });
+
+const empform = useForm({
+  tab: "",
+});
+
+function tabSwitchTo(tabName) {
+  axios.post(route("employee.tabSwitchTo", tabName)).catch((error) => {
+    console.log(error);
+  });
+}
+
+const activeTab = sessionEmployeeActiveTab;
 </script>
 
 <style scoped>
@@ -66,16 +78,18 @@ a.nav-link {
                     />
                   </div>
                   <div class="d-flex flex-column">
-                    <h4><b>Judywen Guapin</b></h4>
+                    <h4>
+                      <b>{{ employee.firstname + " " + employee.lastname }}</b>
+                    </h4>
                     <p class="mb-0">&mdash; Designer</p>
-                    <a href="#">jguapin@gmail.com</a>
+                    <a href="#">{{ employee.email }}</a>
                     <span>
                       <svg class="icon">
                         <use
                           xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-screen-smartphone"
                         ></use>
                       </svg>
-                      09214476089
+                      {{ employee.contact }}
                     </span>
                   </div>
                 </div>
@@ -120,8 +134,13 @@ a.nav-link {
             <div class="card-header">
               <ul class="nav nav-tabs card-header-tabs">
                 <li class="nav-item">
-                  <a
-                    class="nav-link active"
+                  <Link
+                    @click="tabSwitchTo('generalInfo')"
+                    :class="
+                      activeTab == 'generalInfo'
+                        ? 'nav-link active'
+                        : 'nav-link'
+                    "
                     id="nav-home-tab"
                     data-coreui-toggle="tab"
                     data-coreui-target="#nav-home"
@@ -129,12 +148,13 @@ a.nav-link {
                     role="tab"
                     aria-controls="nav-home"
                     aria-selected="true"
-                    >General Info</a
-                  >
+                    >General Info
+                  </Link>
                 </li>
                 <li class="nav-item">
-                  <a
-                    class="nav-link"
+                  <Link
+                    @click="tabSwitchTo('job')"
+                    :class="activeTab == 'job' ? 'nav-link active' : 'nav-link'"
                     id="nav-job-tab"
                     data-coreui-toggle="tab"
                     data-coreui-target="#nav-job"
@@ -142,12 +162,15 @@ a.nav-link {
                     role="tab"
                     aria-controls="nav-job"
                     aria-selected="true"
-                    >Job</a
-                  >
+                    >Job
+                  </Link>
                 </li>
                 <li class="nav-item">
-                  <a
-                    class="nav-link"
+                  <Link
+                    @click="tabSwitchTo('leave')"
+                    :class="
+                      activeTab == 'leave' ? 'nav-link active' : 'nav-link'
+                    "
                     id="nav-leave-tab"
                     data-coreui-toggle="tab"
                     data-coreui-target="#nav-leave"
@@ -155,12 +178,17 @@ a.nav-link {
                     role="tab"
                     aria-controls="nav-leave"
                     aria-selected="true"
-                    >Leave</a
-                  >
+                    >Leave
+                  </Link>
                 </li>
                 <li class="nav-item">
-                  <a
-                    class="nav-link"
+                  <Link
+                    @click="tabSwitchTo('performance')"
+                    :class="
+                      activeTab == 'performance'
+                        ? 'nav-link active'
+                        : 'nav-link'
+                    "
                     id="nav-performance-tab"
                     data-coreui-toggle="tab"
                     data-coreui-target="#nav-performance"
@@ -168,12 +196,15 @@ a.nav-link {
                     role="tab"
                     aria-controls="nav-performance"
                     aria-selected="true"
-                    >Performance</a
-                  >
+                    >Performance
+                  </Link>
                 </li>
                 <li class="nav-item">
-                  <a
-                    class="nav-link"
+                  <Link
+                    @click="tabSwitchTo('documents')"
+                    :class="
+                      activeTab == 'documents' ? 'nav-link active' : 'nav-link'
+                    "
                     id="nav-document-tab"
                     data-coreui-toggle="tab"
                     data-coreui-target="#nav-document"
@@ -181,12 +212,17 @@ a.nav-link {
                     role="tab"
                     aria-controls="nav-document"
                     aria-selected="true"
-                    >Documents</a
-                  >
+                    >Documents
+                  </Link>
                 </li>
                 <li class="nav-item">
-                  <a
-                    class="nav-link"
+                  <Link
+                    @click="tabSwitchTo('requirements')"
+                    :class="
+                      activeTab == 'requirements'
+                        ? 'nav-link active'
+                        : 'nav-link'
+                    "
                     id="nav-requirements-tab"
                     data-coreui-toggle="tab"
                     data-coreui-target="#nav-requirements"
@@ -194,15 +230,16 @@ a.nav-link {
                     role="tab"
                     aria-controls="nav-requirements"
                     aria-selected="true"
-                    >Requirements</a
-                  >
+                    >Requirements
+                  </Link>
                 </li>
               </ul>
             </div>
             <div class="card-body">
               <div class="tab-content" id="nav-tabContent">
                 <div
-                  class="tab-pane fade show active"
+                  class="tab-pane fade show"
+                  :class="activeTab == 'generalInfo' ? 'active' : ''"
                   id="nav-home"
                   role="tabpanel"
                   aria-labelledby="nav-home-tab"
@@ -212,48 +249,53 @@ a.nav-link {
                 </div>
                 <div
                   class="tab-pane fade show"
+                  :class="activeTab == 'job' ? 'active' : ''"
                   id="nav-job"
                   role="tabpanel"
                   aria-labelledby="nav-job-tab"
                   tabindex="0"
                 >
-                  <JobTab />
+                  <JobTab :employee="employee" />
                 </div>
                 <div
                   class="tab-pane fade show"
+                  :class="activeTab == 'leave' ? 'active' : ''"
                   id="nav-leave"
                   role="tabpanel"
                   aria-labelledby="nav-leave-tab"
                   tabindex="0"
                 >
-                  <LeaveTab />
+                  <LeaveTab :employee="employee" />
                 </div>
                 <div
                   class="tab-pane fade show"
+                  :class="activeTab == 'performance' ? 'active' : ''"
                   id="nav-performance"
                   role="tabpanel"
                   aria-labelledby="nav-performance-tab"
                   tabindex="0"
                 >
-                  <PerformanceTab />
+                  <PerformanceTab :employee="employee" />
                 </div>
                 <div
                   class="tab-pane fade show"
+                  :class="activeTab == 'documents' ? 'active' : ''"
                   id="nav-document"
                   role="tabpanel"
                   aria-labelledby="nav-document-tab"
                   tabindex="0"
                 >
-                  <DocumentsTab />
+                  <DocumentsTab :employee="employee" />
                 </div>
                 <div
                   class="tab-pane fade show"
+                  :class="activeTab == 'requirements' ? 'active' : ''"
                   id="nav-requirements"
                   role="tabpanel"
                   aria-labelledby="nav-requirements-tab"
                   tabindex="0"
                 >
-                  <RequirementsTab />
+                  <RequirementsTab :employee="employee" />
                 </div>
               </div>
             </div>

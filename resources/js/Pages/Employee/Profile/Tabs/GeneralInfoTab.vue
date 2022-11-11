@@ -1,5 +1,8 @@
 <script setup>
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
+import WorkExperienceModal from "./../modals/WorkExperienceModal.vue";
+import EducBgModal from "./../modals/EducBgModal.vue";
+import DependentsModal from "./../modals/DependentsModal.vue";
 
 defineProps({
   employee: Array,
@@ -56,6 +59,10 @@ const submit = () => {
     },
   });
 };
+
+function openClickedModal(modal) {
+  $("#" + modal).modal("show");
+}
 </script>
 
 <style scoped>
@@ -364,6 +371,17 @@ td {
         aria-labelledby="panelsStayOpen-headingWork"
       >
         <div class="accordion-body">
+          <button
+            class="btn btn-sm btn-default ms-auto me-1 mb-2"
+            @click="openClickedModal('workExperienceModal')"
+          >
+            <svg class="icon">
+              <use
+                xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-plus"
+              ></use>
+            </svg>
+            Add Experience
+          </button>
           <div class="row">
             <div class="col-12">
               <table class="table table-hover" style="border: 1px solid #ddd">
@@ -377,25 +395,24 @@ td {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Test Corp</td>
-                    <td>Designer</td>
-                    <td>07/01/2017</td>
-                    <td>09/30/2019</td>
-                    <td>image editing</td>
+                  <tr v-if="employee.work_experiences.length < 1">
+                    <td colspan="5">No work experiences found.</td>
+                  </tr>
+                  <tr
+                    v-else
+                    v-for="(workExp, keyWorkExp) in employee.work_experiences"
+                    :key="keyWorkExp"
+                  >
+                    <td>{{ workExp.companyName }}</td>
+                    <td>{{ workExp.jobtitle }}</td>
+                    <td>{{ workExp.from }}</td>
+                    <td>{{ workExp.to }}</td>
+                    <td>{{ workExp.job_desc }}</td>
                   </tr>
                 </tbody>
               </table>
             </div>
           </div>
-          <a class="btn btn-sm btn-default ms-auto me-1" href="">
-            <svg class="icon">
-              <use
-                xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-plus"
-              ></use>
-            </svg>
-            Add Experience
-          </a>
         </div>
       </div>
     </div>
@@ -421,6 +438,17 @@ td {
         aria-labelledby="panelsStayOpen-headingEduc"
       >
         <div class="accordion-body">
+          <button
+            class="btn btn-sm btn-default ms-auto me-1 mb-2"
+            @click="openClickedModal('educBgModal')"
+          >
+            <svg class="icon">
+              <use
+                xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-plus"
+              ></use>
+            </svg>
+            Add Education
+          </button>
           <div class="row">
             <div class="col-12">
               <table class="table table-hover" style="border: 1px solid #ddd">
@@ -433,24 +461,23 @@ td {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Test School</td>
-                    <td>Bachelor of Arts</td>
-                    <td>Designing</td>
-                    <td>2017</td>
+                  <tr v-if="employee.educ_backgrounds.length < 1">
+                    <td colspan="5">No education information found.</td>
+                  </tr>
+                  <tr
+                    v-else
+                    v-for="(educBg, keyEducBg) in employee.educ_backgrounds"
+                    :key="keyEducBg"
+                  >
+                    <td>{{ educBg.schoolName }}</td>
+                    <td>{{ educBg.degree }}</td>
+                    <td>{{ educBg.field }}</td>
+                    <td>{{ educBg.year }}</td>
                   </tr>
                 </tbody>
               </table>
             </div>
           </div>
-          <a class="btn btn-sm btn-default ms-auto me-1" href="">
-            <svg class="icon">
-              <use
-                xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-plus"
-              ></use>
-            </svg>
-            Add Education
-          </a>
         </div>
       </div>
     </div>
@@ -476,6 +503,17 @@ td {
         aria-labelledby="panelsStayOpen-headingDependents"
       >
         <div class="accordion-body">
+          <button
+            class="btn btn-sm btn-default ms-auto me-1 mb-2"
+            @click="openClickedModal('dependentsModal')"
+          >
+            <svg class="icon">
+              <use
+                xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-plus"
+              ></use>
+            </svg>
+            Add Dependents
+          </button>
           <div class="row">
             <div class="col-12">
               <table class="table table-hover" style="border: 1px solid #ddd">
@@ -488,27 +526,30 @@ td {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Naruto</td>
-                    <td>Brother</td>
-                    <td>0921182736</td>
-                    <td>03/18/1985</td>
+                  <tr v-if="employee.dependents.length < 1">
+                    <td colspan="4">No dependent information found.</td>
+                  </tr>
+                  <tr
+                    v-else
+                    v-for="(dependent, keyDependent) in employee.dependents"
+                    :key="keyDependent"
+                  >
+                    <td>{{ dependent.fullname }}</td>
+                    <td>{{ dependent.relationship }}</td>
+                    <td>{{ dependent.contact }}</td>
+                    <td>{{ dependent.dob }}</td>
                   </tr>
                 </tbody>
               </table>
             </div>
           </div>
-          <a class="btn btn-sm btn-default ms-auto me-1" href="">
-            <svg class="icon">
-              <use
-                xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-plus"
-              ></use>
-            </svg>
-            Add Dependents
-          </a>
         </div>
       </div>
     </div>
     <!-- /dependents background -->
   </div>
+
+  <WorkExperienceModal :employee_id="employee.id" />
+  <EducBgModal :employee_id="employee.id" />
+  <DependentsModal :employee_id="employee.id" />
 </template>

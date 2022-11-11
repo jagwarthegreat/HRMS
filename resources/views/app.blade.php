@@ -41,6 +41,10 @@
       font-size: 14px;
     }
   </style>
+  
+  <script>
+     window.sessionEmployeeActiveTab = "{{ $_SESSION["Employee"]["tab"]["active"] }}";
+  </script>
 
   <!-- Scripts -->
   @routes

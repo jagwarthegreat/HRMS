@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('employee_work_experiences', function (Blueprint $table) {
+        Schema::create('emp_job_histories', function (Blueprint $table) {
             $table->id();
             $table->foreignId('employee_id')->constrained('employees')->onDelete('cascade');
-            $table->string('companyName', 160);
-            $table->string('jobtitle', 150);
-            $table->date('from');
-            $table->date('to');
-            $table->text('job_desc')->nullable();
+            $table->foreignId('location_id')->constrained('locations')->onDelete('cascade');
+            $table->foreignId('department_id')->constrained('departments')->onDelete('cascade');
+            $table->foreignId('position_id')->constrained('positions')->onDelete('cascade');
+            $table->foreignId('reports_to')->constrained('employees')->onDelete('cascade');
+            $table->date('trans_date');
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('employee_work_experiences');
+        Schema::dropIfExists('emp_job_histories');
     }
 };

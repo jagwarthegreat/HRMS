@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('employee_id')->constrained('employees')->onDelete('cascade');
             $table->text('schoolName');
-            $table->text('degree');
-            $table->text('field');
+            $table->text('degree')->nullable();
+            $table->text('field')->nullable();
             $table->string('year', 6);
             $table->timestamps();
         });

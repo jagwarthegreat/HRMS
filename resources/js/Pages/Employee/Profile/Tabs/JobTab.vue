@@ -57,7 +57,7 @@ td {
           aria-expanded="true"
           aria-controls="panelsStayOpen-collapseEmployStats"
         >
-          Employment Status
+          Employee Status
         </button>
       </h2>
       <div
@@ -66,13 +66,85 @@ td {
         aria-labelledby="panelsStayOpen-headingEmployStats"
       >
         <div class="accordion-body">
+          <a class="btn btn-sm btn-default ms-auto me-1 mb-2" href="">
+            <svg class="icon">
+              <use
+                xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-pen"
+              ></use>
+            </svg>
+            Update Employee Status
+          </a>
           <div class="row">
             <div class="col-12">
               <table class="table table-hover" style="border: 1px solid #ddd">
                 <thead>
                   <tr>
                     <th>Date</th>
-                    <th>Employement Status</th>
+                    <th>Employee Status</th>
+                    <th>Comment</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      07/21/2021
+                      <span class="text-success">&#x25cf;</span>
+                    </td>
+                    <td>Active</td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>07/21/2017</td>
+                    <td>Inactive</td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /employment status -->
+
+    <!-- employment type -->
+    <div class="accordion-item mb-3">
+      <h2 class="accordion-header" id="panelsStayOpen-headingEmployType">
+        <button
+          class="accordion-button p-2"
+          type="button"
+          data-coreui-toggle="collapse"
+          data-coreui-target="#panelsStayOpen-collapseEmployType"
+          aria-expanded="true"
+          aria-controls="panelsStayOpen-collapseEmployType"
+        >
+          Employment Type
+        </button>
+      </h2>
+      <div
+        id="panelsStayOpen-collapseEmployType"
+        class="accordion-collapse collapse show"
+        aria-labelledby="panelsStayOpen-headingEmployType"
+      >
+        <div class="accordion-body">
+          <a class="btn btn-sm btn-default ms-auto me-1 mb-2" href="">
+            <svg class="icon">
+              <use
+                xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-pen"
+              ></use>
+            </svg>
+            Update Employment Type
+          </a>
+          <div class="row">
+            <div class="col-12">
+              <table class="table table-hover" style="border: 1px solid #ddd">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Employement Type</th>
                     <th>Comment</th>
                     <th>Actions</th>
                   </tr>
@@ -97,18 +169,10 @@ td {
               </table>
             </div>
           </div>
-          <a class="btn btn-sm btn-default ms-auto me-1" href="">
-            <svg class="icon">
-              <use
-                xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-plus"
-              ></use>
-            </svg>
-            Add Employment Status
-          </a>
         </div>
       </div>
     </div>
-    <!-- /employment status -->
+    <!-- /employment type -->
 
     <!-- Compensation -->
     <div class="accordion-item mb-3">
@@ -130,6 +194,14 @@ td {
         aria-labelledby="panelsStayOpen-headingCompensation"
       >
         <div class="accordion-body">
+          <a class="btn btn-sm btn-default ms-auto me-1 mb-2" href="">
+            <svg class="icon">
+              <use
+                xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-pen"
+              ></use>
+            </svg>
+            Update Compensation
+          </a>
           <div class="row">
             <div class="col-12">
               <table class="table table-hover" style="border: 1px solid #ddd">
@@ -159,14 +231,6 @@ td {
               </table>
             </div>
           </div>
-          <a class="btn btn-sm btn-default ms-auto me-1" href="">
-            <svg class="icon">
-              <use
-                xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-plus"
-              ></use>
-            </svg>
-            Add Compensation
-          </a>
         </div>
       </div>
     </div>
@@ -192,6 +256,14 @@ td {
         aria-labelledby="panelsStayOpen-headingJobInfo"
       >
         <div class="accordion-body">
+          <a class="btn btn-sm btn-default ms-auto me-1 mb-2" href="">
+            <svg class="icon">
+              <use
+                xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-pen"
+              ></use>
+            </svg>
+            Update Information
+          </a>
           <div class="row">
             <div class="col-12">
               <table class="table table-hover" style="border: 1px solid #ddd">
@@ -221,14 +293,6 @@ td {
               </table>
             </div>
           </div>
-          <a class="btn btn-sm btn-default ms-auto me-1" href="">
-            <svg class="icon">
-              <use
-                xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-plus"
-              ></use>
-            </svg>
-            Add Information
-          </a>
         </div>
       </div>
     </div>

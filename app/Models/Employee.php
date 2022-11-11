@@ -24,12 +24,42 @@ class Employee extends Model
         "tin_number",
         "pagibig_number",
         "philhealth_number",
-        "educ_elementary",
-        "educ_elem_year",
-        "educ_highschool",
-        "educ_hs_year",
-        "educ_college",
-        "educ_college_year",
-        "educ_college_degree",
+        "date_of_hire",
+        "contract_end_date",
     ];
+
+    public function dependents()
+    {
+        return $this->hasMany(EmployeeDependent::class)->latest();
+    }
+
+    public function work_experiences()
+    {
+        return $this->hasMany(EmployeeWorkExperience::class)->latest();
+    }
+
+    public function educ_backgrounds()
+    {
+        return $this->hasMany(EmployeeEducationalBackground::class)->latest();
+    }
+
+    public function emp_status_histories()
+    {
+        return $this->hasMany(EmpStatusHistory::class)->latest();
+    }
+
+    public function emp_type_histories()
+    {
+        return $this->hasMany(EmpTypeHistory::class)->latest();
+    }
+
+    public function emp_compensation_histories()
+    {
+        return $this->hasMany(EmpCompensationHistory::class)->latest();
+    }
+
+    public function emp_job_histories()
+    {
+        return $this->hasMany(EmpJobHistory::class)->latest();
+    }
 }

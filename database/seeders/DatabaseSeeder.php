@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
             LocationTableSeeder::class,
             DepartmentTableSeeder::class,
             PayTypeTableSeeder::class,
+            EmployeeTypeTableSeeder::class,
         ]);
     }
 }

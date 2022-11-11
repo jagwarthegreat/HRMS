@@ -1,16 +1,21 @@
 <?php
 
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\EmployeeDependentController;
+use App\Http\Controllers\EmployeeEducationalBackgroundController;
+use App\Http\Controllers\EmployeeWorkExperienceController;
 use App\Http\Controllers\PermisionController;
 use App\Http\Controllers\Position;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Models\EmployeeEducationalBackground;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+session_start();
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,6 +39,7 @@ Route::get('/', function () {
 })->name('welcome');
 
 Route::get('/dashboard', function () {
+    $_SESSION['Employee']['tab']['active'] = "generalInfo";
     $user = Auth::user();
     return Inertia::render('Dashboard', compact('user'));
 })->middleware('auth')->name('dashboard');
@@ -65,9 +71,16 @@ Route::prefix('employee')->middleware('auth')->group(function () {
     Route::get('/create', [EmployeeController::class, 'create'])->name('employee.create');
     Route::post('/store', [EmployeeController::class, 'store'])->name('employee.store');
     Route::get('/{id}', [EmployeeController::class, 'show'])->name('employee.show');
+    Route::post('/tabSwitchTo/{tabName}', function ($tabName) {
+        $_SESSION['Employee']['tab']['active'] = $tabName;
+    })->name('employee.tabSwitchTo');
+
+    Route::post('/dependent/store', [EmployeeDependentController::class, 'store'])->name('employee.dependent.store');
+    Route::post('/educbg/store', [EmployeeEducationalBackgroundController::class, 'store'])->name('employee.educbg.store');
+    Route::post('/workexp/store', [EmployeeWorkExperienceController::class, 'store'])->name('employee.workexp.store');
 });
 
-// POSITION
+// POSITION / DESIGNATION
 Route::prefix('position')->middleware('auth')->group(function () {
     Route::get('/', [PositionController::class, 'index'])->name('position');
     Route::get('/create', [PositionController::class, 'create'])->name('position.create');

@@ -9,7 +9,7 @@ import PerformanceTab from "./Tabs/PerformanceTab.vue";
 import DocumentsTab from "./Tabs/DocumentsTab.vue";
 import RequirementsTab from "./Tabs/RequirementsTab.vue";
 
-defineProps({
+const props = defineProps({
   employee: Array,
 });
 
@@ -23,19 +23,28 @@ function tabSwitchTo(tabName) {
   });
 }
 
+const job_title =
+  props.employee.emp_job_histories[0] == null
+    ? "---"
+    : props.employee.emp_job_histories[0].positions.title;
+const job_department =
+  props.employee.emp_job_histories[0] == null
+    ? "---"
+    : props.employee.emp_job_histories[0].departments.title;
 const activeTab = sessionEmployeeActiveTab;
 </script>
 
 <style scoped>
 .avatar {
-  width: 100px;
+  width: 150px;
   height: 100%;
 }
 
 .avatar-img {
-  width: 92px;
+  width: 100%;
   height: 100%;
-  border-radius: 50em;
+  border-radius: 0;
+  border: 1px solid #aaa;
 }
 
 a.nav-link {
@@ -67,8 +76,11 @@ a.nav-link {
       <div class="row">
         <div class="col-12">
           <div class="row">
-            <div class="col-md-8">
-              <div class="card mb-4">
+            <div class="col-md-9">
+              <div
+                class="card mb-2"
+                style="background: transparent; box-shadow: none"
+              >
                 <div class="card-body d-flex" style="overflow-y: auto">
                   <div class="avatar">
                     <img
@@ -81,7 +93,9 @@ a.nav-link {
                     <h4>
                       <b>{{ employee.firstname + " " + employee.lastname }}</b>
                     </h4>
-                    <p class="mb-0">&mdash; Designer</p>
+                    <p class="mb-0">
+                      &mdash; {{ job_department + " : " + job_title }}
+                    </p>
                     <a href="#">{{ employee.email }}</a>
                     <span>
                       <svg class="icon">
@@ -96,7 +110,7 @@ a.nav-link {
               </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-3">
               <div class="card mb-4">
                 <div class="card-header">Actions</div>
                 <div class="card-body">

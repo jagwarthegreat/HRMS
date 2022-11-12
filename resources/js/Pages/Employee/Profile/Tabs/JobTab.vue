@@ -102,7 +102,9 @@ td {
                   >
                     <td>
                       {{ statusHistory.trans_date }}
-                      <span class="text-success">&#x25cf;</span>
+                      <span v-show="keyStatusHistory == 0" class="text-success"
+                        >&#x25cf;</span
+                      >
                     </td>
                     <td>{{ statusHistory.employee_statuses.title }}</td>
                     <td>{{ statusHistory.comment }}</td>
@@ -169,7 +171,9 @@ td {
                   >
                     <td>
                       {{ typeHistory.trans_date }}
-                      <span class="text-success">&#x25cf;</span>
+                      <span v-show="keyTypeHistory == 0" class="text-success"
+                        >&#x25cf;</span
+                      >
                     </td>
                     <td>{{ typeHistory.employee_types.title }}</td>
                     <td>{{ typeHistory.comment }}</td>
@@ -238,7 +242,11 @@ td {
                   >
                     <td>
                       {{ compensationHistory.trans_date }}
-                      <span class="text-success">&#x25cf;</span>
+                      <span
+                        v-show="keyCompensationHistory == 0"
+                        class="text-success"
+                        >&#x25cf;</span
+                      >
                     </td>
                     <td>{{ compensationHistory.pay_rate }}</td>
                     <td>{{ compensationHistory.pay_types.title }}</td>
@@ -298,7 +306,7 @@ td {
                 </thead>
                 <tbody>
                   <tr v-if="employee.emp_job_histories.length < 1">
-                    <td colspan="4">No compensation history found.</td>
+                    <td colspan="4">No job history found.</td>
                   </tr>
                   <tr
                     v-else
@@ -309,16 +317,20 @@ td {
                   >
                     <td>
                       {{ jobHistory.trans_date }}
-                      <span class="text-success">&#x25cf;</span>
+                      <span v-show="keyJobHistory == 0" class="text-success"
+                        >&#x25cf;</span
+                      >
                     </td>
                     <td>{{ jobHistory.departments.title }}</td>
                     <td>{{ jobHistory.locations.title }}</td>
                     <td>{{ jobHistory.positions.title }}</td>
                     <td>
                       {{
-                        jobHistory.reportsto.firstname +
-                        " " +
-                        jobHistory.reportsto.lastname
+                        jobHistory.reportsto == null
+                          ? "---"
+                          : jobHistory.reportsto.firstname +
+                            " " +
+                            jobHistory.reportsto.lastname
                       }}
                     </td>
                     <td></td>

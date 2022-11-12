@@ -24,7 +24,6 @@ class EmployeeDependentController extends Controller
             "dob" => $request->dependent_dob,
         ]);
 
-        // echo ($res) ? 1 : 0;
-        // return response()->json($res);
+        return redirect('employee/' . $request->employee_id);
     }
 }

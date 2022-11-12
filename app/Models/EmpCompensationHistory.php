@@ -12,6 +12,7 @@ class EmpCompensationHistory extends Model
     protected $fillable = [
         'employee_id',
         'pay_type_id',
+        'pay_rate',
         'reason',
         'comment',
         'trans_date',

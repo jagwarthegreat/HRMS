@@ -109,8 +109,9 @@ const work_title =
   overflow-y: auto;
 }
 
-a.btn.btn-sm.btn-default.ms-auto.me-1 {
-  border: 1px solid #ddd !important;
+button.btn.btn-sm.btn-default.ms-auto.me-1 {
+  border: 1px solid #0000002e !important;
+  box-shadow: none !important;
 }
 
 .basicInfoLabel {
@@ -574,9 +575,9 @@ td {
       </div>
     </div>
     <!-- /dependents background -->
-  </div>
 
-  <WorkExperienceModal :employee_id="employee.id" />
-  <EducBgModal :employee_id="employee.id" />
-  <DependentsModal :employee_id="employee.id" />
+    <WorkExperienceModal :employee_id="employee.id" />
+    <EducBgModal :employee_id="employee.id" />
+    <DependentsModal :employee_id="employee.id" />
+  </div>
 </template>

@@ -46,6 +46,7 @@ const createEmployee = () => {
                   <th>Designation</th>
                   <th>Department</th>
                   <th>Employment Type</th>
+                  <th>Status</th>
                   <th></th>
                 </tr>
               </thead>
@@ -63,9 +64,35 @@ const createEmployee = () => {
                       employee.lastname
                     }}
                   </td>
-                  <td>{{ employee.lastname }}</td>
-                  <td>{{ employee.lastname }}</td>
-                  <td>{{ employee.lastname }}</td>
+                  <td>
+                    {{
+                      employee.emp_job_histories[0] == null
+                        ? "--"
+                        : employee.emp_job_histories[0].positions.title
+                    }}
+                  </td>
+                  <td>
+                    {{
+                      employee.emp_job_histories[0] == null
+                        ? "---"
+                        : employee.emp_job_histories[0].departments.title
+                    }}
+                  </td>
+                  <td>
+                    {{
+                      employee.emp_type_histories[0] == null
+                        ? "---"
+                        : employee.emp_type_histories[0].employee_types.title
+                    }}
+                  </td>
+                  <td>
+                    {{
+                      employee.emp_status_histories[0] == null
+                        ? "---"
+                        : employee.emp_status_histories[0].employee_statuses
+                            .title
+                    }}
+                  </td>
                   <td>
                     <Link
                       class="btn btn-sm btn-default ms-auto me-1"
@@ -77,17 +104,6 @@ const createEmployee = () => {
                         ></use>
                       </svg>
                       view
-                    </Link>
-                    <Link
-                      class="btn btn-sm btn-default ms-auto me-1 text-danger"
-                      href="#"
-                    >
-                      <svg class="icon">
-                        <use
-                          xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-trash"
-                        ></use>
-                      </svg>
-                      Delete
                     </Link>
                   </td>
                 </tr>

@@ -24,7 +24,6 @@ class EmployeeWorkExperienceController extends Controller
             "job_desc" => $request->job_desc,
         ]);
 
-        // echo ($res) ? 1 : 0;
-        // return response()->json($res);
+        return redirect('employee/' . $request->employee_id);
     }
 }

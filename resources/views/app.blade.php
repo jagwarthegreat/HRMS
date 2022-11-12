@@ -76,19 +76,61 @@
           <svg class="nav-icon">
             <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-people"></use>
           </svg>
-          Employee Management
+          HR Management
         </a>
         <ul class="nav-group-items">
           <li class="nav-item">
+            <a class="nav-link" href="{{route('department')}}">
+              <svg class="nav-icon"></svg>
+              Departments
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="{{route('position')}}" target="_top">
               <svg class="nav-icon"></svg>
-              Position
+              Positions
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{route('employee')}}" target="_top">
               <svg class="nav-icon"></svg>
               Employees
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" target="_top">
+              <svg class="nav-icon"></svg>
+              Memos 
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" target="_top">
+              <svg class="nav-icon"></svg>
+              Notices 
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" target="_top">
+              <svg class="nav-icon"></svg>
+              Case 
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" target="_top">
+              <svg class="nav-icon"></svg>
+              Settlements 
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" target="_top">
+              <svg class="nav-icon"></svg>
+              Quit Claims 
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" target="_top">
+              <svg class="nav-icon"></svg>
+              Communication
             </a>
           </li>
         </ul>
@@ -106,16 +148,42 @@
       </li>
       {{-- /CLIENT MANAGEMENT --}}
 
-      {{-- DEPARTMENT MANAGEMENT --}}
-      <li class="nav-item">
-        <a class="nav-link" href="{{route('department')}}">
+      {{-- SETTINGS MANAGEMENT --}}
+      <li class="nav-group">
+        <a class="nav-link nav-group-toggle" href="#">
           <svg class="nav-icon">
-            <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-building"></use>
+            <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-cog"></use>
           </svg>
-          Department
+          Settings
         </a>
+        <ul class="nav-group-items">
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <svg class="nav-icon"></svg>
+              Employee Statuses
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" target="_top">
+              <svg class="nav-icon"></svg>
+              Employment Types
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" target="_top">
+              <svg class="nav-icon"></svg>
+              Compensation Types
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" target="_top">
+              <svg class="nav-icon"></svg>
+              Hiring Requirements
+            </a>
+          </li>
+        </ul>
       </li>
-      {{-- /DEPARTMENT MANAGEMENT --}}
+      {{-- /SETTINGS MANAGEMENT --}}
 
       {{-- RECRUITMENT MANAGEMENT --}}
       {{-- <li class="nav-group">

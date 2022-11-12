@@ -11,6 +11,13 @@ import RequirementsTab from "./Tabs/RequirementsTab.vue";
 
 const props = defineProps({
   employee: Array,
+  employeeTypes: Array,
+  employee_status: Array,
+  departments: Array,
+  positions: Array,
+  locations: Array,
+  paytypes: Array,
+  employees: Array,
 });
 
 const empform = useForm({
@@ -53,7 +60,7 @@ a.nav-link {
 </style>
 
 <template>
-  <Head title="Create Employee" />
+  <Head title="Employee Profile" />
 
   <AuthenticatedLayout>
     <template #breadcrumbs>
@@ -179,7 +186,7 @@ a.nav-link {
                     >Job
                   </Link>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                   <Link
                     @click="tabSwitchTo('leave')"
                     :class="
@@ -194,7 +201,7 @@ a.nav-link {
                     aria-selected="true"
                     >Leave
                   </Link>
-                </li>
+                </li> -->
                 <li class="nav-item">
                   <Link
                     @click="tabSwitchTo('performance')"
@@ -269,7 +276,7 @@ a.nav-link {
                   aria-labelledby="nav-job-tab"
                   tabindex="0"
                 >
-                  <JobTab :employee="employee" />
+                  <JobTab :props="props" />
                 </div>
                 <div
                   class="tab-pane fade show"

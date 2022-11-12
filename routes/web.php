@@ -1,15 +1,21 @@
 <?php
 
+use App\Http\Controllers\EmpCompensationHistoryController;
+use App\Http\Controllers\EmpJobHistoryController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\EmployeeDependentController;
 use App\Http\Controllers\EmployeeEducationalBackgroundController;
+use App\Http\Controllers\EmployeeStatusController;
 use App\Http\Controllers\EmployeeWorkExperienceController;
+use App\Http\Controllers\EmpStatusHistoryController;
+use App\Http\Controllers\EmpTypeHistoryController;
 use App\Http\Controllers\PermisionController;
 use App\Http\Controllers\Position;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Models\EmployeeEducationalBackground;
+use App\Models\EmpStatusHistory;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -75,9 +81,16 @@ Route::prefix('employee')->middleware('auth')->group(function () {
         $_SESSION['Employee']['tab']['active'] = $tabName;
     })->name('employee.tabSwitchTo');
 
+    // general tab add
     Route::post('/dependent/store', [EmployeeDependentController::class, 'store'])->name('employee.dependent.store');
     Route::post('/educbg/store', [EmployeeEducationalBackgroundController::class, 'store'])->name('employee.educbg.store');
     Route::post('/workexp/store', [EmployeeWorkExperienceController::class, 'store'])->name('employee.workexp.store');
+
+    // job tab updates
+    Route::post('/status/history/store', [EmpStatusHistoryController::class, 'store'])->name('employee.statushistory.store');
+    Route::post('/type/history/store', [EmpTypeHistoryController::class, 'store'])->name('employee.typehistory.store');
+    Route::post('/compensation/history/store', [EmpCompensationHistoryController::class, 'store'])->name('employee.compensationhistory.store');
+    Route::post('/jobinfo/history/store', [EmpJobHistoryController::class, 'store'])->name('employee.jobinfohistory.store');
 });
 
 // POSITION / DESIGNATION

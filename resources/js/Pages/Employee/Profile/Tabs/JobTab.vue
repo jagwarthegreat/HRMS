@@ -1,9 +1,17 @@
 <script setup>
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
+import EmployeeStatusModal from "./../modals/EmployeeStatusModal.vue";
+import EmployeeTypeModal from "./../modals/EmployeeTypeModal.vue";
+import EmployeeCompensationModal from "./../modals/EmployeeCompensationModal.vue";
+import EmployeeJobInfoModal from "./../modals/EmployeeJobInfoModal.vue";
 
-defineProps({
-  employee: Array,
+const newprops = defineProps({
+  props: Array,
 });
+
+function openClickedModal(modal) {
+  $("#" + modal).modal("show");
+}
 </script>
 
 <style scoped>
@@ -25,8 +33,9 @@ defineProps({
   overflow-y: auto;
 }
 
-a.btn.btn-sm.btn-default.ms-auto.me-1 {
-  border: 1px solid #ddd !important;
+button.btn.btn-sm.btn-default.ms-auto.me-1 {
+  border: 1px solid #0000002e !important;
+  box-shadow: none !important;
 }
 
 .basicInfoLabel {
@@ -70,14 +79,17 @@ td {
         aria-labelledby="panelsStayOpen-headingEmployStats"
       >
         <div class="accordion-body">
-          <a class="btn btn-sm btn-default ms-auto me-1 mb-2" href="">
+          <button
+            class="btn btn-sm btn-default ms-auto me-1 mb-2"
+            @click="openClickedModal('employeeStatusModal')"
+          >
             <svg class="icon">
               <use
                 xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-pen"
               ></use>
             </svg>
             Update Employee Status
-          </a>
+          </button>
           <div class="row">
             <div class="col-12">
               <table class="table table-hover" style="border: 1px solid #ddd">
@@ -90,14 +102,13 @@ td {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-if="employee.emp_status_histories.length < 1">
+                  <tr v-if="props.employee.emp_status_histories.length < 1">
                     <td colspan="4">No status history found.</td>
                   </tr>
                   <tr
                     v-else
-                    v-for="(
-                      statusHistory, keyStatusHistory
-                    ) in employee.emp_status_histories"
+                    v-for="(statusHistory, keyStatusHistory) in props.employee
+                      .emp_status_histories"
                     :key="keyStatusHistory"
                   >
                     <td>
@@ -139,14 +150,17 @@ td {
         aria-labelledby="panelsStayOpen-headingEmployType"
       >
         <div class="accordion-body">
-          <a class="btn btn-sm btn-default ms-auto me-1 mb-2" href="">
+          <button
+            class="btn btn-sm btn-default ms-auto me-1 mb-2"
+            @click="openClickedModal('employeeTypeModal')"
+          >
             <svg class="icon">
               <use
                 xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-pen"
               ></use>
             </svg>
             Update Employment Type
-          </a>
+          </button>
           <div class="row">
             <div class="col-12">
               <table class="table table-hover" style="border: 1px solid #ddd">
@@ -159,14 +173,13 @@ td {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-if="employee.emp_type_histories.length < 1">
+                  <tr v-if="props.employee.emp_type_histories.length < 1">
                     <td colspan="4">No employment type history found.</td>
                   </tr>
                   <tr
                     v-else
-                    v-for="(
-                      typeHistory, keyTypeHistory
-                    ) in employee.emp_type_histories"
+                    v-for="(typeHistory, keyTypeHistory) in props.employee
+                      .emp_type_histories"
                     :key="keyTypeHistory"
                   >
                     <td>
@@ -208,14 +221,17 @@ td {
         aria-labelledby="panelsStayOpen-headingCompensation"
       >
         <div class="accordion-body">
-          <a class="btn btn-sm btn-default ms-auto me-1 mb-2" href="">
+          <button
+            class="btn btn-sm btn-default ms-auto me-1 mb-2"
+            @click="openClickedModal('compensationModal')"
+          >
             <svg class="icon">
               <use
                 xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-pen"
               ></use>
             </svg>
             Update Compensation
-          </a>
+          </button>
           <div class="row">
             <div class="col-12">
               <table class="table table-hover" style="border: 1px solid #ddd">
@@ -230,14 +246,16 @@ td {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-if="employee.emp_compensation_histories.length < 1">
+                  <tr
+                    v-if="props.employee.emp_compensation_histories.length < 1"
+                  >
                     <td colspan="4">No compensation history found.</td>
                   </tr>
                   <tr
                     v-else
                     v-for="(
                       compensationHistory, keyCompensationHistory
-                    ) in employee.emp_compensation_histories"
+                    ) in props.employee.emp_compensation_histories"
                     :key="keyCompensationHistory"
                   >
                     <td>
@@ -283,14 +301,17 @@ td {
         aria-labelledby="panelsStayOpen-headingJobInfo"
       >
         <div class="accordion-body">
-          <a class="btn btn-sm btn-default ms-auto me-1 mb-2" href="">
+          <button
+            class="btn btn-sm btn-default ms-auto me-1 mb-2"
+            @click="openClickedModal('jobInfoModal')"
+          >
             <svg class="icon">
               <use
                 xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-pen"
               ></use>
             </svg>
             Update Information
-          </a>
+          </button>
           <div class="row">
             <div class="col-12">
               <table class="table table-hover" style="border: 1px solid #ddd">
@@ -305,14 +326,13 @@ td {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-if="employee.emp_job_histories.length < 1">
+                  <tr v-if="props.employee.emp_job_histories.length < 1">
                     <td colspan="4">No job history found.</td>
                   </tr>
                   <tr
                     v-else
-                    v-for="(
-                      jobHistory, keyJobHistory
-                    ) in employee.emp_job_histories"
+                    v-for="(jobHistory, keyJobHistory) in props.employee
+                      .emp_job_histories"
                     :key="keyJobHistory"
                   >
                     <td>
@@ -343,5 +363,25 @@ td {
       </div>
     </div>
     <!-- /job info -->
+
+    <EmployeeStatusModal
+      :employee_id="props.employee.id"
+      :employee_statuses="props.employee_status"
+    />
+    <EmployeeTypeModal
+      :employee_id="props.employee.id"
+      :employment_types="props.employeeTypes"
+    />
+    <EmployeeCompensationModal
+      :employee_id="props.employee.id"
+      :paytypes="props.paytypes"
+    />
+    <EmployeeJobInfoModal
+      :employee_id="props.employee.id"
+      :locations="props.locations"
+      :departments="props.departments"
+      :positions="props.positions"
+      :reportingto="props.employees"
+    />
   </div>
 </template>

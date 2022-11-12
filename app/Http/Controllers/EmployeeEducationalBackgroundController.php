@@ -22,7 +22,6 @@ class EmployeeEducationalBackgroundController extends Controller
             "year" => $request->completion_date,
         ]);
 
-        // echo ($res) ? 1 : 0;
-        // return response()->json($res);
+        return redirect('employee/' . $request->employee_id);
     }
 }

@@ -297,15 +297,30 @@ td {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  <tr v-if="employee.emp_job_histories.length < 1">
+                    <td colspan="4">No compensation history found.</td>
+                  </tr>
+                  <tr
+                    v-else
+                    v-for="(
+                      jobHistory, keyJobHistory
+                    ) in employee.emp_job_histories"
+                    :key="keyJobHistory"
+                  >
                     <td>
-                      07/21/2021
+                      {{ jobHistory.trans_date }}
                       <span class="text-success">&#x25cf;</span>
                     </td>
-                    <td>Main Location</td>
-                    <td>Visuals</td>
-                    <td>Designer</td>
-                    <td></td>
+                    <td>{{ jobHistory.departments.title }}</td>
+                    <td>{{ jobHistory.locations.title }}</td>
+                    <td>{{ jobHistory.positions.title }}</td>
+                    <td>
+                      {{
+                        jobHistory.reportsto.firstname +
+                        " " +
+                        jobHistory.reportsto.lastname
+                      }}
+                    </td>
                     <td></td>
                   </tr>
                 </tbody>

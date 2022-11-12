@@ -67,9 +67,12 @@ function openClickedModal(modal) {
 const work_status =
   props.employee.emp_status_histories[0].employee_statuses.title;
 const work_type = props.employee.emp_type_histories[0].employee_types.title;
-const work_department = "Visuals";
-const work_reporting_to = "";
-const work_title = "Designer";
+const work_department = props.employee.emp_job_histories[0].departments.title;
+const work_reporting_to =
+  props.employee.emp_job_histories[0].reportsto.firstname +
+  " " +
+  props.employee.emp_job_histories[0].reportsto.lastname;
+const work_title = props.employee.emp_job_histories[0].positions.title;
 </script>
 
 <style scoped>

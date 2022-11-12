@@ -105,7 +105,10 @@ class EmployeeController extends Controller
             'emp_status_histories.employee_statuses',
             'emp_type_histories.employee_types',
             'emp_compensation_histories.pay_types',
-            'emp_job_histories'
+            'emp_job_histories.locations',
+            'emp_job_histories.departments',
+            'emp_job_histories.positions',
+            'emp_job_histories.reportsto'
         ])->find($employee_id);
 
         // dd($employee);

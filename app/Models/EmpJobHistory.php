@@ -17,4 +17,24 @@ class EmpJobHistory extends Model
         'reports_to',
         'trans_date'
     ];
+
+    public function locations()
+    {
+        return $this->belongsTo(Location::class, 'location_id', 'id');
+    }
+
+    public function departments()
+    {
+        return $this->belongsTo(Department::class, 'department_id', 'id');
+    }
+
+    public function positions()
+    {
+        return $this->belongsTo(Position::class, 'position_id', 'id');
+    }
+
+    public function reportsto()
+    {
+        return $this->belongsTo(Employee::class, 'reports_to', 'id');
+    }
 }

@@ -1,5 +1,9 @@
 <script setup>
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
+
+defineProps({
+  employee: Array,
+});
 </script>
 
 <style scoped>
@@ -86,19 +90,22 @@ td {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  <tr v-if="employee.emp_status_histories.length < 1">
+                    <td colspan="4">No status history found.</td>
+                  </tr>
+                  <tr
+                    v-else
+                    v-for="(
+                      statusHistory, keyStatusHistory
+                    ) in employee.emp_status_histories"
+                    :key="keyStatusHistory"
+                  >
                     <td>
-                      07/21/2021
+                      {{ statusHistory.trans_date }}
                       <span class="text-success">&#x25cf;</span>
                     </td>
-                    <td>Active</td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td>07/21/2017</td>
-                    <td>Inactive</td>
-                    <td></td>
+                    <td>{{ statusHistory.employee_statuses.title }}</td>
+                    <td>{{ statusHistory.comment }}</td>
                     <td></td>
                   </tr>
                 </tbody>
@@ -150,19 +157,22 @@ td {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  <tr v-if="employee.emp_type_histories.length < 1">
+                    <td colspan="4">No employment type history found.</td>
+                  </tr>
+                  <tr
+                    v-else
+                    v-for="(
+                      typeHistory, keyTypeHistory
+                    ) in employee.emp_type_histories"
+                    :key="keyTypeHistory"
+                  >
                     <td>
-                      07/21/2021
+                      {{ typeHistory.trans_date }}
                       <span class="text-success">&#x25cf;</span>
                     </td>
-                    <td>Regular</td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td>07/21/2017</td>
-                    <td>Parttime</td>
-                    <td></td>
+                    <td>{{ typeHistory.employee_types.title }}</td>
+                    <td>{{ typeHistory.comment }}</td>
                     <td></td>
                   </tr>
                 </tbody>
@@ -216,15 +226,24 @@ td {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  <tr v-if="employee.emp_compensation_histories.length < 1">
+                    <td colspan="4">No compensation history found.</td>
+                  </tr>
+                  <tr
+                    v-else
+                    v-for="(
+                      compensationHistory, keyCompensationHistory
+                    ) in employee.emp_compensation_histories"
+                    :key="keyCompensationHistory"
+                  >
                     <td>
-                      07/21/2021
+                      {{ compensationHistory.trans_date }}
                       <span class="text-success">&#x25cf;</span>
                     </td>
-                    <td>10000</td>
-                    <td>monthly</td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ compensationHistory.pay_rate }}</td>
+                    <td>{{ compensationHistory.pay_types.title }}</td>
+                    <td>{{ compensationHistory.reason }}</td>
+                    <td>{{ compensationHistory.comment }}</td>
                     <td></td>
                   </tr>
                 </tbody>

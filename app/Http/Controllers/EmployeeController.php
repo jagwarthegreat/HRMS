@@ -102,9 +102,9 @@ class EmployeeController extends Controller
             'dependents',
             'work_experiences',
             'educ_backgrounds',
-            'emp_status_histories',
-            'emp_type_histories',
-            'emp_compensation_histories',
+            'emp_status_histories.employee_statuses',
+            'emp_type_histories.employee_types',
+            'emp_compensation_histories.pay_types',
             'emp_job_histories'
         ])->find($employee_id);
 
@@ -113,7 +113,7 @@ class EmployeeController extends Controller
         return Inertia::render('Employee/Profile/Index', compact('employee'));
     }
 
-    public function employementTypeStore($request)
+    public function employementTypeHistory($request)
     {
         EmployeeType::create([]);
     }

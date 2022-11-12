@@ -16,4 +16,9 @@ class EmpCompensationHistory extends Model
         'comment',
         'trans_date',
     ];
+
+    public function pay_types()
+    {
+        return $this->belongsTo(PayType::class, 'pay_type_id', 'id');
+    }
 }

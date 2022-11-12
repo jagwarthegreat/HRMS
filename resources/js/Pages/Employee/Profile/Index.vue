@@ -28,12 +28,12 @@ const activeTab = sessionEmployeeActiveTab;
 
 <style scoped>
 .avatar {
-  width: 32%;
+  width: 100px;
   height: 100%;
 }
 
 .avatar-img {
-  width: 50%;
+  width: 92px;
   height: 100%;
   border-radius: 50em;
 }
@@ -69,7 +69,7 @@ a.nav-link {
           <div class="row">
             <div class="col-md-8">
               <div class="card mb-4">
-                <div class="card-body d-flex">
+                <div class="card-body d-flex" style="overflow-y: auto">
                   <div class="avatar">
                     <img
                       class="avatar-img"
@@ -77,7 +77,7 @@ a.nav-link {
                       alt="user@email.com"
                     />
                   </div>
-                  <div class="d-flex flex-column justify-content-center">
+                  <div class="d-flex flex-column justify-content-center ms-4">
                     <h4>
                       <b>{{ employee.firstname + " " + employee.lastname }}</b>
                     </h4>

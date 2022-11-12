@@ -15,4 +15,9 @@ class EmpTypeHistory extends Model
         'comment',
         'trans_date',
     ];
+
+    public function employee_types()
+    {
+        return $this->belongsTo(EmployeeType::class, 'employee_type_id', 'id');
+    }
 }

@@ -15,4 +15,9 @@ class EmpStatusHistory extends Model
         'comment',
         'trans_date',
     ];
+
+    public function employee_statuses()
+    {
+        return $this->belongsTo(EmployeeStatus::class, 'employee_status_id', 'id');
+    }
 }

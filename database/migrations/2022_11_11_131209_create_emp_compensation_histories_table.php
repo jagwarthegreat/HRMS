@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('employee_id')->constrained('employees')->onDelete('cascade');
             $table->foreignId('pay_type_id')->constrained('pay_types')->onDelete('cascade');
+            $table->decimal('pay_rate', 12, 3)->nullable();
             $table->text('reason')->nullable();
             $table->text('comment')->nullable();
             $table->date('trans_date');

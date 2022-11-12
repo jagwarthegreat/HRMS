@@ -4,7 +4,7 @@ import WorkExperienceModal from "./../modals/WorkExperienceModal.vue";
 import EducBgModal from "./../modals/EducBgModal.vue";
 import DependentsModal from "./../modals/DependentsModal.vue";
 
-defineProps({
+const props = defineProps({
   employee: Array,
 });
 
@@ -63,6 +63,13 @@ const submit = () => {
 function openClickedModal(modal) {
   $("#" + modal).modal("show");
 }
+
+const work_status =
+  props.employee.emp_status_histories[0].employee_statuses.title;
+const work_type = props.employee.emp_type_histories[0].employee_types.title;
+const work_department = "Visuals";
+const work_reporting_to = "";
+const work_title = "Designer";
 </script>
 
 <style scoped>
@@ -200,21 +207,23 @@ td {
                     <span>Department</span>
                     <span>:</span>
                   </td>
-                  <td class="basicInfoData">Visuals</td>
+                  <td class="basicInfoData">{{ work_department }}</td>
                 </tr>
                 <tr>
                   <td class="basicInfoLabel">
                     <span>Reporting To</span>
                     <span>:</span>
                   </td>
-                  <td class="basicInfoData"></td>
+                  <td class="basicInfoData">{{ work_reporting_to }}</td>
                 </tr>
                 <tr>
                   <td class="basicInfoLabel">
                     <span>Employee Status</span>
                     <span>:</span>
                   </td>
-                  <td class="basicInfoData">Active</td>
+                  <td class="basicInfoData">
+                    {{ work_status }}
+                  </td>
                 </tr>
               </table>
             </div>
@@ -225,21 +234,21 @@ td {
                     <span>Title</span>
                     <span>:</span>
                   </td>
-                  <td class="basicInfoData">Designer</td>
+                  <td class="basicInfoData">{{ work_title }}</td>
                 </tr>
                 <tr>
                   <td class="basicInfoLabel">
                     <span>Date of Hire</span>
                     <span>:</span>
                   </td>
-                  <td class="basicInfoData">04/14/2014</td>
+                  <td class="basicInfoData">{{ employee.date_of_hire }}</td>
                 </tr>
                 <tr>
                   <td class="basicInfoLabel">
                     <span>Employee Type</span>
                     <span>:</span>
                   </td>
-                  <td class="basicInfoData">Regular</td>
+                  <td class="basicInfoData">{{ work_type }}</td>
                 </tr>
               </table>
             </div>

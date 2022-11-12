@@ -341,8 +341,8 @@ td {
                         >&#x25cf;</span
                       >
                     </td>
-                    <td>{{ jobHistory.departments.title }}</td>
                     <td>{{ jobHistory.locations.title }}</td>
+                    <td>{{ jobHistory.departments.title }}</td>
                     <td>{{ jobHistory.positions.title }}</td>
                     <td>
                       {{

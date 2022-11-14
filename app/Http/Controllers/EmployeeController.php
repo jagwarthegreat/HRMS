@@ -65,30 +65,6 @@ class EmployeeController extends Controller
             "civil_status" => ['required'],
         ]);
 
-        // "firstname",
-        // "middlename",
-        // "lastname",
-        // "contact",
-        // "email",
-        // "address",
-        // "dob",
-        // "gender",
-        // "civil_status",
-        // "sss",
-        // "tin",
-        // "pagibig",
-        // "philhealth",
-        // "employeeType",
-        // "employeeStatus",
-        // "doh",
-        // "ced",
-        // "department",
-        // "jobTitle",
-        // "location",
-        // "reportingTo",
-        // "payRate",
-        // "payType"
-
         $employee = Employee::create([
             "employee_code" => $emp_code,
             "firstname" => $request->firstname,
@@ -117,32 +93,38 @@ class EmployeeController extends Controller
         ]);
 
         // insert to type history
-        EmpTypeHistory::create([
-            'employee_id' => $employee->id,
-            'employee_type_id' => $request->employeeType,
-            'comment' => "",
-            'trans_date' => date('Y-m-d'),
-        ]);
+        if ($request->employeeType != "") {
+            EmpTypeHistory::create([
+                'employee_id' => $employee->id,
+                'employee_type_id' => $request->employeeType,
+                'comment' => "",
+                'trans_date' => date('Y-m-d'),
+            ]);
+        }
 
         // insert to compensation history
-        EmpCompensationHistory::create([
-            'employee_id' => $employee->id,
-            'pay_type_id' => $request->payType,
-            'pay_rate' => "$request->payRate",
-            'reason' => "",
-            'comment' => "",
-            'trans_date' => date('Y-m-d'),
-        ]);
+        if ($request->payType != "" && $request->payRate != "") {
+            EmpCompensationHistory::create([
+                'employee_id' => $employee->id,
+                'pay_type_id' => $request->payType,
+                'pay_rate' => "$request->payRate",
+                'reason' => "",
+                'comment' => "",
+                'trans_date' => date('Y-m-d'),
+            ]);
+        }
 
         // insert to job history
-        EmpJobHistory::create([
-            'employee_id' => $employee->id,
-            'location_id' => $request->location,
-            'department_id' => "$request->department",
-            'position_id' => "$request->jobTitle",
-            'reports_to' => "$request->reportingTo",
-            'trans_date' => date('Y-m-d'),
-        ]);
+        if ($request->location != "" && $request->department != "" && $request->jobTitle != "" && $request->reportingTo != "") {
+            EmpJobHistory::create([
+                'employee_id' => $employee->id,
+                'location_id' => $request->location,
+                'department_id' => "$request->department",
+                'position_id' => "$request->jobTitle",
+                'reports_to' => "$request->reportingTo",
+                'trans_date' => date('Y-m-d'),
+            ]);
+        }
 
         return redirect('employee');
     }

@@ -202,7 +202,7 @@ a.nav-link {
                     >Leave
                   </Link>
                 </li> -->
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                   <Link
                     @click="tabSwitchTo('performance')"
                     :class="
@@ -219,7 +219,7 @@ a.nav-link {
                     aria-selected="true"
                     >Performance
                   </Link>
-                </li>
+                </li> -->
                 <li class="nav-item">
                   <Link
                     @click="tabSwitchTo('documents')"

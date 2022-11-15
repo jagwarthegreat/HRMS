@@ -41,9 +41,9 @@
       font-size: 14px;
     }
   </style>
-  
+
   <script>
-     window.sessionEmployeeActiveTab = "{{ $_SESSION["Employee"]["tab"]["active"] }}";
+    window.sessionEmployeeActiveTab = "{{ $_SESSION["Employee"]["tab"]["active"] }}";
   </script>
 
   <!-- Scripts -->
@@ -100,31 +100,31 @@
           <li class="nav-item">
             <a class="nav-link" href="#" target="_top">
               <svg class="nav-icon"></svg>
-              Memos 
+              Memos
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#" target="_top">
               <svg class="nav-icon"></svg>
-              Notices 
+              Notices
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#" target="_top">
               <svg class="nav-icon"></svg>
-              Case 
+              Case
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#" target="_top">
               <svg class="nav-icon"></svg>
-              Settlements 
+              Settlements
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#" target="_top">
               <svg class="nav-icon"></svg>
-              Quit Claims 
+              Quit Claims
             </a>
           </li>
           <li class="nav-item">
@@ -173,6 +173,12 @@
             <a class="nav-link" href="#" target="_top">
               <svg class="nav-icon"></svg>
               Compensation Types
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" target="_top">
+              <svg class="nav-icon"></svg>
+              Document Category
             </a>
           </li>
           <li class="nav-item">

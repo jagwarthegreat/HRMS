@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\EmpCompensationHistoryController;
 use App\Http\Controllers\EmpJobHistoryController;
 use App\Http\Controllers\EmployeeController;
@@ -102,8 +103,7 @@ Route::prefix('position')->middleware('auth')->group(function () {
 
 // DOCUMENTS
 Route::prefix('docs')->middleware('auth')->group(function () {
-    Route::get('/employee', [PositionController::class, 'index'])->name('docs.employee');
-    Route::get('/client', [PositionController::class, 'create'])->name('docs.client');
+    Route::post('/store', [DocumentController::class, 'store'])->name('docs.store');
 });
 
 // DEPARTMENT

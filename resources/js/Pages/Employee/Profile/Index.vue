@@ -18,6 +18,8 @@ const props = defineProps({
   locations: Array,
   paytypes: Array,
   employees: Array,
+  docCategories: Array,
+  hiringRequirements: Array,
 });
 
 const empform = useForm({
@@ -306,7 +308,7 @@ a.nav-link {
                   aria-labelledby="nav-document-tab"
                   tabindex="0"
                 >
-                  <DocumentsTab :employee="employee" />
+                  <DocumentsTab :props="props" />
                 </div>
                 <div
                   class="tab-pane fade show"
@@ -316,7 +318,7 @@ a.nav-link {
                   aria-labelledby="nav-requirements-tab"
                   tabindex="0"
                 >
-                  <RequirementsTab :employee="employee" />
+                  <RequirementsTab :props="props" />
                 </div>
               </div>
             </div>

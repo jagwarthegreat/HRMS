@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Department;
+use App\Models\DocumentCategory;
 use App\Models\EmpCompensationHistory;
 use App\Models\EmpJobHistory;
 use Illuminate\Http\Request;
@@ -16,6 +17,7 @@ use App\Models\EmpTypeHistory;
 use App\Models\Location;
 use App\Models\PayType;
 use App\Models\Position;
+use App\Models\HiringRequirement;
 
 class EmployeeController extends Controller
 {
@@ -31,7 +33,7 @@ class EmployeeController extends Controller
             'emp_job_histories.locations',
             'emp_job_histories.departments',
             'emp_job_histories.positions',
-            'emp_job_histories.reportsto'
+            'emp_job_histories.reportsto',
         ])->get();
 
         return Inertia::render('Employee/Index', compact('employees'));
@@ -141,7 +143,9 @@ class EmployeeController extends Controller
             'emp_job_histories.locations',
             'emp_job_histories.departments',
             'emp_job_histories.positions',
-            'emp_job_histories.reportsto'
+            'emp_job_histories.reportsto',
+            'documents.document_category',
+            'documents.created_by',
         ])->find($employee_id);
 
         $employeeTypes = EmployeeType::all();
@@ -151,9 +155,11 @@ class EmployeeController extends Controller
         $locations =  Location::all();
         $paytypes =  PayType::all();
         $employees =  Employee::all();
+        $docCategories =  DocumentCategory::all();
+        $hiringRequirements =  HiringRequirement::all();
 
         // dd($employee);
 
-        return Inertia::render('Employee/Profile/Index', compact('employee', 'employeeTypes', 'employee_status', 'departments', 'positions', 'locations', 'paytypes', 'employees'));
+        return Inertia::render('Employee/Profile/Index', compact('employee', 'employeeTypes', 'employee_status', 'departments', 'positions', 'locations', 'paytypes', 'employees', 'docCategories', 'hiringRequirements'));
     }
 }

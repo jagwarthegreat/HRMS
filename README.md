@@ -6,6 +6,8 @@
     ### optional:
         - php artisan migrate
         - php artisan db:seed
+- to access uploaded files in the system :
+    - php artisan storage:link
 
 
 # HRMS

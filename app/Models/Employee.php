@@ -62,4 +62,9 @@ class Employee extends Model
     {
         return $this->hasMany(EmpJobHistory::class)->latest();
     }
+
+    public function documents()
+    {
+        return $this->hasMany(Document::class)->latest();
+    }
 }

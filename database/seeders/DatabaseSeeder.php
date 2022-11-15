@@ -34,6 +34,8 @@ class DatabaseSeeder extends Seeder
             DepartmentTableSeeder::class,
             PayTypeTableSeeder::class,
             EmployeeTypeTableSeeder::class,
+            DocumentCategoryTableSeeder::class,
+            HiringRequirementsTableSeeder::class,
         ]);
     }
 }

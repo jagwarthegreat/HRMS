@@ -19,7 +19,6 @@ return new class extends Migration
             $table->foreignId('location_id')->constrained('locations')->onDelete('cascade');
             $table->foreignId('department_id')->constrained('departments')->onDelete('cascade');
             $table->foreignId('position_id')->constrained('positions')->onDelete('cascade');
-            $table->foreignId('reports_to')->nullable()->constrained('employees')->onDelete('set null');
             $table->date('trans_date');
             $table->timestamps();
         });

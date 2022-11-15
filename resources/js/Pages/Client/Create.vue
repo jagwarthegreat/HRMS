@@ -3,69 +3,19 @@ import AuthenticatedLayout from "./../../Layouts/AuthenticatedLayout.vue";
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 import { ref, onMounted } from "vue";
 
-defineProps({
-  employeeTypes: Array,
-  employee_status: Array,
-  departments: Array,
-  positions: Array,
-  locations: Array,
-  employees: Array,
-  paytypes: Array,
-});
+defineProps({});
 
 const empform = useForm({
-  firstname: "",
-  middlename: "",
-  lastname: "",
+  fullname: "",
+  address: "",
   contact: "",
   email: "",
-  address: "",
-  dob: "",
-  gender: "",
-  civil_status: "",
-  sss: "",
-  tin: "",
-  pagibig: "",
-  philhealth: "",
-  employeeType: "",
-  employeeStatus: "",
-  doh: "",
-  ced: "",
-  department: "",
-  jobTitle: "",
-  location: "",
-  payRate: "",
-  payType: "",
 });
 
 const submit = () => {
   empform.post(route("employee.store"), {
     onSuccess: () => {
-      empform.reset([
-        "firstname",
-        "middlename",
-        "lastname",
-        "contact",
-        "email",
-        "address",
-        "dob",
-        "gender",
-        "civil_status",
-        "sss",
-        "tin",
-        "pagibig",
-        "philhealth",
-        "employeeType",
-        "employeeStatus",
-        "doh",
-        "ced",
-        "department",
-        "jobTitle",
-        "location",
-        "payRate",
-        "payType",
-        "shift",
-      ]);
+      empform.reset(["fullname", "address", "contact", "email"]);
     },
   });
 };
@@ -133,15 +83,13 @@ td {
         <Link :href="route('dashboard')">Dashboard</Link>
       </li>
       <li class="breadcrumb-item">
-        <Link :href="route('employee')">User</Link>
+        <Link :href="route('client')">Client</Link>
       </li>
       <li class="breadcrumb-item active" aria-current="page">Create</li>
     </template>
 
     <div class="col-md-12 text-start mb-2">
-      <Link class="btn btn-dark btn-sm" :href="route('employee')">
-        Go back
-      </Link>
+      <Link class="btn btn-dark btn-sm" :href="route('client')"> Go back </Link>
     </div>
 
     <div class="col-md-12 mb-4">
@@ -399,112 +347,6 @@ td {
                 </div>
               </div>
               <!-- /personal detial -->
-
-              <!-- work detial -->
-              <div class="accordion-item mb-3">
-                <h2 class="accordion-header" id="panelsStayOpen-headingWorkAdd">
-                  <button
-                    class="accordion-button p-2"
-                    type="button"
-                    data-coreui-toggle="collapse"
-                    data-coreui-target="#panelsStayOpen-collapseWorkAdd"
-                    aria-expanded="true"
-                    aria-controls="panelsStayOpen-collapseWorkAdd"
-                  >
-                    Work
-                  </button>
-                </h2>
-                <div
-                  id="panelsStayOpen-collapseWorkAdd"
-                  class="accordion-collapse collapse show"
-                  aria-labelledby="panelsStayOpen-headingWorkAdd"
-                >
-                  <div class="accordion-body">
-                    <div class="row g-3">
-                      <div class="col-md-4">
-                        <label for="department" class="form-label"
-                          >Department</label
-                        >
-                        <select
-                          class="form-select"
-                          id="department"
-                          v-model="empform.department"
-                        >
-                          <option
-                            v-for="(department, keyDepartment) in departments"
-                            :key="keyDepartment"
-                            :value="department.id"
-                          >
-                            {{ department.title }}
-                          </option>
-                        </select>
-                      </div>
-                      <div class="col-md-4">
-                        <label for="jobTitle" class="form-label"
-                          >Job Title</label
-                        >
-                        <select
-                          class="form-select"
-                          id="jobTitle"
-                          v-model="empform.jobTitle"
-                        >
-                          <option
-                            v-for="(position, keyPosition) in positions"
-                            :key="keyPosition"
-                            :value="position.id"
-                          >
-                            {{ position.title }}
-                          </option>
-                        </select>
-                      </div>
-                      <div class="col-md-4">
-                        <label for="location" class="form-label"
-                          >Location</label
-                        >
-                        <select
-                          class="form-select"
-                          id="location"
-                          v-model="empform.location"
-                        >
-                          <option
-                            v-for="(location, keylocation) in locations"
-                            :key="keylocation"
-                            :value="location.id"
-                          >
-                            {{ location.title }}
-                          </option>
-                        </select>
-                      </div>
-                      <div class="col-md-4">
-                        <label for="payRate" class="form-label">Pay Rate</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="payRate"
-                          v-model="empform.payRate"
-                        />
-                      </div>
-                      <div class="col-md-4">
-                        <label for="payType" class="form-label">Pay Type</label>
-                        <select
-                          class="form-select"
-                          id="payType"
-                          v-model="empform.payType"
-                        >
-                          <option
-                            v-for="(paytype, keypaytype) in paytypes"
-                            :key="keypaytype"
-                            :value="paytype.id"
-                          >
-                            {{ paytype.title }}
-                          </option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- /work detial -->
             </div>
 
             <div class="col-12">

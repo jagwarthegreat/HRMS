@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\EmpCompensationHistoryController;
 use App\Http\Controllers\EmpJobHistoryController;
@@ -119,7 +120,10 @@ Route::prefix('job')->middleware('auth')->group(function () {
 
 // CLIENTS
 Route::prefix('client')->middleware('auth')->group(function () {
-    Route::get('/', [PositionController::class, 'index'])->name('client');
+    Route::get('/', [ClientController::class, 'index'])->name('client');
+    Route::get('/create', [ClientController::class, 'create'])->name('client.create');
+    Route::post('/store', [ClientController::class, 'store'])->name('client.store');
+    Route::get('/{id}', [ClientController::class, 'show'])->name('client.show');
 });
 
 require __DIR__ . '/auth.php';

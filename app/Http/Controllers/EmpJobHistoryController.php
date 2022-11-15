@@ -20,7 +20,6 @@ class EmpJobHistoryController extends Controller
             'location_id' => $request->location,
             'department_id' => $request->department,
             'position_id' => $request->position,
-            'reports_to' => $request->reportto,
             'trans_date' => $request->trans_date,
         ]);
 

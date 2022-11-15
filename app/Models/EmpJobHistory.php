@@ -14,7 +14,6 @@ class EmpJobHistory extends Model
         'location_id',
         'department_id',
         'position_id',
-        'reports_to',
         'trans_date'
     ];
 
@@ -31,10 +30,5 @@ class EmpJobHistory extends Model
     public function positions()
     {
         return $this->belongsTo(Position::class, 'position_id', 'id');
-    }
-
-    public function reportsto()
-    {
-        return $this->belongsTo(Employee::class, 'reports_to', 'id');
     }
 }

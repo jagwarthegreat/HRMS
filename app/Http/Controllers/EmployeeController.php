@@ -33,7 +33,6 @@ class EmployeeController extends Controller
             'emp_job_histories.locations',
             'emp_job_histories.departments',
             'emp_job_histories.positions',
-            'emp_job_histories.reportsto',
         ])->get();
 
         return Inertia::render('Employee/Index', compact('employees'));
@@ -117,13 +116,12 @@ class EmployeeController extends Controller
         }
 
         // insert to job history
-        if ($request->location != "" && $request->department != "" && $request->jobTitle != "" && $request->reportingTo != "") {
+        if ($request->location != "" && $request->department != "" && $request->jobTitle != "") {
             EmpJobHistory::create([
                 'employee_id' => $employee->id,
                 'location_id' => $request->location,
                 'department_id' => "$request->department",
                 'position_id' => "$request->jobTitle",
-                'reports_to' => "$request->reportingTo",
                 'trans_date' => date('Y-m-d'),
             ]);
         }
@@ -143,7 +141,6 @@ class EmployeeController extends Controller
             'emp_job_histories.locations',
             'emp_job_histories.departments',
             'emp_job_histories.positions',
-            'emp_job_histories.reportsto',
             'documents.document_category',
             'documents.created_by',
         ])->find($employee_id);

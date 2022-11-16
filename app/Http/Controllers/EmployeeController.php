@@ -59,7 +59,7 @@ class EmployeeController extends Controller
             "middlename" => ['required'],
             "lastname" => ['required'],
             "contact" => ['required'],
-            "email" => ['required', 'email'],
+            "email" => ['email'],
             "address" => ['required'],
             "dob" => ['required'],
             "gender" => ['required'],
@@ -86,12 +86,14 @@ class EmployeeController extends Controller
         ]);
 
         // insert to status history
-        EmpStatusHistory::create([
-            'employee_id' => $employee->id,
-            'employee_status_id' => $request->employeeStatus,
-            'comment' => "",
-            'trans_date' => date('Y-m-d'),
-        ]);
+        if ($request->employeeStatus != "") {
+            EmpStatusHistory::create([
+                'employee_id' => $employee->id,
+                'employee_status_id' => $request->employeeStatus,
+                'comment' => "",
+                'trans_date' => date('Y-m-d'),
+            ]);
+        }
 
         // insert to type history
         if ($request->employeeType != "") {

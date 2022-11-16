@@ -41,7 +41,7 @@ const empform = useForm({
 const submit = () => {
   empform.post(route("employee.store"), {
     onSuccess: () => {
-      empform.reset([
+      empform.reset(
         "firstname",
         "middlename",
         "lastname",
@@ -65,7 +65,7 @@ const submit = () => {
         "payRate",
         "payType",
         "shift",
-      ]);
+      );
     },
   });
 };
@@ -197,19 +197,26 @@ td {
                   <div class="accordion-body">
                     <div class="row g-3">
                       <div class="col-md-4">
-                        <label for="firstname" class="form-label"
-                          >Firstname</label
-                        >
+                        <label for="firstname" class="form-label">
+                          Firstname<span class="text-danger">*</span>
+                        </label>
                         <input
                           type="text"
                           class="form-control"
                           id="firstname"
                           v-model="empform.firstname"
                         />
+                        <div
+                          class="invalid-feedback"
+                          v-show="empform.errors.firstname"
+                          style="display: block"
+                        >
+                          {{ empform.errors.firstname }}
+                        </div>
                       </div>
                       <div class="col-md-4">
                         <label for="middlename" class="form-label"
-                          >Middlename</label
+                          >Middlename<span class="text-danger">*</span></label
                         >
                         <input
                           type="text"
@@ -217,10 +224,17 @@ td {
                           id="middlename"
                           v-model="empform.middlename"
                         />
+                        <div
+                          class="invalid-feedback"
+                          v-show="empform.errors.middlename"
+                          style="display: block"
+                        >
+                          {{ empform.errors.middlename }}
+                        </div>
                       </div>
                       <div class="col-md-4">
                         <label for="lastname" class="form-label"
-                          >Lastname</label
+                          >Lastname<span class="text-danger">*</span></label
                         >
                         <input
                           type="text"
@@ -228,15 +242,31 @@ td {
                           id="lastname"
                           v-model="empform.lastname"
                         />
+                        <div
+                          class="invalid-feedback"
+                          v-show="empform.errors.lastname"
+                          style="display: block"
+                        >
+                          {{ empform.errors.lastname }}
+                        </div>
                       </div>
                       <div class="col-md-4">
-                        <label for="contact" class="form-label">Contact</label>
+                        <label for="contact" class="form-label"
+                          >Contact<span class="text-danger">*</span></label
+                        >
                         <input
                           type="text"
                           class="form-control"
                           id="contact"
                           v-model="empform.contact"
                         />
+                        <div
+                          class="invalid-feedback"
+                          v-show="empform.errors.contact"
+                          style="display: block"
+                        >
+                          {{ empform.errors.contact }}
+                        </div>
                       </div>
                       <div class="col-md-8">
                         <label for="email" class="form-label"
@@ -248,29 +278,54 @@ td {
                           id="email"
                           v-model="empform.email"
                         />
+                        <div
+                          class="invalid-feedback"
+                          v-show="empform.errors.email"
+                          style="display: block"
+                        >
+                          {{ empform.errors.email }}
+                        </div>
                       </div>
                       <div class="col-12">
-                        <label for="address" class="form-label">Address</label>
+                        <label for="address" class="form-label">
+                          Address<span class="text-danger">*</span>
+                        </label>
                         <input
                           type="text"
                           class="form-control"
                           id="address"
                           v-model="empform.address"
                         />
+                        <div
+                          class="invalid-feedback"
+                          v-show="empform.errors.address"
+                          style="display: block"
+                        >
+                          {{ empform.errors.address }}
+                        </div>
                       </div>
                       <div class="col-md-4">
-                        <label for="dob" class="form-label"
-                          >Date of Birth</label
-                        >
+                        <label for="dob" class="form-label">
+                          Date of Birth<span class="text-danger">*</span>
+                        </label>
                         <input
                           type="date"
                           class="form-control"
                           id="dob"
                           v-model="empform.dob"
                         />
+                        <div
+                          class="invalid-feedback"
+                          v-show="empform.errors.dob"
+                          style="display: block"
+                        >
+                          {{ empform.errors.dob }}
+                        </div>
                       </div>
                       <div class="col-md-4">
-                        <label for="gender" class="form-label">Gender</label>
+                        <label for="gender" class="form-label">
+                          Gender<span class="text-danger">*</span>
+                        </label>
                         <select
                           class="form-select"
                           id="gender"
@@ -279,11 +334,18 @@ td {
                           <option value="M">Male</option>
                           <option value="F">Female</option>
                         </select>
+                        <div
+                          class="invalid-feedback"
+                          v-show="empform.errors.gender"
+                          style="display: block"
+                        >
+                          {{ empform.errors.gender }}
+                        </div>
                       </div>
                       <div class="col-md-4">
-                        <label for="civil_status" class="form-label"
-                          >Civil Status</label
-                        >
+                        <label for="civil_status" class="form-label">
+                          Civil Status<span class="text-danger">*</span>
+                        </label>
                         <select
                           class="form-select"
                           id="civil_status"
@@ -295,6 +357,13 @@ td {
                           <option value="Widowed">Widowed</option>
                           <option value="Single">Single</option>
                         </select>
+                        <div
+                          class="invalid-feedback"
+                          v-show="empform.errors.civil_status"
+                          style="display: block"
+                        >
+                          {{ empform.errors.civil_status }}
+                        </div>
                       </div>
                       <div class="col-md-4">
                         <label for="sss" class="form-label">SSS Number</label>
@@ -304,6 +373,13 @@ td {
                           id="sss"
                           v-model="empform.sss"
                         />
+                        <div
+                          class="invalid-feedback"
+                          v-show="empform.errors.sss"
+                          style="display: block"
+                        >
+                          {{ empform.errors.sss }}
+                        </div>
                       </div>
                       <div class="col-md-4">
                         <label for="tin" class="form-label">TIN Number</label>
@@ -313,6 +389,13 @@ td {
                           id="tin"
                           v-model="empform.tin"
                         />
+                        <div
+                          class="invalid-feedback"
+                          v-show="empform.errors.tin"
+                          style="display: block"
+                        >
+                          {{ empform.errors.tin }}
+                        </div>
                       </div>
                       <div class="col-md-4">
                         <label for="pagibig" class="form-label"
@@ -324,6 +407,13 @@ td {
                           id="pagibig"
                           v-model="empform.pagibig"
                         />
+                        <div
+                          class="invalid-feedback"
+                          v-show="empform.errors.pagibig"
+                          style="display: block"
+                        >
+                          {{ empform.errors.pagibig }}
+                        </div>
                       </div>
                       <div class="col-md-4">
                         <label for="philhealth" class="form-label"
@@ -335,6 +425,13 @@ td {
                           id="philhealth"
                           v-model="empform.philhealth"
                         />
+                        <div
+                          class="invalid-feedback"
+                          v-show="empform.errors.philhealth"
+                          style="display: block"
+                        >
+                          {{ empform.errors.philhealth }}
+                        </div>
                       </div>
                       <div class="col-md-4">
                         <label for="employeeType" class="form-label"
@@ -355,6 +452,13 @@ td {
                             {{ employeetype.title }}
                           </option>
                         </select>
+                        <div
+                          class="invalid-feedback"
+                          v-show="empform.errors.employeeType"
+                          style="display: block"
+                        >
+                          {{ empform.errors.employeeType }}
+                        </div>
                       </div>
                       <div class="col-md-4">
                         <label for="employeeStatus" class="form-label"
@@ -373,6 +477,13 @@ td {
                             {{ status.title }}
                           </option>
                         </select>
+                        <div
+                          class="invalid-feedback"
+                          v-show="empform.errors.employeeStatus"
+                          style="display: block"
+                        >
+                          {{ empform.errors.employeeStatus }}
+                        </div>
                       </div>
                       <div class="col-md-4">
                         <label for="dob" class="form-label">Date of Hire</label>
@@ -382,6 +493,13 @@ td {
                           id="doh"
                           v-model="empform.doh"
                         />
+                        <div
+                          class="invalid-feedback"
+                          v-show="empform.errors.doh"
+                          style="display: block"
+                        >
+                          {{ empform.errors.doh }}
+                        </div>
                       </div>
                       <div class="col-md-4">
                         <label for="dob" class="form-label"
@@ -393,6 +511,13 @@ td {
                           id="ced"
                           v-model="empform.ced"
                         />
+                        <div
+                          class="invalid-feedback"
+                          v-show="empform.errors.ced"
+                          style="display: block"
+                        >
+                          {{ empform.errors.ced }}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -416,7 +541,7 @@ td {
                 </h2>
                 <div
                   id="panelsStayOpen-collapseWorkAdd"
-                  class="accordion-collapse collapse show"
+                  class="accordion-collapse collapse"
                   aria-labelledby="panelsStayOpen-headingWorkAdd"
                 >
                   <div class="accordion-body">
@@ -508,7 +633,12 @@ td {
             </div>
 
             <div class="col-12">
-              <button type="submit" class="btn btn-sm btn-primary">
+              <button
+                type="submit"
+                class="btn btn-sm btn-primary"
+                :class="{ 'opacity-25': empform.processing }"
+                :disabled="empform.processing"
+              >
                 Create Employee
               </button>
             </div>

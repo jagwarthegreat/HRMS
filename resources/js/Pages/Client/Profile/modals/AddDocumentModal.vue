@@ -3,21 +3,21 @@ import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 import { ref, onMounted } from "vue";
 
 const props = defineProps({
-  employee_id: String,
+  client_id: String,
   docTypes: Array,
 });
 
 const docform = useForm({
   doc_category: "",
   doc_file: "",
-  employee_id: props.employee_id,
+  client_id: props.client_id,
 });
 
 const uploadDocument = () => {
-  docform.post(route("docs.store"), {
+  docform.post(route("client.docs.store"), {
     forceFormData: true,
     onSuccess: () => {
-      docform.reset(["doc_category", "doc_file", "employee_id"]);
+      docform.reset(["doc_category", "doc_file", "client_id"]);
       $("#addDocumentModal").modal("hide");
     },
   });
@@ -48,7 +48,7 @@ const uploadDocument = () => {
           <div class="modal-body">
             <div class="row g-3">
               <div class="col-12">
-                <label for="employee_status" class="form-label">Category</label>
+                <label for="doc_category" class="form-label">Category</label>
                 <select
                   class="form-select"
                   id="doc_category"
@@ -62,6 +62,13 @@ const uploadDocument = () => {
                     {{ docType.title }}
                   </option>
                 </select>
+                <div
+                  class="invalid-feedback"
+                  v-show="docform.errors.doc_category"
+                  style="display: block"
+                >
+                  {{ docform.errors.doc_category }}
+                </div>
               </div>
               <div class="col-12">
                 <label for="doc_file" class="form-label"> File </label>

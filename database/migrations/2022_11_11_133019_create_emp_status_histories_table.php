@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('emp_status_histories', function (Blueprint $table) {
             $table->id();
             $table->foreignId('employee_id')->constrained('employees')->onDelete('cascade');
-            $table->foreignId('employee_status_id')->constrained('employee_statuses')->onDelete('cascade');
+            $table->foreignId('employee_status_id')->constrained('employee_statuses')->nullable()->onDelete('cascade');
             $table->text('comment')->nullable();
             $table->date('trans_date');
             $table->timestamps();

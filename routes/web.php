@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\DocumentCategoryController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\EmpCompensationHistoryController;
 use App\Http\Controllers\EmpJobHistoryController;
@@ -8,9 +9,12 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\EmployeeDependentController;
 use App\Http\Controllers\EmployeeEducationalBackgroundController;
 use App\Http\Controllers\EmployeeStatusController;
+use App\Http\Controllers\EmployeeTypeController;
 use App\Http\Controllers\EmployeeWorkExperienceController;
 use App\Http\Controllers\EmpStatusHistoryController;
 use App\Http\Controllers\EmpTypeHistoryController;
+use App\Http\Controllers\HiringRequirementController;
+use App\Http\Controllers\PayTypeController;
 use App\Http\Controllers\PermisionController;
 use App\Http\Controllers\Position;
 use App\Http\Controllers\PositionController;
@@ -48,6 +52,7 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     $_SESSION['Employee']['tab']['active'] = "generalInfo";
+    $_SESSION['Client']['tab']['active'] = "generalInfo";
     $user = Auth::user();
     return Inertia::render('Dashboard', compact('user'));
 })->middleware('auth')->name('dashboard');
@@ -124,6 +129,41 @@ Route::prefix('client')->middleware('auth')->group(function () {
     Route::get('/create', [ClientController::class, 'create'])->name('client.create');
     Route::post('/store', [ClientController::class, 'store'])->name('client.store');
     Route::get('/{id}', [ClientController::class, 'show'])->name('client.show');
+
+    Route::post('/tabSwitchTo/{tabName}', function ($tabName) {
+        $_SESSION['Client']['tab']['active'] = $tabName;
+    })->name('client.tabSwitchTo');
+
+    Route::post('/docs/store', [ClientController::class, 'docsstore'])->name('client.docs.store');
+});
+
+// SETTINGS
+Route::prefix('settings')->middleware('auth')->group(function () {
+
+    Route::prefix('employee/statuses')->group(function () {
+        Route::get('/', [EmployeeStatusController::class, 'index'])->name('settings.emp.statuses');
+        Route::post('/store', [EmployeeStatusController::class, 'store'])->name('settings.emp.statuses.store');
+    });
+
+    Route::prefix('employee/types')->group(function () {
+        Route::get('/', [EmployeeTypeController::class, 'index'])->name('settings.emp.types');
+        Route::post('/store', [EmployeeTypeController::class, 'store'])->name('settings.emp.types.store');
+    });
+
+    Route::prefix('compensation/types')->group(function () {
+        Route::get('/', [PayTypeController::class, 'index'])->name('settings.compensation.types');
+        Route::post('/store', [PayTypeController::class, 'store'])->name('settings.compensation.types.store');
+    });
+
+    Route::prefix('document/category')->group(function () {
+        Route::get('/', [DocumentCategoryController::class, 'index'])->name('settings.doc.category');
+        Route::post('/store', [DocumentCategoryController::class, 'store'])->name('settings.doc.category.store');
+    });
+
+    Route::prefix('hiring/requirements')->group(function () {
+        Route::get('/', [HiringRequirementController::class, 'index'])->name('settings.requirement.category');
+        Route::post('/store', [HiringRequirementController::class, 'store'])->name('settings.requirement.store');
+    });
 });
 
 require __DIR__ . '/auth.php';

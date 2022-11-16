@@ -17,7 +17,7 @@ const etform = useForm({
 const updateEmploymentType = () => {
   etform.post(route("employee.typehistory.store"), {
     onSuccess: () => {
-      etform.reset(["trans_date", "employment_type", "comment"]);
+      etform.reset("trans_date", "employment_type", "comment");
       $("#employeeTypeModal").modal("hide");
     },
   });
@@ -57,6 +57,13 @@ const updateEmploymentType = () => {
                   id="trans_date"
                   v-model="etform.trans_date"
                 />
+                <div
+                  class="invalid-feedback"
+                  v-show="etform.errors.trans_date"
+                  style="display: block"
+                >
+                  {{ etform.errors.trans_date }}
+                </div>
               </div>
               <div class="col-12">
                 <label for="employee_status" class="form-label"
@@ -75,6 +82,13 @@ const updateEmploymentType = () => {
                     {{ emptype.title }}
                   </option>
                 </select>
+                <div
+                  class="invalid-feedback"
+                  v-show="etform.errors.employment_type"
+                  style="display: block"
+                >
+                  {{ etform.errors.employment_type }}
+                </div>
               </div>
               <div class="col-12">
                 <label for="comment" class="form-label"> Comment </label>
@@ -84,11 +98,25 @@ const updateEmploymentType = () => {
                   id="comment"
                   v-model="etform.comment"
                 />
+                <div
+                  class="invalid-feedback"
+                  v-show="etform.errors.comment"
+                  style="display: block"
+                >
+                  {{ etform.errors.comment }}
+                </div>
               </div>
             </div>
           </div>
           <div class="modal-footer">
-            <button type="submit" class="btn btn-sm btn-primary">Update</button>
+            <button
+              type="submit"
+              class="btn btn-sm btn-primary"
+              :class="{ 'opacity-25': etform.processing }"
+              :disabled="etform.processing"
+            >
+              Update
+            </button>
           </div>
         </form>
       </div>

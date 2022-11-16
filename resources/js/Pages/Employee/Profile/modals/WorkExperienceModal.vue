@@ -18,13 +18,13 @@ const workform = useForm({
 const workExpStore = () => {
   workform.post(route("employee.workexp.store"), {
     onSuccess: () => {
-      workform.reset([
+      workform.reset(
         "prev_company",
         "jobTitle",
         "from_date",
         "to_date",
         "job_desc",
-      ]);
+      );
       $("#workExperienceModal").modal("hide");
     },
   });
@@ -66,6 +66,13 @@ const workExpStore = () => {
                   id="prev_company"
                   v-model="workform.prev_company"
                 />
+                <div
+                  class="invalid-feedback"
+                  v-show="workform.errors.prev_company"
+                  style="display: block"
+                >
+                  {{ workform.errors.prev_company }}
+                </div>
               </div>
               <div class="col-12">
                 <label for="jobTitle" class="form-label">Job Title</label>
@@ -75,6 +82,13 @@ const workExpStore = () => {
                   id="jobTitle"
                   v-model="workform.jobTitle"
                 />
+                <div
+                  class="invalid-feedback"
+                  v-show="workform.errors.jobTitle"
+                  style="display: block"
+                >
+                  {{ workform.errors.jobTitle }}
+                </div>
               </div>
               <div class="col-12">
                 <label for="from_date" class="form-label">From</label>
@@ -84,6 +98,13 @@ const workExpStore = () => {
                   id="from_date"
                   v-model="workform.from_date"
                 />
+                <div
+                  class="invalid-feedback"
+                  v-show="workform.errors.from_date"
+                  style="display: block"
+                >
+                  {{ workform.errors.from_date }}
+                </div>
               </div>
               <div class="col-12">
                 <label for="to_date" class="form-label">To</label>
@@ -93,6 +114,13 @@ const workExpStore = () => {
                   id="to_date"
                   v-model="workform.to_date"
                 />
+                <div
+                  class="invalid-feedback"
+                  v-show="workform.errors.to_date"
+                  style="display: block"
+                >
+                  {{ workform.errors.to_date }}
+                </div>
               </div>
               <div class="col-12">
                 <label for="job_desc" class="form-label">Job description</label>
@@ -102,11 +130,23 @@ const workExpStore = () => {
                   id="job_desc"
                   v-model="workform.job_desc"
                 />
+                <div
+                  class="invalid-feedback"
+                  v-show="workform.errors.job_desc"
+                  style="display: block"
+                >
+                  {{ workform.errors.job_desc }}
+                </div>
               </div>
             </div>
           </div>
           <div class="modal-footer">
-            <button type="submit" class="btn btn-sm btn-primary">
+            <button
+              type="submit"
+              class="btn btn-sm btn-primary"
+              :class="{ 'opacity-25': workform.processing }"
+              :disabled="workform.processing"
+            >
               Create Experience
             </button>
           </div>

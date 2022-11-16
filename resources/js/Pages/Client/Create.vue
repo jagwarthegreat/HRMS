@@ -5,17 +5,17 @@ import { ref, onMounted } from "vue";
 
 defineProps({});
 
-const empform = useForm({
-  fullname: "",
-  address: "",
+const clientform = useForm({
+  name: "",
   contact: "",
   email: "",
+  address: "",
 });
 
 const submit = () => {
-  empform.post(route("employee.store"), {
+  clientform.post(route("client.store"), {
     onSuccess: () => {
-      empform.reset(["fullname", "address", "contact", "email"]);
+      clientform.reset(["name", "contact", "email", "address"]);
     },
   });
 };
@@ -75,7 +75,7 @@ td {
 </style>
 
 <template>
-  <Head title="Create Employee" />
+  <Head title="Create Client" />
 
   <AuthenticatedLayout>
     <template #breadcrumbs>
@@ -144,49 +144,43 @@ td {
                 >
                   <div class="accordion-body">
                     <div class="row g-3">
-                      <div class="col-md-4">
-                        <label for="firstname" class="form-label"
-                          >Firstname</label
-                        >
+                      <div class="col-md-8">
+                        <label for="name" class="form-label">
+                          Name<span class="text-danger">*</span>
+                        </label>
                         <input
                           type="text"
                           class="form-control"
-                          id="firstname"
-                          v-model="empform.firstname"
+                          id="name"
+                          v-model="clientform.name"
                         />
-                      </div>
-                      <div class="col-md-4">
-                        <label for="middlename" class="form-label"
-                          >Middlename</label
+                        <div
+                          class="invalid-feedback"
+                          v-show="clientform.errors.name"
+                          style="display: block"
                         >
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="middlename"
-                          v-model="empform.middlename"
-                        />
+                          {{ clientform.errors.name }}
+                        </div>
                       </div>
                       <div class="col-md-4">
-                        <label for="lastname" class="form-label"
-                          >Lastname</label
-                        >
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="lastname"
-                          v-model="empform.lastname"
-                        />
-                      </div>
-                      <div class="col-md-4">
-                        <label for="contact" class="form-label">Contact</label>
+                        <label for="contact" class="form-label">
+                          Contact<span class="text-danger">*</span>
+                        </label>
                         <input
                           type="text"
                           class="form-control"
                           id="contact"
-                          v-model="empform.contact"
+                          v-model="clientform.contact"
                         />
+                        <div
+                          class="invalid-feedback"
+                          v-show="clientform.errors.contact"
+                          style="display: block"
+                        >
+                          {{ clientform.errors.contact }}
+                        </div>
                       </div>
-                      <div class="col-md-8">
+                      <div class="col-md-4">
                         <label for="email" class="form-label"
                           >E-mail Address</label
                         >
@@ -194,153 +188,31 @@ td {
                           type="email"
                           class="form-control"
                           id="email"
-                          v-model="empform.email"
+                          v-model="clientform.email"
                         />
+                        <div
+                          class="invalid-feedback"
+                          v-show="clientform.errors.email"
+                          style="display: block"
+                        >
+                          {{ clientform.errors.email }}
+                        </div>
                       </div>
-                      <div class="col-12">
+                      <div class="col-md-8">
                         <label for="address" class="form-label">Address</label>
                         <input
-                          type="text"
+                          type="address"
                           class="form-control"
                           id="address"
-                          v-model="empform.address"
+                          v-model="clientform.address"
                         />
-                      </div>
-                      <div class="col-md-4">
-                        <label for="dob" class="form-label"
-                          >Date of Birth</label
+                        <div
+                          class="invalid-feedback"
+                          v-show="clientform.errors.address"
+                          style="display: block"
                         >
-                        <input
-                          type="date"
-                          class="form-control"
-                          id="dob"
-                          v-model="empform.dob"
-                        />
-                      </div>
-                      <div class="col-md-4">
-                        <label for="gender" class="form-label">Gender</label>
-                        <select
-                          class="form-select"
-                          id="gender"
-                          v-model="empform.gender"
-                        >
-                          <option value="M">Male</option>
-                          <option value="F">Female</option>
-                        </select>
-                      </div>
-                      <div class="col-md-4">
-                        <label for="civil_status" class="form-label"
-                          >Civil Status</label
-                        >
-                        <select
-                          class="form-select"
-                          id="civil_status"
-                          v-model="empform.civil_status"
-                        >
-                          <option value="Married">Married</option>
-                          <option value="Divorced">Divorced</option>
-                          <option value="Separated">Separated</option>
-                          <option value="Widowed">Widowed</option>
-                          <option value="Single">Single</option>
-                        </select>
-                      </div>
-                      <div class="col-md-4">
-                        <label for="sss" class="form-label">SSS Number</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="sss"
-                          v-model="empform.sss"
-                        />
-                      </div>
-                      <div class="col-md-4">
-                        <label for="tin" class="form-label">TIN Number</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="tin"
-                          v-model="empform.tin"
-                        />
-                      </div>
-                      <div class="col-md-4">
-                        <label for="pagibig" class="form-label"
-                          >HDMF Number</label
-                        >
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="pagibig"
-                          v-model="empform.pagibig"
-                        />
-                      </div>
-                      <div class="col-md-4">
-                        <label for="philhealth" class="form-label"
-                          >PHILHEALTH Number</label
-                        >
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="philhealth"
-                          v-model="empform.philhealth"
-                        />
-                      </div>
-                      <div class="col-md-4">
-                        <label for="employeeType" class="form-label"
-                          >Employee Type</label
-                        >
-                        <select
-                          class="form-select"
-                          id="employeeType"
-                          v-model="empform.employeeType"
-                        >
-                          <option
-                            v-for="(
-                              employeetype, keyEmployeetype
-                            ) in employeeTypes"
-                            :key="keyEmployeetype"
-                            :value="employeetype.id"
-                          >
-                            {{ employeetype.title }}
-                          </option>
-                        </select>
-                      </div>
-                      <div class="col-md-4">
-                        <label for="employeeStatus" class="form-label"
-                          >Employee Status</label
-                        >
-                        <select
-                          class="form-select"
-                          id="employeeStatus"
-                          v-model="empform.employeeStatus"
-                        >
-                          <option
-                            v-for="(status, keyStatus) in employee_status"
-                            :key="keyStatus"
-                            :value="status.id"
-                          >
-                            {{ status.title }}
-                          </option>
-                        </select>
-                      </div>
-                      <div class="col-md-4">
-                        <label for="dob" class="form-label">Date of Hire</label>
-                        <input
-                          type="date"
-                          class="form-control"
-                          id="doh"
-                          v-model="empform.doh"
-                        />
-                      </div>
-                      <div class="col-md-4">
-                        <label for="dob" class="form-label"
-                          >Contract End Date</label
-                        >
-                        <input
-                          type="date"
-                          class="form-control"
-                          id="ced"
-                          v-model="empform.ced"
-                        />
+                          {{ clientform.errors.address }}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -350,8 +222,13 @@ td {
             </div>
 
             <div class="col-12">
-              <button type="submit" class="btn btn-sm btn-primary">
-                Create Employee
+              <button
+                type="submit"
+                class="btn btn-sm btn-primary"
+                :class="{ 'opacity-25': clientform.processing }"
+                :disabled="clientform.processing"
+              >
+                Create Client
               </button>
             </div>
           </form>

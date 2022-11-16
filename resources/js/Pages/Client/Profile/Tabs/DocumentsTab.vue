@@ -43,29 +43,35 @@ td {
         </tr>
       </thead>
       <tbody>
-        <tr v-if="props.employee.documents.length < 1">
+        <tr v-if="props.client.documents.length < 1">
           <td colspan="5">No documents found.</td>
         </tr>
         <tr
           v-else
-          v-for="(empdocument, keyEmpdocument) in props.employee.documents"
-          :key="keyEmpdocument"
+          v-for="(clientdoc, keyClientdoc) in props.client.documents"
+          :key="keyClientdoc"
         >
-          <td>{{ empdocument.document_category.title }}</td>
+          <td>{{ clientdoc.document_category.title }}</td>
           <td>
-            {{ empdocument.filename }}
+            {{ clientdoc.filename }}
             <!-- <img :src="'/storage/' + empdocument.slug" style="width: 40px;"> -->
           </td>
-          <td>{{ empdocument.created_at }}</td>
-          <td>{{ empdocument.created_by.firstname + " " +  empdocument.created_by.lastname }}</td>
-          <td>{{ empdocument.filesize  + "KB" }}</td>
+          <td>{{ clientdoc.created_at }}</td>
+          <td>
+            {{
+              clientdoc.created_by.firstname +
+              " " +
+              clientdoc.created_by.lastname
+            }}
+          </td>
+          <td>{{ clientdoc.filesize + "KB" }}</td>
         </tr>
       </tbody>
     </table>
   </div>
 
   <addDocumentModal
-    :employee_id="props.employee.id"
+    :client_id="props.client.id"
     :docTypes="props.docCategories"
   />
 </template>

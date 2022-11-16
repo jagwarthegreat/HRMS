@@ -21,7 +21,7 @@ const cform = useForm({
 const updateEmploymentJobInfo = () => {
   cform.post(route("employee.jobinfohistory.store"), {
     onSuccess: () => {
-      cform.reset(["trans_date", "location", "department", "position"]);
+      cform.reset("trans_date", "location", "department", "position");
       $("#jobInfoModal").modal("hide");
     },
   });
@@ -61,6 +61,13 @@ const updateEmploymentJobInfo = () => {
                   id="trans_date"
                   v-model="cform.trans_date"
                 />
+                <div
+                  class="invalid-feedback"
+                  v-show="cform.errors.trans_date"
+                  style="display: block"
+                >
+                  {{ cform.errors.trans_date }}
+                </div>
               </div>
               <div class="col-12">
                 <label for="location" class="form-label"> Location </label>
@@ -77,6 +84,13 @@ const updateEmploymentJobInfo = () => {
                     {{ location.title }}
                   </option>
                 </select>
+                <div
+                  class="invalid-feedback"
+                  v-show="cform.errors.location"
+                  style="display: block"
+                >
+                  {{ cform.errors.location }}
+                </div>
               </div>
               <div class="col-12">
                 <label for="department" class="form-label">Department</label>
@@ -93,6 +107,13 @@ const updateEmploymentJobInfo = () => {
                     {{ department.title }}
                   </option>
                 </select>
+                <div
+                  class="invalid-feedback"
+                  v-show="cform.errors.department"
+                  style="display: block"
+                >
+                  {{ cform.errors.department }}
+                </div>
               </div>
               <div class="col-12">
                 <label for="position" class="form-label">Job Title</label>
@@ -109,11 +130,25 @@ const updateEmploymentJobInfo = () => {
                     {{ position.title }}
                   </option>
                 </select>
+                <div
+                  class="invalid-feedback"
+                  v-show="cform.errors.position"
+                  style="display: block"
+                >
+                  {{ cform.errors.position }}
+                </div>
               </div>
             </div>
           </div>
           <div class="modal-footer">
-            <button type="submit" class="btn btn-sm btn-primary">Update</button>
+            <button
+              type="submit"
+              class="btn btn-sm btn-primary"
+              :class="{ 'opacity-25': cform.processing }"
+              :disabled="cform.processing"
+            >
+              Update
+            </button>
           </div>
         </form>
       </div>

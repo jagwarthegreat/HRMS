@@ -17,7 +17,7 @@ const esform = useForm({
 const updateEmployeeStatus = () => {
   esform.post(route("employee.statushistory.store"), {
     onSuccess: () => {
-      esform.reset(["trans_date", "employee_status", "comment"]);
+      esform.reset("trans_date", "employee_status", "comment");
       $("#employeeStatusModal").modal("hide");
     },
   });
@@ -57,6 +57,13 @@ const updateEmployeeStatus = () => {
                   id="trans_date"
                   v-model="esform.trans_date"
                 />
+                <div
+                  class="invalid-feedback"
+                  v-show="esform.errors.trans_date"
+                  style="display: block"
+                >
+                  {{ esform.errors.trans_date }}
+                </div>
               </div>
               <div class="col-12">
                 <label for="employee_status" class="form-label"
@@ -75,6 +82,13 @@ const updateEmployeeStatus = () => {
                     {{ empstatus.title }}
                   </option>
                 </select>
+                <div
+                  class="invalid-feedback"
+                  v-show="esform.errors.employee_status"
+                  style="display: block"
+                >
+                  {{ esform.errors.employee_status }}
+                </div>
               </div>
               <div class="col-12">
                 <label for="comment" class="form-label"> Comment </label>
@@ -84,11 +98,25 @@ const updateEmployeeStatus = () => {
                   id="comment"
                   v-model="esform.comment"
                 />
+                <div
+                  class="invalid-feedback"
+                  v-show="esform.errors.comment"
+                  style="display: block"
+                >
+                  {{ esform.errors.comment }}
+                </div>
               </div>
             </div>
           </div>
           <div class="modal-footer">
-            <button type="submit" class="btn btn-sm btn-primary">Update</button>
+            <button
+              type="submit"
+              class="btn btn-sm btn-primary"
+              :class="{ 'opacity-25': esform.processing }"
+              :disabled="esform.processing"
+            >
+              Update
+            </button>
           </div>
         </form>
       </div>

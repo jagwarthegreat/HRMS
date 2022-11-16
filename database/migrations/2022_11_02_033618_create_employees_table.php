@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('employee_code', 50);
             $table->string('firstname', 100);
-            $table->string('middlename', 50);
+            $table->string('middlename', 50)->nullable();
             $table->string('lastname', 100);
             $table->string('contact', 14);
-            $table->string('email', 150);
+            $table->string('email', 150)->nullable();
             $table->text('address');
             $table->date('date_of_birth');
             $table->string('gender', 1);
@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string('tin_number', 100)->nullable();
             $table->string('pagibig_number', 100)->nullable();
             $table->string('philhealth_number', 100)->nullable();
-            $table->date('date_of_hire');
+            $table->date('date_of_hire')->nullable();
             $table->date('contract_end_date')->nullable();
             $table->timestamps();
         });

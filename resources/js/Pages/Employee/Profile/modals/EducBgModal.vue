@@ -17,12 +17,12 @@ const eduform = useForm({
 const educBgStore = () => {
   eduform.post(route("employee.educbg.store"), {
     onSuccess: () => {
-      eduform.reset([
+      eduform.reset(
         "school_name",
         "degree",
         "fieldOfStudy",
         "completion_date",
-      ]);
+      );
       $("#educBgModal").modal("hide");
     },
   });
@@ -62,6 +62,13 @@ const educBgStore = () => {
                   id="school_name"
                   v-model="eduform.school_name"
                 />
+                <div
+                  class="invalid-feedback"
+                  v-show="eduform.errors.school_name"
+                  style="display: block"
+                >
+                  {{ eduform.errors.school_name }}
+                </div>
               </div>
               <div class="col-12">
                 <label for="degree" class="form-label">Degree</label>
@@ -71,6 +78,13 @@ const educBgStore = () => {
                   id="degree"
                   v-model="eduform.degree"
                 />
+                <div
+                  class="invalid-feedback"
+                  v-show="eduform.errors.degree"
+                  style="display: block"
+                >
+                  {{ eduform.errors.degree }}
+                </div>
               </div>
               <div class="col-12">
                 <label for="fieldOfStudy" class="form-label">
@@ -82,6 +96,13 @@ const educBgStore = () => {
                   id="fieldOfStudy"
                   v-model="eduform.fieldOfStudy"
                 />
+                <div
+                  class="invalid-feedback"
+                  v-show="eduform.errors.fieldOfStudy"
+                  style="display: block"
+                >
+                  {{ eduform.errors.fieldOfStudy }}
+                </div>
               </div>
               <div class="col-12">
                 <label for="completion_date" class="form-label">
@@ -93,11 +114,23 @@ const educBgStore = () => {
                   id="completion_date"
                   v-model="eduform.completion_date"
                 />
+                <div
+                  class="invalid-feedback"
+                  v-show="eduform.errors.completion_date"
+                  style="display: block"
+                >
+                  {{ eduform.errors.completion_date }}
+                </div>
               </div>
             </div>
           </div>
           <div class="modal-footer">
-            <button type="submit" class="btn btn-sm btn-primary">
+            <button
+              type="submit"
+              class="btn btn-sm btn-primary"
+              :class="{ 'opacity-25': eduform.processing }"
+              :disabled="eduform.processing"
+            >
               Add Education
             </button>
           </div>

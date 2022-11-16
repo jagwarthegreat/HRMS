@@ -19,7 +19,7 @@ const cform = useForm({
 const updateEmploymentCompensation = () => {
   cform.post(route("employee.compensationhistory.store"), {
     onSuccess: () => {
-      cform.reset(["trans_date", "employment_type", "comment"]);
+      cform.reset("trans_date", "employment_type", "comment");
       $("#compensationModal").modal("hide");
     },
   });
@@ -59,6 +59,13 @@ const updateEmploymentCompensation = () => {
                   id="trans_date"
                   v-model="cform.trans_date"
                 />
+                <div
+                  class="invalid-feedback"
+                  v-show="cform.errors.trans_date"
+                  style="display: block"
+                >
+                  {{ cform.errors.trans_date }}
+                </div>
               </div>
               <div class="col-12">
                 <label for="trans_date" class="form-label"> Pay Rate </label>
@@ -68,6 +75,13 @@ const updateEmploymentCompensation = () => {
                   id="pay_rate"
                   v-model="cform.pay_rate"
                 />
+                <div
+                  class="invalid-feedback"
+                  v-show="cform.errors.pay_rate"
+                  style="display: block"
+                >
+                  {{ cform.errors.pay_rate }}
+                </div>
               </div>
               <div class="col-12">
                 <label for="pay_type" class="form-label">Employee Status</label>
@@ -84,6 +98,13 @@ const updateEmploymentCompensation = () => {
                     {{ paytype.title }}
                   </option>
                 </select>
+                <div
+                  class="invalid-feedback"
+                  v-show="cform.errors.pay_type"
+                  style="display: block"
+                >
+                  {{ cform.errors.pay_type }}
+                </div>
               </div>
               <div class="col-12">
                 <label for="reason" class="form-label">Reason</label>
@@ -92,6 +113,13 @@ const updateEmploymentCompensation = () => {
                   <option value="Performance">Performance</option>
                   <option value="Increment">Increment</option>
                 </select>
+                <div
+                  class="invalid-feedback"
+                  v-show="cform.errors.reason"
+                  style="display: block"
+                >
+                  {{ cform.errors.reason }}
+                </div>
               </div>
               <div class="col-12">
                 <label for="comment" class="form-label"> Comment </label>
@@ -101,11 +129,25 @@ const updateEmploymentCompensation = () => {
                   id="comment"
                   v-model="cform.comment"
                 />
+                <div
+                  class="invalid-feedback"
+                  v-show="cform.errors.comment"
+                  style="display: block"
+                >
+                  {{ cform.errors.comment }}
+                </div>
               </div>
             </div>
           </div>
           <div class="modal-footer">
-            <button type="submit" class="btn btn-sm btn-primary">Update</button>
+            <button
+              type="submit"
+              class="btn btn-sm btn-primary"
+              :class="{ 'opacity-25': cform.processing }"
+              :disabled="cform.processing"
+            >
+              Update
+            </button>
           </div>
         </form>
       </div>

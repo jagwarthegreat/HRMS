@@ -17,7 +17,7 @@ const uploadDocument = () => {
   docform.post(route("docs.store"), {
     forceFormData: true,
     onSuccess: () => {
-      docform.reset(["doc_category", "doc_file", "employee_id"]);
+      docform.reset("doc_category", "doc_file", "employee_id");
       $("#addDocumentModal").modal("hide");
     },
   });
@@ -62,6 +62,13 @@ const uploadDocument = () => {
                     {{ docType.title }}
                   </option>
                 </select>
+                <div
+                  class="invalid-feedback"
+                  v-show="docform.errors.doc_category"
+                  style="display: block"
+                >
+                  {{ docform.errors.doc_category }}
+                </div>
               </div>
               <div class="col-12">
                 <label for="doc_file" class="form-label"> File </label>

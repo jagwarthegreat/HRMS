@@ -18,8 +18,8 @@ return new class extends Migration
             $table->foreignId('employee_id')->constrained('employees')->onDelete('cascade');
             $table->string('fullname', 160);
             $table->string('relationship', 150);
-            $table->string('contact', 14);
-            $table->date('dob');
+            $table->string('contact', 14)->nullable();
+            $table->date('dob')->nullable();
             $table->timestamps();
         });
     }

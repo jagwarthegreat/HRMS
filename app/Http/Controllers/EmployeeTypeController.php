@@ -41,4 +41,11 @@ class EmployeeTypeController extends Controller
         ]);
         return redirect('settings/employee/types');
     }
+
+    public function destroy(Request $request, $id)
+    {
+        EmployeeType::find($id)->delete();
+
+        return redirect()->route('settings.emp.types');
+    }
 }

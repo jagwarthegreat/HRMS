@@ -1,6 +1,6 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head, Link } from "@inertiajs/inertia-vue3";
+import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 import CreateStatusModal from "./CreateStatusModal.vue";
 
 defineProps({
@@ -11,7 +11,20 @@ defineProps({
 function openClickedModal(modal) {
   $("#" + modal).modal("show");
 }
+
+const form = useForm();
+function destroy(id) {
+  if (confirm("Are you sure you want to Delete")) {
+      form.delete(route('settings.emp.statuses.destroy', id));
+  }
+}
 </script>
+<style scoped>
+td {
+  padding: 3px;
+  vertical-align: middle;
+}
+</style>
 <template>
   <Head title="Employee Statuses" />
 
@@ -45,6 +58,7 @@ function openClickedModal(modal) {
                 <thead>
                   <tr>
                     <th>TITLE</th>
+                    <th style="width: 100px"></th>
                   </tr>
                 </thead>
                 <tbody v-if="statuses.length > 0">
@@ -53,6 +67,20 @@ function openClickedModal(modal) {
                     :key="keyEmpstatus"
                   >
                     <td>{{ empstatus.title }}</td>
+                    <td>
+                      <button
+                        class="btn btn-sm btn-ghost-secondary text-dark"
+                        @click="destroy(empstatus.id)"
+                        :class="{ 'opacity-25': form.processing }"
+                        :disabled="form.processing"
+                      >
+                        <svg class="icon">
+                          <use
+                            xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-trash"
+                          ></use>
+                        </svg>
+                      </button>
+                    </td>
                   </tr>
                 </tbody>
               </table>

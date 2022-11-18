@@ -41,4 +41,11 @@ class DocumentCategoryController extends Controller
         ]);
         return redirect('settings/document/category');
     }
+
+    public function destroy(Request $request, $id)
+    {
+        DocumentCategory::find($id)->delete();
+
+        return redirect()->route('settings.doc.category');
+    }
 }

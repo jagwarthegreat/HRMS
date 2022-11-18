@@ -143,26 +143,31 @@ Route::prefix('settings')->middleware('auth')->group(function () {
     Route::prefix('employee/statuses')->group(function () {
         Route::get('/', [EmployeeStatusController::class, 'index'])->name('settings.emp.statuses');
         Route::post('/store', [EmployeeStatusController::class, 'store'])->name('settings.emp.statuses.store');
+        Route::delete('/destroy/{id}', [EmployeeStatusController::class, 'destroy'])->name('settings.emp.statuses.destroy');
     });
 
     Route::prefix('employee/types')->group(function () {
         Route::get('/', [EmployeeTypeController::class, 'index'])->name('settings.emp.types');
         Route::post('/store', [EmployeeTypeController::class, 'store'])->name('settings.emp.types.store');
+        Route::delete('/destroy/{id}', [EmployeeTypeController::class, 'destroy'])->name('settings.emp.types.destroy');
     });
 
     Route::prefix('compensation/types')->group(function () {
         Route::get('/', [PayTypeController::class, 'index'])->name('settings.compensation.types');
         Route::post('/store', [PayTypeController::class, 'store'])->name('settings.compensation.types.store');
+        Route::delete('/destroy/{id}', [PayTypeController::class, 'destroy'])->name('settings.compensation.types.destroy');
     });
 
     Route::prefix('document/category')->group(function () {
         Route::get('/', [DocumentCategoryController::class, 'index'])->name('settings.doc.category');
         Route::post('/store', [DocumentCategoryController::class, 'store'])->name('settings.doc.category.store');
+        Route::delete('/destroy/{id}', [DocumentCategoryController::class, 'destroy'])->name('settings.doc.category.destroy');
     });
 
     Route::prefix('hiring/requirements')->group(function () {
         Route::get('/', [HiringRequirementController::class, 'index'])->name('settings.requirement.category');
         Route::post('/store', [HiringRequirementController::class, 'store'])->name('settings.requirement.store');
+        Route::delete('/destroy/{id}', [HiringRequirementController::class, 'destroy'])->name('settings.requirement.destroy');
     });
 });
 

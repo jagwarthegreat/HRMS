@@ -52,4 +52,11 @@ class EmployeeStatusController extends Controller
         ]);
         return redirect('settings/employee/statuses');
     }
+
+    public function destroy(Request $request, $id)
+    {
+        EmployeeStatus::find($id)->delete();
+
+        return redirect()->route('settings.emp.statuses');
+    }
 }

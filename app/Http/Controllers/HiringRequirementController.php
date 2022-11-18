@@ -41,4 +41,11 @@ class HiringRequirementController extends Controller
         ]);
         return redirect('settings/hiring/requirements');
     }
+
+    public function destroy(Request $request, $id)
+    {
+        HiringRequirement::find($id)->delete();
+
+        return redirect()->route('settings.requirement.category');
+    }
 }

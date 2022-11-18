@@ -41,4 +41,11 @@ class PayTypeController extends Controller
         ]);
         return redirect('settings/compensation/types');
     }
+
+    public function destroy(Request $request, $id)
+    {
+        PayType::find($id)->delete();
+
+        return redirect()->route('settings.compensation.types');
+    }
 }

@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Location extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'title',
+        'client_id'
+    ];
+
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
 }

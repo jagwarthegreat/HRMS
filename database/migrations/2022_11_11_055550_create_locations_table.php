@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('locations', function (Blueprint $table) {
             $table->id();
             $table->string('title', 150);
+            $table->foreignId('client_id')->nullable()->constrained('clients')->onDelete('set null');
             $table->timestamps();
         });
     }

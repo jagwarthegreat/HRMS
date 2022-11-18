@@ -26,4 +26,11 @@ class EmployeeWorkExperienceController extends Controller
 
         return redirect('employee/' . $request->employee_id);
     }
+
+    public function destroy(Request $request, $id)
+    {
+        EmployeeWorkExperience::find($id)->delete();
+
+        return redirect()->route('employee.show', $request->employee_id);
+    }
 }

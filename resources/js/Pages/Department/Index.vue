@@ -1,10 +1,10 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
-import CreatePositionModal from "./CreatePositionModal.vue";
+import CreateDepartmentModal from "./CreateDepartmentModal.vue";
 
 defineProps({
-  positions: Array,
+  departments: Array,
   canCreate: Boolean,
 });
 
@@ -15,7 +15,7 @@ function openClickedModal(modal) {
 const form = useForm();
 function destroy(id) {
   if (confirm("Are you sure you want to Delete")) {
-      form.delete(route('position.destroy', id));
+      form.delete(route('department.destroy', id));
   }
 }
 </script>
@@ -26,28 +26,28 @@ td {
 }
 </style>
 <template>
-  <Head title="Position" />
+  <Head title="Department" />
 
   <AuthenticatedLayout>
     <template #breadcrumbs>
       <li class="breadcrumb-item">
         <Link :href="route('dashboard')">Dashboard</Link>
       </li>
-      <li class="breadcrumb-item active" aria-current="page">Position</li>
+      <li class="breadcrumb-item active" aria-current="page">Department</li>
     </template>
 
     <div class="col-md-12 text-end mb-2">
       <button
         class="btn btn-dark btn-sm"
-        @click="openClickedModal('createPositionModal')"
+        @click="openClickedModal('createDepartmentModal')"
       >
-        Create Position
+        Create Department
       </button>
     </div>
 
     <div class="col-12">
       <div class="card mb-4">
-        <div class="card-header">Position List</div>
+        <div class="card-header">Department List</div>
         <div class="card-body">
           <div class="row">
             <div class="col-md-12">
@@ -58,16 +58,16 @@ td {
                     <th style="width: 100px"></th>
                   </tr>
                 </thead>
-                <tbody v-if="positions.length > 0">
+                <tbody v-if="departments.length > 0">
                   <tr
-                    v-for="(position, keyPosition) in positions"
-                    :key="keyPosition"
+                    v-for="(department, keyDepartment) in departments"
+                    :key="keyDepartment"
                   >
-                    <td>{{ position.title }}</td>
+                    <td>{{ department.title }}</td>
                     <td>
                       <button
                         class="btn btn-sm btn-ghost-secondary text-dark"
-                        @click="destroy(position.id)"
+                        @click="destroy(department.id)"
                         :class="{ 'opacity-25': form.processing }"
                         :disabled="form.processing"
                       >
@@ -86,6 +86,6 @@ td {
         </div>
       </div>
     </div>
-    <CreatePositionModal />
+    <CreateDepartmentModal />
   </AuthenticatedLayout>
 </template>

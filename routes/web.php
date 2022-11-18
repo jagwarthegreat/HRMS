@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DocumentCategoryController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\EmpCompensationHistoryController;
@@ -14,6 +15,7 @@ use App\Http\Controllers\EmployeeWorkExperienceController;
 use App\Http\Controllers\EmpStatusHistoryController;
 use App\Http\Controllers\EmpTypeHistoryController;
 use App\Http\Controllers\HiringRequirementController;
+use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PayTypeController;
 use App\Http\Controllers\PermisionController;
 use App\Http\Controllers\Position;
@@ -90,8 +92,13 @@ Route::prefix('employee')->middleware('auth')->group(function () {
 
     // general tab add
     Route::post('/dependent/store', [EmployeeDependentController::class, 'store'])->name('employee.dependent.store');
+    Route::delete('/dependent/destroy/{id}', [EmployeeDependentController::class, 'destroy'])->name('employee.dependent.destroy');
+
     Route::post('/educbg/store', [EmployeeEducationalBackgroundController::class, 'store'])->name('employee.educbg.store');
+    Route::delete('/educbg/destroy/{id}', [EmployeeEducationalBackgroundController::class, 'destroy'])->name('employee.educbg.destroy');
+
     Route::post('/workexp/store', [EmployeeWorkExperienceController::class, 'store'])->name('employee.workexp.store');
+    Route::delete('/workexp/destroy/{id}', [EmployeeWorkExperienceController::class, 'destroy'])->name('employee.workexp.destroy');
 
     // job tab updates
     Route::post('/status/history/store', [EmpStatusHistoryController::class, 'store'])->name('employee.statushistory.store');
@@ -103,8 +110,8 @@ Route::prefix('employee')->middleware('auth')->group(function () {
 // POSITION / DESIGNATION
 Route::prefix('position')->middleware('auth')->group(function () {
     Route::get('/', [PositionController::class, 'index'])->name('position');
-    Route::get('/create', [PositionController::class, 'create'])->name('position.create');
     Route::post('/store', [PositionController::class, 'store'])->name('position.store');
+    Route::delete('/destroy/{id}', [PositionController::class, 'destroy'])->name('position.destroy');
 });
 
 // DOCUMENTS
@@ -114,7 +121,23 @@ Route::prefix('docs')->middleware('auth')->group(function () {
 
 // DEPARTMENT
 Route::prefix('department')->middleware('auth')->group(function () {
-    Route::get('/', [PositionController::class, 'index'])->name('department');
+    Route::get('/', [DepartmentController::class, 'index'])->name('department');
+    Route::post('/store', [DepartmentController::class, 'store'])->name('department.store');
+    Route::delete('/destroy/{id}', [DepartmentController::class, 'destroy'])->name('department.destroy');
+});
+
+// LOCATION
+Route::prefix('location')->middleware('auth')->group(function () {
+    Route::get('/', [LocationController::class, 'index'])->name('location');
+    Route::post('/store', [LocationController::class, 'store'])->name('location.store');
+    Route::delete('/destroy/{id}', [LocationController::class, 'destroy'])->name('location.destroy');
+});
+
+// DEPLOYMENT
+Route::prefix('deployment')->middleware('auth')->group(function () {
+    Route::get('/', [LocationController::class, 'index'])->name('deployment');
+    // Route::post('/store', [LocationController::class, 'store'])->name('deployment.store');
+    // Route::delete('/destroy/{id}', [LocationController::class, 'destroy'])->name('deployment.destroy');
 });
 
 // RECRUITMENT

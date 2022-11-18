@@ -31,6 +31,27 @@ const empform = useForm({
   degree: "",
 });
 
+const delform = useForm({
+  employee_id: props.employee.id
+});
+function destroyWorkBg(id) {
+  if (confirm("Are you sure you want to Delete")) {
+      delform.delete(route('employee.workexp.destroy', id));
+  }
+}
+
+function destroyEducBg(id) {
+  if (confirm("Are you sure you want to Delete")) {
+      delform.delete(route('employee.educbg.destroy', id));
+  }
+}
+
+function destroyDependent(id) {
+  if (confirm("Are you sure you want to Delete")) {
+      delform.delete(route('employee.dependent.destroy', id));
+  }
+}
+
 const submit = () => {
   empform.post(route("employee.store"), {
     onSuccess: () => {
@@ -405,6 +426,7 @@ td {
                     <th>From</th>
                     <th>To</th>
                     <th>Job Description</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -421,6 +443,21 @@ td {
                     <td>{{ workExp.from }}</td>
                     <td>{{ workExp.to }}</td>
                     <td>{{ workExp.job_desc }}</td>
+                    <td>
+                      <button
+                        class="btn btn-sm btn-ghost-link text-dark"
+                        @click="destroyWorkBg(workExp.id)"
+                        :class="{ 'opacity-25': delform.processing }"
+                        :disabled="delform.processing"
+                        style="font-size: 10px; padding: 0px"
+                      >
+                        <svg class="icon">
+                          <use
+                            xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-trash"
+                          ></use>
+                        </svg>
+                      </button>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -471,6 +508,7 @@ td {
                     <th>Degree</th>
                     <th>Field of Study</th>
                     <th>Year of Completion</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -486,6 +524,21 @@ td {
                     <td>{{ educBg.degree }}</td>
                     <td>{{ educBg.field }}</td>
                     <td>{{ educBg.year }}</td>
+                    <td>
+                      <button
+                        class="btn btn-sm btn-ghost-link text-dark"
+                        @click="destroyEducBg(educBg.id)"
+                        :class="{ 'opacity-25': delform.processing }"
+                        :disabled="delform.processing"
+                        style="font-size: 10px; padding: 0px"
+                      >
+                        <svg class="icon">
+                          <use
+                            xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-trash"
+                          ></use>
+                        </svg>
+                      </button>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -536,6 +589,7 @@ td {
                     <th>Relationship</th>
                     <th>Contact</th>
                     <th>Date of Birth</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -551,6 +605,21 @@ td {
                     <td>{{ dependent.relationship }}</td>
                     <td>{{ dependent.contact }}</td>
                     <td>{{ dependent.dob }}</td>
+                    <td>
+                      <button
+                        class="btn btn-sm btn-ghost-link text-dark"
+                        @click="destroyDependent(dependent.id)"
+                        :class="{ 'opacity-25': delform.processing }"
+                        :disabled="delform.processing"
+                        style="font-size: 10px; padding: 0px"
+                      >
+                        <svg class="icon">
+                          <use
+                            xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-trash"
+                          ></use>
+                        </svg>
+                      </button>
+                    </td>
                   </tr>
                 </tbody>
               </table>

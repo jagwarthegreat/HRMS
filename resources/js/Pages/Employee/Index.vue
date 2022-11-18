@@ -1,14 +1,15 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link } from "@inertiajs/inertia-vue3";
+import { ref, onMounted } from 'vue'
 
 defineProps({
   employees: [],
 });
 
-const createEmployee = () => {
-  alert("create user");
-};
+onMounted(() => {
+  $("#employeetbl").DataTable();
+})
 </script>
 
 <template>
@@ -39,7 +40,7 @@ const createEmployee = () => {
       <div class="card-body">
         <div class="col-md-12">
           <div class="row">
-            <table class="table table-hover">
+            <table class="table table-hover" id="employeetbl">
               <thead>
                 <tr>
                   <th>Employee Name</th>

@@ -24,4 +24,11 @@ class EmployeeEducationalBackgroundController extends Controller
 
         return redirect('employee/' . $request->employee_id);
     }
+
+    public function destroy(Request $request, $id)
+    {
+        EmployeeEducationalBackground::find($id)->delete();
+
+        return redirect()->route('employee.show', $request->employee_id);
+    }
 }

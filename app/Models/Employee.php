@@ -67,4 +67,9 @@ class Employee extends Model
     {
         return $this->hasMany(Document::class)->latest();
     }
+
+    public function avatar()
+    {
+        return $this->belongsTo(Document::class, 'avatar_id', 'id')->latest();
+    }
 }

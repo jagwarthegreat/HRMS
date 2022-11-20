@@ -17,7 +17,10 @@
   <!-- Main styles for this application-->
   <link href="{!! asset('theme/css/stylePro.css') !!}" rel="stylesheet"> <!-- USING PRO-->
   <!-- We use those styles to show code examples, you should remove them in your application.-->
-  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <link href="{!! asset('theme/css/select2.min.css') !!}" rel="stylesheet">
+
+  <link href="{!! asset('theme/css/summernote-lite.min.css') !!}" rel="stylesheet">
+  <!-- <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet"> -->
 
   <style>
     .nav-link {
@@ -130,7 +133,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{{route('memo')}}">
           <svg class="nav-icon">
             <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-description"></use>
           </svg>
@@ -451,9 +454,10 @@
   <script src="{!! asset('theme/vendors/simplebar/js/simplebar.min.js') !!}"></script>
   <!-- Plugins and scripts required by this view-->
   {{-- <script src="{!! asset('theme/js/multi-select.js') !!}"></script> --}}
-  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+  <script src="{!! asset('theme/js/select2.min.js') !!}"></script>
+  <script src="{!! asset('theme/js/sweetalert2@11.js') !!}"></script>
+  <script src="{!! asset('theme/js/summernote-lite.min.js') !!}"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script> -->
 
   <script>
     function toggleSideBar() {

@@ -20,4 +20,9 @@ class Client extends Model
     {
         return $this->hasMany(Document::class)->latest();
     }
+
+    public function locations()
+    {
+        return $this->hasMany(Location::class)->latest();
+    }
 }

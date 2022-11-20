@@ -16,6 +16,7 @@ use App\Http\Controllers\EmpStatusHistoryController;
 use App\Http\Controllers\EmpTypeHistoryController;
 use App\Http\Controllers\HiringRequirementController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\MemoController;
 use App\Http\Controllers\PayTypeController;
 use App\Http\Controllers\PermisionController;
 use App\Http\Controllers\Position;
@@ -85,6 +86,7 @@ Route::prefix('employee')->middleware('auth')->group(function () {
     Route::get('/', [EmployeeController::class, 'index'])->name('employee');
     Route::get('/create', [EmployeeController::class, 'create'])->name('employee.create');
     Route::post('/store', [EmployeeController::class, 'store'])->name('employee.store');
+    Route::post('/update/{id}', [EmployeeController::class, 'update'])->name('employee.update');
     Route::get('/{id}', [EmployeeController::class, 'show'])->name('employee.show');
     Route::post('/tabSwitchTo/{tabName}', function ($tabName) {
         $_SESSION['Employee']['tab']['active'] = $tabName;
@@ -146,6 +148,13 @@ Route::prefix('job')->middleware('auth')->group(function () {
     Route::get('/applicants', [PositionController::class, 'create'])->name('job.applicants');
 });
 
+// MEMOS
+Route::prefix('memo')->middleware('auth')->group(function () {
+    Route::get('/', [MemoController::class, 'index'])->name('memo');
+    Route::post('/store', [MemoController::class, 'store'])->name('memo.store');
+    Route::delete('/destroy/{id}', [MemoController::class, 'destroy'])->name('memo.destroy');
+});
+
 // CLIENTS
 Route::prefix('client')->middleware('auth')->group(function () {
     Route::get('/', [ClientController::class, 'index'])->name('client');
@@ -158,6 +167,7 @@ Route::prefix('client')->middleware('auth')->group(function () {
     })->name('client.tabSwitchTo');
 
     Route::post('/docs/store', [ClientController::class, 'docsstore'])->name('client.docs.store');
+    Route::delete('/location/destroy/{id}', [ClientController::class, 'destroy'])->name('client.location.destroy');
 });
 
 // SETTINGS

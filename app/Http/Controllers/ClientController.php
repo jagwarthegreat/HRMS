@@ -48,9 +48,15 @@ class ClientController extends Controller
             'documents',
             'documents.document_category',
             'documents.created_by',
+            'locations',
+            'locations.employees.employee',
+            'locations.employees.departments',
+            'locations.employees.positions',
         ])->find($client_id);
         $locations =  Location::all();
         $docCategories =  DocumentCategory::all();
+
+        // dd($client);
 
         return Inertia::render('Client/Profile/Index', compact('client', 'locations', 'docCategories'));
     }
@@ -83,5 +89,12 @@ class ClientController extends Controller
         sleep(1);
 
         return redirect('client/' . $request->client_id);
+    }
+
+    public function destroy(Request $request, $id)
+    {
+        Location::find($id)->delete();
+
+        return redirect()->route('client.show', $request->client_id);
     }
 }

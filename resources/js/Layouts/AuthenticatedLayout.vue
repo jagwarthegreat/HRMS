@@ -7,11 +7,11 @@ import { Link } from "@inertiajs/inertia-vue3";
     <div class="container-fluid ps-0 mb-3">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <slot name="breadcrumbs"/>
+          <slot name="breadcrumbs" />
         </ol>
       </nav>
     </div>
-    
+
     <slot />
   </div>
 </template>

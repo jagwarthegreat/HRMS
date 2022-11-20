@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Department;
+use App\Models\Document;
 use App\Models\DocumentCategory;
 use App\Models\EmpCompensationHistory;
 use App\Models\EmpJobHistory;
@@ -18,6 +19,7 @@ use App\Models\Location;
 use App\Models\PayType;
 use App\Models\Position;
 use App\Models\HiringRequirement;
+use Illuminate\Support\Facades\Auth;
 
 class EmployeeController extends Controller
 {
@@ -131,12 +133,114 @@ class EmployeeController extends Controller
         return redirect('employee');
     }
 
+    public function update(Request $request, $id)
+    {
+        // dd($request);
+
+        $request->validate([
+            "firstname" => ['required'],
+            "middlename" => ['required'],
+            "lastname" => ['required'],
+            "contact" => ['required'],
+            "email" => ['email'],
+            "address" => ['required'],
+            "dob" => ['required'],
+            "gender" => ['required'],
+            "civil_status" => ['required'],
+        ]);
+
+        $image_path = '';
+        $doc = [];
+        if ($request->hasFile('emp_avatar')) {
+            $file = $request->file('emp_avatar');
+            $filename = $file->getClientOriginalName();
+            $filesize = $file->getSize();
+            $fileType = $file->getClientOriginalExtension();
+
+            $image_path = $request->file('emp_avatar')->store('employee', 'public');
+
+            $doc = Document::create([
+                'employee_id' => $id,
+                'filename' => $filename,
+                'filetype' => $fileType,
+                'filesize' => $filesize,
+                'slug' => $image_path,
+                'created_by' => Auth::user()->id,
+            ]);
+        }
+
+        Employee::where('id', $id)->update([
+            "firstname" => $request->firstname,
+            "middlename" => $request->middlename,
+            "lastname" => $request->lastname,
+            "contact" => $request->contact,
+            "email" => $request->email,
+            "address" => $request->address,
+            "date_of_birth" => $request->dob,
+            "gender" => $request->gender,
+            "civil_status" => $request->civil_status,
+            "sss_number" => $request->sss,
+            "tin_number" => $request->tin,
+            "pagibig_number" => $request->pagibig,
+            "philhealth_number" => $request->philhealth,
+            "date_of_hire" => $request->doh,
+            "contract_end_date" => $request->ced,
+            "avatar_id" => (empty($doc)) ? null : $doc->id
+        ]);
+
+        // insert to status history
+        if ($request->employeeStatus != "") {
+            EmpStatusHistory::create([
+                'employee_id' => $id,
+                'employee_status_id' => $request->employeeStatus,
+                'comment' => "",
+                'trans_date' => date('Y-m-d'),
+            ]);
+        }
+
+        // insert to type history
+        if ($request->employeeType != "") {
+            EmpTypeHistory::create([
+                'employee_id' => $id,
+                'employee_type_id' => $request->employeeType,
+                'comment' => "",
+                'trans_date' => date('Y-m-d'),
+            ]);
+        }
+
+        // insert to compensation history
+        if ($request->payType != "" && $request->payRate != "") {
+            EmpCompensationHistory::create([
+                'employee_id' => $id,
+                'pay_type_id' => $request->payType,
+                'pay_rate' => "$request->payRate",
+                'reason' => "",
+                'comment' => "",
+                'trans_date' => date('Y-m-d'),
+            ]);
+        }
+
+        // insert to job history
+        if ($request->location != "" && $request->department != "" && $request->jobTitle != "") {
+            EmpJobHistory::create([
+                'employee_id' => $id,
+                'location_id' => $request->location,
+                'department_id' => "$request->department",
+                'position_id' => "$request->jobTitle",
+                'trans_date' => date('Y-m-d'),
+            ]);
+        }
+
+        return redirect()->route('employee.show', $id);
+    }
+
     public function show($employee_id)
     {
         $employee = Employee::with([
             'dependents',
             'work_experiences',
             'educ_backgrounds',
+            'avatar',
             'emp_status_histories.employee_statuses',
             'emp_type_histories.employee_types',
             'emp_compensation_histories.pay_types',

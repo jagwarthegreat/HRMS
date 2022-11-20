@@ -18,4 +18,9 @@ class Location extends Model
     {
         return $this->belongsTo(Client::class);
     }
+
+    public function employees()
+    {
+        return $this->hasMany(EmpJobHistory::class);
+    }
 }

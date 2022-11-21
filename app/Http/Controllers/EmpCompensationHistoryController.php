@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\EmpCompensationHistory;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class EmpCompensationHistoryController extends Controller
 {
@@ -15,6 +16,10 @@ class EmpCompensationHistoryController extends Controller
             'pay_type' => 'required',
         ]);
 
+        EmpCompensationHistory::where('employee_id', $request->employee_id)->update([
+            'status' => 0,
+        ]);
+
         EmpCompensationHistory::create([
             'employee_id' => $request->employee_id,
             'pay_type_id' => $request->pay_type,
@@ -22,8 +27,9 @@ class EmpCompensationHistoryController extends Controller
             'reason' => $request->reason,
             'comment' => $request->comment,
             'trans_date' => $request->trans_date,
+            'status' => 1,
         ]);
 
-        return redirect('employee/' . $request->employee_id);
+        return Inertia::location(route('employee.show', $request->employee_id));
     }
 }

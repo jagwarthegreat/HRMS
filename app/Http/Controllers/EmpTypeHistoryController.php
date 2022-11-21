@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\EmpTypeHistory;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class EmpTypeHistoryController extends Controller
 {
@@ -14,13 +15,18 @@ class EmpTypeHistoryController extends Controller
             'employment_type' => 'required',
         ]);
 
+        EmpTypeHistory::where('employee_id', $request->employee_id)->update([
+            'status' => 0,
+        ]);
+
         $role = EmpTypeHistory::create([
             'employee_id' => $request->employee_id,
             'employee_type_id' => $request->employment_type,
             'comment' => $request->comment,
             'trans_date' => $request->trans_date,
+            'status' => 1,
         ]);
 
-        return redirect('employee/' . $request->employee_id);
+        return Inertia::location(route('employee.show', $request->employee_id));
     }
 }

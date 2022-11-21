@@ -20,6 +20,8 @@ use App\Models\PayType;
 use App\Models\Position;
 use App\Models\HiringRequirement;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 
 class EmployeeController extends Controller
 {
@@ -89,26 +91,40 @@ class EmployeeController extends Controller
 
         // insert to status history
         if ($request->employeeStatus != "") {
+            EmpStatusHistory::where('employee_id', $employee->id)->update([
+                'status' => 0,
+            ]);
+
             EmpStatusHistory::create([
                 'employee_id' => $employee->id,
                 'employee_status_id' => $request->employeeStatus,
                 'comment' => "",
                 'trans_date' => date('Y-m-d'),
+                'status' => 1,
             ]);
         }
 
         // insert to type history
         if ($request->employeeType != "") {
+            EmpTypeHistory::where('employee_id', $employee->id)->update([
+                'status' => 0,
+            ]);
+
             EmpTypeHistory::create([
                 'employee_id' => $employee->id,
                 'employee_type_id' => $request->employeeType,
                 'comment' => "",
                 'trans_date' => date('Y-m-d'),
+                'status' => 1,
             ]);
         }
 
         // insert to compensation history
         if ($request->payType != "" && $request->payRate != "") {
+            EmpCompensationHistory::where('employee_id', $employee->id)->update([
+                'status' => 0,
+            ]);
+
             EmpCompensationHistory::create([
                 'employee_id' => $employee->id,
                 'pay_type_id' => $request->payType,
@@ -116,17 +132,23 @@ class EmployeeController extends Controller
                 'reason' => "",
                 'comment' => "",
                 'trans_date' => date('Y-m-d'),
+                'status' => 1,
             ]);
         }
 
         // insert to job history
         if ($request->location != "" && $request->department != "" && $request->jobTitle != "") {
+            EmpJobHistory::where('employee_id', $employee->id)->update([
+                'status' => 0,
+            ]);
+
             EmpJobHistory::create([
                 'employee_id' => $employee->id,
                 'location_id' => $request->location,
                 'department_id' => "$request->department",
                 'position_id' => "$request->jobTitle",
                 'trans_date' => date('Y-m-d'),
+                'status' => 1
             ]);
         }
 
@@ -159,6 +181,15 @@ class EmployeeController extends Controller
 
             $image_path = $request->file('emp_avatar')->store('employee', 'public');
 
+            $employee = Employee::find($id);
+            if ($employee->avatar_id != null) {
+                $document = Document::find($employee->avatar_id);
+                if (Storage::disk('public')->exists($document->slug)) {
+                    Storage::disk('public')->delete($document->slug);
+                    $document->delete();
+                }
+            }
+
             $doc = Document::create([
                 'employee_id' => $id,
                 'filename' => $filename,
@@ -188,50 +219,8 @@ class EmployeeController extends Controller
             "avatar_id" => (empty($doc)) ? null : $doc->id
         ]);
 
-        // insert to status history
-        if ($request->employeeStatus != "") {
-            EmpStatusHistory::create([
-                'employee_id' => $id,
-                'employee_status_id' => $request->employeeStatus,
-                'comment' => "",
-                'trans_date' => date('Y-m-d'),
-            ]);
-        }
-
-        // insert to type history
-        if ($request->employeeType != "") {
-            EmpTypeHistory::create([
-                'employee_id' => $id,
-                'employee_type_id' => $request->employeeType,
-                'comment' => "",
-                'trans_date' => date('Y-m-d'),
-            ]);
-        }
-
-        // insert to compensation history
-        if ($request->payType != "" && $request->payRate != "") {
-            EmpCompensationHistory::create([
-                'employee_id' => $id,
-                'pay_type_id' => $request->payType,
-                'pay_rate' => "$request->payRate",
-                'reason' => "",
-                'comment' => "",
-                'trans_date' => date('Y-m-d'),
-            ]);
-        }
-
-        // insert to job history
-        if ($request->location != "" && $request->department != "" && $request->jobTitle != "") {
-            EmpJobHistory::create([
-                'employee_id' => $id,
-                'location_id' => $request->location,
-                'department_id' => "$request->department",
-                'position_id' => "$request->jobTitle",
-                'trans_date' => date('Y-m-d'),
-            ]);
-        }
-
-        return redirect()->route('employee.show', $id);
+        // return redirect()->route('employee.show', $id);
+        return Inertia::location(route('employee.show', $id));
     }
 
     public function show($employee_id)
@@ -242,14 +231,21 @@ class EmployeeController extends Controller
             'educ_backgrounds',
             'avatar',
             'emp_status_histories.employee_statuses',
+            'emp_curr_status.employee_statuses',
             'emp_type_histories.employee_types',
+            'emp_curr_type.employee_types',
             'emp_compensation_histories.pay_types',
             'emp_job_histories.locations',
             'emp_job_histories.departments',
             'emp_job_histories.positions',
+            'emp_curr_work.locations',
+            'emp_curr_work.departments',
+            'emp_curr_work.positions',
             'documents.document_category',
             'documents.created_by',
         ])->find($employee_id);
+
+        // dd($employee);
 
         $employeeTypes = EmployeeType::all();
         $employee_status = EmployeeStatus::all();

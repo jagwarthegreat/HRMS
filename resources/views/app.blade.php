@@ -49,6 +49,7 @@
   <script>
     window.sessionEmployeeActiveTab = "{{ $_SESSION['Employee']['tab']['active'] }}";
     window.sessionClientActiveTab = "{{ $_SESSION['Client']['tab']['active'] }}";
+    window.dateNow = "{{ date('Y-m-d') }}";
   </script>
 
   <!-- Scripts -->

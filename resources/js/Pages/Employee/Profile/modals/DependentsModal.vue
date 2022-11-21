@@ -16,6 +16,7 @@ const dform = useForm({
 
 const dependentStore = () => {
   dform.post(route("employee.dependent.store"), {
+    preserveScroll: true,
     onSuccess: () => {
       dform.reset(
         "dependent_name",
@@ -30,112 +31,121 @@ const dependentStore = () => {
 </script>
 
 <template>
-  <!-- Modal -->
-  <div
-    class="modal fade"
-    id="dependentsModal"
-    tabindex="-1"
-    aria-labelledby="dependentsModal"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <form @submit.prevent="dependentStore">
-          <div class="modal-header">
-            <h5 class="modal-title" id="dependentsModal">Dependent</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-coreui-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <div class="row g-3">
-              <div class="col-12">
-                <label for="dependent_name" class="form-label"> Name </label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="dependent_name"
-                  v-model="dform.dependent_name"
-                />
-                <div
-                  class="invalid-feedback"
-                  v-show="dform.errors.dependent_name"
-                  style="display: block"
-                >
-                  {{ dform.errors.dependent_name }}
-                </div>
-              </div>
-              <div class="col-12">
-                <label for="dependent_relationship" class="form-label"
-                  >Relationship</label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  id="dependent_relationship"
-                  v-model="dform.dependent_relationship"
-                />
-                <div
-                  class="invalid-feedback"
-                  v-show="dform.errors.dependent_relationship"
-                  style="display: block"
-                >
-                  {{ dform.errors.dependent_relationship }}
-                </div>
-              </div>
-              <div class="col-12">
-                <label for="dependent_contact" class="form-label">
-                  Contact
-                </label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="dependent_contact"
-                  v-model="dform.dependent_contact"
-                />
-                <div
-                  class="invalid-feedback"
-                  v-show="dform.errors.dependent_contact"
-                  style="display: block"
-                >
-                  {{ dform.errors.dependent_contact }}
-                </div>
-              </div>
-              <div class="col-12">
-                <label for="dependent_dob" class="form-label">
-                  Date of Birth
-                </label>
-                <input
-                  type="date"
-                  class="form-control"
-                  id="dependent_dob"
-                  v-model="dform.dependent_dob"
-                />
-                <div
-                  class="invalid-feedback"
-                  v-show="dform.errors.dependent_dob"
-                  style="display: block"
-                >
-                  {{ dform.errors.dependent_dob }}
-                </div>
-              </div>
+    <!-- Modal -->
+    <div
+        class="modal fade"
+        id="dependentsModal"
+        tabindex="-1"
+        aria-labelledby="dependentsModal"
+        aria-hidden="true"
+    >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form @submit.prevent="dependentStore">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="dependentsModal">
+                            Dependent
+                        </h5>
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-coreui-dismiss="modal"
+                            aria-label="Close"
+                        ></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label for="dependent_name" class="form-label">
+                                    Name
+                                </label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="dependent_name"
+                                    v-model="dform.dependent_name"
+                                />
+                                <div
+                                    class="invalid-feedback"
+                                    v-show="dform.errors.dependent_name"
+                                    style="display: block"
+                                >
+                                    {{ dform.errors.dependent_name }}
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label
+                                    for="dependent_relationship"
+                                    class="form-label"
+                                    >Relationship</label
+                                >
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="dependent_relationship"
+                                    v-model="dform.dependent_relationship"
+                                />
+                                <div
+                                    class="invalid-feedback"
+                                    v-show="dform.errors.dependent_relationship"
+                                    style="display: block"
+                                >
+                                    {{ dform.errors.dependent_relationship }}
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label
+                                    for="dependent_contact"
+                                    class="form-label"
+                                >
+                                    Contact
+                                </label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="dependent_contact"
+                                    v-model="dform.dependent_contact"
+                                />
+                                <div
+                                    class="invalid-feedback"
+                                    v-show="dform.errors.dependent_contact"
+                                    style="display: block"
+                                >
+                                    {{ dform.errors.dependent_contact }}
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label for="dependent_dob" class="form-label">
+                                    Date of Birth
+                                </label>
+                                <input
+                                    type="date"
+                                    class="form-control"
+                                    id="dependent_dob"
+                                    v-model="dform.dependent_dob"
+                                />
+                                <div
+                                    class="invalid-feedback"
+                                    v-show="dform.errors.dependent_dob"
+                                    style="display: block"
+                                >
+                                    {{ dform.errors.dependent_dob }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button
+                            type="submit"
+                            class="btn btn-sm btn-primary"
+                            :class="{ 'opacity-25': dform.processing }"
+                            :disabled="dform.processing"
+                        >
+                            Add Dependent
+                        </button>
+                    </div>
+                </form>
             </div>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="submit"
-              class="btn btn-sm btn-primary"
-              :class="{ 'opacity-25': dform.processing }"
-              :disabled="dform.processing"
-            >
-              Add Dependent
-            </button>
-          </div>
-        </form>
-      </div>
+        </div>
     </div>
-  </div>
 </template>

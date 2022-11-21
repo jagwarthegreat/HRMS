@@ -14,7 +14,8 @@ class EmpJobHistory extends Model
         'location_id',
         'department_id',
         'position_id',
-        'trans_date'
+        'trans_date',
+        'status'
     ];
 
     public function locations()

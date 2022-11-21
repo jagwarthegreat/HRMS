@@ -14,6 +14,7 @@ class EmpTypeHistory extends Model
         'employee_type_id',
         'comment',
         'trans_date',
+        'status',
     ];
 
     public function employee_types()

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('employee_type_id')->constrained('employee_types')->onDelete('cascade');
             $table->text('comment')->nullable();
             $table->date('trans_date');
+            $table->string('status', 1)->default(0);
             $table->timestamps();
         });
     }

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('department_id')->constrained('departments')->onDelete('cascade');
             $table->foreignId('position_id')->constrained('positions')->onDelete('cascade');
             $table->date('trans_date');
+            $table->string('status', 1)->default(0);
             $table->timestamps();
         });
     }

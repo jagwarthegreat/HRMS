@@ -31,7 +31,7 @@ return new class extends Migration
             $table->string('philhealth_number', 100)->nullable();
             $table->date('date_of_hire')->nullable();
             $table->date('contract_end_date')->nullable();
-            $table->foreignId('avatar_id')->nullable()->constrained('documents')->onDelete('set null');
+            $table->foreignId('avatar_id')->nullable()->onDelete('set null');
             $table->timestamps();
         });
     }

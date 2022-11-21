@@ -14,6 +14,7 @@ class EmpStatusHistory extends Model
         'employee_status_id',
         'comment',
         'trans_date',
+        'status',
     ];
 
     public function employee_statuses()

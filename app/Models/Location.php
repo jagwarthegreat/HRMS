@@ -21,6 +21,6 @@ class Location extends Model
 
     public function employees()
     {
-        return $this->hasMany(EmpJobHistory::class);
+        return $this->hasMany(EmpJobHistory::class)->where("status", 1);
     }
 }

@@ -16,6 +16,7 @@ class EmpCompensationHistory extends Model
         'reason',
         'comment',
         'trans_date',
+        'status',
     ];
 
     public function pay_types()

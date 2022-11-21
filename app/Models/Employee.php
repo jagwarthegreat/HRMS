@@ -48,9 +48,19 @@ class Employee extends Model
         return $this->hasMany(EmpStatusHistory::class)->latest();
     }
 
+    public function emp_curr_status()
+    {
+        return $this->hasOne(EmpStatusHistory::class)->where('status', 1);
+    }
+
     public function emp_type_histories()
     {
         return $this->hasMany(EmpTypeHistory::class)->latest();
+    }
+
+    public function emp_curr_type()
+    {
+        return $this->hasOne(EmpTypeHistory::class)->where('status', 1);
     }
 
     public function emp_compensation_histories()
@@ -58,9 +68,19 @@ class Employee extends Model
         return $this->hasMany(EmpCompensationHistory::class)->latest();
     }
 
+    public function emp_curr_compensation()
+    {
+        return $this->hasOne(EmpCompensationHistory::class)->where('status', 1);
+    }
+
     public function emp_job_histories()
     {
         return $this->hasMany(EmpJobHistory::class)->latest();
+    }
+
+    public function emp_curr_work()
+    {
+        return $this->hasOne(EmpJobHistory::class)->where('status', 1);
     }
 
     public function documents()

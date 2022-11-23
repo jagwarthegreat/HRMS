@@ -44,6 +44,12 @@
     body {
       font-size: 14px;
     }
+
+    .avtr {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   </style>
 
   <script>
@@ -371,7 +377,11 @@
           <li class="nav-item dropdown">
             <a class="nav-link py-0" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
               <div class="avatar avatar-md">
-                <img class="avatar-img" src="/theme/assets/img/avatars/8.jpg" alt="user@email.com" />
+                @if(Auth::user()->avatar_slug == null)
+                <img class="avatar-img avtr" src="/theme/assets/img/avatars/default_avatar.jpeg" />
+                @else
+                <img class="avatar-img avtr" src="{{'/storage/' . Auth::user()->avatar_slug}}" alt="user@email.com" />
+                @endif
               </div>
             </a>
             <div class="dropdown-menu dropdown-menu-end pt-0">
@@ -405,7 +415,7 @@
               <!--  <div class="dropdown-header bg-light py-2">
                 <div class="fw-semibold">Settings</div>
               </div> -->
-              <a class="dropdown-item" href="#">
+              <a class="dropdown-item" href="{{route('user.profile')}}">
                 <svg class="icon me-2">
                   <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-user"></use>
                 </svg>

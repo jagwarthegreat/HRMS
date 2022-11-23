@@ -23,6 +23,7 @@ use App\Http\Controllers\Position;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserProfileController;
 use App\Models\EmployeeEducationalBackground;
 use App\Models\EmpStatusHistory;
 use Illuminate\Foundation\Application;
@@ -79,6 +80,10 @@ Route::prefix('user')->middleware('auth')->group(function () {
     Route::get('/', [UserController::class, 'index'])->name('user');
     Route::get('/create', [UserController::class, 'create'])->name('user.create');
     Route::post('/store', [UserController::class, 'store'])->name('user.store');
+
+    // profile
+    Route::get('/profile', [UserProfileController::class, 'index'])->name('user.profile');
+    Route::post('/profile/update/{id}', [UserProfileController::class, 'update'])->name('user.profile.update');
 });
 
 // EMPLOYEE MANAGEMENT

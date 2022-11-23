@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Memo;
 use App\Models\Client;
+use App\Models\Employee;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Gate;
@@ -19,8 +20,8 @@ class MemoController extends Controller
         //     '403 Forbidden'
         // );
 
-        $memos = Memo::with('client')->get();
-        $employees = Client::all();
+        $memos = Memo::all();
+        $employees = Employee::all();
         $canCreate = Gate::allows('position_create');
 
         return Inertia::render('Memo/Index', compact('memos', 'employees', 'canCreate'));
@@ -28,7 +29,6 @@ class MemoController extends Controller
 
     public function store(Request $request)
     {
-        dd($request);
         // abort_if(
         //     Gate::denies('position_create'),
         //     Response::HTTP_FORBIDDEN,

@@ -21,7 +21,7 @@ class UserController extends Controller
             '403 Forbidden'
         );
 
-        $users = User::where('id', '>', '0')->with(['employee', 'roles'])->get();
+        $users = User::where('employee_id', '!=', '0')->with(['employee', 'roles'])->get();
         $canCreate = Gate::allows('user_management_access');
 
         return Inertia::render('User/Index', compact('users', 'canCreate'));
@@ -35,7 +35,7 @@ class UserController extends Controller
             '403 Forbidden'
         );
 
-        $roles = Role::all();
+        $roles = Role::where("id", "!=", 1)->get();
         $employees = Employee::all();
         return Inertia::render('User/Create', compact('roles', 'employees'));
     }

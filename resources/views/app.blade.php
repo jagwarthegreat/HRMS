@@ -93,87 +93,108 @@
         <ul class="nav-group-items">
           <li class="nav-item">
             <a class="nav-link" href="{{route('department')}}">
-              <svg class="nav-icon">
+              <!-- <svg class="nav-icon">
                 <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-room"></use>
-              </svg>
+              </svg> -->
               Departments
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{route('position')}}">
-              <svg class="nav-icon">
+              <!-- <svg class="nav-icon">
                 <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-sitemap"></use>
-              </svg>
+              </svg> -->
               Positions
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{route('client')}}">
-              <svg class="nav-icon">
+              <!-- <svg class="nav-icon">
                 <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-list-rich"></use>
-              </svg>
+              </svg> -->
               Clients
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{route('location')}}">
-              <svg class="nav-icon">
+              <!-- <svg class="nav-icon">
                 <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-location-pin"></use>
-              </svg>
+              </svg> -->
               Locations
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{route('employee')}}">
-              <svg class="nav-icon">
+              <!-- <svg class="nav-icon">
                 <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-wc"></use>
-              </svg>
+              </svg> -->
               Employees
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{route('deployment')}}">
-              <svg class="nav-icon">
+              <!-- <svg class="nav-icon">
                 <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-task"></use>
-              </svg>
+              </svg> -->
               Deployment
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{route('memo')}}">
-              <svg class="nav-icon">
+              <!-- <svg class="nav-icon">
                 <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-description"></use>
-              </svg>
+              </svg> -->
               Memos
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">
-              <svg class="nav-icon">
+              <!-- <svg class="nav-icon">
                 <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-bullhorn"></use>
-              </svg>
+              </svg> -->
               Notices
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">
-              <svg class="nav-icon">
+              <!-- <svg class="nav-icon">
                 <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-inbox"></use>
-              </svg>
+              </svg> -->
               Case
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">
-              <svg class="nav-icon">
+              <!-- <svg class="nav-icon">
                 <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-info"></use>
-              </svg>
+              </svg> -->
               Quit Claims
             </a>
           </li>
         </ul>
       </li>
       <!-- {{-- /EMPLOYEE MANAGEMENT --}} -->
+
+      <!-- {{-- TRANSACTION MANAGEMENT --}} -->
+      <li class="nav-group">
+        <a class="nav-link nav-group-toggle" href="#">
+          <svg class="nav-icon">
+            <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-truck"></use>
+          </svg>
+          Transactions
+        </a>
+        <ul class="nav-group-items">
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <!-- <svg class="nav-icon">
+                <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-room"></use>
+              </svg> -->
+              Procurement
+            </a>
+          </li>
+        </ul>
+      </li>
+      <!-- {{-- /TRANSACTION MANAGEMENT --}} -->
 
       {{-- SETTINGS MANAGEMENT --}}
       <li class="nav-group">

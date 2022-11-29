@@ -10,10 +10,15 @@ class Memo extends Model
     use HasFactory;
 
     protected $fillable = [
-        'to',
+        'employee_id',
         'from',
         'subject',
         'content',
         'memo_date'
     ];
+
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class);
+    }
 }

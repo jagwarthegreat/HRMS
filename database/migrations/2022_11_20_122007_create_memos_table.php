@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('memos', function (Blueprint $table) {
             $table->id();
-            $table->text("to");
+            $table->foreignId('employee_id')->constrained('employees')->onDelete('cascade');
             $table->text("from");
             $table->string("subject", 150);
             $table->text("content");

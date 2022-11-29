@@ -230,6 +230,7 @@ class EmployeeController extends Controller
             'work_experiences',
             'educ_backgrounds',
             'avatar',
+            'memos',
             'emp_status_histories.employee_statuses',
             'emp_curr_status.employee_statuses',
             'emp_type_histories.employee_types',

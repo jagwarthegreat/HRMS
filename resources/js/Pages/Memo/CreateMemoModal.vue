@@ -7,7 +7,7 @@ const dprops = defineProps({
 });
 
 const memoform = useForm({
-  to: "",
+  employee_id: "",
   from: "",
   memo_date: "",
   subject: "",
@@ -17,7 +17,7 @@ const memoform = useForm({
 const submitForm = () => {
   memoform.post(route("memo.store"), {
     onSuccess: () => {
-      memoform.reset("to", "from", "memo_date", "subject", "content");
+      memoform.reset("employee_id", "from", "memo_date", "subject", "content");
       $("#createMemoModal").modal("hide");
     },
   });
@@ -68,8 +68,12 @@ onMounted(()=>{
 					<div class="modal-body">
 						<div class="row g-3">
 							<div class="col-md-4">
-								<label for="to" class="form-label">Employee</label>
-								<select class="form-select" id="to" v-model="memoform.to">
+								<label for="employee_id" class="form-label">Employee</label>
+								<select
+									class="form-select"
+									id="employee_id"
+									v-model="memoform.employee_id"
+								>
 									<option
 										v-for="(employees, keyEmployees) in props.employees"
 										:key="keyEmployees"
@@ -80,10 +84,10 @@ onMounted(()=>{
 								</select>
 								<div
 									class="invalid-feedback"
-									v-show="memoform.errors.to"
+									v-show="memoform.errors.employee_id"
 									style="display: block"
 								>
-									{{ memoform.errors.to }}
+									{{ memoform.errors.employee_id }}
 								</div>
 							</div>
 							<div class="col-md-4">

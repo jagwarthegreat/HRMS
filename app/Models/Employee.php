@@ -92,4 +92,9 @@ class Employee extends Model
     {
         return $this->belongsTo(Document::class, 'avatar_id', 'id')->latest();
     }
+
+    public function memos()
+    {
+        return $this->hasMany(Memo::class, 'employee_id', 'id')->latest();
+    }
 }

@@ -20,7 +20,10 @@ class MemoController extends Controller
         //     '403 Forbidden'
         // );
 
-        $memos = Memo::all();
+        $memos = Memo::with([
+            'employee'
+        ])->get();
+
         $employees = Employee::all();
         $canCreate = Gate::allows('position_create');
 

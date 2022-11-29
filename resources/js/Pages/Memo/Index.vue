@@ -57,8 +57,9 @@ td {
 									<tr>
 										<th>Date</th>
 										<th>Subject</th>
+										<th>Employee</th>
 										<th>Content</th>
-										<th style="width: 100px"></th>
+										<th style="width: 130px"></th>
 									</tr>
 								</thead>
 								<tbody v-if="memos.length > 0">
@@ -66,8 +67,13 @@ td {
 										<td style="width: 100px; vertical-align: baseline">
 											{{ memo.memo_date }}
 										</td>
-										<td style="width: 200px; vertical-align: baseline">
+										<td style="width: 100px; vertical-align: baseline">
 											{{ memo.subject }}
+										</td>
+										<td style="width: 200px; vertical-align: baseline">
+											{{
+												memo.employee.firstname + " " + memo.employee.lastname
+											}}
 										</td>
 										<td>
 											<div v-if="memo.content.length < 100">
@@ -78,6 +84,17 @@ td {
 											</div>
 										</td>
 										<td style="width: 100px; vertical-align: baseline">
+											<button
+												class="btn btn-sm btn-ghost-secondary text-dark"
+												:class="{ 'opacity-25': form.processing }"
+												:disabled="form.processing"
+											>
+												<svg class="icon">
+													<use
+														xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-notes"
+													></use>
+												</svg>
+											</button>
 											<button
 												class="btn btn-sm btn-ghost-secondary text-dark"
 												@click="destroy(memo.id)"

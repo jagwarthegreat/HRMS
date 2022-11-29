@@ -82,6 +82,43 @@
         </a>
       </li>
 
+      <!-- {{-- MASTERDATA MANAGEMENT --}} -->
+      <li class="nav-group">
+        <a class="nav-link nav-group-toggle" href="#">
+          <svg class="nav-icon">
+            <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-notes"></use>
+          </svg>
+          Master Data
+        </a>
+        <ul class="nav-group-items">
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('client')}}">
+              <!-- <svg class="nav-icon">
+                <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-list-rich"></use>
+              </svg> -->
+              Clients
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('location')}}">
+              <!-- <svg class="nav-icon">
+                <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-location-pin"></use>
+              </svg> -->
+              Locations
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('deployment')}}">
+              <!-- <svg class="nav-icon">
+                <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-task"></use>
+              </svg> -->
+              Deployment
+            </a>
+          </li>
+        </ul>
+      </li>
+      <!-- {{-- /MASTERDATA MANAGEMENT --}} -->
+
       <!-- {{-- EMPLOYEE MANAGEMENT --}} -->
       <li class="nav-group">
         <a class="nav-link nav-group-toggle" href="#">
@@ -108,35 +145,11 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{route('client')}}">
-              <!-- <svg class="nav-icon">
-                <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-list-rich"></use>
-              </svg> -->
-              Clients
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('location')}}">
-              <!-- <svg class="nav-icon">
-                <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-location-pin"></use>
-              </svg> -->
-              Locations
-            </a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="{{route('employee')}}">
               <!-- <svg class="nav-icon">
                 <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-wc"></use>
               </svg> -->
               Employees
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('deployment')}}">
-              <!-- <svg class="nav-icon">
-                <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-task"></use>
-              </svg> -->
-              Deployment
             </a>
           </li>
           <li class="nav-item">

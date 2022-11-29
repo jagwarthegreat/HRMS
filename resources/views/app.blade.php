@@ -107,14 +107,6 @@
               Locations
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('deployment')}}">
-              <!-- <svg class="nav-icon">
-                <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-task"></use>
-              </svg> -->
-              Deployment
-            </a>
-          </li>
         </ul>
       </li>
       <!-- {{-- /MASTERDATA MANAGEMENT --}} -->
@@ -150,6 +142,14 @@
                 <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-wc"></use>
               </svg> -->
               Employees
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('deployment')}}">
+              <!-- <svg class="nav-icon">
+                <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-task"></use>
+              </svg> -->
+              Deployment
             </a>
           </li>
           <li class="nav-item">

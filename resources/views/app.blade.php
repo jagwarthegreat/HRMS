@@ -92,6 +92,14 @@
         </a>
         <ul class="nav-group-items">
           <li class="nav-item">
+            <a class="nav-link" href="{{route('asset')}}">
+              <!-- <svg class="nav-icon">
+                <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-list-rich"></use>
+              </svg> -->
+              Assets
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="{{route('client')}}">
               <!-- <svg class="nav-icon">
                 <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-list-rich"></use>

@@ -25,6 +25,7 @@ use App\Http\Controllers\PositionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserProfileController;
+use App\Models\Asset;
 use App\Models\EmployeeEducationalBackground;
 use App\Models\EmpStatusHistory;
 use Illuminate\Foundation\Application;
@@ -113,6 +114,11 @@ Route::prefix('employee')->middleware('auth')->group(function () {
     Route::post('/type/history/store', [EmpTypeHistoryController::class, 'store'])->name('employee.typehistory.store');
     Route::post('/compensation/history/store', [EmpCompensationHistoryController::class, 'store'])->name('employee.compensationhistory.store');
     Route::post('/jobinfo/history/store', [EmpJobHistoryController::class, 'store'])->name('employee.jobinfohistory.store');
+});
+
+// ASSETS
+Route::prefix('asset')->middleware('auth')->group(function () {
+    Route::get('/', [Asset::class, 'index'])->name('asset');
 });
 
 // POSITION / DESIGNATION

@@ -13,4 +13,9 @@ class AssetCategory extends Model
         "name",
     ];
 
+    public function assets()
+    {
+        return $this->hasMany(Asset::class)->latest();
+    }
+
 }

@@ -25,7 +25,7 @@ const createEmployee = () => {
 		<div class="col-md-12 text-end mb-2">
 			<Link
 				class="btn btn-dark btn-sm"
-				:href="route('client.create')"
+				:href="route('asset.create')"
 				method="get"
 				as="button"
 			>
@@ -55,7 +55,7 @@ const createEmployee = () => {
 										{{ asset.unit }}
 									</td>
 									<td>
-										{{ asset_category.name }}
+										{{ asset.asset_category_id }}
 									</td>
 									<td>
 										<Link

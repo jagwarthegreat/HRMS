@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AssetController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DocumentCategoryController;
@@ -118,7 +119,9 @@ Route::prefix('employee')->middleware('auth')->group(function () {
 
 // ASSETS
 Route::prefix('asset')->middleware('auth')->group(function () {
-    Route::get('/', [Asset::class, 'index'])->name('asset');
+    Route::get('/', [AssetController::class, 'index'])->name('asset');
+    Route::get('/create', [AssetController::class, 'create'])->name('asset.create');
+    Route::post('/store', [AssetController::class, 'store'])->name('asset.store');
 });
 
 // POSITION / DESIGNATION

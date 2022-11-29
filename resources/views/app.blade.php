@@ -83,112 +83,96 @@
       </li>
 
       <!-- {{-- EMPLOYEE MANAGEMENT --}} -->
-      <!-- <li class="nav-group">
+      <li class="nav-group">
         <a class="nav-link nav-group-toggle" href="#">
           <svg class="nav-icon">
             <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-people"></use>
           </svg>
           HR Management
         </a>
-        <ul class="nav-group-items"> -->
-      <li class="nav-item">
-        <a class="nav-link" href="{{route('department')}}">
-          <svg class="nav-icon">
-            <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-room"></use>
-          </svg>
-          Departments
-        </a>
+        <ul class="nav-group-items">
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('department')}}">
+              <svg class="nav-icon">
+                <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-room"></use>
+              </svg>
+              Departments
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('position')}}">
+              <svg class="nav-icon">
+                <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-sitemap"></use>
+              </svg>
+              Positions
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('client')}}">
+              <svg class="nav-icon">
+                <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-list-rich"></use>
+              </svg>
+              Clients
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('location')}}">
+              <svg class="nav-icon">
+                <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-location-pin"></use>
+              </svg>
+              Locations
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('employee')}}">
+              <svg class="nav-icon">
+                <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-wc"></use>
+              </svg>
+              Employees
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('deployment')}}">
+              <svg class="nav-icon">
+                <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-task"></use>
+              </svg>
+              Deployment
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('memo')}}">
+              <svg class="nav-icon">
+                <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-description"></use>
+              </svg>
+              Memos
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <svg class="nav-icon">
+                <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-bullhorn"></use>
+              </svg>
+              Notices
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <svg class="nav-icon">
+                <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-inbox"></use>
+              </svg>
+              Case
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <svg class="nav-icon">
+                <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-info"></use>
+              </svg>
+              Quit Claims
+            </a>
+          </li>
+        </ul>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{route('position')}}">
-          <svg class="nav-icon">
-            <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-sitemap"></use>
-          </svg>
-          Positions
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{route('client')}}">
-          <svg class="nav-icon">
-            <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-list-rich"></use>
-          </svg>
-          Clients
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{route('location')}}">
-          <svg class="nav-icon">
-            <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-location-pin"></use>
-          </svg>
-          Locations
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{route('employee')}}">
-          <svg class="nav-icon">
-            <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-wc"></use>
-          </svg>
-          Employees
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{route('deployment')}}">
-          <svg class="nav-icon">
-            <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-task"></use>
-          </svg>
-          Deployment
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{route('memo')}}">
-          <svg class="nav-icon">
-            <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-description"></use>
-          </svg>
-          Memos
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <svg class="nav-icon">
-            <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-bullhorn"></use>
-          </svg>
-          Notices
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <svg class="nav-icon">
-            <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-inbox"></use>
-          </svg>
-          Case
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <svg class="nav-icon">
-            <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-check-circle"></use>
-          </svg>
-          Settlements
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <svg class="nav-icon">
-            <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-info"></use>
-          </svg>
-          Quit Claims
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <svg class="nav-icon">
-            <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-phone"></use>
-          </svg>
-          Communication
-        </a>
-      </li>
-      <!-- </ul>
-      </li> -->
       <!-- {{-- /EMPLOYEE MANAGEMENT --}} -->
 
       {{-- SETTINGS MANAGEMENT --}}
@@ -245,69 +229,69 @@
         <ul class="nav-group-items">
           <li class="nav-item">
             <a class="nav-link" href="{{route('job.vacancy')}}">
-      <svg class="nav-icon"></svg>
-      Post Vacancy</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{route('job.applicants')}}">
-          <svg class="nav-icon"></svg>
-          Applicants
+              <svg class="nav-icon"></svg>
+              Post Vacancy</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('job.applicants')}}">
+              <svg class="nav-icon"></svg>
+              Applicants
+            </a>
+          </li>
+        </ul>
+      </li> --}}
+      {{-- /RECRUITMENT MANAGEMENT --}}
+
+      {{-- THIS SECTION SITS AT THE BOTTOM --}}
+      {{-- USER MANAGEMENT --}}
+      @can('user_management_access')
+      <!-- USER MANAGEMENT -->
+      <li class="nav-group mt-auto">
+        <a class="nav-link nav-group-toggle" href="#">
+          <svg class="nav-icon">
+            <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-user"></use>
+          </svg>
+          User Management
         </a>
+        <ul class="nav-group-items">
+          @can('permission_access')
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('permission')}}">
+              <svg class="nav-icon">
+                <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-lock-unlocked"></use>
+              </svg>
+              Permissions</a>
+          </li>
+          @endcan
+
+          @can('role_access')
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('role')}}">
+              <svg class="nav-icon">
+                <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-briefcase"></use>
+              </svg>
+              Roles</a>
+          </li>
+          @endcan
+
+          @can('user_access')
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('user')}}">
+              <svg class="nav-icon">
+                <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-people"></use>
+              </svg>
+              Users</a>
+          </li>
+          @endcan
+
+        </ul>
       </li>
-    </ul>
-    </li> --}}
-    {{-- /RECRUITMENT MANAGEMENT --}}
+      <!-- /USER MANAGEMENT -->
+      @endcan
+      {{-- /USER MANAGEMENT --}}
 
-    {{-- THIS SECTION SITS AT THE BOTTOM --}}
-    {{-- USER MANAGEMENT --}}
-    @can('user_management_access')
-    <!-- USER MANAGEMENT -->
-    <li class="nav-group mt-auto">
-      <a class="nav-link nav-group-toggle" href="#">
-        <svg class="nav-icon">
-          <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-user"></use>
-        </svg>
-        User Management
-      </a>
-      <ul class="nav-group-items">
-        @can('permission_access')
-        <li class="nav-item">
-          <a class="nav-link" href="{{route('permission')}}">
-            <svg class="nav-icon">
-              <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-lock-unlocked"></use>
-            </svg>
-            Permissions</a>
-        </li>
-        @endcan
-
-        @can('role_access')
-        <li class="nav-item">
-          <a class="nav-link" href="{{route('role')}}">
-            <svg class="nav-icon">
-              <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-briefcase"></use>
-            </svg>
-            Roles</a>
-        </li>
-        @endcan
-
-        @can('user_access')
-        <li class="nav-item">
-          <a class="nav-link" href="{{route('user')}}">
-            <svg class="nav-icon">
-              <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-people"></use>
-            </svg>
-            Users</a>
-        </li>
-        @endcan
-
-      </ul>
-    </li>
-    <!-- /USER MANAGEMENT -->
-    @endcan
-    {{-- /USER MANAGEMENT --}}
-
-    {{-- DOCUMENT MANAGEMENT --}}
-    {{-- <li class="nav-group">
+      {{-- DOCUMENT MANAGEMENT --}}
+      {{-- <li class="nav-group">
         <a class="nav-link nav-group-toggle" href="#">
           <svg class="nav-icon">
             <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-description"></use>
@@ -317,19 +301,19 @@
         <ul class="nav-group-items">
           <li class="nav-item">
             <a class="nav-link" href="{{route('docs.employee')}}">
-    <svg class="nav-icon"></svg>
-    Employee</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="{{route('docs.client')}}">
-        <svg class="nav-icon"></svg>
-        Client
-      </a>
-    </li>
-    </ul>
-    </li> --}}
-    {{-- /DOCUMENT MANAGEMENT --}}
-    {{-- /THIS SECTION SITS AT THE BOTTOM --}}
+              <svg class="nav-icon"></svg>
+              Employee</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('docs.client')}}">
+              <svg class="nav-icon"></svg>
+              Client
+            </a>
+          </li>
+        </ul>
+      </li> --}}
+      {{-- /DOCUMENT MANAGEMENT --}}
+      {{-- /THIS SECTION SITS AT THE BOTTOM --}}
 
     </ul>
     <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
@@ -375,7 +359,8 @@
         </ul>
         <ul class="header-nav ms-3">
           <li class="nav-item dropdown">
-            <a class="nav-link py-0" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link py-0" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+              aria-expanded="false">
               <div class="avatar avatar-md">
                 @if(Auth::user()->avatar_slug == null)
                 <img class="avatar-img avtr" src="/theme/assets/img/avatars/default_avatar.jpeg" />
@@ -461,10 +446,12 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   <script src="{!! asset('theme/js/jquery.dataTables.min.js') !!}"></script>
   <!-- CoreUI and necessary plugins-->
-  {{-- <script src="{!! asset('theme/vendors/@coreui/coreui/js/coreui.bundle.min.js') !!}"></script> --}}
+  {{--
+  <script src="{!! asset('theme/vendors/@coreui/coreui/js/coreui.bundle.min.js') !!}"></script> --}}
   <script src="{!! asset('theme/vendors/simplebar/js/simplebar.min.js') !!}"></script>
   <!-- Plugins and scripts required by this view-->
-  {{-- <script src="{!! asset('theme/js/multi-select.js') !!}"></script> --}}
+  {{--
+  <script src="{!! asset('theme/js/multi-select.js') !!}"></script> --}}
   <script src="{!! asset('theme/js/select2.min.js') !!}"></script>
   <script src="{!! asset('theme/js/sweetalert2@11.js') !!}"></script>
   <script src="{!! asset('theme/js/summernote-lite.min.js') !!}"></script>

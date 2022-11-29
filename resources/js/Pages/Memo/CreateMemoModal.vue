@@ -2,6 +2,10 @@
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 import { ref, onMounted } from "vue";
 
+const dprops = defineProps({
+  props: Array
+});
+
 const memoform = useForm({
   to: "",
   from: "",
@@ -64,13 +68,16 @@ onMounted(()=>{
 					<div class="modal-body">
 						<div class="row g-3">
 							<div class="col-md-4">
-								<label for="to" class="form-label">To</label>
-								<input
-									type="text"
-									class="form-control"
-									id="to"
-									v-model="memoform.to"
-								/>
+								<label for="to" class="form-label">Employee</label>
+								<select class="form-select" id="to" v-model="memoform.to">
+									<option
+										v-for="(employees, keyEmployees) in props.employees"
+										:key="keyEmployees"
+										:value="employees.id"
+									>
+										{{ employees.firstname + " " + employees.lastname }}
+									</option>
+								</select>
 								<div
 									class="invalid-feedback"
 									v-show="memoform.errors.to"

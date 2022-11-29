@@ -1,10 +1,10 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
-import CreateMemoModal from "./CreateMemoModal.vue";
+import CreateQuitClaimsModal from "./CreateQuitclaimsModal.vue";
 
 const props = defineProps({
-  memos: Array,
+  qclaims: Array,
   employees: Array,
   canCreate: Boolean,
 });
@@ -34,21 +34,21 @@ td {
 			<li class="breadcrumb-item">
 				<Link :href="route('dashboard')">Dashboard</Link>
 			</li>
-			<li class="breadcrumb-item active" aria-current="page">Memo</li>
+			<li class="breadcrumb-item active" aria-current="page">Quit Claims</li>
 		</template>
 
 		<div class="col-md-12 text-end mb-2">
 			<button
 				class="btn btn-dark btn-sm"
-				@click="openClickedModal('createMemoModal')"
+				@click="openClickedModal('createQuitClaimsModal')"
 			>
-				Create Memo
+				Create Quit Claims
 			</button>
 		</div>
 
 		<div class="col-12">
 			<div class="card mb-4">
-				<div class="card-header">Memo List</div>
+				<div class="card-header">Quit CLaim List</div>
 				<div class="card-body">
 					<div class="row">
 						<div class="col-md-12">
@@ -56,26 +56,27 @@ td {
 								<thead>
 									<tr>
 										<th>Date</th>
-										<th>Subject</th>
-										<th>Content</th>
+										<th>Employee</th>
+										<th>Amount</th>
 										<th style="width: 100px"></th>
 									</tr>
 								</thead>
-								<tbody v-if="memos.length > 0">
-									<tr v-for="(memo, keyMemo) in memos" :key="keyMemo">
+								<tbody v-if="qclaims.length > 0">
+									<tr v-for="(qclaim, keyQclaim) in qclaims" :key="keyQclaim">
 										<td style="width: 100px; vertical-align: baseline">
-											{{ memo.memo_date }}
+											{{ qclaim.claims_effective_date }}
 										</td>
 										<td style="width: 200px; vertical-align: baseline">
-											{{ memo.subject }}
+											{{
+												qclaim.employee.firstname +
+												" " +
+												qclaim.employee.middlename +
+												" " +
+												qclaim.employee.lastname
+											}}
 										</td>
-										<td>
-											<div v-if="memo.content.length < 100">
-												{{ memo.content }}
-											</div>
-											<div v-if="memo.content.length >= 100">
-												{{ memo.content.substring(0, 100) + "..." }}
-											</div>
+										<td style="width: 200px; vertical-align: baseline">
+											{{ qclaim.amount }}
 										</td>
 										<td style="width: 100px; vertical-align: baseline">
 											<button
@@ -110,6 +111,6 @@ td {
 				</div>
 			</div>
 		</div>
-		<CreateMemoModal :props="props" />
+		<CreateQuitClaimsModal :props="props" />
 	</AuthenticatedLayout>
 </template>

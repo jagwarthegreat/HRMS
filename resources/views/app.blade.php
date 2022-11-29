@@ -107,6 +107,36 @@
               Locations
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('settings.emp.statuses')}}">
+              <svg class="nav-icon"></svg>
+              Employee Statuses
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('settings.emp.types')}}">
+              <svg class="nav-icon"></svg>
+              Employment Types
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('settings.compensation.types')}}">
+              <svg class="nav-icon"></svg>
+              Compensation Types
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('settings.doc.category')}}">
+              <svg class="nav-icon"></svg>
+              Document Category
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('settings.requirement.category')}}">
+              <svg class="nav-icon"></svg>
+              Hiring Requirements
+            </a>
+          </li>
         </ul>
       </li>
       <!-- {{-- /MASTERDATA MANAGEMENT --}} -->
@@ -177,7 +207,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{route('quitclaims')}}">
               <!-- <svg class="nav-icon">
                 <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-info"></use>
               </svg> -->
@@ -208,49 +238,6 @@
         </ul>
       </li>
       <!-- {{-- /TRANSACTION MANAGEMENT --}} -->
-
-      {{-- SETTINGS MANAGEMENT --}}
-      <li class="nav-group">
-        <a class="nav-link nav-group-toggle" href="#">
-          <svg class="nav-icon">
-            <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-cog"></use>
-          </svg>
-          Settings
-        </a>
-        <ul class="nav-group-items">
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('settings.emp.statuses')}}">
-              <svg class="nav-icon"></svg>
-              Employee Statuses
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('settings.emp.types')}}">
-              <svg class="nav-icon"></svg>
-              Employment Types
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('settings.compensation.types')}}">
-              <svg class="nav-icon"></svg>
-              Compensation Types
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('settings.doc.category')}}">
-              <svg class="nav-icon"></svg>
-              Document Category
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('settings.requirement.category')}}">
-              <svg class="nav-icon"></svg>
-              Hiring Requirements
-            </a>
-          </li>
-        </ul>
-      </li>
-      {{-- /SETTINGS MANAGEMENT --}}
 
       {{-- RECRUITMENT MANAGEMENT --}}
       {{-- <li class="nav-group">

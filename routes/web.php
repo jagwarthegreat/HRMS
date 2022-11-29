@@ -17,6 +17,7 @@ use App\Http\Controllers\EmpTypeHistoryController;
 use App\Http\Controllers\HiringRequirementController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\MemoController;
+use App\Http\Controllers\QuitClaimController;
 use App\Http\Controllers\PayTypeController;
 use App\Http\Controllers\PermisionController;
 use App\Http\Controllers\Position;
@@ -158,6 +159,13 @@ Route::prefix('memo')->middleware('auth')->group(function () {
     Route::get('/', [MemoController::class, 'index'])->name('memo');
     Route::post('/store', [MemoController::class, 'store'])->name('memo.store');
     Route::delete('/destroy/{id}', [MemoController::class, 'destroy'])->name('memo.destroy');
+});
+
+// QUIT CLAIMS
+Route::prefix('quitclaims')->middleware('auth')->group(function () {
+    Route::get('/', [QuitClaimController::class, 'index'])->name('quitclaims');
+    Route::post('/store', [QuitClaimController::class, 'store'])->name('quitclaims.store');
+    Route::delete('/destroy/{id}', [QuitClaimController::class, 'destroy'])->name('quitclaims.destroy');
 });
 
 // CLIENTS

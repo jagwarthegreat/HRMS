@@ -22,7 +22,14 @@ class RoleTableSeeder extends Seeder
                 "created_at" => "2022-11-07 06:48:24",
                 "updated_at" => "2022-11-07 06:48:24",
             ),
+            array(
+                "id" => 2,
+                "title" => "Admin",
+                "created_at" => "2022-11-30 12:06:33",
+                "updated_at" => "2022-11-30 12:06:33",
+            ),
         );
+
 
         Role::insert($roles);
     }

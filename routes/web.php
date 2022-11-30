@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\DeploymentController;
 use App\Http\Controllers\DocumentCategoryController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\EmpCompensationHistoryController;
@@ -146,9 +147,9 @@ Route::prefix('location')->middleware('auth')->group(function () {
 
 // DEPLOYMENT
 Route::prefix('deployment')->middleware('auth')->group(function () {
-    Route::get('/', [LocationController::class, 'index'])->name('deployment');
-    // Route::post('/store', [LocationController::class, 'store'])->name('deployment.store');
-    // Route::delete('/destroy/{id}', [LocationController::class, 'destroy'])->name('deployment.destroy');
+    Route::get('/', [DeploymentController::class, 'index'])->name('deployment');
+    Route::post('/store', [DeploymentController::class, 'store'])->name('deployment.store');
+    Route::delete('/destroy/{id}', [DeploymentController::class, 'destroy'])->name('deployment.destroy');
 });
 
 // RECRUITMENT

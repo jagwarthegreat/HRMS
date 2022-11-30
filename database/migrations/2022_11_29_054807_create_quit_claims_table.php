@@ -19,6 +19,7 @@ return new class extends Migration
             $table->decimal('amount', 12, 3)->nullable();
             $table->date('resgnation_effective_date')->nullable();
             $table->date('claims_effective_date')->nullable();
+            $table->string('status', 10)->default("Pending");
             $table->timestamps();
         });
     }

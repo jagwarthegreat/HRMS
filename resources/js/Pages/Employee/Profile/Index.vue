@@ -143,7 +143,7 @@ a.nav-link {
 										Edit
 									</button>
 
-									<a
+									<!-- <a
 										class="btn btn-sm btn-danger ms-auto me-1 text-light"
 										href=""
 									>
@@ -153,7 +153,7 @@ a.nav-link {
 											></use>
 										</svg>
 										Terminate
-									</a>
+									</a> -->
 								</div>
 							</div>
 						</div>

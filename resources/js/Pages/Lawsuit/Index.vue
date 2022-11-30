@@ -16,7 +16,7 @@ function openClickedModal(modal) {
 const form = useForm();
 function destroy(id) {
   if (confirm("Are you sure you want to Delete")) {
-      form.delete(route('quitclaims.destroy', id));
+      form.delete(route('lawsuit.destroy', id));
   }
 }
 </script>
@@ -72,7 +72,9 @@ td {
 											{{ lawsuit.case_date }}
 										</td>
 										<td style="vertical-align: baseline">
-											{{ lawsuit.case }}
+											<a :href="route('lawsuit.settlement', lawsuit.id)">
+												{{ lawsuit.case }}
+											</a>
 										</td>
 										<td style="vertical-align: baseline">
 											{{ lawsuit.complainant }}
@@ -84,6 +86,17 @@ td {
 											{{ lawsuit.status }}
 										</td>
 										<td style="width: 100px; vertical-align: baseline">
+											<!-- <button
+												class="btn btn-sm btn-ghost-secondary text-dark"
+												:class="{ 'opacity-25': form.processing }"
+												:disabled="form.processing"
+											>
+												<svg class="icon">
+													<use
+														xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-pen"
+													></use>
+												</svg>
+											</button> -->
 											<button
 												class="btn btn-sm btn-ghost-secondary text-dark"
 												@click="destroy(lawsuit.id)"
@@ -93,17 +106,6 @@ td {
 												<svg class="icon">
 													<use
 														xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-trash"
-													></use>
-												</svg>
-											</button>
-											<button
-												class="btn btn-sm btn-ghost-secondary text-dark"
-												:class="{ 'opacity-25': form.processing }"
-												:disabled="form.processing"
-											>
-												<svg class="icon">
-													<use
-														xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-print"
 													></use>
 												</svg>
 											</button>

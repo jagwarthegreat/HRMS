@@ -27,6 +27,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\LawsuitController;
+use App\Http\Controllers\SettlementController;
 use App\Models\EmployeeEducationalBackground;
 use App\Models\EmpStatusHistory;
 use Illuminate\Foundation\Application;
@@ -182,6 +183,11 @@ Route::prefix('lawsuit')->middleware('auth')->group(function () {
     Route::get('/', [LawsuitController::class, 'index'])->name('lawsuit');
     Route::post('/store', [LawsuitController::class, 'store'])->name('lawsuit.store');
     Route::delete('/destroy/{id}', [LawsuitController::class, 'destroy'])->name('lawsuit.destroy');
+
+    // settlements
+    Route::get('/{id}/settlement', [SettlementController::class, 'index'])->name('lawsuit.settlement');
+    Route::post('/settlement/store', [SettlementController::class, 'store'])->name('lawsuit.settlement.store');
+    Route::delete('/settlement/destroy/{id}', [SettlementController::class, 'destroy'])->name('lawsuit.settlement.destroy');
 });
 
 // CLIENTS

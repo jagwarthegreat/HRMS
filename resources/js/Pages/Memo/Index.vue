@@ -19,6 +19,10 @@ function destroy(id) {
       form.delete(route('memo.destroy', id));
   }
 }
+
+function htmlDecode(value) {
+    return $("<textarea/>").html(value).text();
+}
 </script>
 <style scoped>
 td {
@@ -76,12 +80,16 @@ td {
 											}}
 										</td>
 										<td>
-											<div v-if="memo.content.length < 100">
-												{{ memo.content }}
-											</div>
-											<div v-if="memo.content.length >= 100">
-												{{ memo.content.substring(0, 100) + "..." }}
-											</div>
+											<div
+												v-if="memo.content.length < 100"
+												v-html="htmlDecode(memo.content)"
+											></div>
+											<div
+												v-if="memo.content.length >= 100"
+												v-html="
+													htmlDecode(memo.content.substring(0, 100) + '...')
+												"
+											></div>
 										</td>
 										<td style="width: 100px; vertical-align: baseline">
 											<button

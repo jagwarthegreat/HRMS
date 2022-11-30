@@ -20,7 +20,7 @@ const submitForm = () => {
     onSuccess: () => {
     	$('#selectinput').prop('checked', false);
 			changeInput();
-
+			$('.summernote').summernote('reset');
       lawsuitform.reset("complainant", "respondent", "case_date", "case_name", "status", "content");
       $("#createLawsuitModal").modal("hide");
     },
@@ -52,6 +52,7 @@ function changeInput() {
 		$("#complainant_employee").show();
 		$("#complainant").hide();
 	}else{
+		lawsuitform.complainant = "";
 		$("#complainant_employee").hide();
 		$("#complainant").show();
 	}
@@ -111,13 +112,15 @@ function changeInput() {
 										aria-label="selectinput"
 										style="display: none"
 									>
-										<option
-											v-for="(employees, keyEmployees) in props.employees"
-											:key="keyEmployees"
-											:value="employees.id"
-										>
-											{{ employees.firstname + " " + employees.lastname }}
-										</option>
+										<optgroup label="Employees">
+											<option
+												v-for="(employees, keyEmployees) in props.employees"
+												:key="keyEmployees"
+												:value="employees.id"
+											>
+												{{ employees.firstname + " " + employees.lastname }}
+											</option>
+										</optgroup>
 									</select>
 								</div>
 								<div

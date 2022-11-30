@@ -7,20 +7,19 @@ const dprops = defineProps({
 });
 
 const qclaimsform = useForm({
-  to: "",
-  from: "",
-  memo_date: "",
-  subject: "",
-  content: "",
+  employee: "",
+  amount: "",
+  resignation_date: "",
+  claims_date: "",
 });
 
 const submitForm = () => {
-  // qclaimsform.post(route("memo.store"), {
-  //   onSuccess: () => {
-  //     qclaimsform.reset("to", "from", "memo_date", "subject", "content");
-  //     $("#createMemoModal").modal("hide");
-  //   },
-  // });
+  qclaimsform.post(route("quitclaims.store"), {
+    onSuccess: () => {
+      qclaimsform.reset("employee", "amount", "resignation_date", "claims_date");
+      $("#createQuitClaimsModal").modal("hide");
+    },
+  });
 };
 </script>
 
@@ -50,11 +49,11 @@ const submitForm = () => {
 					<div class="modal-body">
 						<div class="row g-3">
 							<div class="col-md-12">
-								<label for="to" class="form-label">Employee</label>
+								<label for="employee" class="form-label">Employee</label>
 								<select
 									class="form-select"
 									id="employee"
-									v-model="qclaimsform.to"
+									v-model="qclaimsform.employee"
 								>
 									<option
 										v-for="(employees, keyEmployees) in props.employees"
@@ -69,57 +68,57 @@ const submitForm = () => {
 									v-show="qclaimsform.errors.employee"
 									style="display: block"
 								>
-									{{ qclaimsform.errors.to }}
+									{{ qclaimsform.errors.employee }}
 								</div>
 							</div>
 							<div class="col-md-4">
-								<label for="from" class="form-label">Amount</label>
+								<label for="amount" class="form-label">Amount</label>
 								<input
-									type="text"
+									type="number"
 									class="form-control"
-									id="from"
-									v-model="qclaimsform.from"
+									id="amount"
+									v-model="qclaimsform.amount"
 								/>
 								<div
 									class="invalid-feedback"
-									v-show="qclaimsform.errors.from"
+									v-show="qclaimsform.errors.amount"
 									style="display: block"
 								>
-									{{ qclaimsform.errors.from }}
+									{{ qclaimsform.errors.amount }}
 								</div>
 							</div>
 							<div class="col-md-4">
-								<label for="memo_date" class="form-label"
+								<label for="resignation_date" class="form-label"
 									>Resignation Date</label
 								>
 								<input
 									type="date"
 									class="form-control"
-									id="memo_date"
-									v-model="qclaimsform.memo_date"
+									id="resignation_date"
+									v-model="qclaimsform.resignation_date"
 								/>
 								<div
 									class="invalid-feedback"
-									v-show="qclaimsform.errors.memo_date"
+									v-show="qclaimsform.errors.resignation_date"
 									style="display: block"
 								>
-									{{ qclaimsform.errors.memo_date }}
+									{{ qclaimsform.errors.resignation_date }}
 								</div>
 							</div>
 							<div class="col-4">
-								<label for="subject" class="form-label">Claims Date</label>
+								<label for="claims_date" class="form-label">Claims Date</label>
 								<input
 									type="date"
 									class="form-control"
-									id="subject"
-									v-model="qclaimsform.subject"
+									id="claims_date"
+									v-model="qclaimsform.claims_date"
 								/>
 								<div
 									class="invalid-feedback"
-									v-show="qclaimsform.errors.subject"
+									v-show="qclaimsform.errors.claims_date"
 									style="display: block"
 								>
-									{{ qclaimsform.errors.subject }}
+									{{ qclaimsform.errors.claims_date }}
 								</div>
 							</div>
 						</div>

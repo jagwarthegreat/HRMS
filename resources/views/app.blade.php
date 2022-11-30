@@ -191,7 +191,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{route('notice')}}">
               <!-- <svg class="nav-icon">
                 <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-bullhorn"></use>
               </svg> -->
@@ -199,11 +199,11 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{route('lawsuit')}}">
               <!-- <svg class="nav-icon">
                 <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-inbox"></use>
               </svg> -->
-              Case
+              Lawsuit/Cases
             </a>
           </li>
           <li class="nav-item">
@@ -394,12 +394,12 @@
               <div class="dropdown-header bg-light py-2">
                 <div class="fw-semibold">Account</div>
               </div>
-              <a class="dropdown-item" href="#">
+              <!-- <a class="dropdown-item" href="#">
                 <svg class="icon me-2">
                   <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-bell"></use>
                 </svg>
                 Updates<span class="badge badge-sm bg-info ms-2">42</span>
-              </a>
+              </a> -->
               <!-- <a class="dropdown-item" href="#">
                 <svg class="icon me-2">
                   <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>

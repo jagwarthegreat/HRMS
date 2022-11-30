@@ -1,10 +1,10 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
-import CreateQuitClaimsModal from "./CreateQuitclaimsModal.vue";
+import CreateLawsuitModal from "./CreateLawsuitModal.vue";
 
 const props = defineProps({
-  qclaims: Array,
+  lawsuits: Array,
   employees: Array,
   canCreate: Boolean,
 });
@@ -27,28 +27,28 @@ td {
 }
 </style>
 <template>
-	<Head title="Quit Claims" />
+	<Head title="Lawsuit/Cases" />
 
 	<AuthenticatedLayout>
 		<template #breadcrumbs>
 			<li class="breadcrumb-item">
 				<Link :href="route('dashboard')">Dashboard</Link>
 			</li>
-			<li class="breadcrumb-item active" aria-current="page">Quit Claims</li>
+			<li class="breadcrumb-item active" aria-current="page">Lawsuit/Cases</li>
 		</template>
 
 		<div class="col-md-12 text-end mb-2">
 			<button
 				class="btn btn-dark btn-sm"
-				@click="openClickedModal('createQuitClaimsModal')"
+				@click="openClickedModal('createLawsuitModal')"
 			>
-				Create Quit Claims
+				Create New Lawsuit
 			</button>
 		</div>
 
 		<div class="col-12">
 			<div class="card mb-4">
-				<div class="card-header">Quit CLaim List</div>
+				<div class="card-header">Lawsuit List</div>
 				<div class="card-body">
 					<div class="row">
 						<div class="col-md-12">
@@ -56,32 +56,37 @@ td {
 								<thead>
 									<tr>
 										<th>Date</th>
-										<th>Employee</th>
-										<th>Amount</th>
+										<th>Case</th>
+										<th>Complianant</th>
+										<th>Respondent</th>
+										<th>Status</th>
 										<th style="width: 100px"></th>
 									</tr>
 								</thead>
-								<tbody v-if="qclaims.length > 0">
-									<tr v-for="(qclaim, keyQclaim) in qclaims" :key="keyQclaim">
+								<tbody v-if="lawsuits.length > 0">
+									<tr
+										v-for="(lawsuit, keyLawsuit) in lawsuits"
+										:key="keyLawsuit"
+									>
 										<td style="width: 100px; vertical-align: baseline">
-											{{ qclaim.claims_effective_date }}
+											{{ lawsuit.case_date }}
 										</td>
-										<td style="width: 200px; vertical-align: baseline">
-											{{
-												qclaim.employee.firstname +
-												" " +
-												qclaim.employee.middlename +
-												" " +
-												qclaim.employee.lastname
-											}}
+										<td style="vertical-align: baseline">
+											{{ lawsuit.case }}
 										</td>
-										<td style="width: 200px; vertical-align: baseline">
-											{{ qclaim.amount }}
+										<td style="vertical-align: baseline">
+											{{ lawsuit.complainant }}
+										</td>
+										<td style="vertical-align: baseline">
+											{{ lawsuit.respondent }}
+										</td>
+										<td style="vertical-align: baseline">
+											{{ lawsuit.status }}
 										</td>
 										<td style="width: 100px; vertical-align: baseline">
 											<button
 												class="btn btn-sm btn-ghost-secondary text-dark"
-												@click="destroy(qclaim.id)"
+												@click="destroy(lawsuit.id)"
 												:class="{ 'opacity-25': form.processing }"
 												:disabled="form.processing"
 											>
@@ -111,6 +116,6 @@ td {
 				</div>
 			</div>
 		</div>
-		<CreateQuitClaimsModal :props="props" />
+		<CreateLawsuitModal :props="props" />
 	</AuthenticatedLayout>
 </template>

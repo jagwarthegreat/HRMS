@@ -25,7 +25,7 @@ td {
 			</thead>
 			<tbody>
 				<tr v-if="props.employee.memos.length < 1">
-					<td colspan="5">No documents found.</td>
+					<td colspan="5">No memos found.</td>
 				</tr>
 				<tr
 					v-else

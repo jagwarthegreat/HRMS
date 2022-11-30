@@ -19,7 +19,7 @@ class QuitClaimController extends Controller
         //     '403 Forbidden'
         // );
 
-        $qclaims = QuitClaim::all();
+        $qclaims = QuitClaim::with(['employee'])->get();
         $employees = Employee::all();
         $canCreate = Gate::allows('position_create');
 
@@ -34,31 +34,27 @@ class QuitClaimController extends Controller
         //     '403 Forbidden'
         // );
 
-        // htmlentities(str_replace("'", "&#x2019;", $v));
-
         $request->validate([
-            'to' => 'required',
-            'from' => 'required',
-            'memo_date' => 'required',
-            'subject' => 'required',
-            'content' => 'required',
+            'employee' => 'required',
+            'amount' => 'required',
+            'resignation_date' => 'required',
+            'claims_date' => 'required',
         ]);
 
         QuitClaim::create([
-            'to' => $request->to,
-            'from' => $request->from,
-            'memo_date' => $request->memo_date,
-            'subject' => $request->subject,
-            'content' => htmlentities(str_replace("'", "&#x2019;", $request->content))
+            'employee_id' => $request->employee,
+            'amount' => $request->amount,
+            'resgnation_effective_date' => $request->resignation_date,
+            'claims_effective_date' => $request->claims_date
         ]);
 
-        return redirect()->route('memo');
+        return redirect()->route('quitclaims');
     }
 
     public function destroy(Request $request, $id)
     {
         QuitClaim::find($id)->delete();
 
-        return redirect()->route('memo');
+        return redirect()->route('quitclaims');
     }
 }

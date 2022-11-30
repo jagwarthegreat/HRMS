@@ -174,14 +174,14 @@
               Employees
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="{{route('deployment')}}">
-              <!-- <svg class="nav-icon">
+              <svg class="nav-icon">
                 <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-task"></use>
-              </svg> -->
+              </svg>
               Deployment
             </a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a class="nav-link" href="{{route('memo')}}">
               <!-- <svg class="nav-icon">

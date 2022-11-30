@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\ProcurementController;
 use App\Http\Controllers\StockCategoryController;
 use App\Http\Controllers\StockController;
@@ -127,10 +128,13 @@ Route::prefix('stock')->middleware('auth')->group(function () {
     Route::post('/category/store', [StockCategoryController::class, 'store'])->name('stock.category.store');
 });
 
-// STOCK
+// PROCUREMENT
 Route::prefix('procurement')->middleware('auth')->group(function () {
     Route::get('/', [ProcurementController::class, 'index'])->name('procurement');
     Route::post('/store', [ProcurementController::class, 'store'])->name('procurement.store');
+    Route::get('/{id}', [ProcurementController::class, 'show'])->name('procurement.show');
+
+    Route::post('/details/store', [ProcurementDetailController::class, 'store'])->name('procurement.detail.store');
 });
 
 // POSITION / DESIGNATION

@@ -17,6 +17,7 @@ const procurementForm = useForm({
 const submitForm = () => {
   procurementForm.post(route("procurement.store"), {
     onSuccess: () => {
+      location.reload();
       procurementForm.reset("invoice");
       procurementForm.reset("supplier");
       procurementForm.reset("remarks");
@@ -26,6 +27,7 @@ const submitForm = () => {
     },
   });
 };
+
 </script>
 
 <template>
@@ -41,7 +43,9 @@ const submitForm = () => {
       <div class="modal-content">
         <form @submit.prevent="submitForm">
           <div class="modal-header">
-            <h5 class="modal-title" id="createProcurementModal">Add Procurement</h5>
+            <h5 class="modal-title" id="createProcurementModal">
+              Add Procurement
+            </h5>
             <button
               type="button"
               class="btn-close"
@@ -106,7 +110,7 @@ const submitForm = () => {
                   id="remarks"
                   v-model="procurementForm.remarks"
                 >
-              </textarea>
+                </textarea>
                 <div
                   class="invalid-feedback"
                   v-show="procurementForm.errors.remarks"

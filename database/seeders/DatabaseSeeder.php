@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
             EmployeeTypeTableSeeder::class,
             DocumentCategoryTableSeeder::class,
             HiringRequirementsTableSeeder::class,
-            AssetCategoryTableSeeder::class,
+            StockCategoryTableSeeder::class,
         ]);
     }
 }

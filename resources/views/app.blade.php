@@ -92,14 +92,6 @@
         </a>
         <ul class="nav-group-items">
           <li class="nav-item">
-            <a class="nav-link" href="{{route('asset')}}">
-              <!-- <svg class="nav-icon">
-                <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-list-rich"></use>
-              </svg> -->
-              Assets
-            </a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="{{route('client')}}">
               <!-- <svg class="nav-icon">
                 <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-list-rich"></use>
@@ -143,6 +135,22 @@
             <a class="nav-link" href="{{route('settings.requirement.category')}}">
               <svg class="nav-icon"></svg>
               Hiring Requirements
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('stock')}}">
+              <!-- <svg class="nav-icon">
+                <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-list-rich"></use>
+              </svg> -->
+              Stocks
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('stock.category')}}">
+              <!-- <svg class="nav-icon">
+                <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-list-rich"></use>
+              </svg> -->
+              Stock Category
             </a>
           </li>
         </ul>

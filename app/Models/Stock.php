@@ -5,18 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Asset extends Model
+class Stock extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
+	protected $fillable = [
         "name",
         "unit",
-        "asset_category_id",
+        "stock_category_id",
     ];
 
-    public function asset_category()
+    public function stock_category()
     {
-        return $this->belongsTo(AssetCategory::class);
+        return $this->belongsTo(StockCategory::class);
     }
 }

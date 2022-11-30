@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\AssetController;
+use App\Http\Controllers\StockCategoryController;
+use App\Http\Controllers\StockController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DocumentCategoryController;
@@ -117,11 +118,13 @@ Route::prefix('employee')->middleware('auth')->group(function () {
     Route::post('/jobinfo/history/store', [EmpJobHistoryController::class, 'store'])->name('employee.jobinfohistory.store');
 });
 
-// ASSETS
-Route::prefix('asset')->middleware('auth')->group(function () {
-    Route::get('/', [AssetController::class, 'index'])->name('asset');
-    Route::get('/create', [AssetController::class, 'create'])->name('asset.create');
-    Route::post('/store', [AssetController::class, 'store'])->name('asset.store');
+// STOCK
+Route::prefix('stock')->middleware('auth')->group(function () {
+    Route::get('/', [StockController::class, 'index'])->name('stock');
+    Route::post('/store', [StockController::class, 'store'])->name('stock.store');
+
+    Route::get('/category', [StockCategoryController::class, 'index'])->name('stock.category');
+    Route::post('/category/store', [StockCategoryController::class, 'store'])->name('stock.category.store');
 });
 
 // POSITION / DESIGNATION

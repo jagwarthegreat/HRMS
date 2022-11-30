@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\AssetCategory;
+use App\Models\StockCategory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class AssetCategoryTableSeeder extends Seeder
+class StockCategoryTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,10 +15,10 @@ class AssetCategoryTableSeeder extends Seeder
      */
     public function run()
     {
-        $asset_categories = array(
+		$categories = array(
           array('id' => '1','name' => 'Consumables','created_at' => NULL,'updated_at' => NULL),
           array('id' => '2','name' => 'Office Equipment','created_at' => NULL,'updated_at' => NULL)
         );
-        AssetCategory::insert($asset_categories);
+		StockCategory::insert($categories);
     }
 }

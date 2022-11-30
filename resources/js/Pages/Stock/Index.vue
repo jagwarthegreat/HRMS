@@ -1,10 +1,16 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link } from "@inertiajs/inertia-vue3";
+import CreateStockModal from "./CreateStockModal.vue";
 
 defineProps({
-  assets: [],
+  stocks: [],
+  categories:[],
 });
+
+function openClickedModal(modal) {
+  $("#" + modal).modal("show");
+}
 
 const createEmployee = () => {
   alert("create client");
@@ -12,28 +18,26 @@ const createEmployee = () => {
 </script>
 
 <template>
-	<Head title="Assets" />
+	<Head title="Stocks" />
 
 	<AuthenticatedLayout>
 		<template #breadcrumbs>
 			<li class="breadcrumb-item">
 				<Link :href="route('dashboard')">Dashboard</Link>
 			</li>
-			<li class="breadcrumb-item active" aria-current="page">Assets</li>
+			<li class="breadcrumb-item active" aria-current="page">Stocks</li>
 		</template>
 
 		<div class="col-md-12 text-end mb-2">
-			<Link
-				class="btn btn-dark btn-sm"
-				:href="route('asset.create')"
-				method="get"
-				as="button"
+			<button
+			class="btn btn-dark btn-sm"
+			@click="openClickedModal('createStockModal')"
 			>
-				Create Asset
-			</Link>
+			Create Stocks
+			</button>
 		</div>
 		<div class="card mb-4">
-			<div class="card-header">Assets List</div>
+			<div class="card-header">Stocks List</div>
 			<div class="card-body">
 				<div class="col-md-12">
 					<div class="row">
@@ -46,21 +50,21 @@ const createEmployee = () => {
 									<th></th>
 								</tr>
 							</thead>
-							<tbody v-if="assets.length > 0">
-								<tr v-for="(asset, keyAsset) in assets" :key="keyAsset">
+							<tbody v-if="stocks.length > 0">
+								<tr v-for="(stock, keystock) in stocks" :key="keystock">
 									<td>
-										{{ asset.name }}
+										{{ stock.name }}
 									</td>
 									<td>
-										{{ asset.unit }}
+										{{ stock.unit }}
 									</td>
 									<td>
-										{{ asset.asset_category_id }}
+										{{ stock.stock_category.name }}
 									</td>
 									<td>
 										<Link
 											class="btn btn-sm btn-default ms-auto me-1"
-											:href="route('client.show', asset.id)"
+											:href="route('client.show', stock.id)"
 										>
 											<svg class="icon">
 												<use
@@ -77,5 +81,6 @@ const createEmployee = () => {
 				</div>
 			</div>
 		</div>
+	<CreateStockModal :categories="categories"></CreateStockModal>
 	</AuthenticatedLayout>
 </template>

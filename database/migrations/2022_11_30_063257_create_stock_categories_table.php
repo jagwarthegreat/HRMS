@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('assets', function (Blueprint $table) {
+        Schema::create('stock_categories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('asset_category_id')->constrained('asset_categories')->onDelete('cascade');
             $table->string('name',100);
-            $table->string('unit',15);
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('assets');
+        Schema::dropIfExists('stock_categories');
     }
 };

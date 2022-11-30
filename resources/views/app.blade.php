@@ -244,9 +244,9 @@
         </a>
         <ul class="nav-group-items">
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{route('procurement')}}">
               <!-- <svg class="nav-icon">
-                <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-room"></use>
+                <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-info"></use>
               </svg> -->
               Procurement
             </a>

@@ -15,10 +15,11 @@ return new class extends Migration
     {
         Schema::create('procurements', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('location_id')->constrained('locations')->onDelete('cascade');
             $table->string('reference',50);
             $table->string('invoice',50);
             $table->string('supplier',100);
-            $table->string('remarks',100);
+            $table->string('remarks',100)->nullable();
             $table->integer('status')->default(0);
             $table->date('date');
             $table->timestamps();

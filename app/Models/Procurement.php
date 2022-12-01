@@ -16,6 +16,7 @@ class Procurement extends Model
 		"remarks",
 		"status",
 		"date",
+		"location_id"
     ];
 
 }

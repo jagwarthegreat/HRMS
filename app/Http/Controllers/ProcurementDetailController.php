@@ -17,6 +17,7 @@ class ProcurementDetailController extends Controller
         ]);
 
         $procurement_data = ProcurementDetail::create([
+            "procurement_id" => $request->procurement_id,
             "stock_id" => $request->stock_id,
             "quantity" => $request->quantity,
             "cost" => $request->cost,

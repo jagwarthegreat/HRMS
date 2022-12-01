@@ -25,6 +25,8 @@ const submitForm = () => {
       procurementForm.reset("date");
       $("#createProcurementModal").modal("hide");
     },
+  }).then((response)=>function(){
+    console.log(response);
   });
 };
 

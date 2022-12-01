@@ -1,7 +1,9 @@
 <script setup>
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
+import ShowProcurementDetails from "./Details/ShowProcurementDetails.vue";
 
 const props = defineProps({
+  details:[],
   procurement:[],
   stocks:[],
 });
@@ -21,10 +23,26 @@ const submitDetailsForm = () => {
       procurementDetailsForm.reset("quantity");
       procurementDetailsForm.reset("cost");
       procurementDetailsForm.reset("amount");
-      $("#createProcurementDetailsModal").modal("hide");
     },
   });
 };
+
+
+const procurementFinishForm = useForm({
+  procurement_id:props.procurement.id
+});
+
+const finishForm = () => {
+  procurementFinishForm.post(route("procurement.finish"), {
+    onSuccess: () => {
+    },
+  });
+};
+
+const computeAmount = () => {
+  procurementDetailsForm.amount = procurementDetailsForm.quantity * procurementDetailsForm.cost;
+};
+
 </script>
 
 <style scoped>
@@ -146,7 +164,8 @@ td {
                       <span>:</span>
                     </td>
                     <td class="basicInfoData">
-                      {{ procurement.status }}
+                      <span v-show="procurement.status" class="badge text-bg-success">Finished</span>
+                      <span v-show="!procurement.status" class="badge text-bg-danger">Saved</span>
                     </td>
                   </tr>
                 </table>
@@ -156,7 +175,7 @@ td {
         </div>
       </div>
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4" v-show="procurement.status == 0">
           <div class="card mb-4">
             <div class="card-header">Add Stock</div>
             <div class="card-body">
@@ -187,10 +206,11 @@ td {
                 <div class="col-12">
                   <label for="quantity" class="form-label">Qty</label>
                   <input
-                    type="text"
+                    type="number"
                     class="form-control"
                     id="quantity"
                     v-model="procurementDetailsForm.quantity"
+                    @keyup="computeAmount"
                   />
                   <div
                     class="invalid-feedback"
@@ -203,10 +223,11 @@ td {
                 <div class="col-12">
                   <label for="cost" class="form-label">Cost</label>
                   <input
-                    type="text"
+                    type="number"
                     class="form-control"
                     id="cost"
                     v-model="procurementDetailsForm.cost"
+                    @keyup="computeAmount"
                   />
                   <div
                     class="invalid-feedback"
@@ -219,7 +240,7 @@ td {
                 <div class="col-12">
                   <label for="amount" class="form-label">Amount</label>
                   <input
-                    type="text"
+                    type="number"
                     class="form-control"
                     id="amount"
                     v-model="procurementDetailsForm.amount"
@@ -236,7 +257,7 @@ td {
                 <div class="col-md-12">
                   <button
                     type="submit"
-                    class="btn btn-sm btn-primary"
+                    class="btn btn-sm btn-secondary"
                     :class="{
                       'opacity-25': procurementDetailsForm.processing,
                     }"
@@ -249,35 +270,20 @@ td {
             </div>
           </div>
         </div>
-        <div class="col-md-8">
-          <div class="card mb-4">
-            <div class="card-header">Stock Lists</div>
-            <div class="card-body">
-              <table class="table table-hover">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Stock Name</th>
-                    <th>Qty</th>
-                    <th>Cost</th>
-                    <th>Amount</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody></tbody>
-              </table>
-            </div>
-          </div>
+        <div :class="props.procurement.status == 0 ?'col-md-8':'col-md-12'">
+          <ShowProcurementDetails :details="details"></ShowProcurementDetails>
         </div>
       </div>
     </div>
-    <div class="row">
+    <div class="row" v-show="procurement.status == 0">
       <div class="col-md-12">
         <button
           type="button"
-          class="btn btn-sm btn-primary"
-          :class="{ 'opacity-25': procurementDetailsForm.processing }"
-          :disabled="procurementDetailsForm.processing"
+          class="btn btn-primary rounded-pill"
+          style="float:right"
+          @click="finishForm"
+          :class="{ 'opacity-25': procurementFinishForm.processing }"
+          :disabled="procurementFinishForm.processing"
         >
           Finish Procurement
         </button>

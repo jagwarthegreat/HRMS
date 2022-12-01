@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('procurement_details', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('procurement_id')->constrained('procurements')->onDelete('cascade');
             $table->foreignId('stock_id')->constrained('stocks')->onDelete('cascade');
             $table->decimal('quantity', 12, 2);
             $table->decimal('cost', 12, 2);

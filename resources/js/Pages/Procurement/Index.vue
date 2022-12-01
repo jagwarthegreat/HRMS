@@ -12,7 +12,7 @@ const props = defineProps({
 
 function openClickedModal(modal,procurement=[]) {
 	// console.log(procurement);
-	if(procurement.length > 0){
+	//if(procurement.length > 0){
 		props.procurement_data.reference = procurement.reference;
 		props.procurement_data.id = procurement.id;
 		props.procurement_data.invoice = procurement.invoice;
@@ -20,7 +20,7 @@ function openClickedModal(modal,procurement=[]) {
 		props.procurement_data.supplier = procurement.supplier;
 		props.procurement_data.remarks = procurement.remarks;
 		props.procurement_data.status = procurement.status;	
-	}
+	//}
   $("#" + modal).modal("show");
 }
 
@@ -93,7 +93,18 @@ const createEmployee = () => {
                     {{ procurement.status == 1 ? "Finished" : "Saved" }}
                   </td>
                   <td>
-                    <button
+                    <Link
+                    class="btn btn-default btn-sm"
+                    :href="route('procurement.show',procurement.id)"
+                    >
+                      <svg class="icon">
+                        <use
+                          xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-pen"
+                        ></use>
+                      </svg>
+                      View
+                    </Link>
+<!--                     <button
                       class="btn btn-default btn-sm"
                       @click="
                         openClickedModal(
@@ -108,7 +119,7 @@ const createEmployee = () => {
                         ></use>
                       </svg>
                       View
-                    </button>
+                    </button> -->
                   </td>
                 </tr>
               </tbody>

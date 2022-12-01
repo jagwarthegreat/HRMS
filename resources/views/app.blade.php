@@ -251,6 +251,14 @@
               Procurement
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('stock.transfer')}}">
+              <!-- <svg class="nav-icon">
+                <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-info"></use>
+              </svg> -->
+              Stock Transfer
+            </a>
+          </li>
         </ul>
       </li>
       <!-- {{-- /TRANSACTION MANAGEMENT --}} -->

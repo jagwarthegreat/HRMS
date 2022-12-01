@@ -1,4 +1,5 @@
 <script setup>
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 import ShowProcurementDetails from "./Details/ShowProcurementDetails.vue";
 
@@ -97,6 +98,11 @@ td {
       </li>
       <li class="breadcrumb-item active" aria-current="page">Procurements</li>
     </template>
+    <div class="col-md-12 text-start mb-2">
+      <Link class="btn btn-dark btn-sm" :href="route('procurement')">
+        Go back
+      </Link>
+    </div>
     <div class="row">
       <div class="col-md-12">
         <div class="card mb-4">

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\StockTransferController;
+use App\Http\Controllers\StockTransferDetailController;
 use App\Http\Controllers\ProcurementController;
 use App\Http\Controllers\ProcurementDetailController;
 use App\Http\Controllers\StockCategoryController;
@@ -127,6 +129,13 @@ Route::prefix('stock')->middleware('auth')->group(function () {
 
     Route::get('/category', [StockCategoryController::class, 'index'])->name('stock.category');
     Route::post('/category/store', [StockCategoryController::class, 'store'])->name('stock.category.store');
+
+
+    Route::get('/transfer', [StockTransferController::class, 'index'])->name('stock.transfer');
+    Route::post('/transfer/store', [StockTransferController::class, 'store'])->name('stock.transfer.store');
+    Route::get('/transfer/{id}', [StockTransferController::class, 'show'])->name('stock.transfer.show');
+
+    Route::post('/transfer/details/store', [StockTransferDetailController::class, 'store'])->name('stock.transfer.details.store');
 });
 
 // PROCUREMENT

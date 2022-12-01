@@ -174,14 +174,14 @@
               Employees
             </a>
           </li>
-          <!-- <li class="nav-item">
+          <li class="nav-item">
             <a class="nav-link" href="{{route('deployment')}}">
-              <svg class="nav-icon">
+              <!-- <svg class="nav-icon">
                 <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-task"></use>
-              </svg>
+              </svg> -->
               Deployment
             </a>
-          </li> -->
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="{{route('memo')}}">
               <!-- <svg class="nav-icon">
@@ -250,69 +250,69 @@
         <ul class="nav-group-items">
           <li class="nav-item">
             <a class="nav-link" href="{{route('job.vacancy')}}">
-              <svg class="nav-icon"></svg>
-              Post Vacancy</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('job.applicants')}}">
-              <svg class="nav-icon"></svg>
-              Applicants
-            </a>
-          </li>
-        </ul>
-      </li> --}}
-      {{-- /RECRUITMENT MANAGEMENT --}}
-
-      {{-- THIS SECTION SITS AT THE BOTTOM --}}
-      {{-- USER MANAGEMENT --}}
-      @can('user_management_access')
-      <!-- USER MANAGEMENT -->
-      <li class="nav-group mt-auto">
-        <a class="nav-link nav-group-toggle" href="#">
-          <svg class="nav-icon">
-            <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-user"></use>
-          </svg>
-          User Management
-        </a>
-        <ul class="nav-group-items">
-          @can('permission_access')
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('permission')}}">
-              <svg class="nav-icon">
-                <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-lock-unlocked"></use>
-              </svg>
-              Permissions</a>
-          </li>
-          @endcan
-
-          @can('role_access')
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('role')}}">
-              <svg class="nav-icon">
-                <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-briefcase"></use>
-              </svg>
-              Roles</a>
-          </li>
-          @endcan
-
-          @can('user_access')
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('user')}}">
-              <svg class="nav-icon">
-                <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-people"></use>
-              </svg>
-              Users</a>
-          </li>
-          @endcan
-
-        </ul>
+      <svg class="nav-icon"></svg>
+      Post Vacancy</a>
       </li>
-      <!-- /USER MANAGEMENT -->
-      @endcan
-      {{-- /USER MANAGEMENT --}}
+      <li class="nav-item">
+        <a class="nav-link" href="{{route('job.applicants')}}">
+          <svg class="nav-icon"></svg>
+          Applicants
+        </a>
+      </li>
+    </ul>
+    </li> --}}
+    {{-- /RECRUITMENT MANAGEMENT --}}
 
-      {{-- DOCUMENT MANAGEMENT --}}
-      {{-- <li class="nav-group">
+    {{-- THIS SECTION SITS AT THE BOTTOM --}}
+    {{-- USER MANAGEMENT --}}
+    @can('user_management_access')
+    <!-- USER MANAGEMENT -->
+    <li class="nav-group mt-auto">
+      <a class="nav-link nav-group-toggle" href="#">
+        <svg class="nav-icon">
+          <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-user"></use>
+        </svg>
+        User Management
+      </a>
+      <ul class="nav-group-items">
+        @can('permission_access')
+        <li class="nav-item">
+          <a class="nav-link" href="{{route('permission')}}">
+            <svg class="nav-icon">
+              <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-lock-unlocked"></use>
+            </svg>
+            Permissions</a>
+        </li>
+        @endcan
+
+        @can('role_access')
+        <li class="nav-item">
+          <a class="nav-link" href="{{route('role')}}">
+            <svg class="nav-icon">
+              <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-briefcase"></use>
+            </svg>
+            Roles</a>
+        </li>
+        @endcan
+
+        @can('user_access')
+        <li class="nav-item">
+          <a class="nav-link" href="{{route('user')}}">
+            <svg class="nav-icon">
+              <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-people"></use>
+            </svg>
+            Users</a>
+        </li>
+        @endcan
+
+      </ul>
+    </li>
+    <!-- /USER MANAGEMENT -->
+    @endcan
+    {{-- /USER MANAGEMENT --}}
+
+    {{-- DOCUMENT MANAGEMENT --}}
+    {{-- <li class="nav-group">
         <a class="nav-link nav-group-toggle" href="#">
           <svg class="nav-icon">
             <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-description"></use>
@@ -322,19 +322,19 @@
         <ul class="nav-group-items">
           <li class="nav-item">
             <a class="nav-link" href="{{route('docs.employee')}}">
-              <svg class="nav-icon"></svg>
-              Employee</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('docs.client')}}">
-              <svg class="nav-icon"></svg>
-              Client
-            </a>
-          </li>
-        </ul>
-      </li> --}}
-      {{-- /DOCUMENT MANAGEMENT --}}
-      {{-- /THIS SECTION SITS AT THE BOTTOM --}}
+    <svg class="nav-icon"></svg>
+    Employee</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{route('docs.client')}}">
+        <svg class="nav-icon"></svg>
+        Client
+      </a>
+    </li>
+    </ul>
+    </li> --}}
+    {{-- /DOCUMENT MANAGEMENT --}}
+    {{-- /THIS SECTION SITS AT THE BOTTOM --}}
 
     </ul>
     <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
@@ -380,8 +380,7 @@
         </ul>
         <ul class="header-nav ms-3">
           <li class="nav-item dropdown">
-            <a class="nav-link py-0" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-              aria-expanded="false">
+            <a class="nav-link py-0" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
               <div class="avatar avatar-md">
                 @if(Auth::user()->avatar_slug == null)
                 <img class="avatar-img avtr" src="/theme/assets/img/avatars/default_avatar.jpeg" />

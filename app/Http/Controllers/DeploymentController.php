@@ -26,21 +26,13 @@ class DeploymentController extends Controller
         //     '403 Forbidden'
         // );
 
-        // $deployments = Employee::with([
-        //     'emp_job_histories.locations',
-        //     'emp_job_histories.departments',
-        //     'emp_job_histories.positions',
-        // ])->get();
-
         $deployments = EmpJobHistory::with([
             'locations',
             'departments',
             'positions',
-        ])->get()->groupBy(['location_id', 'trans_date', 'employee_id']);
+            'employee'
+        ])->latest()->get();
 
-        // dd($deployments);
-
-        // $deployments = Deployment::all();
         $employee_status = EmployeeStatus::all();
         $employeeTypes = EmployeeType::all();
         $departments =  Department::all();
@@ -94,8 +86,8 @@ class DeploymentController extends Controller
 
     public function destroy(Request $request, $id)
     {
-        Deployment::find($id)->delete();
+        EmpJobHistory::find($id)->delete();
 
-        return redirect()->route('quitclaims');
+        return redirect()->route('deployment');
     }
 }

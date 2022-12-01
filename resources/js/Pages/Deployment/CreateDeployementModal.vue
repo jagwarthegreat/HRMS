@@ -76,6 +76,13 @@ onMounted(() => {
 										{{ employee.firstname + " " + employee.lastname }}
 									</option>
 								</select>
+								<div
+									class="invalid-feedback"
+									v-show="dployForm.errors.employees"
+									style="display: block"
+								>
+									{{ dployForm.errors.employees }}
+								</div>
 							</div>
 
 							<div class="col-12">

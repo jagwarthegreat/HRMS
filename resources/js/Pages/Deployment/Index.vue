@@ -12,6 +12,8 @@ const props = defineProps({
   canCreate: Boolean,
 });
 
+console.log(props);
+
 function openClickedModal(modal) {
   $("#" + modal).modal("show");
 }
@@ -19,7 +21,7 @@ function openClickedModal(modal) {
 const form = useForm();
 function destroy(id) {
   if (confirm("Are you sure you want to Delete")) {
-      form.delete(route('quitclaims.destroy', id));
+      form.delete(route('deployment.destroy', id));
   }
 }
 </script>
@@ -60,44 +62,39 @@ td {
 									<tr>
 										<th>Date</th>
 										<th>Employee</th>
-										<th>Amount</th>
+										<th>Location</th>
 										<th style="width: 100px"></th>
 									</tr>
 								</thead>
-								<tbody v-if="deployments.length > 0">
+								<tbody>
 									<tr
 										v-for="(deployment, keyDeployment) in deployments"
 										:key="keyDeployment"
 									>
 										<td style="width: 100px; vertical-align: baseline">
-											{{ keyDeployment }}
+											{{ deployment.trans_date }}
 										</td>
 										<td style="width: 200px; vertical-align: baseline">
-											{{ test }}
+											{{
+												deployment.employee.firstname +
+												" " +
+												deployment.employee.lastname
+											}}
 										</td>
 										<td style="width: 200px; vertical-align: baseline">
-											{{ test }}
+											{{ deployment.locations.title }}
 										</td>
 										<td style="width: 100px; vertical-align: baseline">
 											<button
+												v-show="deployment.status == 1"
 												class="btn btn-sm btn-ghost-secondary text-dark"
+												@click="destroy(deployment.id)"
 												:class="{ 'opacity-25': form.processing }"
 												:disabled="form.processing"
 											>
 												<svg class="icon">
 													<use
 														xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-trash"
-													></use>
-												</svg>
-											</button>
-											<button
-												class="btn btn-sm btn-ghost-secondary text-dark"
-												:class="{ 'opacity-25': form.processing }"
-												:disabled="form.processing"
-											>
-												<svg class="icon">
-													<use
-														xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-print"
 													></use>
 												</svg>
 											</button>

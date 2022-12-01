@@ -97,4 +97,9 @@ class Employee extends Model
     {
         return $this->hasMany(Memo::class, 'employee_id', 'id')->latest();
     }
+
+    public function emp_requirements()
+    {
+        return $this->hasMany(EmpRequirement::class, 'employee_id', 'id')->latest();
+    }
 }

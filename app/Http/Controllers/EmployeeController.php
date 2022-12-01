@@ -13,6 +13,7 @@ use App\Models\Employee;
 use App\Models\EmployeeDependent;
 use App\Models\EmployeeStatus;
 use App\Models\EmployeeType;
+use App\Models\EmpRequirement;
 use App\Models\EmpStatusHistory;
 use App\Models\EmpTypeHistory;
 use App\Models\Location;
@@ -244,9 +245,8 @@ class EmployeeController extends Controller
             'emp_curr_work.positions',
             'documents.document_category',
             'documents.created_by',
+            'emp_requirements'
         ])->find($employee_id);
-
-        // dd($employee);
 
         $employeeTypes = EmployeeType::all();
         $employee_status = EmployeeStatus::all();
@@ -258,8 +258,25 @@ class EmployeeController extends Controller
         $docCategories =  DocumentCategory::all();
         $hiringRequirements =  HiringRequirement::all();
 
-        // dd($employee);
+        $requirementsWithCheck = [];
+        foreach ($hiringRequirements as $req) {
 
-        return Inertia::render('Employee/Profile/Index', compact('employee', 'employeeTypes', 'employee_status', 'departments', 'positions', 'locations', 'paytypes', 'employees', 'docCategories', 'hiringRequirements'));
+            $reqs = EmpRequirement::where("employee_id", $employee_id)
+                ->where('requirement_id', $req->id)
+                ->first();
+
+            if ($reqs) {
+                $isChecked = "checked";
+            } else {
+                $isChecked = "";
+            }
+
+            $requirementsWithCheck[$req->title]["req_id"] = $req->id;
+            $requirementsWithCheck[$req->title]["ischecked"] = $isChecked;
+        }
+
+        // dd($requirementsWithCheck);
+
+        return Inertia::render('Employee/Profile/Index', compact('employee', 'employeeTypes', 'employee_status', 'departments', 'positions', 'locations', 'paytypes', 'employees', 'docCategories', 'requirementsWithCheck'));
     }
 }

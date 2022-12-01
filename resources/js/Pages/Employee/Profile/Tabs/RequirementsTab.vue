@@ -5,20 +5,36 @@ import addDocumentModal from "./../modals/AddDocumentModal.vue";
 const newprops = defineProps({
   props: Array,
 });
+
+const form = useForm({
+  // lawsuit_id: props.lawsuit.id,
+});
+function requirementCheck(id) {
+  alert(id);
+    // form.post(route('employee.equirement.destroy', id));
+}
 </script>
 <template>
   <div class="col-md-12">
     <div class="row">
-      <div class="col-md-3"  
+      <div
+        class="col-md-3"
         v-for="(hRequierments, keyHRequierments) in props.hiringRequirements"
-        :key="keyHRequierments">
+        :key="keyHRequierments"
+      >
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" :id="'hreq'+hRequierments.id">
-          <label class="form-check-label" :for="'hreq'+hRequierments.id">
-            {{hRequierments.title}}
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            :id="'hreq' + hRequierments.id"
+            @click="requirementCheck(hRequierments.id)"
+          />
+          <label class="form-check-label" :for="'hreq' + hRequierments.id">
+            {{ hRequierments.title }}
           </label>
         </div>
-      </div>  
+      </div>
     </div>
   </div>
 </template>

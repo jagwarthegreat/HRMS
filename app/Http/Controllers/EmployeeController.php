@@ -37,6 +37,11 @@ class EmployeeController extends Controller
             'emp_job_histories.locations',
             'emp_job_histories.departments',
             'emp_job_histories.positions',
+            'emp_curr_work.locations',
+            'emp_curr_work.departments',
+            'emp_curr_work.positions',
+            'emp_curr_type.employee_types',
+            'emp_curr_status.employee_statuses',
         ])->get();
 
         return Inertia::render('Employee/Index', compact('employees'));

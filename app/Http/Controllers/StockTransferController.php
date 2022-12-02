@@ -26,7 +26,7 @@ class StockTransferController extends Controller
         $reference = "ST-" . date("Ymdhis");
         $request->validate([
             "from" => ['required'],
-            "to" => ['required'],
+            "to" => ['required','different:from'],
             "date" => ['required'],
             "remarks" => ['required'],
         ]);
@@ -56,4 +56,16 @@ class StockTransferController extends Controller
         return Inertia::render('Stock/Transfer/Show', compact('stock_transfer', 'stocks','details'));
     }
 
+    public function finish(Request $request){
+        StockTransfer::where('id', $request->stock_transfer_id)->update([
+            "status" => 1
+        ]);
+        return redirect(route('stock.transfer.show', $request->stock_transfer_id));
+    }
+
+    public function destroy($id){
+        StockTransfer::find($id)->delete();
+
+        return redirect()->route('stock.transfer');
+    }
 }

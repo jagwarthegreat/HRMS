@@ -17,14 +17,13 @@ const submitForm = () => {
   stockTransferForm.post(route("stock.transfer.store"), {
     onSuccess: () => {
       location.reload();
+      $("#createStockTransferModal").modal("hide");
+      $(".modal-backdrop").remove();
       stockTransferForm.reset("from");
       stockTransferForm.reset("to");
       stockTransferForm.reset("remarks");
       stockTransferForm.reset("date");
-      $("#createStockTransferModal").modal("hide");
     },
-  }).then((response)=>function(){
-    console.log(response);
   });
 };
 

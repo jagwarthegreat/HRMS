@@ -1,6 +1,6 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head, Link } from "@inertiajs/inertia-vue3";
+import { Head, Link ,useForm } from "@inertiajs/inertia-vue3";
 import CreateProcurementModal from "./CreateProcurementModal.vue";
 import CreateProcurementDetailsModal from "./Details/CreateProcurementDetailsModal.vue";
 
@@ -27,6 +27,14 @@ function openClickedModal(modal,procurement=[]) {
 const createEmployee = () => {
   alert("create client");
 };
+
+const form = useForm();
+const destroy = (id) => {
+  if (confirm("Are you sure you want to Delete")) {
+      form.delete(route('procurement.destroy', id));
+  }
+};
+
 </script>
 
 <template>
@@ -45,6 +53,11 @@ const createEmployee = () => {
         class="btn btn-dark btn-sm"
         @click="openClickedModal('createProcurementModal')"
       >
+      <svg class="icon">
+        <use
+          xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-plus"
+        ></use>
+      </svg>
         Create Procurements
       </button>
     </div>
@@ -90,11 +103,12 @@ const createEmployee = () => {
                     {{ procurement.remarks }}
                   </td>
                   <td>
-                    {{ procurement.status == 1 ? "Finished" : "Saved" }}
+                      <span v-show="procurement.status" class="badge text-bg-success">Finished</span>
+                      <span v-show="!procurement.status" class="badge text-bg-warning">Saved</span>
                   </td>
                   <td>
                     <Link
-                    class="btn btn-default btn-sm"
+                      class="btn btn-sm btn-ghost-success ms-auto me-1"
                     :href="route('procurement.show',procurement.id)"
                     >
                       <svg class="icon">
@@ -102,8 +116,20 @@ const createEmployee = () => {
                           xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-pen"
                         ></use>
                       </svg>
-                      View
                     </Link>
+                      <button
+                        v-show="!procurement.status" 
+                        class="btn btn-sm btn-ghost-danger ms-auto me-1"
+                        @click="destroy(procurement.id)"
+                        :class="{ 'opacity-25': form.processing }"
+                        :disabled="form.processing"
+                      >
+                        <svg class="icon">
+                          <use
+                            xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-trash"
+                          ></use>
+                        </svg>
+                      </button>
 <!--                     <button
                       class="btn btn-default btn-sm"
                       @click="

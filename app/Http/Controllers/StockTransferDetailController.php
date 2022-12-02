@@ -11,18 +11,20 @@ class StockTransferDetailController extends Controller
     {
         $request->validate([
             "stock_id" => ['required'],
-            "quantity" => ['required'],
+            "quantity" => ['required', 'lte:avail_quantity'],
         ]);
 
-        $procurement_data = StockTransferDetail::create([
-            "stock_transfer_id" => $request->stock_transfer_id,
-            "stock_id" => $request->stock_id,
-            "quantity" => $request->quantity,
-        ]);
+        $count_existing_stocks = StockTransferDetail::where('stock_transfer_id',$request->stock_transfer_id)
+        ->where('stock_id',$request->stock_id)
+        ->count();
 
-        // $procurements = Procurement::all();
-        // $stocks = Stock::all();
-        // return Inertia::render('Procurement/Index', compact('procurements', 'procurement_data', 'stocks'));
+        if($count_existing_stocks < 1){
+            $procurement_data = StockTransferDetail::create([
+                "stock_transfer_id" => $request->stock_transfer_id,
+                "stock_id" => $request->stock_id,
+                "quantity" => $request->quantity,
+            ]);
+        }
         return redirect(route('stock.transfer.show', $request->stock_transfer_id));
     }
 }

@@ -134,6 +134,8 @@ Route::prefix('stock')->middleware('auth')->group(function () {
     Route::get('/transfer', [StockTransferController::class, 'index'])->name('stock.transfer');
     Route::post('/transfer/store', [StockTransferController::class, 'store'])->name('stock.transfer.store');
     Route::get('/transfer/{id}', [StockTransferController::class, 'show'])->name('stock.transfer.show');
+    Route::post('/transfer/finish', [StockTransferController::class, 'finish'])->name('stock.transfer.finish');
+    Route::delete('/transfer/destroy/{id}', [StockTransferController::class, 'destroy'])->name('stock.transfer.destroy');
 
     Route::post('/transfer/details/store', [StockTransferDetailController::class, 'store'])->name('stock.transfer.details.store');
 });
@@ -144,6 +146,7 @@ Route::prefix('procurement')->middleware('auth')->group(function () {
     Route::post('/store', [ProcurementController::class, 'store'])->name('procurement.store');
     Route::get('/{id}', [ProcurementController::class, 'show'])->name('procurement.show');
     Route::post('/finish', [ProcurementController::class, 'finish'])->name('procurement.finish');
+    Route::delete('/destroy/{id}', [ProcurementController::class, 'destroy'])->name('procurement.destroy');
 
     Route::post('/details/store', [ProcurementDetailController::class, 'store'])->name('procurement.details.store');
 });

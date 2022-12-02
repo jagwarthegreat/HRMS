@@ -60,4 +60,10 @@ class ProcurementController extends Controller
         ]);
         return redirect(route('procurement.show', $request->procurement_id));
     }
+
+    public function destroy($id){
+        Procurement::find($id)->delete();
+
+        return redirect()->route('procurement');
+    }
 }

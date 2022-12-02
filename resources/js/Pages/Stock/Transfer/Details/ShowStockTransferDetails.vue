@@ -7,7 +7,6 @@ const props = defineProps({
 });
 
 </script>
-
 <template>
     <div class="card mb-4">
       <div class="card-header">Stock Transfer Lists</div>

@@ -1,6 +1,6 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head, Link } from "@inertiajs/inertia-vue3";
+import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 import CreateStockTransferModal from "./CreateStockTransferModal.vue";
 
 defineProps({
@@ -12,17 +12,24 @@ const openStockTransferModal = () => {
 	$("#createStockTransferModal").modal('show');
 }
 
+const form = useForm();
+const destroy = (id) => {
+  if (confirm("Are you sure you want to Delete")) {
+      form.delete(route('stock.transfer.destroy', id));
+  }
+};
+
 </script>
 
 <template>
-	<Head title="Stocks" />
+	<Head title="Stock Transfer" />
 
 	<AuthenticatedLayout>
 		<template #breadcrumbs>
 			<li class="breadcrumb-item">
 				<Link :href="route('dashboard')">Dashboard</Link>
 			</li>
-			<li class="breadcrumb-item active" aria-current="page">Stocks</li>
+			<li class="breadcrumb-item active" aria-current="page">Stock Transfer</li>
 		</template>
 
 		<div class="col-md-12 text-end mb-2">
@@ -30,6 +37,11 @@ const openStockTransferModal = () => {
 			class="btn btn-dark btn-sm"
 			@click="openStockTransferModal"
 			>
+			<svg class="icon">
+			  <use
+			    xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-plus"
+			  ></use>
+			</svg>
 			Create Stock Transfer
 			</button>
 		</div>
@@ -72,11 +84,12 @@ const openStockTransferModal = () => {
 										{{ stock_transfer.remarks }}
 									</td>
 									<td>
-										{{ stock_transfer.status }}
+                      <span v-show="stock_transfer.status" class="badge text-bg-success">Finished</span>
+                      <span v-show="!stock_transfer.status" class="badge text-bg-warning">Saved</span>
 									</td>
 									<td>
 										<Link
-											class="btn btn-sm btn-default ms-auto me-1"
+											class="btn btn-sm btn-ghost-success ms-auto me-1"
 											:href="route('stock.transfer.show', stock_transfer.id)"
 										>
 											<svg class="icon">
@@ -84,8 +97,20 @@ const openStockTransferModal = () => {
 													xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-pen"
 												></use>
 											</svg>
-											view
 										</Link>
+											<button
+												v-show="!stock_transfer.status" 
+                        class="btn btn-sm btn-ghost-danger ms-auto me-1"
+                        @click="destroy(stock_transfer.id)"
+                        :class="{ 'opacity-25': form.processing }"
+                        :disabled="form.processing"
+                      >
+                        <svg class="icon">
+                          <use
+                            xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-trash"
+                          ></use>
+                        </svg>
+                      </button>
 									</td>
 								</tr>
 							</tbody>

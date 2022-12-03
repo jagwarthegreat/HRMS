@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\StockTransactionController;
 use App\Http\Controllers\StockTransferController;
 use App\Http\Controllers\StockTransferDetailController;
 use App\Http\Controllers\ProcurementController;
@@ -149,6 +150,11 @@ Route::prefix('procurement')->middleware('auth')->group(function () {
     Route::delete('/destroy/{id}', [ProcurementController::class, 'destroy'])->name('procurement.destroy');
 
     Route::post('/details/store', [ProcurementDetailController::class, 'store'])->name('procurement.details.store');
+});
+
+// REPORT
+Route::prefix('report')->middleware('auth')->group(function () {
+    Route::get('/inventory', [StockTransactionController::class, 'index'])->name('report.inventory');
 });
 
 // POSITION / DESIGNATION

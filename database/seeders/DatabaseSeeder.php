@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\AssetCategory;
 use App\Models\Location;
 use Illuminate\Database\Seeder;
 
@@ -36,6 +37,7 @@ class DatabaseSeeder extends Seeder
             EmployeeTypeTableSeeder::class,
             DocumentCategoryTableSeeder::class,
             HiringRequirementsTableSeeder::class,
+            StockCategoryTableSeeder::class,
         ]);
     }
 }

@@ -1,5 +1,12 @@
 <?php
 
+use App\Http\Controllers\StockTransactionController;
+use App\Http\Controllers\StockTransferController;
+use App\Http\Controllers\StockTransferDetailController;
+use App\Http\Controllers\ProcurementController;
+use App\Http\Controllers\ProcurementDetailController;
+use App\Http\Controllers\StockCategoryController;
+use App\Http\Controllers\StockController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DeploymentController;
@@ -27,6 +34,7 @@ use App\Http\Controllers\PositionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserProfileController;
+use App\Models\Asset;
 use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\LawsuitController;
 use App\Http\Controllers\SettlementController;
@@ -121,6 +129,40 @@ Route::prefix('employee')->middleware('auth')->group(function () {
 
     // employee requirement upsert
     Route::post('/employee/requirement/update/{id}', [EmpRequirementController::class, 'update'])->name('employee.requirement.update');
+});
+
+// STOCK
+Route::prefix('stock')->middleware('auth')->group(function () {
+    Route::get('/', [StockController::class, 'index'])->name('stock');
+    Route::post('/store', [StockController::class, 'store'])->name('stock.store');
+
+    Route::get('/category', [StockCategoryController::class, 'index'])->name('stock.category');
+    Route::post('/category/store', [StockCategoryController::class, 'store'])->name('stock.category.store');
+
+
+    Route::get('/transfer', [StockTransferController::class, 'index'])->name('stock.transfer');
+    Route::post('/transfer/store', [StockTransferController::class, 'store'])->name('stock.transfer.store');
+    Route::get('/transfer/{id}', [StockTransferController::class, 'show'])->name('stock.transfer.show');
+    Route::post('/transfer/finish', [StockTransferController::class, 'finish'])->name('stock.transfer.finish');
+    Route::delete('/transfer/destroy/{id}', [StockTransferController::class, 'destroy'])->name('stock.transfer.destroy');
+
+    Route::post('/transfer/details/store', [StockTransferDetailController::class, 'store'])->name('stock.transfer.details.store');
+});
+
+// PROCUREMENT
+Route::prefix('procurement')->middleware('auth')->group(function () {
+    Route::get('/', [ProcurementController::class, 'index'])->name('procurement');
+    Route::post('/store', [ProcurementController::class, 'store'])->name('procurement.store');
+    Route::get('/{id}', [ProcurementController::class, 'show'])->name('procurement.show');
+    Route::post('/finish', [ProcurementController::class, 'finish'])->name('procurement.finish');
+    Route::delete('/destroy/{id}', [ProcurementController::class, 'destroy'])->name('procurement.destroy');
+
+    Route::post('/details/store', [ProcurementDetailController::class, 'store'])->name('procurement.details.store');
+});
+
+// REPORT
+Route::prefix('report')->middleware('auth')->group(function () {
+    Route::get('/inventory', [StockTransactionController::class, 'index'])->name('report.inventory');
 });
 
 // POSITION / DESIGNATION

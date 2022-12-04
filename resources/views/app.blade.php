@@ -137,6 +137,22 @@
               Hiring Requirements
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('stock')}}">
+              <!-- <svg class="nav-icon">
+                <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-list-rich"></use>
+              </svg> -->
+              Stocks
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('stock.category')}}">
+              <!-- <svg class="nav-icon">
+                <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-list-rich"></use>
+              </svg> -->
+              Stock Category
+            </a>
+          </li>
         </ul>
       </li>
       <!-- {{-- /MASTERDATA MANAGEMENT --}} -->
@@ -228,16 +244,45 @@
         </a>
         <ul class="nav-group-items">
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{route('procurement')}}">
               <!-- <svg class="nav-icon">
-                <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-room"></use>
+                <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-info"></use>
               </svg> -->
               Procurement
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('stock.transfer')}}">
+              <!-- <svg class="nav-icon">
+                <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-info"></use>
+              </svg> -->
+              Stock Transfer
             </a>
           </li>
         </ul>
       </li>
       <!-- {{-- /TRANSACTION MANAGEMENT --}} -->
+
+      <!-- {{-- REPORT MANAGEMENT --}} -->
+      <li class="nav-group">
+        <a class="nav-link nav-group-toggle" href="#">
+          <svg class="nav-icon">
+            <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-print"></use>
+          </svg>
+          Reports
+        </a>
+        <ul class="nav-group-items">
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('report.inventory')}}">
+              <!-- <svg class="nav-icon">
+                <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-info"></use>
+              </svg> -->
+              Inventory
+            </a>
+          </li>
+        </ul>
+      </li>
+      <!-- {{-- /REPORT MANAGEMENT --}} -->
 
       {{-- RECRUITMENT MANAGEMENT --}}
       {{-- <li class="nav-group">

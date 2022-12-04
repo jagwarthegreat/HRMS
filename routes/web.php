@@ -13,6 +13,7 @@ use App\Http\Controllers\EmployeeEducationalBackgroundController;
 use App\Http\Controllers\EmployeeStatusController;
 use App\Http\Controllers\EmployeeTypeController;
 use App\Http\Controllers\EmployeeWorkExperienceController;
+use App\Http\Controllers\EmpRequirementController;
 use App\Http\Controllers\EmpStatusHistoryController;
 use App\Http\Controllers\EmpTypeHistoryController;
 use App\Http\Controllers\HiringRequirementController;
@@ -117,6 +118,9 @@ Route::prefix('employee')->middleware('auth')->group(function () {
     Route::post('/type/history/store', [EmpTypeHistoryController::class, 'store'])->name('employee.typehistory.store');
     Route::post('/compensation/history/store', [EmpCompensationHistoryController::class, 'store'])->name('employee.compensationhistory.store');
     Route::post('/jobinfo/history/store', [EmpJobHistoryController::class, 'store'])->name('employee.jobinfohistory.store');
+
+    // employee requirement upsert
+    Route::post('/employee/requirement/update/{id}', [EmpRequirementController::class, 'update'])->name('employee.requirement.update');
 });
 
 // POSITION / DESIGNATION

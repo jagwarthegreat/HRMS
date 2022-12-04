@@ -38,12 +38,13 @@ function openClickedModal(modal) {
   $("#" + modal).modal("show");
 }
 
-const job_title = props.employee.emp_job_histories[0] == null
+const job_department = props.employee.emp_curr_work == null
     ? "---"
-    : props.employee.emp_job_histories[0].positions.title;
-const job_department = props.employee.emp_job_histories[0] == null
+    : props.employee.emp_curr_work.departments.title;
+
+const job_title = props.employee.emp_curr_work == null
     ? "---"
-    : props.employee.emp_job_histories[0].departments.title;
+    : props.employee.emp_curr_work.positions.title;
 
 const avatar = (props.employee.avatar != null)?'/storage/' + props.employee.avatar.slug:"/theme/assets/img/avatars/default_avatar.jpeg";
 const activeTab = sessionEmployeeActiveTab;
@@ -143,7 +144,7 @@ a.nav-link {
 										Edit
 									</button>
 
-									<a
+									<!-- <a
 										class="btn btn-sm btn-danger ms-auto me-1 text-light"
 										href=""
 									>
@@ -153,7 +154,7 @@ a.nav-link {
 											></use>
 										</svg>
 										Terminate
-									</a>
+									</a> -->
 								</div>
 							</div>
 						</div>

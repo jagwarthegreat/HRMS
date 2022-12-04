@@ -1,11 +1,10 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
-import CreateQuitClaimsModal from "./CreateQuitclaimsModal.vue";
+import CreateNoticeModal from "./CreateNoticeModal.vue";
 
 const props = defineProps({
-  qclaims: Array,
-  employees: Array,
+  notices: Array,
   canCreate: Boolean,
 });
 
@@ -16,7 +15,7 @@ function openClickedModal(modal) {
 const form = useForm();
 function destroy(id) {
   if (confirm("Are you sure you want to Delete")) {
-      form.delete(route('quitclaims.destroy', id));
+      form.delete(route('notice.destroy', id));
   }
 }
 </script>
@@ -27,28 +26,28 @@ td {
 }
 </style>
 <template>
-	<Head title="Quit Claims" />
+	<Head title="Notices" />
 
 	<AuthenticatedLayout>
 		<template #breadcrumbs>
 			<li class="breadcrumb-item">
 				<Link :href="route('dashboard')">Dashboard</Link>
 			</li>
-			<li class="breadcrumb-item active" aria-current="page">Quit Claims</li>
+			<li class="breadcrumb-item active" aria-current="page">Notices</li>
 		</template>
 
 		<div class="col-md-12 text-end mb-2">
 			<button
 				class="btn btn-dark btn-sm"
-				@click="openClickedModal('createQuitClaimsModal')"
+				@click="openClickedModal('createNoticeModal')"
 			>
-				Create Quit Claims
+				Create New Notice
 			</button>
 		</div>
 
 		<div class="col-12">
 			<div class="card mb-4">
-				<div class="card-header">Quit CLaim List</div>
+				<div class="card-header">Notice List</div>
 				<div class="card-body">
 					<div class="row">
 						<div class="col-md-12">
@@ -56,49 +55,32 @@ td {
 								<thead>
 									<tr>
 										<th>Date</th>
-										<th>Employee</th>
-										<th>Amount</th>
+										<th>Notice For</th>
+										<th>Subject</th>
 										<th style="width: 100px"></th>
 									</tr>
 								</thead>
-								<tbody v-if="qclaims.length > 0">
-									<tr v-for="(qclaim, keyQclaim) in qclaims" :key="keyQclaim">
+								<tbody v-if="notices.length > 0">
+									<tr v-for="(notice, keyNotice) in notices" :key="keyNotice">
 										<td style="width: 100px; vertical-align: baseline">
-											{{ qclaim.claims_effective_date }}
+											{{ notice.notice_date }}
 										</td>
 										<td style="width: 200px; vertical-align: baseline">
-											{{
-												qclaim.employee.firstname +
-												" " +
-												qclaim.employee.middlename +
-												" " +
-												qclaim.employee.lastname
-											}}
+											{{ notice.notice_for }}
 										</td>
 										<td style="width: 200px; vertical-align: baseline">
-											{{ qclaim.amount }}
+											{{ notice.subject }}
 										</td>
 										<td style="width: 100px; vertical-align: baseline">
 											<button
 												class="btn btn-sm btn-ghost-secondary text-dark"
-												@click="destroy(qclaim.id)"
+												@click="destroy(notice.id)"
 												:class="{ 'opacity-25': form.processing }"
 												:disabled="form.processing"
 											>
 												<svg class="icon">
 													<use
 														xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-trash"
-													></use>
-												</svg>
-											</button>
-											<button
-												class="btn btn-sm btn-ghost-secondary text-dark"
-												:class="{ 'opacity-25': form.processing }"
-												:disabled="form.processing"
-											>
-												<svg class="icon">
-													<use
-														xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-print"
 													></use>
 												</svg>
 											</button>
@@ -111,6 +93,6 @@ td {
 				</div>
 			</div>
 		</div>
-		<CreateQuitClaimsModal :props="props" />
+		<CreateNoticeModal :props="props" />
 	</AuthenticatedLayout>
 </template>

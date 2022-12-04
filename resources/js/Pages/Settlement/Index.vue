@@ -1,11 +1,11 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
-import CreateQuitClaimsModal from "./CreateQuitclaimsModal.vue";
+import CreateSettlementModal from "./CreateSettlementModal.vue";
 
 const props = defineProps({
-  qclaims: Array,
-  employees: Array,
+  lawsuit: Array,
+  settlements: Array,
   canCreate: Boolean,
 });
 
@@ -13,11 +13,17 @@ function openClickedModal(modal) {
   $("#" + modal).modal("show");
 }
 
-const form = useForm();
+const form = useForm({
+	lawsuit_id: props.lawsuit.id,
+});
 function destroy(id) {
   if (confirm("Are you sure you want to Delete")) {
-      form.delete(route('quitclaims.destroy', id));
+      form.delete(route('lawsuit.settlement.destroy', id));
   }
+}
+
+function htmlDecode(value) {
+    return $("<textarea/>").html(value).text();
 }
 </script>
 <style scoped>
@@ -27,78 +33,72 @@ td {
 }
 </style>
 <template>
-	<Head title="Quit Claims" />
+	<Head title="Settlements" />
 
 	<AuthenticatedLayout>
 		<template #breadcrumbs>
 			<li class="breadcrumb-item">
 				<Link :href="route('dashboard')">Dashboard</Link>
 			</li>
-			<li class="breadcrumb-item active" aria-current="page">Quit Claims</li>
+			<li class="breadcrumb-item">
+				<Link :href="route('lawsuit')">Lawsuit/Cases</Link>
+			</li>
+			<li class="breadcrumb-item active" aria-current="page">Settlements</li>
 		</template>
 
 		<div class="col-md-12 text-end mb-2">
+			<a class="btn btn-default btn-sm me-2" :href="route('lawsuit')">
+				Go Back
+			</a>
 			<button
 				class="btn btn-dark btn-sm"
-				@click="openClickedModal('createQuitClaimsModal')"
+				@click="openClickedModal('createSettlementModal')"
 			>
-				Create Quit Claims
+				Create Settlement
 			</button>
 		</div>
 
 		<div class="col-12">
 			<div class="card mb-4">
-				<div class="card-header">Quit CLaim List</div>
+				<div class="card-header">
+					Settlement List For:
+					<b>
+						<u>{{ lawsuit.case }}</u>
+					</b>
+				</div>
 				<div class="card-body">
 					<div class="row">
 						<div class="col-md-12">
 							<table class="table table-hover">
 								<thead>
 									<tr>
+										<th>Content</th>
 										<th>Date</th>
-										<th>Employee</th>
-										<th>Amount</th>
 										<th style="width: 100px"></th>
 									</tr>
 								</thead>
-								<tbody v-if="qclaims.length > 0">
-									<tr v-for="(qclaim, keyQclaim) in qclaims" :key="keyQclaim">
-										<td style="width: 100px; vertical-align: baseline">
-											{{ qclaim.claims_effective_date }}
-										</td>
+								<tbody v-if="settlements.length > 0">
+									<tr
+										v-for="(settlement, keySettlement) in settlements"
+										:key="keySettlement"
+									>
+										<td
+											style="vertical-align: baseline"
+											v-html="htmlDecode(settlement.content)"
+										></td>
 										<td style="width: 200px; vertical-align: baseline">
-											{{
-												qclaim.employee.firstname +
-												" " +
-												qclaim.employee.middlename +
-												" " +
-												qclaim.employee.lastname
-											}}
-										</td>
-										<td style="width: 200px; vertical-align: baseline">
-											{{ qclaim.amount }}
+											{{ settlement.date }}
 										</td>
 										<td style="width: 100px; vertical-align: baseline">
 											<button
 												class="btn btn-sm btn-ghost-secondary text-dark"
-												@click="destroy(qclaim.id)"
+												@click="destroy(settlement.id)"
 												:class="{ 'opacity-25': form.processing }"
 												:disabled="form.processing"
 											>
 												<svg class="icon">
 													<use
 														xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-trash"
-													></use>
-												</svg>
-											</button>
-											<button
-												class="btn btn-sm btn-ghost-secondary text-dark"
-												:class="{ 'opacity-25': form.processing }"
-												:disabled="form.processing"
-											>
-												<svg class="icon">
-													<use
-														xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-print"
 													></use>
 												</svg>
 											</button>
@@ -111,6 +111,6 @@ td {
 				</div>
 			</div>
 		</div>
-		<CreateQuitClaimsModal :props="props" />
+		<CreateSettlementModal :props="props" />
 	</AuthenticatedLayout>
 </template>

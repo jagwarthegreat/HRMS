@@ -5,6 +5,9 @@ const newprops = defineProps({
   props: Array,
 });
 
+function htmlDecode(value) {
+    return $("<textarea/>").html(value).text();
+}
 </script>
 
 <style scoped>
@@ -25,7 +28,7 @@ td {
 			</thead>
 			<tbody>
 				<tr v-if="props.employee.memos.length < 1">
-					<td colspan="5">No documents found.</td>
+					<td colspan="5">No memos found.</td>
 				</tr>
 				<tr
 					v-else
@@ -36,12 +39,14 @@ td {
 						{{ memo.subject }}
 					</td>
 					<td>
-						<div v-if="memo.content.length < 100">
-							{{ memo.content }}
-						</div>
-						<div v-if="memo.content.length >= 100">
-							{{ memo.content.substring(0, 100) + "..." }}
-						</div>
+						<div
+							v-if="memo.content.length < 100"
+							v-html="htmlDecode(memo.content)"
+						></div>
+						<div
+							v-if="memo.content.length >= 100"
+							v-html="htmlDecode(memo.content.substring(0, 100) + '...')"
+						></div>
 					</td>
 					<td>{{ memo.memo_date }}</td>
 				</tr>

@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Memo;
-use App\Models\Client;
-use App\Models\Employee;
+use App\Models\Notice;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response;
 
-class MemoController extends Controller
+class NoticeController extends Controller
 {
     public function index()
     {
@@ -20,14 +18,10 @@ class MemoController extends Controller
         //     '403 Forbidden'
         // );
 
-        $memos = Memo::with([
-            'employee'
-        ])->get();
-
-        $employees = Employee::all();
+        $notices = Notice::all();
         $canCreate = Gate::allows('position_create');
 
-        return Inertia::render('Memo/Index', compact('memos', 'employees', 'canCreate'));
+        return Inertia::render('Notice/Index', compact('notices', 'canCreate'));
     }
 
     public function store(Request $request)
@@ -38,31 +32,27 @@ class MemoController extends Controller
         //     '403 Forbidden'
         // );
 
-        // htmlentities(str_replace("'", "&#x2019;", $v));
-
         $request->validate([
-            'employee_id' => 'required',
-            'from' => 'required',
-            'memo_date' => 'required',
+            'notice_for' => 'required',
             'subject' => 'required',
             'content' => 'required',
+            'notice_date' => 'required',
         ]);
 
-        Memo::create([
-            'employee_id' => $request->employee_id,
-            'from' => $request->from,
-            'memo_date' => $request->memo_date,
+        Notice::create([
+            'notice_for' => $request->notice_for,
             'subject' => $request->subject,
-            'content' => htmlentities(str_replace("'", "&#x2019;", $request->content))
+            'content' => htmlentities(str_replace("'", "&#x2019;", $request->content)),
+            'notice_date' => $request->notice_date
         ]);
 
-        return redirect()->route('memo');
+        return redirect()->route('notice');
     }
 
     public function destroy(Request $request, $id)
     {
-        Memo::find($id)->delete();
+        Notice::find($id)->delete();
 
-        return redirect()->route('memo');
+        return redirect()->route('notice');
     }
 }

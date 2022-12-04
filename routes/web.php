@@ -9,6 +9,7 @@ use App\Http\Controllers\StockCategoryController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\DeploymentController;
 use App\Http\Controllers\DocumentCategoryController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\EmpCompensationHistoryController;
@@ -33,6 +34,9 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserProfileController;
 use App\Models\Asset;
+use App\Http\Controllers\NoticeController;
+use App\Http\Controllers\LawsuitController;
+use App\Http\Controllers\SettlementController;
 use App\Models\EmployeeEducationalBackground;
 use App\Models\EmpStatusHistory;
 use Illuminate\Foundation\Application;
@@ -185,9 +189,9 @@ Route::prefix('location')->middleware('auth')->group(function () {
 
 // DEPLOYMENT
 Route::prefix('deployment')->middleware('auth')->group(function () {
-    Route::get('/', [LocationController::class, 'index'])->name('deployment');
-    // Route::post('/store', [LocationController::class, 'store'])->name('deployment.store');
-    // Route::delete('/destroy/{id}', [LocationController::class, 'destroy'])->name('deployment.destroy');
+    Route::get('/', [DeploymentController::class, 'index'])->name('deployment');
+    Route::post('/store', [DeploymentController::class, 'store'])->name('deployment.store');
+    Route::delete('/destroy/{id}', [DeploymentController::class, 'destroy'])->name('deployment.destroy');
 });
 
 // RECRUITMENT
@@ -208,6 +212,25 @@ Route::prefix('quitclaims')->middleware('auth')->group(function () {
     Route::get('/', [QuitClaimController::class, 'index'])->name('quitclaims');
     Route::post('/store', [QuitClaimController::class, 'store'])->name('quitclaims.store');
     Route::delete('/destroy/{id}', [QuitClaimController::class, 'destroy'])->name('quitclaims.destroy');
+});
+
+// NOTICES
+Route::prefix('notice')->middleware('auth')->group(function () {
+    Route::get('/', [NoticeController::class, 'index'])->name('notice');
+    Route::post('/store', [NoticeController::class, 'store'])->name('notice.store');
+    Route::delete('/destroy/{id}', [NoticeController::class, 'destroy'])->name('notice.destroy');
+});
+
+// LAWSUIT
+Route::prefix('lawsuit')->middleware('auth')->group(function () {
+    Route::get('/', [LawsuitController::class, 'index'])->name('lawsuit');
+    Route::post('/store', [LawsuitController::class, 'store'])->name('lawsuit.store');
+    Route::delete('/destroy/{id}', [LawsuitController::class, 'destroy'])->name('lawsuit.destroy');
+
+    // settlements
+    Route::get('/{id}/settlement', [SettlementController::class, 'index'])->name('lawsuit.settlement');
+    Route::post('/settlement/store', [SettlementController::class, 'store'])->name('lawsuit.settlement.store');
+    Route::delete('/settlement/destroy/{id}', [SettlementController::class, 'destroy'])->name('lawsuit.settlement.destroy');
 });
 
 // CLIENTS

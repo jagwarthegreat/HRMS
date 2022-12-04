@@ -1,10 +1,10 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
-import CreateMemoModal from "./CreateMemoModal.vue";
+import CreateLawsuitModal from "./CreateLawsuitModal.vue";
 
 const props = defineProps({
-  memos: Array,
+  lawsuits: Array,
   employees: Array,
   canCreate: Boolean,
 });
@@ -16,12 +16,8 @@ function openClickedModal(modal) {
 const form = useForm();
 function destroy(id) {
   if (confirm("Are you sure you want to Delete")) {
-      form.delete(route('memo.destroy', id));
+      form.delete(route('lawsuit.destroy', id));
   }
-}
-
-function htmlDecode(value) {
-    return $("<textarea/>").html(value).text();
 }
 </script>
 <style scoped>
@@ -31,28 +27,28 @@ td {
 }
 </style>
 <template>
-	<Head title="Position" />
+	<Head title="Lawsuit/Cases" />
 
 	<AuthenticatedLayout>
 		<template #breadcrumbs>
 			<li class="breadcrumb-item">
 				<Link :href="route('dashboard')">Dashboard</Link>
 			</li>
-			<li class="breadcrumb-item active" aria-current="page">Memo</li>
+			<li class="breadcrumb-item active" aria-current="page">Lawsuit/Cases</li>
 		</template>
 
 		<div class="col-md-12 text-end mb-2">
 			<button
 				class="btn btn-dark btn-sm"
-				@click="openClickedModal('createMemoModal')"
+				@click="openClickedModal('createLawsuitModal')"
 			>
-				Create Memo
+				Create New Lawsuit
 			</button>
 		</div>
 
 		<div class="col-12">
 			<div class="card mb-4">
-				<div class="card-header">Memo List</div>
+				<div class="card-header">Lawsuit List</div>
 				<div class="card-body">
 					<div class="row">
 						<div class="col-md-12">
@@ -60,69 +56,56 @@ td {
 								<thead>
 									<tr>
 										<th>Date</th>
-										<th>Subject</th>
-										<th>Employee</th>
-										<th>Content</th>
-										<th style="width: 130px"></th>
+										<th>Case</th>
+										<th>Complianant</th>
+										<th>Respondent</th>
+										<th>Status</th>
+										<th style="width: 100px"></th>
 									</tr>
 								</thead>
-								<tbody v-if="memos.length > 0">
-									<tr v-for="(memo, keyMemo) in memos" :key="keyMemo">
+								<tbody v-if="lawsuits.length > 0">
+									<tr
+										v-for="(lawsuit, keyLawsuit) in lawsuits"
+										:key="keyLawsuit"
+									>
 										<td style="width: 100px; vertical-align: baseline">
-											{{ memo.memo_date }}
+											{{ lawsuit.case_date }}
 										</td>
-										<td style="width: 100px; vertical-align: baseline">
-											{{ memo.subject }}
+										<td style="vertical-align: baseline">
+											<a :href="route('lawsuit.settlement', lawsuit.id)">
+												{{ lawsuit.case }}
+											</a>
 										</td>
-										<td style="width: 200px; vertical-align: baseline">
-											{{
-												memo.employee.firstname + " " + memo.employee.lastname
-											}}
+										<td style="vertical-align: baseline">
+											{{ lawsuit.complainant }}
 										</td>
-										<td>
-											<div
-												v-if="memo.content.length < 100"
-												v-html="htmlDecode(memo.content)"
-											></div>
-											<div
-												v-if="memo.content.length >= 100"
-												v-html="
-													htmlDecode(memo.content.substring(0, 100) + '...')
-												"
-											></div>
+										<td style="vertical-align: baseline">
+											{{ lawsuit.respondent }}
+										</td>
+										<td style="vertical-align: baseline">
+											{{ lawsuit.status }}
 										</td>
 										<td style="width: 100px; vertical-align: baseline">
-											<button
+											<!-- <button
 												class="btn btn-sm btn-ghost-secondary text-dark"
 												:class="{ 'opacity-25': form.processing }"
 												:disabled="form.processing"
 											>
 												<svg class="icon">
 													<use
-														xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-notes"
+														xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-pen"
 													></use>
 												</svg>
-											</button>
+											</button> -->
 											<button
 												class="btn btn-sm btn-ghost-secondary text-dark"
-												@click="destroy(memo.id)"
+												@click="destroy(lawsuit.id)"
 												:class="{ 'opacity-25': form.processing }"
 												:disabled="form.processing"
 											>
 												<svg class="icon">
 													<use
 														xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-trash"
-													></use>
-												</svg>
-											</button>
-											<button
-												class="btn btn-sm btn-ghost-secondary text-dark"
-												:class="{ 'opacity-25': form.processing }"
-												:disabled="form.processing"
-											>
-												<svg class="icon">
-													<use
-														xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-print"
 													></use>
 												</svg>
 											</button>
@@ -135,6 +118,6 @@ td {
 				</div>
 			</div>
 		</div>
-		<CreateMemoModal :props="props" />
+		<CreateLawsuitModal :props="props" />
 	</AuthenticatedLayout>
 </template>

@@ -13,13 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('quit_claims', function (Blueprint $table) {
+        Schema::create('notices', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('employee_id')->constrained('employees')->onDelete('cascade');
-            $table->decimal('amount', 12, 3)->nullable();
-            $table->date('resgnation_effective_date')->nullable();
-            $table->date('claims_effective_date')->nullable();
-            $table->string('status', 10)->default("Pending");
+            $table->string("notice_for", 150);
+            $table->string("subject", 150);
+            $table->text("content");
+            $table->date("notice_date");
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('quit_claims');
+        Schema::dropIfExists('notices');
     }
 };

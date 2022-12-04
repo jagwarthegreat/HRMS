@@ -67,50 +67,36 @@ onMounted(() => {
 									</td>
 									<td>
 										{{
-											employee.emp_job_histories[0] ==
-											null
+											employee.emp_curr_work == null
 												? "--"
-												: employee.emp_job_histories[0]
-														.positions.title
+												: employee.emp_curr_work.positions.title
 										}}
 									</td>
 									<td>
 										{{
-											employee.emp_job_histories[0] ==
-											null
+											employee.emp_curr_work == null
 												? "---"
-												: employee.emp_job_histories[0]
-														.departments.title
+												: employee.emp_curr_work.departments.title
 										}}
 									</td>
 									<td>
 										{{
-											employee.emp_type_histories[0] ==
-											null
+											employee.emp_curr_type == null
 												? "---"
-												: employee.emp_type_histories[0]
-														.employee_types.title
+												: employee.emp_curr_type.employee_types.title
 										}}
 									</td>
 									<td>
 										{{
-											employee.emp_status_histories[0] ==
-											null
+											employee.emp_curr_status == null
 												? "---"
-												: employee
-														.emp_status_histories[0]
-														.employee_statuses.title
+												: employee.emp_curr_status.employee_statuses.title
 										}}
 									</td>
 									<td>
 										<Link
 											class="btn btn-sm btn-default ms-auto me-1"
-											:href="
-												route(
-													'employee.show',
-													employee.id
-												)
-											"
+											:href="route('employee.show', employee.id)"
 											style="padding: 0px 5px 0px 5px"
 										>
 											<svg class="icon">

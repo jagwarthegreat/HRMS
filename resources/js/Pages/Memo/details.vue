@@ -40,7 +40,7 @@ function htmlDecode(value) {
 
 th,
 td {
-	padding: 7px;
+	padding: 3px;
 }
 
 @media print {

@@ -59,9 +59,7 @@ a.nav-link {
 		</template>
 
 		<div class="col-md-12 text-start mb-2">
-			<Link class="btn btn-dark btn-sm" :href="route('client')">
-				Go back
-			</Link>
+			<Link class="btn btn-dark btn-sm" :href="route('client')"> Go back </Link>
 		</div>
 
 		<div class="col-md-12 mb-4">
@@ -71,18 +69,10 @@ a.nav-link {
 						<div class="col-md-9">
 							<div
 								class="card mb-2"
-								style="
-									background: transparent;
-									box-shadow: none;
-								"
+								style="background: transparent; box-shadow: none"
 							>
-								<div
-									class="card-body d-flex"
-									style="overflow-y: auto"
-								>
-									<div
-										class="d-flex flex-column justify-content-center ms-4"
-									>
+								<div class="card-body d-flex" style="overflow-y: auto">
+									<div class="d-flex flex-column justify-content-center ms-4">
 										<h4>
 											<b>{{ client.name }}</b>
 										</h4>
@@ -147,9 +137,7 @@ a.nav-link {
 									<Link
 										@click="tabSwitchTo('documents')"
 										:class="
-											activeTab == 'documents'
-												? 'nav-link active'
-												: 'nav-link'
+											activeTab == 'documents' ? 'nav-link active' : 'nav-link'
 										"
 										id="nav-document-tab"
 										data-coreui-toggle="tab"
@@ -165,9 +153,7 @@ a.nav-link {
 									<Link
 										@click="tabSwitchTo('locations')"
 										:class="
-											activeTab == 'locations'
-												? 'nav-link active'
-												: 'nav-link'
+											activeTab == 'locations' ? 'nav-link active' : 'nav-link'
 										"
 										id="nav-locations-tab"
 										data-coreui-toggle="tab"
@@ -179,7 +165,7 @@ a.nav-link {
 										>Locations
 									</Link>
 								</li>
-								<li class="nav-item">
+								<!-- <li class="nav-item">
 									<Link
 										@click="tabSwitchTo('supplies')"
 										:class="
@@ -196,18 +182,14 @@ a.nav-link {
 										aria-selected="true"
 										>Supplies
 									</Link>
-								</li>
+								</li> -->
 							</ul>
 						</div>
 						<div class="card-body">
 							<div class="tab-content" id="nav-tabContent">
 								<div
 									class="tab-pane fade show"
-									:class="
-										activeTab == 'generalInfo'
-											? 'active'
-											: ''
-									"
+									:class="activeTab == 'generalInfo' ? 'active' : ''"
 									id="nav-home"
 									role="tabpanel"
 									aria-labelledby="nav-home-tab"
@@ -217,9 +199,7 @@ a.nav-link {
 								</div>
 								<div
 									class="tab-pane fade show"
-									:class="
-										activeTab == 'documents' ? 'active' : ''
-									"
+									:class="activeTab == 'documents' ? 'active' : ''"
 									id="nav-document"
 									role="tabpanel"
 									aria-labelledby="nav-document-tab"
@@ -229,9 +209,7 @@ a.nav-link {
 								</div>
 								<div
 									class="tab-pane fade show"
-									:class="
-										activeTab == 'locations' ? 'active' : ''
-									"
+									:class="activeTab == 'locations' ? 'active' : ''"
 									id="nav-locations"
 									role="tabpanel"
 									aria-labelledby="nav-locations-tab"
@@ -239,7 +217,7 @@ a.nav-link {
 								>
 									<LocationsTab :props="props" />
 								</div>
-								<div
+								<!-- <div
 									class="tab-pane fade show"
 									:class="
 										activeTab == 'supplies' ? 'active' : ''
@@ -250,7 +228,7 @@ a.nav-link {
 									tabindex="0"
 								>
 									<SuppliesTab :props="props" />
-								</div>
+								</div> -->
 							</div>
 						</div>
 					</div>

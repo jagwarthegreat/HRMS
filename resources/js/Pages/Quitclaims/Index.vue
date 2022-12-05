@@ -91,7 +91,8 @@ td {
 													></use>
 												</svg>
 											</button>
-											<button
+											<a
+												:href="route('quitclaims.show', qclaim.id)"
 												class="btn btn-sm btn-ghost-secondary text-dark"
 												:class="{ 'opacity-25': form.processing }"
 												:disabled="form.processing"
@@ -101,7 +102,7 @@ td {
 														xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-print"
 													></use>
 												</svg>
-											</button>
+											</a>
 										</td>
 									</tr>
 								</tbody>

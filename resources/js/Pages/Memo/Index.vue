@@ -71,7 +71,7 @@ td {
 										<td style="width: 100px; vertical-align: baseline">
 											{{ memo.memo_date }}
 										</td>
-										<td style="width: 100px; vertical-align: baseline">
+										<td style="vertical-align: baseline">
 											{{ memo.subject }}
 										</td>
 										<td style="width: 200px; vertical-align: baseline">
@@ -92,7 +92,7 @@ td {
 											></div>
 										</td>
 										<td style="width: 100px; vertical-align: baseline">
-											<button
+											<!-- <button
 												class="btn btn-sm btn-ghost-secondary text-dark"
 												:class="{ 'opacity-25': form.processing }"
 												:disabled="form.processing"
@@ -102,7 +102,7 @@ td {
 														xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-notes"
 													></use>
 												</svg>
-											</button>
+											</button> -->
 											<button
 												class="btn btn-sm btn-ghost-secondary text-dark"
 												@click="destroy(memo.id)"
@@ -115,7 +115,8 @@ td {
 													></use>
 												</svg>
 											</button>
-											<button
+											<a
+												:href="route('memo.show', memo.id)"
 												class="btn btn-sm btn-ghost-secondary text-dark"
 												:class="{ 'opacity-25': form.processing }"
 												:disabled="form.processing"
@@ -125,7 +126,7 @@ td {
 														xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-print"
 													></use>
 												</svg>
-											</button>
+											</a>
 										</td>
 									</tr>
 								</tbody>

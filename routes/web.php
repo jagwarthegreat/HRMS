@@ -209,6 +209,7 @@ Route::prefix('memo')->middleware('auth')->group(function () {
     Route::get('/', [MemoController::class, 'index'])->name('memo');
     Route::post('/store', [MemoController::class, 'store'])->name('memo.store');
     Route::delete('/destroy/{id}', [MemoController::class, 'destroy'])->name('memo.destroy');
+    Route::get('/{id}', [MemoController::class, 'show'])->name('memo.show');
 });
 
 // QUIT CLAIMS
@@ -216,6 +217,7 @@ Route::prefix('quitclaims')->middleware('auth')->group(function () {
     Route::get('/', [QuitClaimController::class, 'index'])->name('quitclaims');
     Route::post('/store', [QuitClaimController::class, 'store'])->name('quitclaims.store');
     Route::delete('/destroy/{id}', [QuitClaimController::class, 'destroy'])->name('quitclaims.destroy');
+    Route::get('/{id}', [QuitClaimController::class, 'show'])->name('quitclaims.show');
 });
 
 // NOTICES

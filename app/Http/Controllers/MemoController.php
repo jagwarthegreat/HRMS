@@ -65,4 +65,24 @@ class MemoController extends Controller
 
         return redirect()->route('memo');
     }
+
+    public function show($id)
+    {
+        // abort_if(
+        //     Gate::denies('position_access'),
+        //     Response::HTTP_FORBIDDEN,
+        //     '403 Forbidden'
+        // );
+
+        $memo = Memo::where("id", $id)
+            ->with([
+                'employee'
+            ])->first();
+
+        // dd($memo);
+
+        $canCreate = Gate::allows('position_create');
+
+        return Inertia::render('Memo/details', compact('memo', 'canCreate'));
+    }
 }

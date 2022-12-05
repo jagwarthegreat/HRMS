@@ -57,4 +57,24 @@ class QuitClaimController extends Controller
 
         return redirect()->route('quitclaims');
     }
+
+    public function show($id)
+    {
+        // abort_if(
+        //     Gate::denies('position_access'),
+        //     Response::HTTP_FORBIDDEN,
+        //     '403 Forbidden'
+        // );
+
+        $qclaim = QuitClaim::where("id", $id)
+            ->with([
+                'employee'
+            ])->first();
+
+        // dd($memo);
+
+        $canCreate = Gate::allows('position_create');
+
+        return Inertia::render('Quitclaims/qprint', compact('qclaim', 'canCreate'));
+    }
 }

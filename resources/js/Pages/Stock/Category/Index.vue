@@ -29,10 +29,10 @@ const createEmployee = () => {
 
 		<div class="col-md-12 text-end mb-2">
 			<button
-			class="btn btn-dark btn-sm"
-			@click="openClickedModal('createStockCategoryModal')"
+				class="btn btn-dark btn-sm"
+				@click="openClickedModal('createStockCategoryModal')"
 			>
-			Create Stocks
+				Create Stocks
 			</button>
 		</div>
 		<div class="card mb-4">
@@ -53,7 +53,7 @@ const createEmployee = () => {
 										{{ category.name }}
 									</td>
 									<td>
-										<Link
+										<!-- <Link
 											class="btn btn-sm btn-default ms-auto me-1"
 											:href="route('client.show', category.id)"
 										>
@@ -63,7 +63,7 @@ const createEmployee = () => {
 												></use>
 											</svg>
 											view
-										</Link>
+										</Link> -->
 									</td>
 								</tr>
 							</tbody>
@@ -72,6 +72,8 @@ const createEmployee = () => {
 				</div>
 			</div>
 		</div>
-	<CreateStockCategoryModal :categories="categories"></CreateStockCategoryModal>
+		<CreateStockCategoryModal
+			:categories="categories"
+		></CreateStockCategoryModal>
 	</AuthenticatedLayout>
 </template>

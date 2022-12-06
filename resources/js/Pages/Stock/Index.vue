@@ -62,7 +62,7 @@ const createEmployee = () => {
 										{{ stock.stock_category.name }}
 									</td>
 									<td>
-										<Link
+										<!-- <Link
 											class="btn btn-sm btn-default ms-auto me-1"
 											:href="route('client.show', stock.id)"
 										>
@@ -72,7 +72,7 @@ const createEmployee = () => {
 												></use>
 											</svg>
 											view
-										</Link>
+										</Link> -->
 									</td>
 								</tr>
 							</tbody>

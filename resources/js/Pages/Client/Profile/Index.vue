@@ -90,7 +90,7 @@ a.nav-link {
 							</div>
 						</div>
 
-						<div class="col-md-3">
+						<!-- <div class="col-md-3">
 							<div class="card mb-4">
 								<div class="card-header">Actions</div>
 								<div class="card-body">
@@ -107,7 +107,7 @@ a.nav-link {
 									</a>
 								</div>
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 

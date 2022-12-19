@@ -2,6 +2,7 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 import CreateStockTransferModal from "./CreateStockTransferModal.vue";
+import { ref, onMounted } from 'vue'
 
 defineProps({
   stock_transfers: [],
@@ -19,6 +20,10 @@ const destroy = (id) => {
   }
 };
 
+onMounted(() => {
+  $('.transfertbl').DataTable();
+  $('.transfertbl').attr('style', 'border-collapse: collapse !important');
+})
 </script>
 
 <template>
@@ -33,16 +38,13 @@ const destroy = (id) => {
 		</template>
 
 		<div class="col-md-12 text-end mb-2">
-			<button
-			class="btn btn-dark btn-sm"
-			@click="openStockTransferModal"
-			>
-			<svg class="icon">
-			  <use
-			    xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-plus"
-			  ></use>
-			</svg>
-			Create Stock Transfer
+			<button class="btn btn-dark btn-sm" @click="openStockTransferModal">
+				<svg class="icon">
+					<use
+						xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-plus"
+					></use>
+				</svg>
+				Create Stock Transfer
 			</button>
 		</div>
 		<div class="card mb-4">
@@ -50,7 +52,7 @@ const destroy = (id) => {
 			<div class="card-body">
 				<div class="col-md-12">
 					<div class="row">
-						<table class="table table-hover">
+						<table class="table table-hover transfertbl">
 							<thead>
 								<tr>
 									<th>#</th>
@@ -64,7 +66,10 @@ const destroy = (id) => {
 								</tr>
 							</thead>
 							<tbody v-if="stock_transfers.length > 0">
-								<tr v-for="(stock_transfer, keyStockTransfer) in stock_transfers" :key="keyStockTransfer">
+								<tr
+									v-for="(stock_transfer, keyStockTransfer) in stock_transfers"
+									:key="keyStockTransfer"
+								>
 									<td>
 										{{ keyStockTransfer + 1 }}
 									</td>
@@ -84,8 +89,16 @@ const destroy = (id) => {
 										{{ stock_transfer.remarks }}
 									</td>
 									<td>
-                      <span v-show="stock_transfer.status" class="badge text-bg-success">Finished</span>
-                      <span v-show="!stock_transfer.status" class="badge text-bg-warning">Saved</span>
+										<span
+											v-show="stock_transfer.status"
+											class="badge text-bg-success"
+											>Finished</span
+										>
+										<span
+											v-show="!stock_transfer.status"
+											class="badge text-bg-warning"
+											>Saved</span
+										>
 									</td>
 									<td>
 										<Link
@@ -98,19 +111,19 @@ const destroy = (id) => {
 												></use>
 											</svg>
 										</Link>
-											<button
-												v-show="!stock_transfer.status" 
-                        class="btn btn-sm btn-ghost-danger ms-auto me-1"
-                        @click="destroy(stock_transfer.id)"
-                        :class="{ 'opacity-25': form.processing }"
-                        :disabled="form.processing"
-                      >
-                        <svg class="icon">
-                          <use
-                            xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-trash"
-                          ></use>
-                        </svg>
-                      </button>
+										<button
+											v-show="!stock_transfer.status"
+											class="btn btn-sm btn-ghost-danger ms-auto me-1"
+											@click="destroy(stock_transfer.id)"
+											:class="{ 'opacity-25': form.processing }"
+											:disabled="form.processing"
+										>
+											<svg class="icon">
+												<use
+													xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-trash"
+												></use>
+											</svg>
+										</button>
 									</td>
 								</tr>
 							</tbody>
@@ -119,6 +132,6 @@ const destroy = (id) => {
 				</div>
 			</div>
 		</div>
-	<CreateStockTransferModal :locations="locations"></CreateStockTransferModal>
+		<CreateStockTransferModal :locations="locations"></CreateStockTransferModal>
 	</AuthenticatedLayout>
 </template>

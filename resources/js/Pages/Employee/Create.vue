@@ -478,29 +478,24 @@ td {
 														{{ empform.errors.doh }}
 													</div>
 												</div>
-												<!-- <div class="col-md-4">
-                                                    <label
-                                                        for="dob"
-                                                        class="form-label"
-                                                        >Contract End
-                                                        Date</label
-                                                    >
-                                                    <input
-                                                        type="date"
-                                                        class="form-control"
-                                                        id="ced"
-                                                        v-model="empform.ced"
-                                                    />
-                                                    <div
-                                                        class="invalid-feedback"
-                                                        v-show="
-                                                            empform.errors.ced
-                                                        "
-                                                        style="display: block"
-                                                    >
-                                                        {{ empform.errors.ced }}
-                                                    </div>
-                                                </div> -->
+												<div class="col-md-4">
+													<label for="dob" class="form-label"
+														>Contract End Date</label
+													>
+													<input
+														type="date"
+														class="form-control"
+														id="ced"
+														v-model="empform.ced"
+													/>
+													<div
+														class="invalid-feedback"
+														v-show="empform.errors.ced"
+														style="display: block"
+													>
+														{{ empform.errors.ced }}
+													</div>
+												</div>
 											</div>
 										</div>
 									</div>

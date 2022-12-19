@@ -2,6 +2,7 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 import CreateMemoModal from "./CreateMemoModal.vue";
+import { ref, onMounted } from 'vue'
 
 const props = defineProps({
   memos: Array,
@@ -23,6 +24,11 @@ function destroy(id) {
 function htmlDecode(value) {
     return $("<textarea/>").html(value).text();
 }
+
+onMounted(() => {
+  $('.memotbl').DataTable();
+  $('.memotbl').attr('style', 'border-collapse: collapse !important');
+})
 </script>
 <style scoped>
 td {
@@ -56,7 +62,7 @@ td {
 				<div class="card-body">
 					<div class="row">
 						<div class="col-md-12">
-							<table class="table table-hover">
+							<table class="table table-hover memotbl">
 								<thead>
 									<tr>
 										<th>Date</th>

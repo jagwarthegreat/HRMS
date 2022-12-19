@@ -6,37 +6,38 @@ const props = defineProps({
   details: Array,
 });
 
+onMounted(() => {
+  $('.transferdttbl').DataTable();
+  $('.transferdttbl').attr('style', 'border-collapse: collapse !important');
+})
 </script>
 <template>
-    <div class="card mb-4">
-      <div class="card-header">Stock Transfer Lists</div>
-      <div class="card-body">
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Stock Name</th>
-              <th>Qty</th>
-              <th></th>
-            </tr>
-          </thead>
-              <tbody v-if="details.length > 0">
-                <tr
-                  v-for="(detail, keyDetail) in details"
-                  :key="keyDetail"
-                >
-                  <td>
-                    {{ keyDetail + 1 }}
-                  </td>
-                  <td>
-                    {{ detail.stock.name }}
-                  </td>
-                  <td>
-                    {{ detail.quantity }}
-                  </td>
-                </tr>
-              </tbody>
-        </table>
-      </div>
-    </div>
+	<div class="card mb-4">
+		<div class="card-header">Stock Transfer Lists</div>
+		<div class="card-body">
+			<table class="table table-hover transferdttbl">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Stock Name</th>
+						<th>Qty</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody v-if="details.length > 0">
+					<tr v-for="(detail, keyDetail) in details" :key="keyDetail">
+						<td>
+							{{ keyDetail + 1 }}
+						</td>
+						<td>
+							{{ detail.stock.name }}
+						</td>
+						<td>
+							{{ detail.quantity }}
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
 </template>

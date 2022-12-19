@@ -13,7 +13,8 @@
   <!-- Vendors styles-->
   <link rel="stylesheet" href="{!! asset('theme/vendors/simplebar/css/simplebar.css') !!}">
   <link rel="stylesheet" href="{!! asset('theme/css/vendors/simplebar.css') !!}">
-  <link href="{!! asset('theme/css/jquery.dataTables.min.css') !!}" rel="stylesheet">
+  <link href="{!! asset('theme/vendors/datatables.net-bs4/css/dataTables.bootstrap4.css') !!}" rel="stylesheet">
+  <!-- <link href="{!! asset('theme/css/jquery.dataTables.min.css') !!}" rel="stylesheet"> -->
   <!-- Main styles for this application-->
   <link href="{!! asset('theme/css/stylePro.css') !!}" rel="stylesheet"> <!-- USING PRO-->
   <!-- We use those styles to show code examples, you should remove them in your application.-->
@@ -510,14 +511,15 @@
 
   <script src="{!! asset('theme/js/coreui.bundle.min.js') !!}"></script> <!-- USING PRO-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-  <script src="{!! asset('theme/js/jquery.dataTables.min.js') !!}"></script>
+  <script src="{!! asset('theme/vendors/datatables.net/js/jquery.dataTables.js') !!}"></script>
+  <script src="{!! asset('theme/vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js') !!}"></script>
+  <!-- <script src="{!! asset('theme/js/jquery.dataTables.min.js') !!}"></script> -->
   <!-- CoreUI and necessary plugins-->
-  {{--
-  <script src="{!! asset('theme/vendors/@coreui/coreui/js/coreui.bundle.min.js') !!}"></script> --}}
+
+  <!--  <script src="{!! asset('theme/vendors/@coreui/coreui/js/coreui.bundle.min.js') !!}"></script>
   <script src="{!! asset('theme/vendors/simplebar/js/simplebar.min.js') !!}"></script>
-  <!-- Plugins and scripts required by this view-->
-  {{--
-  <script src="{!! asset('theme/js/multi-select.js') !!}"></script> --}}
+  <script src="{!! asset('theme/js/multi-select.js') !!}"></script> -->
+
   <script src="{!! asset('theme/js/select2.min.js') !!}"></script>
   <script src="{!! asset('theme/js/sweetalert2@11.js') !!}"></script>
   <script src="{!! asset('theme/js/summernote-lite.min.js') !!}"></script>

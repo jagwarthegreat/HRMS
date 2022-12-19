@@ -2,6 +2,7 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 import CreateSettlementModal from "./CreateSettlementModal.vue";
+import { ref, onMounted } from 'vue'
 
 const props = defineProps({
   lawsuit: Array,
@@ -25,6 +26,11 @@ function destroy(id) {
 function htmlDecode(value) {
     return $("<textarea/>").html(value).text();
 }
+
+onMounted(() => {
+  $('.settlementtbl').DataTable();
+  $('.settlementtbl').attr('style', 'border-collapse: collapse !important');
+})
 </script>
 <style scoped>
 td {
@@ -69,7 +75,7 @@ td {
 				<div class="card-body">
 					<div class="row">
 						<div class="col-md-12">
-							<table class="table table-hover">
+							<table class="table table-hover settlementtbl">
 								<thead>
 									<tr>
 										<th>Content</th>

@@ -2,6 +2,7 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 import CreatePositionModal from "./CreatePositionModal.vue";
+import { ref, onMounted } from 'vue'
 
 defineProps({
   positions: Array,
@@ -18,74 +19,79 @@ function destroy(id) {
       form.delete(route('position.destroy', id));
   }
 }
+
+onMounted(() => {
+  $('.positiontbl').DataTable();
+  $('.positiontbl').attr('style', 'border-collapse: collapse !important');
+})
 </script>
 <style scoped>
 td {
-  padding: 3px;
-  vertical-align: middle;
+	padding: 3px;
+	vertical-align: middle;
 }
 </style>
 <template>
-  <Head title="Position" />
+	<Head title="Position" />
 
-  <AuthenticatedLayout>
-    <template #breadcrumbs>
-      <li class="breadcrumb-item">
-        <Link :href="route('dashboard')">Dashboard</Link>
-      </li>
-      <li class="breadcrumb-item active" aria-current="page">Position</li>
-    </template>
+	<AuthenticatedLayout>
+		<template #breadcrumbs>
+			<li class="breadcrumb-item">
+				<Link :href="route('dashboard')">Dashboard</Link>
+			</li>
+			<li class="breadcrumb-item active" aria-current="page">Position</li>
+		</template>
 
-    <div class="col-md-12 text-end mb-2">
-      <button
-        class="btn btn-dark btn-sm"
-        @click="openClickedModal('createPositionModal')"
-      >
-        Create Position
-      </button>
-    </div>
+		<div class="col-md-12 text-end mb-2">
+			<button
+				class="btn btn-dark btn-sm"
+				@click="openClickedModal('createPositionModal')"
+			>
+				Create Position
+			</button>
+		</div>
 
-    <div class="col-12">
-      <div class="card mb-4">
-        <div class="card-header">Position List</div>
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-12">
-              <table class="table table-hover">
-                <thead>
-                  <tr>
-                    <th>TITLE</th>
-                    <th style="width: 100px"></th>
-                  </tr>
-                </thead>
-                <tbody v-if="positions.length > 0">
-                  <tr
-                    v-for="(position, keyPosition) in positions"
-                    :key="keyPosition"
-                  >
-                    <td>{{ position.title }}</td>
-                    <td>
-                      <button
-                        class="btn btn-sm btn-ghost-secondary text-dark"
-                        @click="destroy(position.id)"
-                        :class="{ 'opacity-25': form.processing }"
-                        :disabled="form.processing"
-                      >
-                        <svg class="icon">
-                          <use
-                            xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-trash"
-                          ></use>
-                        </svg>
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <CreatePositionModal />
-  </AuthenticatedLayout>
+		<div class="col-12">
+			<div class="card mb-4">
+				<div class="card-header">Position List</div>
+				<div class="card-body">
+					<div class="row">
+						<div class="col-md-12">
+							<table class="table table-hover positiontbl">
+								<thead>
+									<tr>
+										<th>TITLE</th>
+										<th style="width: 100px"></th>
+									</tr>
+								</thead>
+								<tbody v-if="positions.length > 0">
+									<tr
+										v-for="(position, keyPosition) in positions"
+										:key="keyPosition"
+									>
+										<td>{{ position.title }}</td>
+										<td>
+											<button
+												class="btn btn-sm btn-ghost-secondary text-dark"
+												@click="destroy(position.id)"
+												:class="{ 'opacity-25': form.processing }"
+												:disabled="form.processing"
+											>
+												<svg class="icon">
+													<use
+														xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-trash"
+													></use>
+												</svg>
+											</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<CreatePositionModal />
+	</AuthenticatedLayout>
 </template>

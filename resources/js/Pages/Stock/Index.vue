@@ -2,6 +2,7 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link } from "@inertiajs/inertia-vue3";
 import CreateStockModal from "./CreateStockModal.vue";
+import { ref, onMounted } from 'vue'
 
 defineProps({
   stocks: [],
@@ -15,6 +16,11 @@ function openClickedModal(modal) {
 const createEmployee = () => {
   alert("create client");
 };
+
+onMounted(() => {
+  $('.stockstbl').DataTable();
+  $('.stockstbl').attr('style', 'border-collapse: collapse !important');
+})
 </script>
 
 <template>
@@ -30,10 +36,10 @@ const createEmployee = () => {
 
 		<div class="col-md-12 text-end mb-2">
 			<button
-			class="btn btn-dark btn-sm"
-			@click="openClickedModal('createStockModal')"
+				class="btn btn-dark btn-sm"
+				@click="openClickedModal('createStockModal')"
 			>
-			Create Stocks
+				Create Stocks
 			</button>
 		</div>
 		<div class="card mb-4">
@@ -41,7 +47,7 @@ const createEmployee = () => {
 			<div class="card-body">
 				<div class="col-md-12">
 					<div class="row">
-						<table class="table table-hover">
+						<table class="table table-hover stockstbl">
 							<thead>
 								<tr>
 									<th>Name</th>
@@ -81,6 +87,6 @@ const createEmployee = () => {
 				</div>
 			</div>
 		</div>
-	<CreateStockModal :categories="categories"></CreateStockModal>
+		<CreateStockModal :categories="categories"></CreateStockModal>
 	</AuthenticatedLayout>
 </template>

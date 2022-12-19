@@ -1,6 +1,7 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link } from "@inertiajs/inertia-vue3";
+import { ref, onMounted } from 'vue'
 
 defineProps({
   clients: [],
@@ -9,6 +10,11 @@ defineProps({
 const createEmployee = () => {
   alert("create client");
 };
+
+onMounted(() => {
+  $('.clienttbl').DataTable();
+  $('.clienttbl').attr('style', 'border-collapse: collapse !important');
+})
 </script>
 
 <template>
@@ -37,7 +43,7 @@ const createEmployee = () => {
 			<div class="card-body">
 				<div class="col-md-12">
 					<div class="row">
-						<table class="table table-hover">
+						<table class="table table-hover clienttbl">
 							<thead>
 								<tr>
 									<th>Name</th>

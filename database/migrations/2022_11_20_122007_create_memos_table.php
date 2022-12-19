@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('employee_id')->constrained('employees')->onDelete('cascade');
             $table->text("from");
             $table->string("subject", 150);
-            $table->text("content");
+            $table->longText("content");
             $table->date("memo_date");
             $table->timestamps();
         });

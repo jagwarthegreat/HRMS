@@ -1,7 +1,7 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link } from "@inertiajs/inertia-vue3";
-import { unref, ref } from 'vue'
+import { unref, ref, onMounted } from 'vue'
 
 const props = defineProps({
   roles: Array,
@@ -12,6 +12,10 @@ const createUser = () => {
   alert("create role");
 };
 
+onMounted(() => {
+  $('.roletbl').DataTable();
+  $('.roletbl').attr('style', 'border-collapse: collapse !important');
+})
 </script>
 
 <style scoped>
@@ -48,7 +52,7 @@ const createUser = () => {
 				<div class="card-body">
 					<div class="row">
 						<div class="col-md-12">
-							<table class="table table-hover">
+							<table class="table table-hover roletbl">
 								<thead>
 									<tr>
 										<th>ID</th>

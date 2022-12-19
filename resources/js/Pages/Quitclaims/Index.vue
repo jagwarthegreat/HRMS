@@ -2,6 +2,7 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 import CreateQuitClaimsModal from "./CreateQuitclaimsModal.vue";
+import { ref, onMounted } from 'vue'
 
 const props = defineProps({
   qclaims: Array,
@@ -19,6 +20,11 @@ function destroy(id) {
       form.delete(route('quitclaims.destroy', id));
   }
 }
+
+onMounted(() => {
+  $('.qclaims').DataTable();
+  $('.qclaims').attr('style', 'border-collapse: collapse !important');
+})
 </script>
 <style scoped>
 td {
@@ -52,7 +58,7 @@ td {
 				<div class="card-body">
 					<div class="row">
 						<div class="col-md-12">
-							<table class="table table-hover">
+							<table class="table table-hover qclaims">
 								<thead>
 									<tr>
 										<th>Date</th>

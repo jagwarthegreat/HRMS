@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string("notice_for", 150);
             $table->string("subject", 150);
-            $table->text("content");
+            $table->longText("content");
             $table->date("notice_date");
             $table->timestamps();
         });

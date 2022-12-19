@@ -2,6 +2,7 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 import CreateDeployementModal from "./CreateDeployementModal.vue";
+import { ref, onMounted } from 'vue'
 
 const props = defineProps({
   departments: Array,
@@ -24,6 +25,11 @@ function destroy(id) {
       form.delete(route('deployment.destroy', id));
   }
 }
+
+onMounted(() => {
+  $('.deploymenttbl').DataTable();
+  $('.deploymenttbl').attr('style', 'border-collapse: collapse !important');
+})
 </script>
 <style scoped>
 td {
@@ -57,7 +63,7 @@ td {
 				<div class="card-body">
 					<div class="row">
 						<div class="col-md-12">
-							<table class="table table-hover">
+							<table class="table table-hover deploymenttbl">
 								<thead>
 									<tr>
 										<th>Date</th>

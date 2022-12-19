@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('lawsuits', function (Blueprint $table) {
             $table->id();
             $table->string("case", 150);
-            $table->text("content");
+            $table->longText("content");
             $table->text("complainant");
             $table->text("respondent");
             $table->date("case_date");

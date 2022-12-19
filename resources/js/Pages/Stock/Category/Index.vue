@@ -2,6 +2,7 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link } from "@inertiajs/inertia-vue3";
 import CreateStockCategoryModal from "./CreateStockCategoryModal.vue";
+import { ref, onMounted } from 'vue'
 
 defineProps({
   categories:[],
@@ -14,6 +15,11 @@ function openClickedModal(modal) {
 const createEmployee = () => {
   alert("create client");
 };
+
+onMounted(() => {
+  $('.stockcattbl').DataTable();
+  $('.stockcattbl').attr('style', 'border-collapse: collapse !important');
+})
 </script>
 
 <template>
@@ -40,7 +46,7 @@ const createEmployee = () => {
 			<div class="card-body">
 				<div class="col-md-12">
 					<div class="row">
-						<table class="table table-hover">
+						<table class="table table-hover stockcattbl">
 							<thead>
 								<tr>
 									<th>Name</th>

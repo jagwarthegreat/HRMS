@@ -46,7 +46,7 @@ class LawsuitController extends Controller
         Lawsuit::create([
             'case' => $request->case_name,
             'content' => htmlentities(str_replace("'", "&#x2019;", $request->content)),
-            'complainant' => $request->complainant,
+            'complainant' => (is_array($request->complainant)) ? implode(",", $request->complainant) : $request->complainant,
             'respondent' => $request->respondent,
             'case_date' => $request->case_date,
             'status' => $request->status

@@ -40,109 +40,155 @@ onMounted(()=>{
           }
         }
       });
+
+  const myMutliSelect = document.getElementById('notice_for_select')
+		myMutliSelect.addEventListener('changed.coreui.multi-select', event => {
+	  // Get the list of selected options.
+	  const selected = event.value
+	  noticeform.notice_for = selected.value
+
+	  console.log(selected);
+	})
 });
 </script>
 
 <template>
-	<!-- Modal -->
-	<div
-		class="modal fade"
-		id="createNoticeModal"
-		tabindex="-1"
-		aria-labelledby="createNoticeModal"
-		aria-hidden="true"
-	>
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<form @submit.prevent="submitForm">
-					<div class="modal-header">
-						<h5 class="modal-title" id="createNoticeModal">Add Notice</h5>
-						<button
-							type="button"
-							class="btn-close"
-							data-coreui-dismiss="modal"
-							aria-label="Close"
-						></button>
-					</div>
-					<div class="modal-body">
-						<div class="row g-3">
-							<div class="col-md-6">
-								<label for="notice_for" class="form-label">Notice For</label>
-								<input
-									type="text"
-									class="form-control"
-									id="notice_for"
-									v-model="noticeform.notice_for"
-								/>
-								<div
-									class="invalid-feedback"
-									v-show="noticeform.errors.notice_for"
-									style="display: block"
-								>
-									{{ noticeform.errors.notice_for }}
-								</div>
-							</div>
-							<div class="col-md-6">
-								<label for="subject" class="form-label">Subject</label>
-								<input
-									type="text"
-									class="form-control"
-									id="subject"
-									v-model="noticeform.subject"
-								/>
-								<div
-									class="invalid-feedback"
-									v-show="noticeform.errors.subject"
-									style="display: block"
-								>
-									{{ noticeform.errors.subject }}
-								</div>
-							</div>
-							<div class="col-md-12">
-								<label for="content" class="form-label">Content</label>
-								<textarea
-									type="text"
-									class="form-control summernote"
-									name="content"
-								></textarea>
-								<div
-									class="invalid-feedback"
-									v-show="noticeform.errors.content"
-									style="display: block"
-								>
-									{{ noticeform.errors.content }}
-								</div>
-							</div>
-							<div class="col-md-4">
-								<label for="notice_date" class="form-label">Notice Date</label>
-								<input
-									type="date"
-									class="form-control"
-									id="notice_date"
-									v-model="noticeform.notice_date"
-								/>
-								<div
-									class="invalid-feedback"
-									v-show="noticeform.errors.notice_date"
-									style="display: block"
-								>
-									{{ noticeform.errors.notice_date }}
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="modal-footer">
-						<button
-							type="submit"
-							class="btn btn-sm btn-primary"
-							:class="{ 'opacity-25': noticeform.processing }"
-							:disabled="noticeform.processing"
-						>
-							Save Changes
-						</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+    <!-- Modal -->
+    <div
+        class="modal fade"
+        id="createNoticeModal"
+        tabindex="-1"
+        aria-labelledby="createNoticeModal"
+        aria-hidden="true"
+    >
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form @submit.prevent="submitForm">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="createNoticeModal">
+                            Add Notice
+                        </h5>
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-coreui-dismiss="modal"
+                            aria-label="Close"
+                        ></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="notice_for" class="form-label"
+                                    >Notice For</label
+                                >
+                                <input
+                                    type="hidden"
+                                    class="form-control"
+                                    id="notice_for"
+                                    v-model="noticeform.notice_for"
+                                />
+                                <select
+                                    class="form-multi-select"
+                                    id="notice_for_select"
+                                    aria-label="selectinput"
+                                    style="display: none"
+                                    multiple
+                                >
+                                    <optgroup label="Employees">
+                                        <option
+                                            v-for="(
+                                                employees, keyEmployees
+                                            ) in props.employees"
+                                            :key="keyEmployees"
+                                            :value="
+                                                employees.firstname +
+                                                ' ' +
+                                                employees.lastname
+                                            "
+                                        >
+                                            {{
+                                                employees.firstname +
+                                                " " +
+                                                employees.lastname
+                                            }}
+                                        </option>
+                                    </optgroup>
+                                </select>
+                                <div
+                                    class="invalid-feedback"
+                                    v-show="noticeform.errors.notice_for"
+                                    style="display: block"
+                                >
+                                    {{ noticeform.errors.notice_for }}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="subject" class="form-label"
+                                    >Subject</label
+                                >
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="subject"
+                                    v-model="noticeform.subject"
+                                />
+                                <div
+                                    class="invalid-feedback"
+                                    v-show="noticeform.errors.subject"
+                                    style="display: block"
+                                >
+                                    {{ noticeform.errors.subject }}
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="content" class="form-label"
+                                    >Content</label
+                                >
+                                <textarea
+                                    type="text"
+                                    class="form-control summernote"
+                                    name="content"
+                                ></textarea>
+                                <div
+                                    class="invalid-feedback"
+                                    v-show="noticeform.errors.content"
+                                    style="display: block"
+                                >
+                                    {{ noticeform.errors.content }}
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="notice_date" class="form-label"
+                                    >Notice Date</label
+                                >
+                                <input
+                                    type="date"
+                                    class="form-control"
+                                    id="notice_date"
+                                    v-model="noticeform.notice_date"
+                                />
+                                <div
+                                    class="invalid-feedback"
+                                    v-show="noticeform.errors.notice_date"
+                                    style="display: block"
+                                >
+                                    {{ noticeform.errors.notice_date }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button
+                            type="submit"
+                            class="btn btn-sm btn-primary"
+                            :class="{ 'opacity-25': noticeform.processing }"
+                            :disabled="noticeform.processing"
+                        >
+                            Save Changes
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </template>

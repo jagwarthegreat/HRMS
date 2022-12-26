@@ -21,7 +21,8 @@ const empform = useForm({
   pagibig: dprops.props.employee.pagibig_number,
   philhealth: dprops.props.employee.philhealth_number,
   doh: dprops.props.employee.date_of_hire,
-  emp_avatar: ""
+  emp_avatar: "",
+  ced: dprops.props.employee.contract_end_date,
 });
 
 const updateEmployee = () => {
@@ -673,6 +674,37 @@ a.btn.btn-sm.btn-default.ms-auto.me-1 {
                                                             {{
                                                                 empform.errors
                                                                     .doh
+                                                            }}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label
+                                                            for="ced"
+                                                            class="form-label"
+                                                            >Contract End
+                                                            Date</label
+                                                        >
+                                                        <input
+                                                            type="date"
+                                                            class="form-control"
+                                                            id="ced"
+                                                            v-model="
+                                                                empform.ced
+                                                            "
+                                                        />
+                                                        <div
+                                                            class="invalid-feedback"
+                                                            v-show="
+                                                                empform.errors
+                                                                    .ced
+                                                            "
+                                                            style="
+                                                                display: block;
+                                                            "
+                                                        >
+                                                            {{
+                                                                empform.errors
+                                                                    .ced
                                                             }}
                                                         </div>
                                                     </div>

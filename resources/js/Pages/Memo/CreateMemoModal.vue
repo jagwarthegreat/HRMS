@@ -25,6 +25,7 @@ const submitForm = () => {
 
 onMounted(()=>{
   $('.summernote').summernote({
+  			maximumImageFileSize: 1048576,
         height: 300,
         toolbar: [
           ['style', ['style']],

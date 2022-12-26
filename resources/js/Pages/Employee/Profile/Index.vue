@@ -48,6 +48,20 @@ const job_title = props.employee.emp_curr_work == null
 
 const avatar = (props.employee.avatar != null)?'/storage/' + props.employee.avatar.slug:"/theme/assets/img/avatars/default_avatar.jpeg";
 const activeTab = sessionEmployeeActiveTab;
+
+function printdiv(divName){
+  tabSwitchTo('generalInfo');
+  var printContents = document.getElementById(divName).innerHTML;
+  var originalContents = document.body.innerHTML;
+
+  document.body.innerHTML = printContents;
+
+  window.print();
+
+  document.body.innerHTML = originalContents;
+  location.reload();
+
+}
 </script>
 
 <style scoped>
@@ -88,7 +102,7 @@ a.nav-link {
       </Link>
     </div>
 
-    <div class="col-md-12 mb-4">
+    <div class="col-md-12 mb-4" id="myDivToPrint">
       <div class="row">
         <div class="col-12">
           <div class="row">
@@ -128,7 +142,7 @@ a.nav-link {
               </div>
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-3 donotprint">
               <div class="card mb-4">
                 <div class="card-header">Actions</div>
                 <div class="card-body">
@@ -142,6 +156,18 @@ a.nav-link {
                       ></use>
                     </svg>
                     Edit
+                  </button>
+
+                  <button
+                    class="btn btn-sm btn-dark ms-auto me-1 text-light"
+                    @click="printdiv('myDivToPrint')"
+                  >
+                    <svg class="icon">
+                      <use
+                        xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-print"
+                      ></use>
+                    </svg>
+                    Print
                   </button>
 
                   <!-- <a
@@ -183,7 +209,7 @@ a.nav-link {
                     >General Info
                   </Link>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item donotprint">
                   <Link
                     @click="tabSwitchTo('job')"
                     :class="activeTab == 'job' ? 'nav-link active' : 'nav-link'"
@@ -231,7 +257,7 @@ a.nav-link {
                     >Performance
                   </Link>
                 </li> -->
-                <li class="nav-item">
+                <li class="nav-item donotprint">
                   <Link
                     @click="tabSwitchTo('documents')"
                     :class="
@@ -247,7 +273,7 @@ a.nav-link {
                     >Documents
                   </Link>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item donotprint">
                   <Link
                     @click="tabSwitchTo('requirements')"
                     :class="
@@ -265,7 +291,7 @@ a.nav-link {
                     >Requirements
                   </Link>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item donotprint">
                   <Link
                     @click="tabSwitchTo('memos')"
                     :class="

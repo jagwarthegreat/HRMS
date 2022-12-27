@@ -50,16 +50,17 @@ const avatar = (props.employee.avatar != null)?'/storage/' + props.employee.avat
 const activeTab = sessionEmployeeActiveTab;
 
 function printdiv(divName){
-  tabSwitchTo('generalInfo');
-  var printContents = document.getElementById(divName).innerHTML;
-  var originalContents = document.body.innerHTML;
+  $('#nav-home-tab').tabs('select', 1);
+  
+  // var printContents = document.getElementById(divName).innerHTML;
+  // var originalContents = document.body.innerHTML;
 
-  document.body.innerHTML = printContents;
+  // document.body.innerHTML = printContents;
 
-  window.print();
+  // window.print();
 
-  document.body.innerHTML = originalContents;
-  location.reload();
+  // document.body.innerHTML = originalContents;
+  // location.reload();
 
 }
 </script>

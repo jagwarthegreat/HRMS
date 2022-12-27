@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('notices', function (Blueprint $table) {
             $table->id();
-            $table->string("notice_for", 150);
+            $table->longText("notice_for");
+            $table->longText("notice_for_ids");
             $table->string("subject", 150);
             $table->longText("content");
             $table->date("notice_date");

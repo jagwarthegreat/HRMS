@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
 use App\Models\Employee;
 use App\Models\Notice;
 use Illuminate\Http\Request;
@@ -21,9 +22,10 @@ class NoticeController extends Controller
 
         $notices = Notice::all();
         $employees = Employee::all();
+        $clients = Client::all();
         $canCreate = Gate::allows('position_create');
 
-        return Inertia::render('Notice/Index', compact('notices', 'canCreate', 'employees'));
+        return Inertia::render('Notice/Index', compact('notices', 'canCreate', 'employees', 'clients'));
     }
 
     public function store(Request $request)
@@ -40,8 +42,19 @@ class NoticeController extends Controller
             'content' => 'required',
             'notice_date' => 'required',
         ]);
+
+        $ids = [];
+        $names = [];
+        foreach ($request->notice_for as $recepient) {
+            $ids[] = $recepient['value'];
+            $names[] = $recepient['text'];
+        }
+
+        //dd($ids, $names);
+
         Notice::create([
-            'notice_for' => (is_array($request->notice_for)) ? implode(",", $request->notice_for) : $request->notice_for,
+            'notice_for' => implode(",", $names),
+            'notice_for_ids' => implode(",", $ids),
             'subject' => $request->subject,
             'content' => htmlentities(str_replace("'", "&#x2019;", $request->content)),
             'notice_date' => $request->notice_date

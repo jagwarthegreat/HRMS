@@ -11,6 +11,7 @@ class Notice extends Model
 
     protected $fillable = [
         'notice_for',
+        'notice_for_ids',
         'subject',
         'content',
         'notice_date'

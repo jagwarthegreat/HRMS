@@ -50,17 +50,16 @@ const avatar = (props.employee.avatar != null)?'/storage/' + props.employee.avat
 const activeTab = sessionEmployeeActiveTab;
 
 function printdiv(divName){
-  $('#nav-home-tab').tabs('select', 1);
   
-  // var printContents = document.getElementById(divName).innerHTML;
-  // var originalContents = document.body.innerHTML;
+  var printContents = document.getElementById(divName).innerHTML;
+  var originalContents = document.body.innerHTML;
 
-  // document.body.innerHTML = printContents;
+  document.body.innerHTML = printContents;
 
-  // window.print();
+  window.print();
 
-  // document.body.innerHTML = originalContents;
-  // location.reload();
+  document.body.innerHTML = originalContents;
+  location.reload();
 
 }
 </script>
@@ -192,7 +191,7 @@ a.nav-link {
           <div class="card">
             <div class="card-header">
               <ul class="nav nav-tabs card-header-tabs">
-                <li class="nav-item">
+                <li class="nav-item donotprint">
                   <Link
                     @click="tabSwitchTo('generalInfo')"
                     :class="

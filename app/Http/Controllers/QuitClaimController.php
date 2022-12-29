@@ -42,7 +42,7 @@ class QuitClaimController extends Controller
         ]);
 
         QuitClaim::create([
-            'employee_id' => $request->employee,
+            'employee_id' => $request->employee[0]['value'],
             'amount' => $request->amount,
             'resgnation_effective_date' => $request->resignation_date,
             'claims_effective_date' => $request->claims_date

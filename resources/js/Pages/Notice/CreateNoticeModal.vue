@@ -116,6 +116,7 @@ onMounted(()=>{
                   v-model="noticeform.notice_for"
                 />
                 <select
+                  data-coreui-search="true"
                   class="form-multi-select"
                   id="notice_for_select"
                   multiple

@@ -510,7 +510,7 @@ td {
                     <td>{{ workExp.job_desc }}</td>
                     <td>
                       <button
-                        class="btn btn-sm btn-ghost-link text-dark"
+                        class="btn btn-sm btn-ghost-link text-dark donotprint"
                         @click="destroyWorkBg(workExp.id)"
                         :class="{
                           'opacity-25': delform.processing,
@@ -593,7 +593,7 @@ td {
                     <td>{{ educBg.year }}</td>
                     <td>
                       <button
-                        class="btn btn-sm btn-ghost-link text-dark"
+                        class="btn btn-sm btn-ghost-link text-dark donotprint"
                         @click="destroyEducBg(educBg.id)"
                         :class="{
                           'opacity-25': delform.processing,
@@ -676,7 +676,7 @@ td {
                     <td>{{ dependent.dob }}</td>
                     <td>
                       <button
-                        class="btn btn-sm btn-ghost-link text-dark"
+                        class="btn btn-sm btn-ghost-link text-dark donotprint"
                         @click="destroyDependent(dependent.id)"
                         :class="{
                           'opacity-25': delform.processing,

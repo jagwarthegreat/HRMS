@@ -43,10 +43,15 @@ class LawsuitController extends Controller
             'content' => 'required',
         ]);
 
+        $complainent_names = [];
+        foreach ($request->complainant as $complainant) {
+            $complainent_names[] = $complainant['text'];
+        }
+
         Lawsuit::create([
             'case' => $request->case_name,
             'content' => htmlentities(str_replace("'", "&#x2019;", $request->content)),
-            'complainant' => (is_array($request->complainant)) ? implode(",", $request->complainant) : $request->complainant,
+            'complainant' => implode(",", $complainent_names),
             'respondent' => $request->respondent,
             'case_date' => $request->case_date,
             'status' => $request->status

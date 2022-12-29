@@ -49,7 +49,7 @@ class MemoController extends Controller
         ]);
 
         Memo::create([
-            'employee_id' => $request->employee_id,
+            'employee_id' => $request->employee_id[0]['value'],
             'from' => $request->from,
             'memo_date' => $request->memo_date,
             'subject' => $request->subject,

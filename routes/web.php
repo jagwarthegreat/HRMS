@@ -38,8 +38,11 @@ use App\Models\Asset;
 use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\LawsuitController;
 use App\Http\Controllers\SettlementController;
+use App\Models\Client;
+use App\Models\Employee;
 use App\Models\EmployeeEducationalBackground;
 use App\Models\EmpStatusHistory;
+use App\Models\Lawsuit;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -72,7 +75,10 @@ Route::get('/dashboard', function () {
     $_SESSION['Employee']['tab']['active'] = "generalInfo";
     $_SESSION['Client']['tab']['active'] = "generalInfo";
     $user = Auth::user();
-    return Inertia::render('Dashboard', compact('user'));
+    $employee_count = Employee::count();
+    $client_count = Client::count();
+    $active_cases = Lawsuit::where("status", "Ongoing")->count();
+    return Inertia::render('Dashboard', compact('user', 'employee_count', 'client_count', 'active_cases'));
 })->middleware('auth')->name('dashboard');
 
 // PERMISSIONS

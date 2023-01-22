@@ -34,6 +34,7 @@ use App\Http\Controllers\PositionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\LoginParameterController;
 use App\Models\Asset;
 use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\LawsuitController;
@@ -104,6 +105,9 @@ Route::prefix('user')->middleware('auth')->group(function () {
     // profile
     Route::get('/profile', [UserProfileController::class, 'index'])->name('user.profile');
     Route::post('/profile/update/{id}', [UserProfileController::class, 'update'])->name('user.profile.update');
+
+    // login Param
+    Route::get('/loginparam', [LoginParameterController::class, 'index'])->name('user.loginparam');
 });
 
 // EMPLOYEE MANAGEMENT

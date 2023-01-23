@@ -22,7 +22,7 @@ class LoginParameterController extends Controller
         return Inertia::render('LoginParam/Index', compact('canCreate'));
     }
 
-    public static function getDistance($gpsLat, $gpsLong, $defaultRadius = 10)
+    public static function getDistance($gpsLong, $gpsLat, $defaultRadius = 1)
     {
         $defaultLong = 10.648516;
         $defaultLat = 122.965087;

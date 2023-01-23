@@ -17,13 +17,13 @@ const form = useForm({
 });
 
 const submit = () => {
-  // getLocation();
-  form.post(route("login"), {
-    onSuccess: () => {
-      form.reset("password");
-      location.reload();
-    },
-  });
+  getLocation();
+  // form.post(route("login"), {
+  //   onSuccess: () => {
+  //     form.reset("password");
+  //     location.reload();
+  //   },
+  // });
 };
 
 let options = {
@@ -44,12 +44,13 @@ function success(position) {
   var pos = position.coords.latitude +","+ position.coords.longitude;
   form.lat = position.coords.latitude;
   form.long = position.coords.longitude;
-  // form.post(route("login"), {
-  //   onSuccess: () => {
-  //     form.reset("password");
-  //     location.reload();
-  //   },
-  // });
+  
+  form.post(route("login"), {
+    onSuccess: () => {
+      form.reset("password");
+      location.reload();
+    },
+  });
 }
 
 function error(err) {

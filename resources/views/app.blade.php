@@ -319,78 +319,78 @@
         <ul class="nav-group-items">
           <li class="nav-item">
             <a class="nav-link" href="{{route('job.vacancy')}}">
-              <svg class="nav-icon"></svg>
-              Post Vacancy</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('job.applicants')}}">
-              <svg class="nav-icon"></svg>
-              Applicants
-            </a>
-          </li>
-        </ul>
-      </li> --}}
-      {{-- /RECRUITMENT MANAGEMENT --}}
-
-      {{-- THIS SECTION SITS AT THE BOTTOM --}}
-      {{-- USER MANAGEMENT --}}
-      @can('user_management_access')
-      <!-- USER MANAGEMENT -->
-      <li class="nav-group mt-auto">
-        <a class="nav-link nav-group-toggle" href="#">
-          <svg class="nav-icon">
-            <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-user"></use>
-          </svg>
-          User Management
-        </a>
-        <ul class="nav-group-items">
-
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('user.loginparam')}}">
-              <svg class="nav-icon">
-                <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-pin"></use>
-              </svg>
-              Login Parameter</a>
-          </li>
-
-          @can('permission_access')
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('permission')}}">
-              <svg class="nav-icon">
-                <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-lock-unlocked"></use>
-              </svg>
-              Permissions</a>
-          </li>
-          @endcan
-
-          @can('role_access')
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('role')}}">
-              <svg class="nav-icon">
-                <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-briefcase"></use>
-              </svg>
-              Roles</a>
-          </li>
-          @endcan
-
-          @can('user_access')
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('user')}}">
-              <svg class="nav-icon">
-                <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-people"></use>
-              </svg>
-              Users</a>
-          </li>
-          @endcan
-
-        </ul>
+      <svg class="nav-icon"></svg>
+      Post Vacancy</a>
       </li>
-      <!-- /USER MANAGEMENT -->
-      @endcan
-      {{-- /USER MANAGEMENT --}}
+      <li class="nav-item">
+        <a class="nav-link" href="{{route('job.applicants')}}">
+          <svg class="nav-icon"></svg>
+          Applicants
+        </a>
+      </li>
+    </ul>
+    </li> --}}
+    {{-- /RECRUITMENT MANAGEMENT --}}
 
-      {{-- DOCUMENT MANAGEMENT --}}
-      {{-- <li class="nav-group">
+    {{-- THIS SECTION SITS AT THE BOTTOM --}}
+    {{-- USER MANAGEMENT --}}
+    @can('user_management_access')
+    <!-- USER MANAGEMENT -->
+    <li class="nav-group mt-auto">
+      <a class="nav-link nav-group-toggle" href="#">
+        <svg class="nav-icon">
+          <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-user"></use>
+        </svg>
+        User Management
+      </a>
+      <ul class="nav-group-items">
+
+        <li class="nav-item">
+          <a class="nav-link" href="{{route('user.loginparam')}}">
+            <svg class="nav-icon">
+              <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-pin"></use>
+            </svg>
+            Login Parameter</a>
+        </li>
+
+        @can('permission_access')
+        <li class="nav-item">
+          <a class="nav-link" href="{{route('permission')}}">
+            <svg class="nav-icon">
+              <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-lock-unlocked"></use>
+            </svg>
+            Permissions</a>
+        </li>
+        @endcan
+
+        @can('role_access')
+        <li class="nav-item">
+          <a class="nav-link" href="{{route('role')}}">
+            <svg class="nav-icon">
+              <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-briefcase"></use>
+            </svg>
+            Roles</a>
+        </li>
+        @endcan
+
+        @can('user_access')
+        <li class="nav-item">
+          <a class="nav-link" href="{{route('user')}}">
+            <svg class="nav-icon">
+              <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-people"></use>
+            </svg>
+            Users</a>
+        </li>
+        @endcan
+
+      </ul>
+    </li>
+    <!-- /USER MANAGEMENT -->
+    @endcan
+    {{-- /USER MANAGEMENT --}}
+
+    {{-- DOCUMENT MANAGEMENT --}}
+    {{-- <li class="nav-group">
         <a class="nav-link nav-group-toggle" href="#">
           <svg class="nav-icon">
             <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-description"></use>
@@ -400,19 +400,19 @@
         <ul class="nav-group-items">
           <li class="nav-item">
             <a class="nav-link" href="{{route('docs.employee')}}">
-              <svg class="nav-icon"></svg>
-              Employee</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('docs.client')}}">
-              <svg class="nav-icon"></svg>
-              Client
-            </a>
-          </li>
-        </ul>
-      </li> --}}
-      {{-- /DOCUMENT MANAGEMENT --}}
-      {{-- /THIS SECTION SITS AT THE BOTTOM --}}
+    <svg class="nav-icon"></svg>
+    Employee</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{route('docs.client')}}">
+        <svg class="nav-icon"></svg>
+        Client
+      </a>
+    </li>
+    </ul>
+    </li> --}}
+    {{-- /DOCUMENT MANAGEMENT --}}
+    {{-- /THIS SECTION SITS AT THE BOTTOM --}}
 
     </ul>
     <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
@@ -435,13 +435,13 @@
           <li class="nav-item"><a class="nav-link" href="#">Settings</a></li> -->
         </ul>
         <ul class="header-nav ms-auto">
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="#">
               <svg class="icon icon-lg">
                 <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-bell"></use>
               </svg>
             </a>
-          </li>
+          </li> -->
           <!-- <li class="nav-item">
             <a class="nav-link" href="#">
               <svg class="icon icon-lg">
@@ -458,8 +458,7 @@
         </ul>
         <ul class="header-nav ms-3">
           <li class="nav-item dropdown">
-            <a class="nav-link py-0" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-              aria-expanded="false">
+            <a class="nav-link py-0" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
               <div class="avatar avatar-md">
                 @if(Auth::user()->avatar_slug == null)
                 <img class="avatar-img avtr" src="/theme/assets/img/avatars/default_avatar.jpeg" />
@@ -490,12 +489,12 @@
                 </svg>
                 Tasks<span class="badge badge-sm bg-danger ms-2">42</span>
               </a> -->
-              <a class="dropdown-item" href="#">
+              <!-- <a class="dropdown-item" href="#">
                 <svg class="icon me-2">
                   <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-comment-square"></use>
                 </svg>
                 Notice<span class="badge badge-sm bg-warning ms-2">42</span>
-              </a>
+              </a> -->
               <!--  <div class="dropdown-header bg-light py-2">
                 <div class="fw-semibold">Settings</div>
               </div> -->
@@ -557,19 +556,13 @@
   <script src="{!! asset('theme/js/summernote-lite.min.js') !!}"></script>
   <!-- <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script> -->
 
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC232qKEVqI5x0scuj9UGEVUNdB98PiMX0&callback=init_map" async defer></script> -->
+
   <script>
     function toggleSideBar() {
       coreui.Sidebar.getInstance(document.querySelector("#sidebar")).toggle();
     }
   </script>
 </body>
-
-</html>
-
-</html>
-
-</html>
-
-</html>
 
 </html>

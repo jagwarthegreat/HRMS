@@ -63,6 +63,7 @@ class UserController extends Controller
             'name' => $user_fullname,
             'username' => $request->username,
             'password' => bcrypt($request->password),
+            'limited_access_status' => $request->limited_access
         ]);
 
         $user->roles()->sync($request->roles);

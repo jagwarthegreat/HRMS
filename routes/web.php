@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AreaOfAccessController;
 use App\Http\Controllers\StockTransactionController;
 use App\Http\Controllers\StockTransferController;
 use App\Http\Controllers\StockTransferDetailController;
@@ -107,7 +108,8 @@ Route::prefix('user')->middleware('auth')->group(function () {
     Route::post('/profile/update/{id}', [UserProfileController::class, 'update'])->name('user.profile.update');
 
     // login Param
-    Route::get('/loginparam', [LoginParameterController::class, 'index'])->name('user.loginparam');
+    Route::get('/loginparam', [AreaOfAccessController::class, 'index'])->name('user.loginparam');
+    Route::post('/aoa/update/{id}', [AreaOfAccessController::class, 'update'])->name('aoa.update');
 });
 
 // EMPLOYEE MANAGEMENT

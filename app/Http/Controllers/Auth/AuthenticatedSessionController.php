@@ -38,23 +38,35 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request)
     {
         $user = User::where("username", "=", $request->username)->with('employee')->first();
+
+        if($user == null){
+            return redirect()->route('login')->with('message', 'Account does not match in our records.');
+        }
+
         $passchecker = Hash::check($request->password, $user->password);
+
         if ($passchecker) {
             if ($user->employee_id == 0) {
                 // super user allow to loging without area parameter checking
                 $request->authenticate();
                 $request->session()->regenerate();
             } else {
-                // system users
-                $isInArea = LoginParameterController::getDistance($request->long, $request->lat);
-                if ($isInArea == 1) {
+                if($user->limited_access_status == 1){
+                    // system users
+                    $isInArea = LoginParameterController::getDistance($request->long, $request->lat);
+                    if ($isInArea == 1) {
+                        $request->authenticate();
+                        $request->session()->regenerate();
+                    } else {
+                        // $_SESSION['system']['error'] = "You are not in the given area!";
+                        return redirect()->route('login');
+                    }
+                }else{
                     $request->authenticate();
                     $request->session()->regenerate();
-                } else {
-                    // $_SESSION['system']['error'] = "You are not in the given area!";
-                    return redirect()->route('login');
                 }
             }
+
         }
 
         // return redirect(RouteServiceProvider::HOME);

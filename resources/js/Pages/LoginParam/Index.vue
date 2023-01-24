@@ -1,68 +1,25 @@
-<script>
+<script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head, Link } from "@inertiajs/inertia-vue3";
+import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 import { ref, onMounted } from 'vue'
 
-export default {
-	data: () => ({
-      
-  }),
-	mounted() {
-		this.init_map()
-	  // $('.usertbl').DataTable();
-	  // $('.usertbl').attr('style', 'border-collapse: collapse !important');
+const newprops = defineProps({
+  aoa: Array,
+});
 
-	  let testScript = document.createElement('script')
-	      testScript.setAttribute('src', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyC232qKEVqI5x0scuj9UGEVUNdB98PiMX0&callback=init_map')
-	      document.head.appendChild(testScript)
-	},
-	methods: {
-		init_map() {
-		  var long = 10.648516;
-		  var lat = 122.965087;
+const aoaForm = useForm({
+  coordinates: newprops.aoa[0].coordinates,
+  radius: newprops.aoa[0].radius,
+});
 
-		  var pos = {
-		    lng: long,
-		    lat: lat
-		  };
-
-		  var options = {
-		    zoom: 16,
-		    center: pos,
-		    mapTypeId: "roadmap",
-		    styles: [{
-		      featureType: "poi",
-		      elementType: "labels",
-		      stylers: [{
-		        visibility: "off"
-		      }]
-		    }]
-		  };
-
-		  var map = new google.maps.Map(document.getElementById("map_canvas"), options);
-
-		  var marker;
-		  marker = new google.maps.Marker({
-		    position: new google.maps.LatLng(long, lat),
-		    map: map,
-		    draggable: true,
-		    animation: new google.maps.Animation.DROP,
-		    label: "Main"
-		  });
-
-		  var circle = new google.maps.Circle({
-		    radius: 10 * 1000,
-		    center: new google.maps.LatLng(long, lat),
-		    fillColor: '#FF0000',
-		    fillOpacity: 0.2,
-		    strokeColor: '#FF0000',
-		    strokeOpacity: 0.6
-		  });
-
-		  circle.setMap(map);
-		}
-  }
-}
+const submitForm = () => {
+    aoaForm.post(route("aoa.update", newprops.aoa[0].id), {
+    preserveScroll: true,
+    onSuccess: () => {
+      alert("Changes saved.");
+    },
+  });
+};
 </script>
 
 <style scoped>
@@ -92,8 +49,39 @@ export default {
 
 		<div class="col-12">
 			<div class="card mb-4">
-				<div class="card-header">User List</div>
+				<div class="card-header">Area of Access</div>
 				<div class="card-body">
+					<form @submit.prevent="submitForm">
+						<div class="row g-3">
+							<div class="col-4">
+								<label for="coordinates" class="form-label">Coordinates</label>
+								<input
+								  type="text"
+								  class="form-control"
+								  id="coordinates"
+								  v-model="aoaForm.coordinates"
+								/>
+							</div>
+							<div class="col-4">
+								<label for="radius" class="form-label">Radius</label>
+								<input
+								  type="text"
+								  class="form-control"
+								  id="radius"
+								  v-model="aoaForm.radius"
+								/>
+							</div>
+							<div class="col-4">
+								<label for="action" class="form-label">Action</label>
+					            <button
+					              type="submit"
+					              class="form-control btn btn-primary"
+					            >
+					              Save Changes
+					            </button>
+							</div>
+						</div>
+					</form>
 					<div class="row">
 						<div class="col-md-12">
 							<div id="map_canvas"></div>

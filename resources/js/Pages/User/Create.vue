@@ -13,9 +13,12 @@ const userform = useForm({
     roles: "",
     username: "",
     password: "",
+    limited_access: 0,
 });
 
 const userStore = () => {
+
+
     userform.post(route("user.store"), {
         onFinish: () => {
             userform.reset("employee");
@@ -42,6 +45,14 @@ onMounted(() => {
       }.bind(this)
   );
 });
+
+function checkLimitedAccess() {
+	if($("#limited_access").is(":checked")){
+  	userform.limited_access = 1;
+  }else{
+  	userform.limited_access = 0;
+  }
+}
 </script>
 
 <template>
@@ -138,6 +149,20 @@ onMounted(() => {
 									<div class="row" v-else>
 										<small class="text-danger ms-1">No Roles found.</small>
 									</div>
+								</div>
+								<div class="mb-3">
+									<div class="form-check">
+					          <input
+					            class="form-check-input"
+					            type="checkbox"
+					            id="limited_access"
+					            @click="checkLimitedAccess()"
+					          />
+					          <label class="form-check-label" for="limited_access">
+					            Limited Area of Access
+					          </label>
+					        </div>
+
 								</div>
 							</div>
 							<div class="col-12 text-base">

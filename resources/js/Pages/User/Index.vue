@@ -52,6 +52,7 @@ onMounted(() => {
 									<tr>
 										<th>Fullname</th>
 										<th>Username</th>
+										<th>Area of Access</th>
 										<th>Role</th>
 									</tr>
 								</thead>
@@ -59,6 +60,8 @@ onMounted(() => {
 									<tr v-for="(user, keyUser) in users" :key="keyUser">
 										<td>{{ user.name }}</td>
 										<td>{{ user.username }}</td>
+										<td v-if="user.limited_access_status == 1">Limited</td>
+										<td v-else>Anywhere</td>
 										<td>
 											<span
 												v-for="(role, keyRole) in user.roles"

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AreaOfAccess;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Gate;
@@ -22,10 +23,13 @@ class LoginParameterController extends Controller
         return Inertia::render('LoginParam/Index', compact('canCreate'));
     }
 
-    public static function getDistance($gpsLong, $gpsLat, $defaultRadius = 1)
+    public static function getDistance($gpsLong, $gpsLat)
     {
-        $defaultLong = 10.648516;
-        $defaultLat = 122.965087;
+        $areaOfAccess = AreaOfAccess::find(1)->first();
+        $latLong = explode(',', $areaOfAccess->coordinates);
+        $defaultLong = $latLong[1];
+        $defaultLat = $latLong[0];
+        $defaultRadius = $areaOfAccess->radius;
 
         $isInsideRadius = 0;
         $theta = $defaultLong - $gpsLong;
@@ -37,6 +41,7 @@ class LoginParameterController extends Controller
         // Miles = ($distance * 60 * 1.1515)
         // Kilometers = 1.609344
         $distanceInKm = $distance * 60 * 1.1515 * 1.609344;
+
         if ($distanceInKm < $defaultRadius) {
             // inside the defaultRadius
             $isInsideRadius = 1;

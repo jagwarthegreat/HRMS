@@ -16,20 +16,20 @@ import { Link } from "@inertiajs/inertia-vue3";
         </div>
     </header> -->
     <div class="body flex-grow-1 px-0">
-        <div class="container-fluid">
-            <div class="row">
-                <slot />
-            </div>
+      <div class="container-fluid">
+        <div class="row">
+          <slot />
         </div>
+      </div>
     </div>
-    <footer class="footer text-muted">
+    <!-- <footer class="footer text-muted">
         <div>
             Copyright &copy;2022 HRMS
         </div>
         <div class="ms-auto">
             Developed by <a href="https://juancoder.com" style="color: inherit;">Juancoder IT Solutions</a>
         </div>
-    </footer>
+    </footer> -->
   </div>
   <!-- /CONTENT -->
 </template>

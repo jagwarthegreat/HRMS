@@ -25,9 +25,6 @@ const updateClient = () => {
     });
 };
 
-onMounted(()=>{
-    
-});
 </script>
 <style scoped>
 .accordion-button {
@@ -77,16 +74,12 @@ a.btn.btn-sm.btn-default.ms-auto.me-1 {
                     </div>
                     <div class="modal-body">
                         <div class="row">
-                            <input type="hidden" id="clientid">
+                            <input type="hidden" id="clientid" />
                             <div class="col-12">
                                 <div class="row g-3">
                                     <div class="col-md-8">
-                                        <label
-                                            for="name"
-                                            class="form-label"
-                                        >
-                                            Name<span
-                                                class="text-danger"
+                                        <label for="name" class="form-label">
+                                            Name<span class="text-danger"
                                                 >*</span
                                             >
                                         </label>
@@ -94,29 +87,18 @@ a.btn.btn-sm.btn-default.ms-auto.me-1 {
                                             type="text"
                                             class="form-control"
                                             id="name"
-                                            v-model="client_form.name"
                                         />
                                         <div
                                             class="invalid-feedback"
-                                            v-show="
-                                                client_form.errors
-                                                    .name
-                                            "
+                                            v-show="client_form.errors.name"
                                             style="display: block"
                                         >
-                                            {{
-                                                client_form.errors
-                                                    .name
-                                            }}
+                                            {{ client_form.errors.name }}
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <label
-                                            for="contact"
-                                            class="form-label"
-                                        >
-                                            Contact<span
-                                                class="text-danger"
+                                        <label for="contact" class="form-label">
+                                            Contact<span class="text-danger"
                                                 >*</span
                                             >
                                         </label>
@@ -124,78 +106,47 @@ a.btn.btn-sm.btn-default.ms-auto.me-1 {
                                             type="text"
                                             class="form-control"
                                             id="contact"
-                                            v-model="
-                                                client_form.contact
-                                            "
                                         />
                                         <div
                                             class="invalid-feedback"
-                                            v-show="
-                                                client_form.errors
-                                                    .contact
-                                            "
+                                            v-show="client_form.errors.contact"
                                             style="display: block"
                                         >
-                                            {{
-                                                client_form.errors
-                                                    .contact
-                                            }}
+                                            {{ client_form.errors.contact }}
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <label
-                                            for="email"
-                                            class="form-label"
+                                        <label for="email" class="form-label"
                                             >E-mail Address</label
                                         >
                                         <input
                                             type="email"
                                             class="form-control"
                                             id="email"
-                                            v-model="
-                                                client_form.email
-                                            "
                                         />
                                         <div
                                             class="invalid-feedback"
-                                            v-show="
-                                                client_form.errors
-                                                    .email
-                                            "
+                                            v-show="client_form.errors.email"
                                             style="display: block"
                                         >
-                                            {{
-                                                client_form.errors
-                                                    .email
-                                            }}
+                                            {{ client_form.errors.email }}
                                         </div>
                                     </div>
                                     <div class="col-md-8">
-                                        <label
-                                            for="address"
-                                            class="form-label"
+                                        <label for="address" class="form-label"
                                             >Address</label
                                         >
                                         <input
                                             type="address"
                                             class="form-control"
                                             id="address"
-                                            v-model="
-                                                client_form.address
-                                            "
                                         />
                                         <div
                                             class="invalid-feedback"
-                                            v-show="
-                                                client_form.errors
-                                                    .address
-                                            "
+                                            v-show="client_form.errors.address"
                                             style="display: block"
                                         >
-                                            {{
-                                                client_form.errors
-                                                    .address
-                                            }}
+                                            {{ client_form.errors.address }}
                                         </div>
                                     </div>
                                 </div>

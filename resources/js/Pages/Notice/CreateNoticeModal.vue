@@ -3,7 +3,7 @@ import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 import { ref, onMounted } from "vue";
 
 const dprops = defineProps({
-  props: Array
+  props: Object
 });
 
 const noticeform = useForm({
@@ -46,9 +46,12 @@ onMounted(()=>{
 	  // Get the list of selected options.
 	  const selected = event.value;
 	  noticeform.notice_for = selected;
-
-	  console.log(event);
 	})
+
+  new coreui.MultiSelect(myMutliSelect, {
+    multiple: true,
+    search: true
+  });
 });
 </script>
 
@@ -116,10 +119,9 @@ onMounted(()=>{
                   v-model="noticeform.notice_for"
                 />
                 <select
-                  data-coreui-search="true"
                   class="form-multi-select"
                   id="notice_for_select"
-                  multiple
+                  v-model="noticeform.notice_for"
                 >
                   <optgroup label="Employees">
                     <option

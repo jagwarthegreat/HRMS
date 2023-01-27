@@ -2,7 +2,7 @@
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 
 const newprops = defineProps({
-  props: Array,
+  props: Object,
 });
 
 function htmlDecode(value) {

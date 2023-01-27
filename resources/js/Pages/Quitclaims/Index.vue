@@ -5,8 +5,8 @@ import CreateQuitClaimsModal from "./CreateQuitclaimsModal.vue";
 import { ref, onMounted } from 'vue'
 
 const props = defineProps({
-  qclaims: Array,
-  employees: Array,
+  qclaims: Object,
+  employees: Object,
   canCreate: Boolean,
 });
 

@@ -30,7 +30,7 @@ class DocumentController extends Controller
                 'filetype' => $fileType,
                 'filesize' => $filesize,
                 'slug' => $image_path,
-                'created_by' => Auth::user()->id,
+                'created_by' => Auth::user()->employee_id,
             ]);
 
         }

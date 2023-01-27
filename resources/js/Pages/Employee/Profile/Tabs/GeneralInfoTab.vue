@@ -5,7 +5,7 @@ import EducBgModal from "./../modals/EducBgModal.vue";
 import DependentsModal from "./../modals/DependentsModal.vue";
 
 const props = defineProps({
-  employee: Array,
+  employee: Object,
 });
 
 const empform = useForm({

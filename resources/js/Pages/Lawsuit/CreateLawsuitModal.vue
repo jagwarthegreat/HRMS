@@ -3,7 +3,7 @@ import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 import { ref, onMounted } from "vue";
 
 const dprops = defineProps({
-  props: Array
+  props: Object
 });
 
 const lawsuitform = useForm({
@@ -48,11 +48,16 @@ onMounted(()=>{
       });
 
     const myMutliSelect = document.getElementById('complainant_employee')
-		myMutliSelect.addEventListener('changed.coreui.multi-select', event => {
-        // Get the list of selected options.
-        const selected = event.value
-        lawsuitform.complainant = selected
-	})
+  		myMutliSelect.addEventListener('changed.coreui.multi-select', event => {
+          // Get the list of selected options.
+          const selected = event.value
+          lawsuitform.complainant = selected
+  	})
+
+    new coreui.MultiSelect(myMutliSelect, {
+      multiple: true,
+      search: true
+    });
 });
 
 function changeInput() {
@@ -101,9 +106,8 @@ function changeInput() {
                 <div class="mb-3" id="complainant_container">
                   <select
                     class="form-multi-select"
-                    data-coreui-search="true"
                     id="complainant_employee"
-                    multiple
+                    v-model="lawsuitform.complainant"
                   >
                     <optgroup label="Employees">
                       <option

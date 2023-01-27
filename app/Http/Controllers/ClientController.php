@@ -42,6 +42,24 @@ class ClientController extends Controller
         return redirect('client');
     }
 
+    public function update(Request $request)
+    {
+        $request->validate([
+            "name" => ['required'],
+            "contact" => ['required'],
+            "email" => ['email'],
+        ]);
+
+        Client::where('id', $request->client_id)->update([
+            "name" => $request->name,
+            "contact" => $request->contact,
+            "email" => $request->email,
+            "address" => $request->address,
+        ]);
+
+        return Inertia::location(route('client'));
+    }
+
     public function show($client_id)
     {
         $client = Client::with([

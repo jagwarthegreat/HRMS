@@ -5,8 +5,8 @@ import CreateSettlementModal from "./CreateSettlementModal.vue";
 import { ref, onMounted } from 'vue'
 
 const props = defineProps({
-  lawsuit: Array,
-  settlements: Array,
+  lawsuit: Object,
+  settlements: Object,
   canCreate: Boolean,
 });
 

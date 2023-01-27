@@ -4,7 +4,7 @@ import { Head, Link } from "@inertiajs/inertia-vue3";
 import { ref, onMounted } from 'vue'
 
 defineProps({
-  employees: [],
+  employees: Array,
 });
 
 onMounted(() => {

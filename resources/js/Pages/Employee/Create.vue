@@ -4,13 +4,13 @@ import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 import { ref, onMounted } from "vue";
 
 defineProps({
-  employeeTypes: Array,
-  employee_status: Array,
-  departments: Array,
-  positions: Array,
-  locations: Array,
-  employees: Array,
-  paytypes: Array,
+  employeeTypes: Object,
+  employee_status: Object,
+  departments: Object,
+  positions: Object,
+  locations: Object,
+  employees: Object,
+  paytypes: Object,
 });
 
 const empform = useForm({

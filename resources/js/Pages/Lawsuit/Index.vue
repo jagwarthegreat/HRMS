@@ -5,8 +5,8 @@ import CreateLawsuitModal from "./CreateLawsuitModal.vue";
 import { ref, onMounted } from 'vue'
 
 const props = defineProps({
-  lawsuits: Array,
-  employees: Array,
+  lawsuits: Object,
+  employees: Object,
   canCreate: Boolean,
 });
 

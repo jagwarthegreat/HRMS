@@ -4,13 +4,14 @@ import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 
 
 const dprops = defineProps({
-  user: Array,
+  user: Object,
   canCreate: Boolean
 });
 
 const userform = useForm({
   username: dprops.user.username,
   password: dprops.user.password,
+  name: dprops.user.name,
   user_avatar: ""
 });
 
@@ -44,15 +45,15 @@ const avatar = (dprops.user.avatar_slug === null || dprops.user.avatar_slug === 
 
 <style scoped>
 .avatar {
-	width: 100%;
-	height: 240px;
+  width: 150px;
+  height: 150px;
 }
 
 .avatar-img {
-	width: 100%;
-	height: 100%;
-	border-radius: 0;
-	border: 1px solid #aaa;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  border: 1px solid #aaa;
 }
 
 .accordion-button {
@@ -91,155 +92,135 @@ a.btn.btn-sm.btn-default.ms-auto.me-1 {
 
 		<div class="col-12">
 			<div class="card mb-4">
-				<div class="card-header">My Profile</div>
-				<div class="card-body">
-					<form @submit.prevent="updateUserInfo">
-						<div class="row">
-							<div class="col-3 text-center d-flex flex-column">
-								<div class="avatar">
-									<img
-										class="avatar-img"
-										id="user_avatar_img"
-										:src="avatar"
-										style="object-fit: cover"
-									/>
+				
+				<form @submit.prevent="updateUserInfo">
+					<div class="card-body" style="height: 370px; overflow-y: auto;">
+							<div class="row">
+								<div class="col-12 mb-3">
+									<h6>Account</h6>
+									<hr>
 								</div>
-								<input
-									type="file"
-									id="user_avatar"
-									@input="
-										userform.user_avatar =
-											$event.target.files[0]
-									"
-									style="display: none"
-									accept="image/*"
-									@change="readURL($event.target)"
-								/>
-								<label
-									class="btn btn-sm btn-dark mt-2"
-									for="user_avatar"
-								>
-									Change Avatar
-								</label>
-							</div>
-							<div class="col-9">
-								<div
-									class="accordion mb-3"
-									id="updateEmployeeDetailAccordion"
-								>
-									<!-- personal detial -->
-									<div class="accordion-item mb-3">
-										<h2
-											class="accordion-header"
-											id="panelsStayOpen-headingUpdateEmp"
+								<div class="col-12 mb-3">
+									<h6>Photo</h6>
+									<div class="avatar">
+										<img
+											class="avatar-img"
+											id="user_avatar_img"
+											:src="avatar"
+											style="object-fit: cover"
+										/>
+									</div>
+									<br>
+									<input
+										type="file"
+										id="user_avatar"
+										@input="
+											userform.user_avatar =
+												$event.target.files[0]
+										"
+										style="display: none"
+										accept="image/*"
+										@change="readURL($event.target)"
+									/>
+									<label
+										class="btn btn-sm btn-dark mt-2 px-3"
+										for="user_avatar"
+									>
+										Upload photo
+									</label>
+									<hr>
+								</div>
+								<div class="col-12 mb-3">
+									<h6>Personal info</h6>
+									<div class="col-12">
+										<label
+											for="password"
+											class="form-label"
 										>
-											<button
-												class="accordion-button p-2"
-												type="button"
-												data-coreui-toggle="collapse"
-												data-coreui-target="#panelsStayOpen-collapseUpdateEmp"
-												aria-expanded="true"
-												aria-controls="panelsStayOpen-collapseUpdateEmp"
-											>
-												Security
-											</button>
-										</h2>
+											Name
+										</label>
+											<input
+												type="text"
+												class="form-control"
+												v-model="userform.name"
+												disabled
+											/>
+									</div>
+									<div class="col-12 mt-3">
+										<label
+											for="password"
+											class="form-label"
+										>
+											Preferred username
+										</label>
+										<input
+											type="text"
+											class="form-control"
+											id="username"
+											v-model="
+												userform.username
+											"
+										/>
 										<div
-											id="panelsStayOpen-collapseUpdateEmp"
-											class="accordion-collapse collapse show"
-											aria-labelledby="panelsStayOpen-headingUpdateEmp"
+											class="invalid-feedback"
+											v-show="
+												userform.errors
+													.username
+											"
+											style="
+												display: block;
+											"
 										>
-											<div class="accordion-body">
-												<div class="row g-3">
-													<div class="col-md-4">
-														<label
-															for="password"
-															class="form-label"
-														>
-															Password<span
-																class="text-danger"
-																>*</span
-															>
-														</label>
-														<input
-															type="password"
-															class="form-control"
-															id="password"
-															v-model="
-																userform.password
-															"
-														/>
-														<div
-															class="invalid-feedback"
-															v-show="
-																userform.errors
-																	.password
-															"
-															style="
-																display: block;
-															"
-														>
-															{{
-																userform.errors
-																	.password
-															}}
-														</div>
-													</div>
-													<div class="col-md-4">
-														<label
-															for="username"
-															class="form-label"
-															>Username<span
-																class="text-danger"
-																>*</span
-															></label
-														>
-														<input
-															type="text"
-															class="form-control"
-															id="username"
-															v-model="
-																userform.username
-															"
-														/>
-														<div
-															class="invalid-feedback"
-															v-show="
-																userform.errors
-																	.username
-															"
-															style="
-																display: block;
-															"
-														>
-															{{
-																userform.errors
-																	.username
-															}}
-														</div>
-													</div>
-												</div>
-											</div>
+											{{
+												userform.errors
+													.username
+											}}
 										</div>
 									</div>
-									<!-- /personal detial -->
+									<hr>
 								</div>
-								<div clas="col-12">
-									<button
-										type="submit"
-										class="btn btn-sm btn-primary"
-										:class="{
-											'opacity-25': userform.processing,
-										}"
-										:disabled="userform.processing"
+								<div class="col-12 mb-3">
+									<h6>Password</h6>
+									<small class="text-secondary">Leave blank if you don't want to update your password.</small>
+									<input
+										type="password"
+										class="form-control"
+										id="password"
+										v-model="userform.password"
+									/>
+									<div
+										class="invalid-feedback"
+										v-show="
+											userform.errors
+												.password
+										"
+										style="
+											display: block;
+										"
 									>
-										Save Changes
-									</button>
+										{{
+											userform.errors
+												.password
+										}}
+									</div>
 								</div>
 							</div>
+					</div>
+					<div class="card-footer">
+				    <div clas="col-12">
+							<button
+								type="submit"
+								class="btn btn-sm btn-primary"
+								:class="{
+									'opacity-25': userform.processing,
+								}"
+								:disabled="userform.processing"
+							>
+								Update changes
+							</button>
 						</div>
-					</form>
-				</div>
+				  </div>
+				</form>
 			</div>
 		</div>
 	</AuthenticatedLayout>

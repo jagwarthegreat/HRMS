@@ -12,16 +12,16 @@ import MemosTab from "./Tabs/MemosTab.vue";
 import UpdateEmployeeModal from "./modals/UpdateEmployeeModal.vue";
 
 const props = defineProps({
-  employee: Array,
-  employeeTypes: Array,
-  employee_status: Array,
-  departments: Array,
-  positions: Array,
-  locations: Array,
-  paytypes: Array,
-  employees: Array,
-  docCategories: Array,
-  requirementsWithCheck: Array,
+  employee: Object,
+  employeeTypes: Object,
+  employee_status: Object,
+  departments: Object,
+  positions: Object,
+  locations: Object,
+  paytypes: Object,
+  employees: Object,
+  docCategories: Object,
+  requirementsWithCheck: Object,
 });
 
 const empform = useForm({

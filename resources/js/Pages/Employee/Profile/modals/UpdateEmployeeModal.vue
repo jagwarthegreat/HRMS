@@ -3,7 +3,7 @@ import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 import { ref, onMounted } from "vue";
 
 const dprops = defineProps({
-  props: Array,
+  props: Object,
 });
 
 const empform = useForm({

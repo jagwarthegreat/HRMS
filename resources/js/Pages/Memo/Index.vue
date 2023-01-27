@@ -5,8 +5,8 @@ import CreateMemoModal from "./CreateMemoModal.vue";
 import { ref, onMounted } from 'vue'
 
 const props = defineProps({
-  memos: Array,
-  employees: Array,
+  memos: Object,
+  employees: Object,
   canCreate: Boolean,
 });
 

@@ -257,6 +257,7 @@ Route::prefix('client')->middleware('auth')->group(function () {
     Route::get('/create', [ClientController::class, 'create'])->name('client.create');
     Route::post('/store', [ClientController::class, 'store'])->name('client.store');
     Route::get('/{id}', [ClientController::class, 'show'])->name('client.show');
+    Route::post('/update', [ClientController::class, 'update'])->name('client.update');
 
     Route::post('/tabSwitchTo/{tabName}', function ($tabName) {
         $_SESSION['Client']['tab']['active'] = $tabName;

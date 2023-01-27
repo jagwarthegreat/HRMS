@@ -3,7 +3,7 @@ import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 import addDocumentModal from "./../modals/AddDocumentModal.vue";
 
 const newprops = defineProps({
-  props: Array,
+  props: Object,
 });
 
 function openClickedModal(modal) {

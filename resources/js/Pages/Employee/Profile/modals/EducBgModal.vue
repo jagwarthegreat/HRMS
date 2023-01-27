@@ -3,7 +3,7 @@ import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 import { ref, onMounted } from "vue";
 
 const props = defineProps({
-  employee_id: String,
+  employee_id: Number,
 });
 
 const eduform = useForm({

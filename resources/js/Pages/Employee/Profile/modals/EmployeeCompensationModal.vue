@@ -3,8 +3,8 @@ import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 import { ref, onMounted } from "vue";
 
 const props = defineProps({
-  employee_id: String,
-  paytypes: Array,
+  employee_id: Number,
+  paytypes: Object,
 });
 
 const cform = useForm({

@@ -5,15 +5,13 @@ import CreateDeployementModal from "./CreateDeployementModal.vue";
 import { ref, onMounted } from 'vue'
 
 const props = defineProps({
-  departments: Array,
-  positions: Array,
-  locations: Array,
-  employees: Array,
-  deployments: Array,
+  departments: Object,
+  positions: Object,
+  locations: Object,
+  employees: Object,
+  deployments: Object,
   canCreate: Boolean,
 });
-
-console.log(props);
 
 function openClickedModal(modal) {
   $("#" + modal).modal("show");

@@ -543,6 +543,7 @@
 
   <script src="{!! asset('theme/js/coreui.bundle.min.js') !!}"></script> <!-- USING PRO-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <!-- <script src="{!! asset('theme/js/multi-select.js') !!}"></script> -->
   <script src="{!! asset('theme/vendors/datatables.net/js/jquery.dataTables.js') !!}"></script>
   <script src="{!! asset('theme/vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js') !!}"></script>
   <!-- <script src="{!! asset('theme/js/jquery.dataTables.min.js') !!}"></script> -->
@@ -550,7 +551,6 @@
 
   <!--  <script src="{!! asset('theme/vendors/@coreui/coreui/js/coreui.bundle.min.js') !!}"></script> -->
   <script src="{!! asset('theme/vendors/simplebar/js/simplebar.min.js') !!}"></script>
-  <!-- <script src="{!! asset('theme/js/multi-select.js') !!}"></script> -->
 
   <script src="{!! asset('theme/js/select2.min.js') !!}"></script>
   <script src="{!! asset('theme/js/sweetalert2@11.js') !!}"></script>

@@ -5,7 +5,7 @@ import CreateDepartmentModal from "./CreateDepartmentModal.vue";
 import { ref, onMounted } from 'vue'
 
 defineProps({
-  departments: Array,
+  departments: Object,
   canCreate: Boolean,
 });
 

@@ -30,6 +30,11 @@ onMounted(()=>{
 	  const selected = event.value;
 	  qclaimsform.employee = selected;
 	})
+
+  new coreui.MultiSelect(myMutliSelect, {
+    multiple: false,
+    search: true
+  });
 });
 </script>
 

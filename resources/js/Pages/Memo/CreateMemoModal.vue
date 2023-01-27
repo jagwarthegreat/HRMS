@@ -3,11 +3,11 @@ import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 import { ref, onMounted } from "vue";
 
 const dprops = defineProps({
-  props: Array
+  props: Object
 });
 
 const memoform = useForm({
-  employee_id: "",
+  employee_id: Number,
   from: "",
   memo_date: "",
   subject: "",
@@ -52,6 +52,10 @@ onMounted(()=>{
 	  memoform.employee_id = selected;
 	})
 	
+  new coreui.MultiSelect(myMutliSelect, {
+    multiple: false,
+    search: true
+  });
 });
 </script>
 
@@ -82,9 +86,8 @@ onMounted(()=>{
                 <label for="employee_id" class="form-label">Employee</label>
                 <select
                   class="form-multi-select"
-                  data-coreui-search="true"
-                  data-coreui-multiple="false"
                   id="employee_id"
+                  v-model="memoform.employee_id"
                 >
                   <option
                     v-for="(employees, keyEmployees) in props.employees"

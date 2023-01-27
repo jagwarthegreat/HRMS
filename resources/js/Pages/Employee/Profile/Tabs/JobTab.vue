@@ -6,7 +6,7 @@ import EmployeeCompensationModal from "./../modals/EmployeeCompensationModal.vue
 import EmployeeJobInfoModal from "./../modals/EmployeeJobInfoModal.vue";
 
 const newprops = defineProps({
-  props: Array,
+  props: Object,
 });
 
 function openClickedModal(modal) {

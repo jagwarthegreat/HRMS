@@ -8,9 +8,9 @@ import LocationsTab from "./Tabs/LocationsTab.vue";
 import SuppliesTab from "./Tabs/SuppliesTab.vue";
 
 const props = defineProps({
-  client: Array,
-  locations: Array,
-  docCategories: Array,
+  client: Object,
+  locations: Object,
+  docCategories: Object,
 });
 
 const clientform = useForm({

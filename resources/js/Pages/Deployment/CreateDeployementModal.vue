@@ -3,11 +3,11 @@ import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 import { ref, onMounted } from "vue";
 
 const dprops = defineProps({
-  props: Array
+  props: Object
 });
 
 const dployForm = useForm({
-  employees: "",
+  employees: [],
   trans_date: "",
   location: "",
   department: "",
@@ -15,7 +15,7 @@ const dployForm = useForm({
 });
 
 const submitForm = () => {
-	console.log(dployForm);
+	// console.log(dployForm);
   dployForm.post(route("deployment.store"), {
     onSuccess: () => {
       dployForm.reset("employees", "trans_date", "location", "department", "position");
@@ -31,6 +31,11 @@ onMounted(() => {
 	  const selected = event.value
 	  dployForm.employees = selected
 	})
+
+  new coreui.MultiSelect(myMutliSelect, {
+    multiple: true,
+    search: true
+  });
 });
 </script>
 
@@ -64,8 +69,6 @@ onMounted(() => {
                 <select
                   class="form-multi-select"
                   id="employees"
-                  multiple
-                  data-coreui-search="true"
                   v-model="dployForm.employees"
                 >
                   <option

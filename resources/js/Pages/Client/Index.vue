@@ -1,20 +1,28 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link } from "@inertiajs/inertia-vue3";
-import { ref, onMounted } from 'vue'
+import { ref, onMounted } from 'vue';
+import UpdateClientModal from "./modals/UpdateClientModal.vue";
 
-defineProps({
-  clients: [],
+const props = defineProps({
+  clients: Array,
 });
-
-const createEmployee = () => {
-  alert("create client");
-};
 
 onMounted(() => {
   $('.clienttbl').DataTable();
   $('.clienttbl').attr('style', 'border-collapse: collapse !important');
 })
+
+function openEditModal(id, name, address, contact, email) {
+	// console.log(id+"::"+name+"::"+address+"::"+contact+"::"+email);
+	$("#clientid").val(id);
+	$("#name").val(name);
+	$("#contact").val(contact);
+	$("#email").val(email);
+	$("#address").val(address);
+
+  $("#updateClientModal").modal("show");
+}
 </script>
 
 <template>
@@ -67,18 +75,30 @@ onMounted(() => {
 									<td>
 										{{ client.email }}
 									</td>
-									<td>
+									<td style="width: 100px; vertical-align: baseline">
+
 										<Link
-											class="btn btn-sm btn-default ms-auto me-1"
+											class="btn btn-sm btn-ghost-secondary text-dark"
 											:href="route('client.show', client.id)"
+										>
+											<svg class="icon">
+												<use
+													xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-file"
+												></use>
+											</svg>
+										</Link>
+
+										<button
+											class="btn btn-sm btn-ghost-secondary text-dark"
+											@click="openEditModal(client.id, client.name, client.address, client.contact, client.email)"
 										>
 											<svg class="icon">
 												<use
 													xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-pen"
 												></use>
 											</svg>
-											view
-										</Link>
+										</button>
+										
 									</td>
 								</tr>
 							</tbody>
@@ -86,6 +106,7 @@ onMounted(() => {
 					</div>
 				</div>
 			</div>
+			<UpdateClientModal />
 		</div>
 	</AuthenticatedLayout>
 </template>

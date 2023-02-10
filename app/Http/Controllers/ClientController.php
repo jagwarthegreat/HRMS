@@ -57,7 +57,8 @@ class ClientController extends Controller
             "address" => $request->address,
         ]);
 
-        return Inertia::location(route('client'));
+        return redirect('client');
+        // return Inertia::location(route('client'));
     }
 
     public function show($client_id)

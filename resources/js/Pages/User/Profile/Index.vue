@@ -94,7 +94,7 @@ a.btn.btn-sm.btn-default.ms-auto.me-1 {
 			<div class="card mb-4">
 				
 				<form @submit.prevent="updateUserInfo">
-					<div class="card-body" style="height: 370px; overflow-y: auto;">
+					<div class="card-body">
 							<div class="row">
 								<div class="col-12 mb-3">
 									<h6>Account</h6>

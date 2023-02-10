@@ -47,13 +47,13 @@ const submitForm = () => {
 			</Link>
 		</div>
 
-		<div class="col-12">
+		<div class="col-6">
 			<div class="card mb-4">
 				<div class="card-header">Area of Access</div>
 				<div class="card-body">
 					<form @submit.prevent="submitForm">
 						<div class="row g-3">
-							<div class="col-4">
+							<div class="col-6">
 								<label for="coordinates" class="form-label">Coordinates</label>
 								<input
 								  type="text"
@@ -62,7 +62,7 @@ const submitForm = () => {
 								  v-model="aoaForm.coordinates"
 								/>
 							</div>
-							<div class="col-4">
+							<div class="col-6">
 								<label for="radius" class="form-label">Radius</label>
 								<input
 								  type="text"
@@ -71,8 +71,8 @@ const submitForm = () => {
 								  v-model="aoaForm.radius"
 								/>
 							</div>
-							<div class="col-4">
-								<label for="action" class="form-label">Action</label>
+							<div class="col-12">
+								<!-- <label for="action" class="form-label">Action</label> -->
 					            <button
 					              type="submit"
 					              class="form-control btn btn-primary"

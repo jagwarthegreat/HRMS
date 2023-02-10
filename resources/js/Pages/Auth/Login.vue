@@ -69,12 +69,12 @@ function error(err) {
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-lg-8 text-center">
-              <!-- <img src="/theme/assets/img/sjs_logo.png" style="height: 100%" /> -->
-              LOGO HERE
+              <img src="/theme/assets/img/sjs_logo_full.png" style="height: 100%; width: 70%; object-fit: contain;" />
+              <!-- LOGO HERE -->
             </div>
             <div class="col-lg-4">
               <div class="card-group d-block d-md-flex row">
-                <div class="card col-md-4 p-4 mb-0">
+                <div class="card col-md-4 p-4 mb-0" style="background-color: #30811c; color: #ffff;">
                   <div class="card-body">
                     <form @submit.prevent="submit">
                       <div class="mt-4">
@@ -135,7 +135,7 @@ function error(err) {
                           </span>
                           <div class="col-12 text-end">
                             <button
-                              class="btn btn-primary px-4"
+                              class="btn btn-danger px-4 text-white"
                               type="submit"
                               :class="{ 'opacity-25': form.processing }"
                               :disabled="form.processing"
@@ -156,3 +156,8 @@ function error(err) {
     </div>
   </GuestLayout>
 </template>
+<style scoped>
+  .text-medium-emphasis {
+      color: #f7f7f7ad !important;
+  }
+</style>

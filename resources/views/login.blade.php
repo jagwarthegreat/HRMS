@@ -22,6 +22,10 @@
               /* padding: 10px !important; */
               font-size: 14px;
             }
+
+            .bg-light {
+                background-color: #fff !important;
+            }
         </style>
 
         <!-- Scripts -->

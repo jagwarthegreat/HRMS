@@ -28,6 +28,9 @@ class EmployeeController extends Controller
 {
     public function index()
     {
+        $filterByLocation = "";
+        $filterByDepartment = "";
+
         $employees = Employee::with([
             'dependents',
             'work_experiences',
@@ -38,14 +41,29 @@ class EmployeeController extends Controller
             'emp_job_histories.locations',
             'emp_job_histories.departments',
             'emp_job_histories.positions',
-            'emp_curr_work.locations',
-            'emp_curr_work.departments',
+            'emp_curr_work.locations' => function ($query) {
+                if (array_key_exists('filter_by_branch', $_REQUEST)) {
+                    $filterByLocation = $_REQUEST['filter_by_branch'];
+                    $query->where('id', $filterByLocation);
+                }
+            },
+            'emp_curr_work.departments' => function ($query) {
+                if (array_key_exists('filter_by_dept', $_REQUEST)) {
+                    $filterByDepartment = $_REQUEST['filter_by_dept'];
+                    $query->where('id', $filterByDepartment);
+                }
+            },
             'emp_curr_work.positions',
             'emp_curr_type.employee_types',
             'emp_curr_status.employee_statuses',
         ])->get();
 
-        return Inertia::render('Employee/Index', compact('employees'));
+        // dd($employees);
+
+        $departments =  Department::all();
+        $locations =  Location::all();
+
+        return Inertia::render('Employee/Index', compact('employees', 'departments', 'locations'));
     }
 
     public function create()

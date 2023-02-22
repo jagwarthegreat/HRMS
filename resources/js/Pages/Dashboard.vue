@@ -33,9 +33,9 @@ const props = defineProps({
             </div>
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-12">
           <div class="row">
-            <div class="col-md-12 mb-3">
+            <div class="col-md-4 mb-3">
               <Link :href="route('employee')" style="text-decoration: none;">
                 <div class="card overflow-hidden">
                   <div class="card-body p-0 d-flex align-items-center">
@@ -61,7 +61,7 @@ const props = defineProps({
               </Link>
             </div>
 
-            <div class="col-md-12 mb-3">
+            <div class="col-md-4 mb-3">
               <Link :href="route('client')" style="text-decoration: none;">
                 <div class="card overflow-hidden">
                   <div class="card-body p-0 d-flex align-items-center">
@@ -87,7 +87,7 @@ const props = defineProps({
               </Link>
             </div>
 
-            <div class="col-md-12 mb-3">
+            <div class="col-md-4 mb-3">
               <Link :href="route('lawsuit')" style="text-decoration: none;">
                 <div class="card overflow-hidden">
                   <div class="card-body p-0 d-flex align-items-center">
@@ -111,21 +111,6 @@ const props = defineProps({
                   </div>
                 </div>
               </Link>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-8">
-          <div
-            class="card overflow-hidden"
-            style="background-color: #e55353; color: #fff"
-          >
-            <div class="card-body d-flex flex-column align-items-baseline">
-             <h6>Latest Notices</h6>
-
-             <div class="col-md-12 mt-3 p-2" style="border: 1px solid #fff;">
-              <span style="font-size: 14px; font-weight: 500;"><Link style="text-decoration: none; color: #fff;">Christmas Day</Link> | 2023-02-10</span>
-             </div>
-
             </div>
           </div>
         </div>

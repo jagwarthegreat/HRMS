@@ -5,12 +5,31 @@ import { ref, onMounted } from 'vue'
 
 defineProps({
   employees: Array,
+  departments: Array,
+  locations: Array,
 });
 
 onMounted(() => {
   $('.employeetbl').DataTable();
   $('.employeetbl').attr('style', 'border-collapse: collapse !important');
 })
+
+function filterTable() {
+    var filter_by_branch = $('#filter_by_branch').val();
+    var filter_by_dept = $('#filter_by_dept').val();
+
+    axios.get(route("employee"),{
+        params: {
+            filter_by_branch: filter_by_branch,
+            filter_by_dept: filter_by_dept
+        }
+    })
+    .then(function (response) {
+        console.log(response);
+    }).catch((error) => {
+        console.log(error);
+    });
+}
 </script>
 
 <template>
@@ -24,15 +43,61 @@ onMounted(() => {
             <li class="breadcrumb-item active" aria-current="page">Employee</li>
         </template>
 
-        <div class="col-md-12 text-end mb-2">
-            <Link
-                class="btn btn-dark btn-sm"
-                :href="route('employee.create')"
-                method="get"
-                as="button"
-            >
-                Create Employee
-            </Link>
+        <div
+            class="col-md-12 d-flex flex-row mb-2"
+            style="justify-content: space-between"
+        >
+            <div class="d-flex">
+                <select
+                    class="me-2 form-select form-select-sm"
+                    name="filter_by_branch"
+                    id="filter_by_branch"
+                    style="width: 200px"
+                >
+                    <option
+                        v-for="(location, locationtype) in locations"
+                        :key="locationtype"
+                        :value="location.id"
+                    >
+                        {{ location.title }}
+                    </option>
+                </select>
+
+                <select
+                    class="me-2 form-select form-select-sm"
+                    name="filter_by_dept"
+                    id="filter_by_dept"
+                    style="width: 200px"
+                >
+                    <option
+                        v-for="(department, departmenttype) in departments"
+                        :key="departmenttype"
+                        :value="department.id"
+                    >
+                        {{ department.title }}
+                    </option>
+                </select>
+
+                <Link
+                    class="btn btn-dark btn-sm"
+                    method="get"
+                    as="button"
+                    @click="filterTable()"
+                >
+                    Filter
+                </Link>
+            </div>
+
+            <div>
+                <Link
+                    class="btn btn-dark btn-sm"
+                    :href="route('employee.create')"
+                    method="get"
+                    as="button"
+                >
+                    Create Employee
+                </Link>
+            </div>
         </div>
         <div class="card mb-4">
             <div class="card-header">
@@ -60,13 +125,13 @@ onMounted(() => {
                                     v-for="(employee, keyEmployee) in employees"
                                     :key="keyEmployee"
                                 >
-                                    <td>
+                                    <td style="font-weight: 600">
                                         {{
+                                            employee.lastname +
+                                            ", " +
                                             employee.firstname +
                                             " " +
-                                            employee.middlename +
-                                            " " +
-                                            employee.lastname
+                                            employee.middlename
                                         }}
                                     </td>
                                     <td>

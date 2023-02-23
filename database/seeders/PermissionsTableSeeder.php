@@ -148,7 +148,158 @@ class PermissionsTableSeeder extends Seeder
                 "created_at" => "2022-11-08 08:27:41",
                 "updated_at" => "2022-11-08 08:27:41",
             ),
+            array(
+                "id" => 23,
+                "title" => "Master Data",
+                "created_at" => "2023-02-23 08:02:23",
+                "updated_at" => "2023-02-23 08:02:23",
+            ),
+            array(
+                "id" => 24,
+                "title" => "clients_access",
+                "created_at" => "2023-02-23 08:03:32",
+                "updated_at" => "2023-02-23 08:03:32",
+            ),
+            array(
+                "id" => 25,
+                "title" => "locations_access",
+                "created_at" => "2023-02-23 08:03:41",
+                "updated_at" => "2023-02-23 08:03:41",
+            ),
+            array(
+                "id" => 26,
+                "title" => "employee_status_access",
+                "created_at" => "2023-02-23 08:03:49",
+                "updated_at" => "2023-02-23 08:03:49",
+            ),
+            array(
+                "id" => 27,
+                "title" => "employment_types_access",
+                "created_at" => "2023-02-23 08:04:07",
+                "updated_at" => "2023-02-23 08:04:07",
+            ),
+            array(
+                "id" => 28,
+                "title" => "compensation_types_access",
+                "created_at" => "2023-02-23 08:04:23",
+                "updated_at" => "2023-02-23 08:04:23",
+            ),
+            array(
+                "id" => 29,
+                "title" => "document_category_access",
+                "created_at" => "2023-02-23 08:04:36",
+                "updated_at" => "2023-02-23 08:04:36",
+            ),
+            array(
+                "id" => 30,
+                "title" => "hiring_requirements_access",
+                "created_at" => "2023-02-23 08:04:54",
+                "updated_at" => "2023-02-23 08:04:54",
+            ),
+            array(
+                "id" => 31,
+                "title" => "stocks_access",
+                "created_at" => "2023-02-23 08:05:06",
+                "updated_at" => "2023-02-23 08:05:06",
+            ),
+            array(
+                "id" => 32,
+                "title" => "stock_category_access",
+                "created_at" => "2023-02-23 08:05:19",
+                "updated_at" => "2023-02-23 08:05:19",
+            ),
+            array(
+                "id" => 33,
+                "title" => "department_access",
+                "created_at" => "2023-02-23 08:05:53",
+                "updated_at" => "2023-02-23 08:05:53",
+            ),
+            array(
+                "id" => 34,
+                "title" => "positions_access",
+                "created_at" => "2023-02-23 08:06:03",
+                "updated_at" => "2023-02-23 08:06:03",
+            ),
+            array(
+                "id" => 35,
+                "title" => "deployment_access",
+                "created_at" => "2023-02-23 08:09:25",
+                "updated_at" => "2023-02-23 08:09:25",
+            ),
+            array(
+                "id" => 36,
+                "title" => "memo_access",
+                "created_at" => "2023-02-23 08:09:41",
+                "updated_at" => "2023-02-23 08:09:41",
+            ),
+            array(
+                "id" => 37,
+                "title" => "notice_access",
+                "created_at" => "2023-02-23 08:09:49",
+                "updated_at" => "2023-02-23 08:09:49",
+            ),
+            array(
+                "id" => 38,
+                "title" => "lawsuit_cases_access",
+                "created_at" => "2023-02-23 08:10:03",
+                "updated_at" => "2023-02-23 08:10:03",
+            ),
+            array(
+                "id" => 39,
+                "title" => "quit_claims_access",
+                "created_at" => "2023-02-23 08:10:15",
+                "updated_at" => "2023-02-23 08:10:15",
+            ),
+            array(
+                "id" => 40,
+                "title" => "hr_management__access",
+                "created_at" => "2023-02-23 08:10:40",
+                "updated_at" => "2023-02-23 08:10:40",
+            ),
+            array(
+                "id" => 41,
+                "title" => "transaction_access",
+                "created_at" => "2023-02-23 08:10:49",
+                "updated_at" => "2023-02-23 08:10:49",
+            ),
+            array(
+                "id" => 42,
+                "title" => "procurement__access",
+                "created_at" => "2023-02-23 08:11:00",
+                "updated_at" => "2023-02-23 08:11:00",
+            ),
+            array(
+                "id" => 43,
+                "title" => "stock_transfer_access",
+                "created_at" => "2023-02-23 08:11:09",
+                "updated_at" => "2023-02-23 08:11:09",
+            ),
+            array(
+                "id" => 44,
+                "title" => "reports_access",
+                "created_at" => "2023-02-23 08:11:17",
+                "updated_at" => "2023-02-23 08:11:17",
+            ),
+            array(
+                "id" => 45,
+                "title" => "inventory_access",
+                "created_at" => "2023-02-23 08:11:26",
+                "updated_at" => "2023-02-23 08:11:26",
+            ),
+            array(
+                "id" => 46,
+                "title" => "contract_report",
+                "created_at" => "2023-02-23 08:11:38",
+                "updated_at" => "2023-02-23 08:11:38",
+            ),
+            array(
+                "id" => 47,
+                "title" => "employee_status_access",
+                "created_at" => "2023-02-23 08:11:46",
+                "updated_at" => "2023-02-23 08:11:46",
+            ),
         );
+
 
         Permission::insert($permissions);
     }

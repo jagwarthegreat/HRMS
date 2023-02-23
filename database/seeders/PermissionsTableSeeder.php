@@ -150,7 +150,7 @@ class PermissionsTableSeeder extends Seeder
             ),
             array(
                 "id" => 23,
-                "title" => "Master Data",
+                "title" => "master_data_access",
                 "created_at" => "2023-02-23 08:02:23",
                 "updated_at" => "2023-02-23 08:02:23",
             ),

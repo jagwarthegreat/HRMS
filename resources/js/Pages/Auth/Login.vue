@@ -130,7 +130,7 @@ function error(err) {
                         />
 
                         <div class="row">
-                          <span class="text-danger mb-2">
+                          <span class="mb-2 py-1" style="background-color: #E96D6D; color: #fff;" v-if="$page.props.flash.message != null">
                             {{ $page.props.flash.message }}
                           </span>
                           <div class="col-12 text-end">

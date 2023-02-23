@@ -115,6 +115,7 @@ Route::prefix('user')->middleware('auth')->group(function () {
 // EMPLOYEE MANAGEMENT
 Route::prefix('employee')->middleware('auth')->group(function () {
     Route::get('/', [EmployeeController::class, 'index'])->name('employee');
+    Route::get('/filter', [EmployeeController::class, 'filter'])->name('employee.filter');
     Route::get('/create', [EmployeeController::class, 'create'])->name('employee.create');
     Route::post('/store', [EmployeeController::class, 'store'])->name('employee.store');
     Route::post('/update/{id}', [EmployeeController::class, 'update'])->name('employee.update');
@@ -175,6 +176,10 @@ Route::prefix('procurement')->middleware('auth')->group(function () {
 // REPORT
 Route::prefix('report')->middleware('auth')->group(function () {
     Route::get('/inventory', [StockTransactionController::class, 'index'])->name('report.inventory');
+    Route::get('/emp_contract', [EmployeeController::class, 'contractReport'])->name('report.employee.contract');
+    Route::get('/emp_contract/filter', [EmployeeController::class, 'contractFilter'])->name('report.employee.contract.filter');
+    Route::get('/emp_status', [EmployeeController::class, 'statusReport'])->name('report.employee.status');
+    Route::get('/emp_status/filter', [EmployeeController::class, 'statusFilter'])->name('report.employee.status.filter');
 });
 
 // POSITION / DESIGNATION

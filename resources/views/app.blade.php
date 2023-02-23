@@ -304,6 +304,22 @@
               Inventory
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('report.employee.contract')}}">
+              <!-- <svg class="nav-icon">
+                <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-info"></use>
+              </svg> -->
+              Contract Report
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('report.employee.status')}}">
+              <!-- <svg class="nav-icon">
+                <use xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-info"></use>
+              </svg> -->
+              Employee Status
+            </a>
+          </li>
         </ul>
       </li>
       <!-- {{-- /REPORT MANAGEMENT --}} -->

@@ -28,9 +28,6 @@ class EmployeeController extends Controller
 {
     public function index()
     {
-        $filterByLocation = "";
-        $filterByDepartment = "";
-
         $employees = Employee::with([
             'dependents',
             'work_experiences',
@@ -41,29 +38,85 @@ class EmployeeController extends Controller
             'emp_job_histories.locations',
             'emp_job_histories.departments',
             'emp_job_histories.positions',
-            'emp_curr_work.locations' => function ($query) {
-                if (array_key_exists('filter_by_branch', $_REQUEST)) {
-                    $filterByLocation = $_REQUEST['filter_by_branch'];
-                    $query->where('id', $filterByLocation);
-                }
-            },
-            'emp_curr_work.departments' => function ($query) {
-                if (array_key_exists('filter_by_dept', $_REQUEST)) {
-                    $filterByDepartment = $_REQUEST['filter_by_dept'];
-                    $query->where('id', $filterByDepartment);
-                }
-            },
+            'emp_curr_work.locations',
+            'emp_curr_work.departments',
             'emp_curr_work.positions',
             'emp_curr_type.employee_types',
             'emp_curr_status.employee_statuses',
         ])->get();
 
-        // dd($employees);
-
         $departments =  Department::all();
         $locations =  Location::all();
 
         return Inertia::render('Employee/Index', compact('employees', 'departments', 'locations'));
+    }
+
+    public function filter()
+    {   
+        if($_REQUEST['filter_by_branch'] != '-1' || $_REQUEST['filter_by_dept'] != '-1'){
+            $employees = Employee::with([
+                'dependents',
+                'work_experiences',
+                'educ_backgrounds',
+                'emp_status_histories.employee_statuses',
+                'emp_type_histories.employee_types',
+                'emp_compensation_histories.pay_types',
+                'emp_job_histories.locations',
+                'emp_job_histories.departments',
+                'emp_job_histories.positions',
+                'emp_curr_work.locations',
+                'emp_curr_work.departments',
+                'emp_curr_work.positions',
+                'emp_curr_type.employee_types',
+                'emp_curr_status.employee_statuses',
+            ])->whereHas('emp_curr_work.locations', function ($query) {
+                if (array_key_exists('filter_by_branch', $_REQUEST) && $_REQUEST['filter_by_branch'] != '-1') {
+                    $filterByLocation = $_REQUEST['filter_by_branch'];
+                    $query->where('id', $filterByLocation);
+                }
+            })->whereHas('emp_curr_work.departments', function ($query) {
+                if (array_key_exists('filter_by_dept', $_REQUEST) && $_REQUEST['filter_by_dept'] != '-1') {
+                    $filterByDepartment = $_REQUEST['filter_by_dept'];
+                    $query->where('id', $filterByDepartment);
+                }
+            })->get();
+        }else{
+             $employees = Employee::with([
+                'dependents',
+                'work_experiences',
+                'educ_backgrounds',
+                'emp_status_histories.employee_statuses',
+                'emp_type_histories.employee_types',
+                'emp_compensation_histories.pay_types',
+                'emp_job_histories.locations',
+                'emp_job_histories.departments',
+                'emp_job_histories.positions',
+                'emp_curr_work.locations',
+                'emp_curr_work.departments',
+                'emp_curr_work.positions',
+                'emp_curr_type.employee_types',
+                'emp_curr_status.employee_statuses',
+            ])->get();
+        }
+
+        $response['data'] = [];
+        $list = [];
+        $counter = 1;
+
+        foreach ($employees as $employee) {
+            $list['counter'] = $counter;
+            $list['employee_id'] = $employee->id;
+            $list['employee_name'] = $employee->lastname . ", " . $employee->firstname . " " . $employee->middlename;
+            $list['position'] =  $employee->emp_curr_work == null ? "--" : $employee->emp_curr_work->positions->title;
+            $list['department'] = $employee->emp_curr_work == null ? "---" : $employee->emp_curr_work->departments->title;
+            $list['employee_type'] = $employee->emp_curr_type == null ? "---" : $employee->emp_curr_type->employee_types->title;
+            $list['status'] = $employee->emp_curr_status == null ? "---" : $employee->emp_curr_status->employee_statuses->title;
+
+            array_push($response['data'], $list);
+            $counter++;
+        }
+
+        echo json_encode($response);
     }
 
     public function create()
@@ -301,5 +354,106 @@ class EmployeeController extends Controller
         // dd($requirementsWithCheck);
 
         return Inertia::render('Employee/Profile/Index', compact('employee', 'employeeTypes', 'employee_status', 'departments', 'positions', 'locations', 'paytypes', 'employees', 'docCategories', 'requirementsWithCheck'));
+    }
+
+    public function contractReport()
+    {
+        return Inertia::render("Report/Employee/Contract");
+    }
+
+    public function contractFilter()
+    {
+        $date_now = date("Y-m-d");
+        $next_five_months = date("Y-m-d", strtotime($date_now .' +'.$_REQUEST['contract_month'].' months'));
+
+        $employees = Employee::with([
+            'dependents',
+            'work_experiences',
+            'educ_backgrounds',
+            'emp_status_histories.employee_statuses',
+            'emp_type_histories.employee_types',
+            'emp_compensation_histories.pay_types',
+            'emp_job_histories.locations',
+            'emp_job_histories.departments',
+            'emp_job_histories.positions',
+            'emp_curr_work.locations',
+            'emp_curr_work.departments',
+            'emp_curr_work.positions',
+            'emp_curr_type.employee_types',
+            'emp_curr_status.employee_statuses',
+        ])
+        ->whereHas('emp_curr_status.employee_statuses', function ($query) {
+            $query->where('id', 1);
+        })
+        ->whereBetween('contract_end_date', [$date_now, $next_five_months])
+        ->get();
+
+        $response['data'] = [];
+        $list = [];
+        $counter = 1;
+
+        foreach ($employees as $employee) {
+            $list['counter'] = $counter;
+            $list['employee_id'] = $employee->id;
+            $list['employee_name'] = $employee->lastname . ", " . $employee->firstname . " " . $employee->middlename;
+            $list['position'] =  $employee->emp_curr_work == null ? "--" : $employee->emp_curr_work->positions->title;
+            $list['department'] = $employee->emp_curr_work == null ? "---" : $employee->emp_curr_work->departments->title;
+            $list['contract_end_date'] = $employee->contract_end_date;
+            $list['status'] = $employee->emp_curr_status == null ? "---" : $employee->emp_curr_status->employee_statuses->title;
+
+            array_push($response['data'], $list);
+            $counter++;
+        }
+
+        echo json_encode($response);
+    }
+
+    public function statusReport()
+    {
+        $employee_status = EmployeeStatus::all();
+        return Inertia::render("Report/Employee/Status", compact('employee_status'));
+    }
+
+    public function statusFilter()
+    {
+        $employees = Employee::with([
+            'dependents',
+            'work_experiences',
+            'educ_backgrounds',
+            'emp_status_histories.employee_statuses',
+            'emp_type_histories.employee_types',
+            'emp_compensation_histories.pay_types',
+            'emp_job_histories.locations',
+            'emp_job_histories.departments',
+            'emp_job_histories.positions',
+            'emp_curr_work.locations',
+            'emp_curr_work.departments',
+            'emp_curr_work.positions',
+            'emp_curr_type.employee_types',
+            'emp_curr_status.employee_statuses',
+        ])
+        ->whereHas('emp_curr_status.employee_statuses', function ($query) {
+            $status_id = $_REQUEST['status_id'];
+            $query->where('id', $status_id);
+        })->get();
+
+        $response['data'] = [];
+        $list = [];
+        $counter = 1;
+
+        foreach ($employees as $employee) {
+            $list['counter'] = $counter;
+            $list['employee_id'] = $employee->id;
+            $list['employee_name'] = $employee->lastname . ", " . $employee->firstname . " " . $employee->middlename;
+            $list['position'] =  $employee->emp_curr_work == null ? "--" : $employee->emp_curr_work->positions->title;
+            $list['department'] = $employee->emp_curr_work == null ? "---" : $employee->emp_curr_work->departments->title;
+            $list['contract_end_date'] = $employee->contract_end_date;
+            $list['status'] = $employee->emp_curr_status == null ? "---" : $employee->emp_curr_status->employee_statuses->title;
+
+            array_push($response['data'], $list);
+            $counter++;
+        }
+        
+        echo json_encode($response);
     }
 }

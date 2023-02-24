@@ -9,9 +9,14 @@ const props = defineProps({
 const locationform = useForm({
   title: "",
   client: "",
+  loc_id: "",
 });
 
 const submitForm = () => {
+  locationform.title = $("#title").val();
+  locationform.client = $("#client").val();
+  locationform.loc_id = $("#loc_id").val();
+
   locationform.post(route("location.store"), {
     onSuccess: () => {
       locationform.reset("title");
@@ -33,8 +38,9 @@ const submitForm = () => {
     <div class="modal-dialog">
       <div class="modal-content">
         <form @submit.prevent="submitForm">
+          <input type="hidden" id="loc_id">
           <div class="modal-header">
-            <h5 class="modal-title" id="createLocationModal">Add Location</h5>
+            <h5 class="modal-title" id="createLocationModalTitle">Add Location</h5>
             <button
               type="button"
               class="btn-close"
@@ -50,7 +56,6 @@ const submitForm = () => {
                   type="text"
                   class="form-control"
                   id="title"
-                  v-model="locationform.title"
                 />
                 <div
                   class="invalid-feedback"
@@ -65,7 +70,6 @@ const submitForm = () => {
                 <select
                   class="form-select select2"
                   id="client"
-                  v-model="locationform.client"
                 >
                   <option
                     v-for="(client, keyClient) in clients"

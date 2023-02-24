@@ -33,7 +33,7 @@ class RoleController extends Controller
             '403 Forbidden'
         );
 
-        $permissions = Permission::where('id', '>', '0')->get();
+        $permissions = Permission::whereNotIn('id', [2,3,4,5,6])->get();
         return Inertia::render('Role/Create', compact('permissions'));
     }
 

@@ -24,6 +24,22 @@ onMounted(() => {
   $('.departmenttbl').DataTable();
   $('.departmenttbl').attr('style', 'border-collapse: collapse !important');
 })
+
+function addModal(modalId) {
+	$("#createDepartmentModalTitle").html('Add Department');
+	$("#title").val('');
+	$("#dept_id").val('');
+	
+	openClickedModal(modalId);
+}
+
+function updateModal(dept_id, dept_title) {
+	$("#createDepartmentModalTitle").html('Edit Department');
+	$("#title").val(dept_title);
+	$("#dept_id").val(dept_id);
+
+	openClickedModal('createDepartmentModal');
+}
 </script>
 <style scoped>
 td {
@@ -45,7 +61,7 @@ td {
 		<div class="col-md-12 text-end mb-2">
 			<button
 				class="btn btn-dark btn-sm"
-				@click="openClickedModal('createDepartmentModal')"
+				@click="addModal('createDepartmentModal')"
 			>
 				Create Department
 			</button>
@@ -80,6 +96,18 @@ td {
 												<svg class="icon">
 													<use
 														xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-trash"
+													></use>
+												</svg>
+											</button>
+											<button
+												class="btn btn-sm btn-ghost-secondary text-dark"
+												@click="updateModal(department.id, department.title)"
+												:class="{ 'opacity-25': form.processing }"
+												:disabled="form.processing"
+											>
+												<svg class="icon">
+													<use
+														xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-pen"
 													></use>
 												</svg>
 											</button>

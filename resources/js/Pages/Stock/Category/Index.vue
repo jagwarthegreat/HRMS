@@ -1,9 +1,10 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head, Link } from "@inertiajs/inertia-vue3";
+import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 import CreateStockCategoryModal from "./CreateStockCategoryModal.vue";
 import { ref, onMounted } from 'vue'
 
+const form = useForm();
 defineProps({
   categories:[],
 });
@@ -20,6 +21,22 @@ onMounted(() => {
   $('.stockcattbl').DataTable();
   $('.stockcattbl').attr('style', 'border-collapse: collapse !important');
 })
+
+function addModal(modalId) {
+	$("#createStockCategoryModalTitle").html('Add Stock Category');
+	$("#name").val('');
+	$("#category_id").val('');
+	
+	openClickedModal(modalId);
+}
+
+function updateModal(category_id, category_name) {
+	$("#createStockCategoryModalTitle").html('Edit Stock Category');
+	$("#name").val(category_name);
+	$("#category_id").val(category_id);
+
+	openClickedModal('createStockCategoryModal');
+}
 </script>
 
 <template>
@@ -36,7 +53,7 @@ onMounted(() => {
 		<div class="col-md-12 text-end mb-2">
 			<button
 				class="btn btn-dark btn-sm"
-				@click="openClickedModal('createStockCategoryModal')"
+				@click="addModal('createStockCategoryModal')"
 			>
 				Create Stocks
 			</button>
@@ -59,17 +76,18 @@ onMounted(() => {
 										{{ category.name }}
 									</td>
 									<td>
-										<!-- <Link
-											class="btn btn-sm btn-default ms-auto me-1"
-											:href="route('client.show', category.id)"
+										<button
+											class="btn btn-sm btn-ghost-secondary text-dark"
+											@click="updateModal(category.id, category.name)"
+											:class="{ 'opacity-25': form.processing }"
+											:disabled="form.processing"
 										>
 											<svg class="icon">
 												<use
 													xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-pen"
 												></use>
 											</svg>
-											view
-										</Link> -->
+										</button>
 									</td>
 								</tr>
 							</tbody>

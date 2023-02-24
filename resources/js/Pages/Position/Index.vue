@@ -24,6 +24,22 @@ onMounted(() => {
   $('.positiontbl').DataTable();
   $('.positiontbl').attr('style', 'border-collapse: collapse !important');
 })
+
+function addModal(modalId) {
+	$("#createPositionModalTitle").html('Add Position');
+	$("#title").val('');
+	$("#position_id").val('');
+	
+	openClickedModal(modalId);
+}
+
+function updateModal(position_id, position_title) {
+	$("#createPositionModalTitle").html('Edit Position');
+	$("#title").val(position_title);
+	$("#position_id").val(position_id);
+
+	openClickedModal('createPositionModal');
+}
 </script>
 <style scoped>
 td {
@@ -45,7 +61,7 @@ td {
 		<div class="col-md-12 text-end mb-2">
 			<button
 				class="btn btn-dark btn-sm"
-				@click="openClickedModal('createPositionModal')"
+				@click="addModal('createPositionModal')"
 			>
 				Create Position
 			</button>
@@ -80,6 +96,18 @@ td {
 												<svg class="icon">
 													<use
 														xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-trash"
+													></use>
+												</svg>
+											</button>
+											<button
+												class="btn btn-sm btn-ghost-secondary text-dark"
+												@click="updateModal(position.id, position.title)"
+												:class="{ 'opacity-25': form.processing }"
+												:disabled="form.processing"
+											>
+												<svg class="icon">
+													<use
+														xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-pen"
 													></use>
 												</svg>
 											</button>

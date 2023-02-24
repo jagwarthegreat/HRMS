@@ -1,8 +1,10 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head, Link } from "@inertiajs/inertia-vue3";
+import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 import CreateStockModal from "./CreateStockModal.vue";
 import { ref, onMounted } from 'vue'
+
+const form = useForm();
 
 defineProps({
   stocks: [],
@@ -21,6 +23,26 @@ onMounted(() => {
   $('.stockstbl').DataTable();
   $('.stockstbl').attr('style', 'border-collapse: collapse !important');
 })
+
+function addModal(modalId) {
+	$("#createStockModalTitle").html('Add Stock');
+	$("#stock_id").val('');
+	$("#name").val('');
+	$("#unit").val('');
+	$("#category_id").val('');
+	
+	openClickedModal(modalId);
+}
+
+function updateModal(stock_id, stock_name, stock_unit, stock_category_id) {
+	$("#createStockModalTitle").html('Edit Stock');
+	$("#stock_id").val(stock_id);
+	$("#name").val(stock_name);
+	$("#unit").val(stock_unit);
+	$("#category_id").val(stock_category_id);
+
+	openClickedModal('createStockModal');
+}
 </script>
 
 <template>
@@ -37,7 +59,7 @@ onMounted(() => {
 		<div class="col-md-12 text-end mb-2">
 			<button
 				class="btn btn-dark btn-sm"
-				@click="openClickedModal('createStockModal')"
+				@click="addModal('createStockModal')"
 			>
 				Create Stocks
 			</button>
@@ -79,6 +101,18 @@ onMounted(() => {
 											</svg>
 											view
 										</Link> -->
+										<button
+												class="btn btn-sm btn-ghost-secondary text-dark"
+												@click="updateModal(stock.id, stock.name, stock.unit, stock.stock_category.id)"
+												:class="{ 'opacity-25': form.processing }"
+												:disabled="form.processing"
+											>
+												<svg class="icon">
+													<use
+														xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-pen"
+													></use>
+												</svg>
+											</button>
 									</td>
 								</tr>
 							</tbody>

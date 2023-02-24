@@ -12,13 +12,13 @@ class LoginParameterController extends Controller
 {
     public function index()
     {
-        // abort_if(
-        //     Gate::denies('position_access'),
-        //     Response::HTTP_FORBIDDEN,
-        //     '403 Forbidden'
-        // );
+        abort_if(
+            Gate::denies('login_parameter_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
 
-        $canCreate = Gate::allows('position_create');
+        $canCreate = Gate::allows('login_parameter_access');
 
         return Inertia::render('LoginParam/Index', compact('canCreate'));
     }

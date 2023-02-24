@@ -25,6 +25,34 @@ onMounted(() => {
   $('.qclaims').DataTable();
   $('.qclaims').attr('style', 'border-collapse: collapse !important');
 })
+
+function addModal(modalId) {
+	$("#createQuitClaimsModalTitle").html('Add Quit Claims');
+	$("#qclaimsid").val('');
+	$("#employee").val('');
+	$("#amount").val('');
+	$("#resignation_date").val('');
+	$("#claims_date").val('');
+	
+	openClickedModal(modalId);
+}
+
+function updateModal(qclaimsid, employee, amount, resignation_date, claims_date) {
+	$("#createQuitClaimsModalTitle").html('Edit Quit Claims');
+	$("#qclaimsid").val(qclaimsid);
+	$("#employee").val(employee);
+
+	var multiselect = coreui.MultiSelect.getInstance(document.querySelector("#employee"));
+  document.querySelector(`#employee option[value='${employee}']`).setAttribute("selected", "selected")
+	multiselect.update();
+
+	// $("#employee").trigger('checked');
+	$("#amount").val(amount);
+	$("#resignation_date").val(resignation_date);
+	$("#claims_date").val(claims_date);
+
+	openClickedModal('createQuitClaimsModal');
+}
 </script>
 <style scoped>
 td {
@@ -46,7 +74,7 @@ td {
 		<div class="col-md-12 text-end mb-2">
 			<button
 				class="btn btn-dark btn-sm"
-				@click="openClickedModal('createQuitClaimsModal')"
+				@click="addModal('createQuitClaimsModal')"
 			>
 				Create Quit Claims
 			</button>
@@ -94,6 +122,18 @@ td {
 												<svg class="icon">
 													<use
 														xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-trash"
+													></use>
+												</svg>
+											</button>
+											<button
+												class="btn btn-sm btn-ghost-secondary text-dark"
+												@click="updateModal(qclaim.id, qclaim.employee.id, qclaim.amount, qclaim.resgnation_effective_date, qclaim.claims_effective_date)"
+												:class="{ 'opacity-25': form.processing }"
+												:disabled="form.processing"
+											>
+												<svg class="icon">
+													<use
+														xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-pen"
 													></use>
 												</svg>
 											</button>

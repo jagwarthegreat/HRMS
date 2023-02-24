@@ -4,9 +4,13 @@ import { ref, onMounted } from "vue";
 
 const reqform = useForm({
   title: "",
+  req_id: "",
 });
 
 const submitForm = () => {
+  reqform.title = $("#title").val();
+  reqform.req_id = $("#req_id").val();
+
   reqform.post(route("settings.requirement.store"), {
     onSuccess: () => {
       reqform.reset("title");
@@ -28,8 +32,9 @@ const submitForm = () => {
         <div class="modal-dialog">
             <div class="modal-content">
                 <form @submit.prevent="submitForm">
+                    <input type="hidden" id="req_id">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="createHiringReqModal">
+                        <h5 class="modal-title" id="createHiringReqModalTitle">
                             Add Requirement
                         </h5>
                         <button
@@ -49,7 +54,6 @@ const submitForm = () => {
                                     type="text"
                                     class="form-control"
                                     id="title"
-                                    v-model="reqform.title"
                                 />
                                 <div
                                     class="invalid-feedback"

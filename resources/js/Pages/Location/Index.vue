@@ -25,6 +25,24 @@ onMounted(() => {
   $('.locationtbl').DataTable();
   $('.locationtbl').attr('style', 'border-collapse: collapse !important');
 })
+
+function addModal(modalId) {
+	$("#createLocationModalTitle").html('Add Location');
+	$("#title").val('');
+	$("#client").val('');
+	$("#loc_id").val('');
+	
+	openClickedModal(modalId);
+}
+
+function updateModal(loc_id, loc_title, client_id) {
+	$("#createLocationModalTitle").html('Edit Location');
+	$("#title").val(loc_title);
+	$("#client").val(client_id);
+	$("#loc_id").val(loc_id);
+
+	openClickedModal('createLocationModal');
+}
 </script>
 <style scoped>
 td {
@@ -46,7 +64,7 @@ td {
 		<div class="col-md-12 text-end mb-2">
 			<button
 				class="btn btn-dark btn-sm"
-				@click="openClickedModal('createLocationModal')"
+				@click="addModal('createLocationModal')"
 			>
 				Create Location
 			</button>
@@ -87,6 +105,18 @@ td {
 												<svg class="icon">
 													<use
 														xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-trash"
+													></use>
+												</svg>
+											</button>
+											<button
+												class="btn btn-sm btn-ghost-secondary text-dark"
+												@click="updateModal(location.id, location.title, location.client != null ? location.client.id : '')"
+												:class="{ 'opacity-25': form.processing }"
+												:disabled="form.processing"
+											>
+												<svg class="icon">
+													<use
+														xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-pen"
 													></use>
 												</svg>
 											</button>

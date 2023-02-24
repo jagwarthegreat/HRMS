@@ -107,6 +107,7 @@
       </li>
 
       <!-- {{-- MASTERDATA MANAGEMENT --}} -->
+      @can('master_data_access')
       <li class="nav-group">
         <a class="nav-link nav-group-toggle" href="#">
           <svg class="nav-icon">
@@ -115,6 +116,7 @@
           Master Data
         </a>
         <ul class="nav-group-items">
+          @can('clients_access')
           <li class="nav-item">
             <a class="nav-link" href="{{route('client')}}">
               <!-- <svg class="nav-icon">
@@ -123,6 +125,9 @@
               Clients
             </a>
           </li>
+          @endcan
+
+          @can('locations_access')
           <li class="nav-item">
             <a class="nav-link" href="{{route('location')}}">
               <!-- <svg class="nav-icon">
@@ -131,36 +136,54 @@
               Locations
             </a>
           </li>
+          @endcan
+          
+          @can('employee_status_access')
           <li class="nav-item">
             <a class="nav-link" href="{{route('settings.emp.statuses')}}">
               <svg class="nav-icon"></svg>
               Employee Statuses
             </a>
           </li>
+          @endcan
+          
+          @can('employment_types_access')
           <li class="nav-item">
             <a class="nav-link" href="{{route('settings.emp.types')}}">
               <svg class="nav-icon"></svg>
               Employment Types
             </a>
           </li>
+          @endcan
+          
+          @can('compensation_types_access')
           <li class="nav-item">
             <a class="nav-link" href="{{route('settings.compensation.types')}}">
               <svg class="nav-icon"></svg>
               Compensation Types
             </a>
           </li>
+          @endcan
+          
+          @can('document_category_access')
           <li class="nav-item">
             <a class="nav-link" href="{{route('settings.doc.category')}}">
               <svg class="nav-icon"></svg>
               Document Category
             </a>
           </li>
+          @endcan
+          
+          @can('hiring_requirements_access')
           <li class="nav-item">
             <a class="nav-link" href="{{route('settings.requirement.category')}}">
               <svg class="nav-icon"></svg>
               Hiring Requirements
             </a>
           </li>
+          @endcan
+          
+          @can('stocks_access')
           <li class="nav-item">
             <a class="nav-link" href="{{route('stock')}}">
               <!-- <svg class="nav-icon">
@@ -169,6 +192,9 @@
               Stocks
             </a>
           </li>
+          @endcan
+          
+          @can('stock_category_access')
           <li class="nav-item">
             <a class="nav-link" href="{{route('stock.category')}}">
               <!-- <svg class="nav-icon">
@@ -177,11 +203,14 @@
               Stock Category
             </a>
           </li>
+          @endcan
         </ul>
       </li>
+      @endcan
       <!-- {{-- /MASTERDATA MANAGEMENT --}} -->
 
       <!-- {{-- EMPLOYEE MANAGEMENT --}} -->
+      @can('hr_management__access')
       <li class="nav-group">
         <a class="nav-link nav-group-toggle" href="#">
           <svg class="nav-icon">
@@ -190,6 +219,7 @@
           HR Management
         </a>
         <ul class="nav-group-items">
+          @can('department_access')
           <li class="nav-item">
             <a class="nav-link" href="{{route('department')}}">
               <!-- <svg class="nav-icon">
@@ -198,6 +228,9 @@
               Departments
             </a>
           </li>
+          @endcan
+          
+          @can('position_access')
           <li class="nav-item">
             <a class="nav-link" href="{{route('position')}}">
               <!-- <svg class="nav-icon">
@@ -206,6 +239,9 @@
               Positions
             </a>
           </li>
+          @endcan
+          
+          @can('employee_management_access')
           <li class="nav-item">
             <a class="nav-link" href="{{route('employee')}}">
               <!-- <svg class="nav-icon">
@@ -214,6 +250,9 @@
               Employees
             </a>
           </li>
+          @endcan
+          
+          @can('deployment_access')
           <li class="nav-item">
             <a class="nav-link" href="{{route('deployment')}}">
               <!-- <svg class="nav-icon">
@@ -222,6 +261,9 @@
               Deployment
             </a>
           </li>
+          @endcan
+          
+          @can('memo_access')
           <li class="nav-item">
             <a class="nav-link" href="{{route('memo')}}">
               <!-- <svg class="nav-icon">
@@ -230,6 +272,9 @@
               Memos
             </a>
           </li>
+          @endcan
+          
+          @can('notice_access')
           <li class="nav-item">
             <a class="nav-link" href="{{route('notice')}}">
               <!-- <svg class="nav-icon">
@@ -238,6 +283,9 @@
               Notices
             </a>
           </li>
+          @endcan
+          
+          @can('lawsuit_cases_access')
           <li class="nav-item">
             <a class="nav-link" href="{{route('lawsuit')}}">
               <!-- <svg class="nav-icon">
@@ -246,6 +294,9 @@
               Lawsuit/Cases
             </a>
           </li>
+          @endcan
+          
+          @can('quit_claims_access')
           <li class="nav-item">
             <a class="nav-link" href="{{route('quitclaims')}}">
               <!-- <svg class="nav-icon">
@@ -254,11 +305,14 @@
               Quit Claims
             </a>
           </li>
+          @endcan
         </ul>
       </li>
+      @endcan
       <!-- {{-- /EMPLOYEE MANAGEMENT --}} -->
 
       <!-- {{-- TRANSACTION MANAGEMENT --}} -->
+      @can('transaction_access')
       <li class="nav-group">
         <a class="nav-link nav-group-toggle" href="#">
           <svg class="nav-icon">
@@ -267,6 +321,7 @@
           Transactions
         </a>
         <ul class="nav-group-items">
+          @can('procurement__access')
           <li class="nav-item">
             <a class="nav-link" href="{{route('procurement')}}">
               <!-- <svg class="nav-icon">
@@ -275,6 +330,9 @@
               Procurement
             </a>
           </li>
+          @endcan
+          
+          @can('stock_transfer_access')
           <li class="nav-item">
             <a class="nav-link" href="{{route('stock.transfer')}}">
               <!-- <svg class="nav-icon">
@@ -283,11 +341,14 @@
               Stock Transfer
             </a>
           </li>
+          @endcan
         </ul>
       </li>
+      @endcan
       <!-- {{-- /TRANSACTION MANAGEMENT --}} -->
 
       <!-- {{-- REPORT MANAGEMENT --}} -->
+      @can('stock_transfer_access')
       <li class="nav-group">
         <a class="nav-link nav-group-toggle" href="#">
           <svg class="nav-icon">
@@ -296,6 +357,7 @@
           Reports
         </a>
         <ul class="nav-group-items">
+          @can('inventory_access')
           <li class="nav-item">
             <a class="nav-link" href="{{route('report.inventory')}}">
               <!-- <svg class="nav-icon">
@@ -304,6 +366,9 @@
               Inventory
             </a>
           </li>
+          @endcan
+          
+          @can('contract_report')
           <li class="nav-item">
             <a class="nav-link" href="{{route('report.employee.contract')}}">
               <!-- <svg class="nav-icon">
@@ -312,6 +377,9 @@
               Contract Report
             </a>
           </li>
+          @endcan
+          
+          @can('employee_status_report_access')
           <li class="nav-item">
             <a class="nav-link" href="{{route('report.employee.status')}}">
               <!-- <svg class="nav-icon">
@@ -320,8 +388,10 @@
               Employee Status
             </a>
           </li>
+          @endcan
         </ul>
       </li>
+      @endcan
       <!-- {{-- /REPORT MANAGEMENT --}} -->
 
       {{-- RECRUITMENT MANAGEMENT --}}
@@ -361,6 +431,7 @@
         </a>
         <ul class="nav-group-items">
 
+          @can('login_parameter_access')
           <li class="nav-item">
             <a class="nav-link" href="{{route('user.loginparam')}}">
               <svg class="nav-icon">
@@ -368,6 +439,7 @@
               </svg>
               Login Parameter</a>
           </li>
+          @endcan
 
           @can('permission_access')
           <li class="nav-item">

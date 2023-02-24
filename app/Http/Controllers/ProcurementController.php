@@ -7,11 +7,20 @@ use App\Models\Procurement;
 use App\Models\Stock;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use App\Models\Role;
+use Illuminate\Support\Facades\Gate;
+use Symfony\Component\HttpFoundation\Response;
 
 class ProcurementController extends Controller
 {
     public function index()
     {
+        abort_if(
+            Gate::denies('procurement__access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
+
         $procurements = Procurement::all();
         $procurement_data = array();
         $stocks = Stock::all();
@@ -20,6 +29,12 @@ class ProcurementController extends Controller
 
     public function store(Request $request)
     {
+        abort_if(
+            Gate::denies('procurement__access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
+
         $reference = "PUR-" . date("Ymdhis");
         $location_id = 1;
         $request->validate([
@@ -48,6 +63,12 @@ class ProcurementController extends Controller
 
     public function show($procurement_id)
     {
+        abort_if(
+            Gate::denies('procurement__access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
+
         $procurement = Procurement::find($procurement_id);
         $stocks = Stock::all();
         $details = ProcurementDetail::where('procurement_id',$procurement_id)->with('stock')->get();
@@ -55,6 +76,12 @@ class ProcurementController extends Controller
     }
 
     public function finish(Request $request){
+        abort_if(
+            Gate::denies('procurement__access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
+
         Procurement::where('id', $request->procurement_id)->update([
             "status" => 1
         ]);
@@ -62,6 +89,12 @@ class ProcurementController extends Controller
     }
 
     public function destroy($id){
+        abort_if(
+            Gate::denies('procurement__access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
+        
         Procurement::find($id)->delete();
 
         return redirect()->route('procurement');

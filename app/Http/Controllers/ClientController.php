@@ -9,11 +9,20 @@ use App\Models\DocumentCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
+use App\Models\Role;
+use Illuminate\Support\Facades\Gate;
+use Symfony\Component\HttpFoundation\Response;
 
 class ClientController extends Controller
 {
     public function index()
     {
+        abort_if(
+            Gate::denies('clients_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
+
         $clients = Client::all();
 
         return Inertia::render('Client/Index', compact('clients'));
@@ -21,11 +30,23 @@ class ClientController extends Controller
 
     public function create()
     {
+        abort_if(
+            Gate::denies('clients_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
+
         return Inertia::render('Client/Create');
     }
 
     public function store(Request $request)
     {
+        abort_if(
+            Gate::denies('clients_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
+
         $request->validate([
             "name" => ['required'],
             "contact" => ['required'],
@@ -44,6 +65,12 @@ class ClientController extends Controller
 
     public function update(Request $request)
     {
+        abort_if(
+            Gate::denies('clients_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
+
         $request->validate([
             "name" => ['required'],
             "contact" => ['required'],
@@ -63,6 +90,12 @@ class ClientController extends Controller
 
     public function show($client_id)
     {
+        abort_if(
+            Gate::denies('clients_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
+
         $client = Client::with([
             'documents',
             'documents.document_category',
@@ -82,6 +115,12 @@ class ClientController extends Controller
 
     public function docsstore(Request $request)
     {
+        abort_if(
+            Gate::denies('clients_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
+
         $request->validate([
             'doc_category' => 'required',
         ]);
@@ -112,6 +151,12 @@ class ClientController extends Controller
 
     public function destroy(Request $request, $id)
     {
+        abort_if(
+            Gate::denies('clients_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
+        
         Location::find($id)->delete();
 
         return redirect()->route('client.show', $request->client_id);

@@ -13,11 +13,11 @@ class LawsuitController extends Controller
 {
     public function index()
     {
-        // abort_if(
-        //     Gate::denies('position_access'),
-        //     Response::HTTP_FORBIDDEN,
-        //     '403 Forbidden'
-        // );
+        abort_if(
+            Gate::denies('lawsuit_cases_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
 
         $lawsuits = Lawsuit::all();
         $employees = Employee::all();
@@ -28,11 +28,11 @@ class LawsuitController extends Controller
 
     public function store(Request $request)
     {
-        // abort_if(
-        //     Gate::denies('position_create'),
-        //     Response::HTTP_FORBIDDEN,
-        //     '403 Forbidden'
-        // );
+        abort_if(
+            Gate::denies('lawsuit_cases_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
 
         $request->validate([
             'complainant' => 'required',
@@ -62,6 +62,12 @@ class LawsuitController extends Controller
 
     public function destroy(Request $request, $id)
     {
+        abort_if(
+            Gate::denies('lawsuit_cases_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
+        
         Lawsuit::find($id)->delete();
 
         return redirect()->route('lawsuit');

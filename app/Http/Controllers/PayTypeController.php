@@ -12,11 +12,11 @@ class PayTypeController extends Controller
 {
     public function index()
     {
-        // abort_if(
-        //     Gate::denies('position_access'),
-        //     Response::HTTP_FORBIDDEN,
-        //     '403 Forbidden'
-        // );
+        abort_if(
+            Gate::denies('compensation_types_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
 
         $paytypes = PayType::all();
         $canCreate = Gate::allows('position_create');
@@ -26,11 +26,11 @@ class PayTypeController extends Controller
 
     public function store(Request $request)
     {
-        // abort_if(
-        //     Gate::denies('position_create'),
-        //     Response::HTTP_FORBIDDEN,
-        //     '403 Forbidden'
-        // );
+        abort_if(
+            Gate::denies('compensation_types_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
 
         $request->validate([
             'title' => 'required'
@@ -44,6 +44,12 @@ class PayTypeController extends Controller
 
     public function destroy(Request $request, $id)
     {
+        abort_if(
+            Gate::denies('compensation_types_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
+        
         PayType::find($id)->delete();
 
         return redirect()->route('settings.compensation.types');

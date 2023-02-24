@@ -14,11 +14,11 @@ class NoticeController extends Controller
 {
     public function index()
     {
-        // abort_if(
-        //     Gate::denies('position_access'),
-        //     Response::HTTP_FORBIDDEN,
-        //     '403 Forbidden'
-        // );
+        abort_if(
+            Gate::denies('notice_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
 
         $notices = Notice::all();
         $employees = Employee::all();
@@ -30,11 +30,11 @@ class NoticeController extends Controller
 
     public function store(Request $request)
     {
-        // abort_if(
-        //     Gate::denies('position_create'),
-        //     Response::HTTP_FORBIDDEN,
-        //     '403 Forbidden'
-        // );
+        abort_if(
+            Gate::denies('notice_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
 
         $request->validate([
             'notice_for' => 'required',
@@ -65,6 +65,12 @@ class NoticeController extends Controller
 
     public function destroy(Request $request, $id)
     {
+        abort_if(
+            Gate::denies('notice_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
+        
         Notice::find($id)->delete();
 
         return redirect()->route('notice');

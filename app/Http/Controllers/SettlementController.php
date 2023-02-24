@@ -7,16 +7,17 @@ use App\Models\Settlement;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Gate;
+use Symfony\Component\HttpFoundation\Response;
 
 class SettlementController extends Controller
 {
     public function index($lawsuit_id)
     {
-        // abort_if(
-        //     Gate::denies('position_access'),
-        //     Response::HTTP_FORBIDDEN,
-        //     '403 Forbidden'
-        // );
+        abort_if(
+            Gate::denies('lawsuit_cases_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
 
         $lawsuit = Lawsuit::where("id", $lawsuit_id)->first();
         $settlements = Settlement::where("lawsuit_id", $lawsuit_id)->get();
@@ -27,11 +28,11 @@ class SettlementController extends Controller
 
     public function store(Request $request)
     {
-        // abort_if(
-        //     Gate::denies('position_create'),
-        //     Response::HTTP_FORBIDDEN,
-        //     '403 Forbidden'
-        // );
+        abort_if(
+            Gate::denies('lawsuit_cases_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
 
         $request->validate([
             'settlement_date' => 'required',
@@ -49,6 +50,12 @@ class SettlementController extends Controller
 
     public function destroy(Request $request, $id)
     {
+        abort_if(
+            Gate::denies('lawsuit_cases_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
+        
         Settlement::find($id)->delete();
 
         return redirect()->route('lawsuit.settlement', $request->lawsuit_id);

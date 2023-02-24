@@ -14,11 +14,11 @@ class MemoController extends Controller
 {
     public function index()
     {
-        // abort_if(
-        //     Gate::denies('position_access'),
-        //     Response::HTTP_FORBIDDEN,
-        //     '403 Forbidden'
-        // );
+        abort_if(
+            Gate::denies('memo_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
 
         $memos = Memo::with([
             'employee'
@@ -32,11 +32,11 @@ class MemoController extends Controller
 
     public function store(Request $request)
     {
-        // abort_if(
-        //     Gate::denies('position_create'),
-        //     Response::HTTP_FORBIDDEN,
-        //     '403 Forbidden'
-        // );
+        abort_if(
+            Gate::denies('memo_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
 
         // htmlentities(str_replace("'", "&#x2019;", $v));
 
@@ -61,6 +61,12 @@ class MemoController extends Controller
 
     public function destroy(Request $request, $id)
     {
+        abort_if(
+            Gate::denies('memo_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
+        
         Memo::find($id)->delete();
 
         return redirect()->route('memo');
@@ -68,11 +74,11 @@ class MemoController extends Controller
 
     public function show($id)
     {
-        // abort_if(
-        //     Gate::denies('position_access'),
-        //     Response::HTTP_FORBIDDEN,
-        //     '403 Forbidden'
-        // );
+        abort_if(
+            Gate::denies('memo_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
 
         $memo = Memo::where("id", $id)
             ->with([

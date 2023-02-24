@@ -24,6 +24,22 @@ onMounted(() => {
   $('.hiringreqtbl').DataTable();
   $('.hiringreqtbl').attr('style', 'border-collapse: collapse !important');
 })
+
+function addModal(modalId) {
+	$("#createHiringReqModalTitle").html('Add Requirement');
+	$("#title").val('');
+	$("#req_id").val('');
+	
+	openClickedModal(modalId);
+}
+
+function updateModal(req_id, req_title) {
+	$("#createHiringReqModalTitle").html('Edit Requirement');
+	$("#title").val(req_title);
+	$("#req_id").val(req_id);
+
+	openClickedModal('createHiringReqModal');
+}
 </script>
 <style scoped>
 td {
@@ -48,7 +64,7 @@ td {
 		<div class="col-md-12 text-end mb-2">
 			<button
 				class="btn btn-dark btn-sm"
-				@click="openClickedModal('createHiringReqModal')"
+				@click="addModal('createHiringReqModal')"
 			>
 				Create Requirement
 			</button>
@@ -83,6 +99,18 @@ td {
 												<svg class="icon">
 													<use
 														xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-trash"
+													></use>
+												</svg>
+											</button>
+											<button
+												class="btn btn-sm btn-ghost-secondary text-dark"
+												@click="updateModal(hiringreq.id, hiringreq.title)"
+												:class="{ 'opacity-25': form.processing }"
+												:disabled="form.processing"
+											>
+												<svg class="icon">
+													<use
+														xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-pen"
 													></use>
 												</svg>
 											</button>

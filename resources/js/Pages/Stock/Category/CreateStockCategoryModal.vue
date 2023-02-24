@@ -7,9 +7,13 @@ const props = defineProps({
 
 const stockCategoryForm = useForm({
   name: "",
+  category_id: "",
 });
 
 const submitForm = () => {
+  stockCategoryForm.name = $("#name").val();
+  stockCategoryForm.category_id = $("#category_id").val();
+
   stockCategoryForm.post(route("stock.category.store"), {
     onSuccess: () => {
       stockCategoryForm.reset("name");
@@ -31,8 +35,9 @@ const submitForm = () => {
     <div class="modal-dialog">
       <div class="modal-content">
         <form @submit.prevent="submitForm">
+          <input type="hidden" id="category_id">
           <div class="modal-header">
-            <h5 class="modal-title" id="createStockCategoryModal">Add Stock Category</h5>
+            <h5 class="modal-title" id="createStockCategoryModalTitle">Add Stock Category</h5>
             <button
               type="button"
               class="btn-close"
@@ -48,7 +53,6 @@ const submitForm = () => {
                   type="text"
                   class="form-control"
                   id="name"
-                  v-model="stockCategoryForm.name"
                 />
                 <div
                   class="invalid-feedback"

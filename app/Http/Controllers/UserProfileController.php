@@ -14,12 +14,6 @@ class UserProfileController extends Controller
 {
     public function index()
     {
-        abort_if(
-            Gate::denies('user_management_access'),
-            Response::HTTP_FORBIDDEN,
-            '403 Forbidden'
-        );
-
         $current_user = Auth::user()->id;
 
         $user = User::find($current_user);

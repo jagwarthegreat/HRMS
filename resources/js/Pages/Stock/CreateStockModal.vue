@@ -10,9 +10,15 @@ const stockForm = useForm({
   name: "",
   unit: "",
   stock_category_id: "",
+  stock_id: "",
 });
 
 const submitForm = () => {
+  stockForm.stock_id = $("#stock_id").val();
+  stockForm.name = $("#name").val();
+  stockForm.unit = $("#unit").val();
+  stockForm.stock_category_id = $("#category_id").val();
+
   stockForm.post(route("stock.store"), {
     onSuccess: () => {
       stockForm.reset("name");
@@ -36,8 +42,9 @@ const submitForm = () => {
     <div class="modal-dialog">
       <div class="modal-content">
         <form @submit.prevent="submitForm">
+          <input type="hidden" id="stock_id">
           <div class="modal-header">
-            <h5 class="modal-title" id="createStockModal">Add Stock</h5>
+            <h5 class="modal-title" id="createStockModalTitle">Add Stock</h5>
             <button
               type="button"
               class="btn-close"
@@ -53,7 +60,6 @@ const submitForm = () => {
                   type="text"
                   class="form-control"
                   id="name"
-                  v-model="stockForm.name"
                 />
                 <div
                   class="invalid-feedback"
@@ -69,7 +75,6 @@ const submitForm = () => {
                   type="text"
                   class="form-control"
                   id="unit"
-                  v-model="stockForm.unit"
                 />
                 <div
                   class="invalid-feedback"
@@ -80,11 +85,10 @@ const submitForm = () => {
                 </div>
               </div>
               <div class="col-12">
-                <label for="client" class="form-label">Category</label>
+                <label for="category_id" class="form-label">Category</label>
                 <select
                   class="form-select select2"
-                  id="client"
-                  v-model="stockForm.stock_category_id"
+                  id="category_id"
                 >
                   <option
                     v-for="(category, keyCategory) in categories"

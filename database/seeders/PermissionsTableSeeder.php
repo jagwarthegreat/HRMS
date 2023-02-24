@@ -215,12 +215,6 @@ class PermissionsTableSeeder extends Seeder
                 "updated_at" => "2023-02-23 08:05:53",
             ),
             array(
-                "id" => 34,
-                "title" => "positions_access",
-                "created_at" => "2023-02-23 08:06:03",
-                "updated_at" => "2023-02-23 08:06:03",
-            ),
-            array(
                 "id" => 35,
                 "title" => "deployment_access",
                 "created_at" => "2023-02-23 08:09:25",
@@ -294,7 +288,13 @@ class PermissionsTableSeeder extends Seeder
             ),
             array(
                 "id" => 47,
-                "title" => "employee_status_access",
+                "title" => "employee_status_report_access",
+                "created_at" => "2023-02-23 08:11:46",
+                "updated_at" => "2023-02-23 08:11:46",
+            ),
+            array(
+                "id" => 48,
+                "title" => "login_parameter_access",
                 "created_at" => "2023-02-23 08:11:46",
                 "updated_at" => "2023-02-23 08:11:46",
             ),

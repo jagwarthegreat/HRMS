@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Document;
+use App\Models\Role;
 
 class DocumentController extends Controller
 {
     public function store(Request $request)
     {
-         $request->validate([
+        $request->validate([
             'doc_category' => 'required',
         ]);
 

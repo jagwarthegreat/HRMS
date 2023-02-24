@@ -23,11 +23,20 @@ use App\Models\HiringRequirement;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Role;
+use Illuminate\Support\Facades\Gate;
+use Symfony\Component\HttpFoundation\Response;
 
 class EmployeeController extends Controller
 {
     public function index()
     {
+        abort_if(
+            Gate::denies('employee_management_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
+
         $employees = Employee::with([
             'dependents',
             'work_experiences',
@@ -52,7 +61,13 @@ class EmployeeController extends Controller
     }
 
     public function filter()
-    {   
+    {
+        abort_if(
+            Gate::denies('employee_management_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
+
         if($_REQUEST['filter_by_branch'] != '-1' || $_REQUEST['filter_by_dept'] != '-1'){
             $employees = Employee::with([
                 'dependents',
@@ -121,6 +136,12 @@ class EmployeeController extends Controller
 
     public function create()
     {
+        abort_if(
+            Gate::denies('employee_management_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
+
         $employeeTypes = EmployeeType::all();
         $employee_status = EmployeeStatus::all();
         $departments =  Department::all();
@@ -133,6 +154,12 @@ class EmployeeController extends Controller
 
     public function store(Request $request)
     {
+        abort_if(
+            Gate::denies('employee_management_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
+
         // dd($request);
         $emp_code = "EMP" . date('Ymdhis');
         $request->validate([
@@ -234,6 +261,12 @@ class EmployeeController extends Controller
 
     public function update(Request $request, $id)
     {
+        abort_if(
+            Gate::denies('employee_management_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
+
         // dd($request);
 
         $request->validate([
@@ -302,6 +335,12 @@ class EmployeeController extends Controller
 
     public function show($employee_id)
     {
+        abort_if(
+            Gate::denies('employee_management_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
+
         $employee = Employee::with([
             'dependents',
             'work_experiences',
@@ -358,11 +397,23 @@ class EmployeeController extends Controller
 
     public function contractReport()
     {
+        abort_if(
+            Gate::denies('contract_report'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
+
         return Inertia::render("Report/Employee/Contract");
     }
 
     public function contractFilter()
     {
+        abort_if(
+            Gate::denies('contract_report'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
+
         $date_now = date("Y-m-d");
         $next_five_months = date("Y-m-d", strtotime($date_now .' +'.$_REQUEST['contract_month'].' months'));
 
@@ -410,12 +461,24 @@ class EmployeeController extends Controller
 
     public function statusReport()
     {
+        abort_if(
+            Gate::denies('employee_status_report_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
+
         $employee_status = EmployeeStatus::all();
         return Inertia::render("Report/Employee/Status", compact('employee_status'));
     }
 
     public function statusFilter()
     {
+        abort_if(
+            Gate::denies('employee_status_report_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
+        
         $employees = Employee::with([
             'dependents',
             'work_experiences',

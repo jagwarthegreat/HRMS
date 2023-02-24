@@ -12,11 +12,11 @@ class HiringRequirementController extends Controller
 {
     public function index()
     {
-        // abort_if(
-        //     Gate::denies('position_access'),
-        //     Response::HTTP_FORBIDDEN,
-        //     '403 Forbidden'
-        // );
+        abort_if(
+            Gate::denies('hiring_requirements_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
 
         $hiringreqs = HiringRequirement::all();
         $canCreate = Gate::allows('position_create');
@@ -26,24 +26,37 @@ class HiringRequirementController extends Controller
 
     public function store(Request $request)
     {
-        // abort_if(
-        //     Gate::denies('position_create'),
-        //     Response::HTTP_FORBIDDEN,
-        //     '403 Forbidden'
-        // );
+        abort_if(
+            Gate::denies('hiring_requirements_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
 
         $request->validate([
             'title' => 'required'
         ]);
 
-        HiringRequirement::create([
-            'title' => $request->title
-        ]);
+        if($request->req_id == ''){
+            HiringRequirement::create([
+                'title' => $request->title
+            ]);
+        }else{
+            HiringRequirement::where('id', $request->req_id)->update([
+                'title' => $request->title
+            ]);
+        }
+
         return redirect('settings/hiring/requirements');
     }
 
     public function destroy(Request $request, $id)
     {
+        abort_if(
+            Gate::denies('hiring_requirements_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
+        
         HiringRequirement::find($id)->delete();
 
         return redirect()->route('settings.requirement.category');

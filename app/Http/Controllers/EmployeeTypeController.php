@@ -12,11 +12,11 @@ class EmployeeTypeController extends Controller
 {
     public function index()
     {
-        // abort_if(
-        //     Gate::denies('position_access'),
-        //     Response::HTTP_FORBIDDEN,
-        //     '403 Forbidden'
-        // );
+        abort_if(
+            Gate::denies('employment_types_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
 
         $types = EmployeeType::all();
         $canCreate = Gate::allows('position_create');
@@ -26,11 +26,11 @@ class EmployeeTypeController extends Controller
 
     public function store(Request $request)
     {
-        // abort_if(
-        //     Gate::denies('position_create'),
-        //     Response::HTTP_FORBIDDEN,
-        //     '403 Forbidden'
-        // );
+        abort_if(
+            Gate::denies('employment_types_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
 
         $request->validate([
             'title' => 'required'
@@ -44,6 +44,12 @@ class EmployeeTypeController extends Controller
 
     public function destroy(Request $request, $id)
     {
+        abort_if(
+            Gate::denies('employment_types_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
+
         EmployeeType::find($id)->delete();
 
         return redirect()->route('settings.emp.types');

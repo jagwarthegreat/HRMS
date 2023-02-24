@@ -8,6 +8,9 @@ const props = defineProps({
   employee_count: Number,
   client_count: Number,
   active_cases: Number,
+  canClickEmployees: Boolean,
+  canClickClients: Boolean,
+  canClickCases: Boolean,
 });
 </script>
 
@@ -36,7 +39,7 @@ const props = defineProps({
         <div class="col-md-12">
           <div class="row">
             <div class="col-md-4 mb-3">
-              <Link :href="route('employee')" style="text-decoration: none;">
+              <Link :href="canClickEmployees ? route('employee') : null" style="text-decoration: none;">
                 <div class="card overflow-hidden">
                   <div class="card-body p-0 d-flex align-items-center">
                     <div class="bg-danger text-white p-4 me-3">
@@ -62,7 +65,7 @@ const props = defineProps({
             </div>
 
             <div class="col-md-4 mb-3">
-              <Link :href="route('client')" style="text-decoration: none;">
+              <Link :href="canClickClients ? route('client') : null" style="text-decoration: none;">
                 <div class="card overflow-hidden">
                   <div class="card-body p-0 d-flex align-items-center">
                     <div class="bg-danger text-white p-4 me-3">
@@ -88,7 +91,7 @@ const props = defineProps({
             </div>
 
             <div class="col-md-4 mb-3">
-              <Link :href="route('lawsuit')" style="text-decoration: none;">
+              <Link :href="canClickCases ? route('lawsuit') : null" style="text-decoration: none;">
                 <div class="card overflow-hidden">
                   <div class="card-body p-0 d-flex align-items-center">
                     <div class="bg-danger text-white p-4 me-3">

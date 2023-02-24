@@ -16,21 +16,23 @@ class UserController extends Controller
     public function index()
     {
         abort_if(
-            Gate::denies('user_management_access'),
+            Gate::denies('user_access'),
             Response::HTTP_FORBIDDEN,
             '403 Forbidden'
         );
 
+        $roles = Role::where("id", "!=", 1)->get();
+        $employees = Employee::all();
         $users = User::where('employee_id', '!=', '0')->with(['employee', 'roles'])->get();
-        $canCreate = Gate::allows('user_management_access');
+        $canCreate = Gate::allows('user_access');
 
-        return Inertia::render('User/Index', compact('users', 'canCreate'));
+        return Inertia::render('User/Index', compact('users', 'canCreate', 'roles', 'employees'));
     }
 
     public function create()
     {
         abort_if(
-            Gate::denies('user_create'),
+            Gate::denies('user_access'),
             Response::HTTP_FORBIDDEN,
             '403 Forbidden'
         );
@@ -43,7 +45,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         abort_if(
-            Gate::denies('user_create'),
+            Gate::denies('user_access'),
             Response::HTTP_FORBIDDEN,
             '403 Forbidden'
         );

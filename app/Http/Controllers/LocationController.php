@@ -13,11 +13,11 @@ class LocationController extends Controller
 {
     public function index()
     {
-        // abort_if(
-        //     Gate::denies('position_access'),
-        //     Response::HTTP_FORBIDDEN,
-        //     '403 Forbidden'
-        // );
+        abort_if(
+            Gate::denies('locations_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
 
         $locations = Location::with('client')->get();
         $clients = Client::all();
@@ -28,26 +28,40 @@ class LocationController extends Controller
 
     public function store(Request $request)
     {
-        // abort_if(
-        //     Gate::denies('position_create'),
-        //     Response::HTTP_FORBIDDEN,
-        //     '403 Forbidden'
-        // );
+        abort_if(
+            Gate::denies('locations_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
 
         $request->validate([
             'title' => 'required',
             'client' => 'required'
         ]);
 
-        Location::create([
-            'title' => $request->title,
-            'client_id' => $request->client
-        ]);
+        if($request->loc_id == ''){
+            Location::create([
+                'title' => $request->title,
+                'client_id' => $request->client
+            ]);
+        }else{
+            Location::where('id', $request->loc_id)->update([
+                'title' => $request->title,
+                'client_id' => $request->client
+            ]);
+        }
+
         return redirect()->route('location');;
     }
 
     public function destroy(Request $request, $id)
     {
+        abort_if(
+            Gate::denies('locations_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
+        
         Location::find($id)->delete();
 
         return redirect()->route('location');

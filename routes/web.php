@@ -46,6 +46,7 @@ use App\Models\EmployeeEducationalBackground;
 use App\Models\EmpStatusHistory;
 use App\Models\Lawsuit;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -80,7 +81,11 @@ Route::get('/dashboard', function () {
     $employee_count = Employee::count();
     $client_count = Client::count();
     $active_cases = Lawsuit::where("status", "Ongoing")->count();
-    return Inertia::render('Dashboard', compact('user', 'employee_count', 'client_count', 'active_cases'));
+    $canClickEmployees = Gate::allows('employee_management_access');
+    $canClickClients = Gate::allows('clients_access');
+    $canClickCases = Gate::allows('lawsuit_cases_access');
+
+    return Inertia::render('Dashboard', compact('user', 'employee_count', 'client_count', 'active_cases', 'canClickEmployees', 'canClickClients', 'canClickCases'));
 })->middleware('auth')->name('dashboard');
 
 // PERMISSIONS

@@ -4,9 +4,13 @@ import { ref, onMounted } from "vue";
 
 const positionform = useForm({
   title: "",
+  position_id: "",
 });
 
 const submitForm = () => {
+  positionform.title = $("#title").val();
+  positionform.position_id = $("#position_id").val();
+
   positionform.post(route("position.store"), {
     onSuccess: () => {
       positionform.reset("title");
@@ -28,8 +32,9 @@ const submitForm = () => {
         <div class="modal-dialog">
             <div class="modal-content">
                 <form @submit.prevent="submitForm">
+                    <input type="hidden" id="position_id">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="createPositionModal">
+                        <h5 class="modal-title" id="createPositionModalTitle">
                             Add Position
                         </h5>
                         <button

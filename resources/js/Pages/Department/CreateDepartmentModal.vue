@@ -4,9 +4,13 @@ import { ref, onMounted } from "vue";
 
 const deptform = useForm({
   title: "",
+  dept_id: "",
 });
 
 const submitForm = () => {
+  deptform.title = $("#title").val();
+  deptform.dept_id = $("#dept_id").val();
+
   deptform.post(route("department.store"), {
     onSuccess: () => {
       deptform.reset("title");
@@ -28,8 +32,9 @@ const submitForm = () => {
     <div class="modal-dialog">
       <div class="modal-content">
         <form @submit.prevent="submitForm">
+          <input type="hidden" id="dept_id">
           <div class="modal-header">
-            <h5 class="modal-title" id="createDepartmentModal">
+            <h5 class="modal-title" id="createDepartmentModalTitle">
               Add Department
             </h5>
             <button
@@ -47,7 +52,6 @@ const submitForm = () => {
                   type="text"
                   class="form-control"
                   id="title"
-                  v-model="deptform.title"
                 />
                 <div
                   class="invalid-feedback"

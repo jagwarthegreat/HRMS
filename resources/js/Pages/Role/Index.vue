@@ -20,8 +20,9 @@ onMounted(() => {
 
 <style scoped>
 .badge {
-	font-weight: 400;
+	font-weight: 500;
 	line-height: normal;
+	padding-top: 2px !important;
 }
 </style>
 <template>

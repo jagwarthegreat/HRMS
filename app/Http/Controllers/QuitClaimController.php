@@ -13,11 +13,11 @@ class QuitClaimController extends Controller
 {
     public function index()
     {
-        // abort_if(
-        //     Gate::denies('position_access'),
-        //     Response::HTTP_FORBIDDEN,
-        //     '403 Forbidden'
-        // );
+        abort_if(
+            Gate::denies('quit_claims_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
 
         $qclaims = QuitClaim::with(['employee'])->get();
         $employees = Employee::all();
@@ -28,11 +28,11 @@ class QuitClaimController extends Controller
 
     public function store(Request $request)
     {
-        // abort_if(
-        //     Gate::denies('position_create'),
-        //     Response::HTTP_FORBIDDEN,
-        //     '403 Forbidden'
-        // );
+        abort_if(
+            Gate::denies('quit_claims_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
 
         $request->validate([
             'employee' => 'required',
@@ -41,18 +41,33 @@ class QuitClaimController extends Controller
             'claims_date' => 'required',
         ]);
 
-        QuitClaim::create([
-            'employee_id' => $request->employee[0]['value'],
-            'amount' => $request->amount,
-            'resgnation_effective_date' => $request->resignation_date,
-            'claims_effective_date' => $request->claims_date
-        ]);
+        if($request->qclaimsid == ''){
+            QuitClaim::create([
+                'employee_id' => $request->employee,
+                'amount' => $request->amount,
+                'resgnation_effective_date' => $request->resignation_date,
+                'claims_effective_date' => $request->claims_date
+            ]);
+        }else{
+            QuitClaim::where('id', $request->qclaimsid)->update([
+                'employee_id' => $request->employee,
+                'amount' => $request->amount,
+                'resgnation_effective_date' => $request->resignation_date,
+                'claims_effective_date' => $request->claims_date
+            ]);
+        }
 
         return redirect()->route('quitclaims');
     }
 
     public function destroy(Request $request, $id)
     {
+        abort_if(
+            Gate::denies('quit_claims_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
+        
         QuitClaim::find($id)->delete();
 
         return redirect()->route('quitclaims');
@@ -60,11 +75,11 @@ class QuitClaimController extends Controller
 
     public function show($id)
     {
-        // abort_if(
-        //     Gate::denies('position_access'),
-        //     Response::HTTP_FORBIDDEN,
-        //     '403 Forbidden'
-        // );
+        abort_if(
+            Gate::denies('quit_claims_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
 
         $qclaim = QuitClaim::where("id", $id)
             ->with([

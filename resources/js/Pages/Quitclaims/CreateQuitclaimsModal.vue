@@ -11,9 +11,16 @@ const qclaimsform = useForm({
   amount: "",
   resignation_date: "",
   claims_date: "",
+  qclaimsid: "",
 });
 
 const submitForm = () => {
+  qclaimsform.qclaimsid = $("#qclaimsid").val();
+  qclaimsform.employee = $("#employee").val();
+  qclaimsform.amount = $("#amount").val();
+  qclaimsform.resignation_date = $("#resignation_date").val();
+  qclaimsform.claims_date = $("#claims_date").val();
+
   qclaimsform.post(route("quitclaims.store"), {
     onSuccess: () => {
       qclaimsform.reset("employee", "amount", "resignation_date", "claims_date");
@@ -50,8 +57,9 @@ onMounted(()=>{
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <form @submit.prevent="submitForm">
+          <input type="hidden" id="qclaimsid">
           <div class="modal-header">
-            <h5 class="modal-title" id="createQuitClaimsModal">
+            <h5 class="modal-title" id="createQuitClaimsModalTitle">
               Add Quit Claims
             </h5>
             <button
@@ -93,7 +101,6 @@ onMounted(()=>{
                   type="number"
                   class="form-control"
                   id="amount"
-                  v-model="qclaimsform.amount"
                 />
                 <div
                   class="invalid-feedback"
@@ -111,7 +118,6 @@ onMounted(()=>{
                   type="date"
                   class="form-control"
                   id="resignation_date"
-                  v-model="qclaimsform.resignation_date"
                 />
                 <div
                   class="invalid-feedback"
@@ -127,7 +133,6 @@ onMounted(()=>{
                   type="date"
                   class="form-control"
                   id="claims_date"
-                  v-model="qclaimsform.claims_date"
                 />
                 <div
                   class="invalid-feedback"

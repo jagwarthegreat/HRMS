@@ -24,7 +24,7 @@ const submitForm = () => {
     userform.limited_access = 0;
   }
 
-  userform.post(route("quitclaims.store"), {
+  userform.post(route("user.update"), {
     onSuccess: () => {
       userform.reset("employee", "roles", "username");
       $("#updateUserModal").modal("hide");
@@ -33,21 +33,6 @@ const submitForm = () => {
 };
 
 onMounted(() => {
-  // $("#employees_select2").select2();
-  // $("#roles_select2").select2();
-
-  // $("#roles_select2").change(
-  //     function () {
-  //       userform.roles = $("#roles_select2").val();
-  //     }.bind(this)
-  // );
-
-  // $("#employees_select2").change(
-  //     function () {
-  //       userform.employee = $("#employees_select2").val();
-  //     }.bind(this)
-  // );
-
   const myMutliSelect = document.getElementById('employees_select2')
   myMutliSelect.addEventListener('changed.coreui.multi-select', event => {
     // Get the list of selected options.
@@ -60,7 +45,6 @@ onMounted(() => {
     multiple: false,
     search: true
   });
-
 
   const myMutliSelect2 = document.getElementById('roles_select2')
   myMutliSelect2.addEventListener('changed.coreui.multi-select', event => {
@@ -146,6 +130,7 @@ onMounted(() => {
                   <label for="roles" class="form-label">Roles</label>
                   <select
                     class="form-multi-select"
+                    multiple
                     data-coreui-search="true"
                     data-coreui-multiple="true"
                     data-coreui-selection-type="tags"

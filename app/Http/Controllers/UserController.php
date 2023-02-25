@@ -71,4 +71,38 @@ class UserController extends Controller
         $user->roles()->sync($request->roles);
         return redirect('user');
     }
+
+    public function update(Request $request)
+    {
+        abort_if(
+            Gate::denies('user_access'),
+            Response::HTTP_FORBIDDEN,
+            '403 Forbidden'
+        );
+
+        $request->validate([
+            'employee' => 'required',
+            'roles' => 'required',
+            'username' => 'required',
+        ]);
+
+        $role_ids = [];
+        foreach ($request->roles as $role) {
+            $role_ids[] = $role['value'];
+        }
+
+        $emp = Employee::find($request->employee[0]['value']);
+        $user_fullname = $emp->firstname . " " . $emp->middlename . " " . $emp->lastname;
+
+        User::where('id', $request->user_id)->update([
+            'employee_id' => $request->employee[0]['value'],
+            'name' => $user_fullname,
+            'username' => $request->username,
+            'limited_access_status' => $request->limited_access
+        ]);
+
+        $user = User::where('id', $request->user_id)->first();
+        $user->roles()->sync($role_ids);
+        return redirect('user');
+    }
 }

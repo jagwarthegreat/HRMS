@@ -1,6 +1,6 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head, Link } from "@inertiajs/inertia-vue3";
+import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 import { unref, ref, onMounted } from 'vue'
 
 const props = defineProps({
@@ -56,9 +56,9 @@ onMounted(() => {
 							<table class="table table-hover roletbl">
 								<thead>
 									<tr>
-										<th>ID</th>
-										<th style="width: 20%">TITLE</th>
-										<th>PERMISSIONS</th>
+										<th style="width: 10%">ID</th>
+										<th>TITLE</th>
+										<th style="width: 20%">ACTION</th>
 									</tr>
 								</thead>
 								<tbody v-if="roles.length > 0">
@@ -70,13 +70,17 @@ onMounted(() => {
 										<td>{{ role.id }}</td>
 										<td>{{ role.title }}</td>
 										<td>
-											<span
-												v-for="(permission, keyPermission) in role.permissions"
-												:key="keyPermission"
-												class="badge bg-dark ms-1 pt-0"
-											>
-												{{ permission.title }}
-											</span>
+											<Link
+                        class="btn btn-sm btn-ghost-secondary text-dark"
+                        :href="route('role.edit', role.id)"
+                      >
+                          <svg class="icon">
+                              <use
+                                  xlink:href="/theme/vendors/@coreui/icons/svg/free.svg#cil-pen"
+                              ></use>
+                          </svg>
+                      </Link>
+
 										</td>
 									</tr>
 								</tbody>

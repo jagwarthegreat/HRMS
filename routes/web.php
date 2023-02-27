@@ -99,7 +99,9 @@ Route::prefix('permission')->middleware('auth')->group(function () {
 Route::prefix('role')->middleware('auth')->group(function () {
     Route::get('/', [RoleController::class, 'index'])->name('role');
     Route::get('/create', [RoleController::class, 'create'])->name('role.create');
+    Route::get('/{id}', [RoleController::class, 'edit'])->name('role.edit');
     Route::post('/store', [RoleController::class, 'store'])->name('role.store');
+    Route::post('/update', [RoleController::class, 'update'])->name('role.update');
 });
 
 // USER MANAGEMENT ROUTE

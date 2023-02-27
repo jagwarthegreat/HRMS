@@ -3,26 +3,25 @@ import AuthenticatedLayout from "./../../Layouts/AuthenticatedLayout.vue";
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 import { ref, onMounted } from "vue";
 
-defineProps({
-  permissions: Array,
+const props = defineProps({
+  selectedRole: Array,
   rolesChecks: Array,
 });
 
 const roleform = useForm({
-  roletitle: "",
+  role_id: props.selectedRole.id,
+  roletitle: props.selectedRole.title,
   rolepermission: [],
 });
 
-const roleStore = () => {
+const roleUpdate = () => {
   var selectedRole = $('input[name="role[]"]:checked');
   // var selectedRoleValues = [];
   selectedRole.each(function() {
     roleform.rolepermission.push($(this).val());
   });
 
-  console.log(roleform.rolepermission);
-
-  roleform.post(route("role.store"), {
+  roleform.post(route("role.update"), {
     onFinish: () => {
       roleform.reset("roletitle");
       roleform.reset("rolepermission");
@@ -30,15 +29,6 @@ const roleStore = () => {
   });
 };
 
-onMounted(() => {
-  // $("#rolepermission").select2();
-
-  // $("#rolepermission").change(
-  //     function () {
-  //       roleform.rolepermission = $("#rolepermission").val();
-  //     }.bind(this)
-  // );
-});
 </script>
 
 <style scoped>
@@ -69,7 +59,7 @@ onMounted(() => {
       <div class="card mb-4">
         <div class="card-header">Role Detail</div>
         <div class="card-body">
-          <form @submit.prevent="roleStore">
+          <form @submit.prevent="roleUpdate">
             <div class="row">
               <div class="col-md-12">
                 <div class="mb-3">
@@ -80,21 +70,6 @@ onMounted(() => {
                   <label for="rolepermission" class="form-label"
                     >Permissions</label
                   >
-                  <!-- <select
-                    class="form-control"
-                    multiple
-                    data-coreui-search="true"
-                    v-if="permissions.length > 0"
-                    id="rolepermission" 
-                    v-model="roleform.rolepermission"
-                  >
-                    <option 
-                      v-for="(permission, keyPermission) in permissions" 
-                      :key="keyPermission" 
-                      :value="permission.id">
-                      {{ permission.title }}
-                    </option>
-                  </select> -->
                   <ul>
 
                     <li 
@@ -107,10 +82,20 @@ onMounted(() => {
                           class="form-check-input"
                           type="checkbox"
                           name="role[]"
-                          :value="role.parent"
-                          :id="'role'+role.parent"
+                          :value="role.parent.value"
+                          :id="'role'+role.parent.value"
+                          v-if="role.parent.isCheck == 'checked'"
+                          checked
                         />
-                        <label class="form-check-label" :for="'role'+role.parent">
+                        <input
+                          v-else
+                          class="form-check-input"
+                          type="checkbox"
+                          name="role[]"
+                          :value="role.parent.value"
+                          :id="'role'+role.parent.value"
+                        />
+                        <label class="form-check-label" :for="'role'+role.parent.value">
                           {{ keyRole }}
                         </label>
                       </div>
@@ -125,10 +110,20 @@ onMounted(() => {
                               class="form-check-input"
                               type="checkbox"
                               name="role[]"
-                              :value="roleChild"
-                              :id="'role'+roleChild"
+                              :value="roleChild.value"
+                              :id="'role'+roleChild.value"
+                              v-if="roleChild.isCheck == 'checked'"
+                              checked
                             />
-                            <label class="form-check-label" :for="'role'+roleChild">
+                            <input
+                              v-else
+                              class="form-check-input"
+                              type="checkbox"
+                              name="role[]"
+                              :value="roleChild.value"
+                              :id="'role'+roleChild.value"
+                            />
+                            <label class="form-check-label" :for="'role'+roleChild.value">
                               {{ keyRoleChild }}
                             </label>
                           </div>
@@ -139,8 +134,8 @@ onMounted(() => {
                   </ul>
                 </div>
               </div>
-              <div class="col-12 text-base">
-                <button class="btn btn-dark px-4" type="submit">Save</button>
+              <div class="col-12 text-base mt-2">
+                <button class="btn btn-dark px-4" type="submit">Save changes</button>
               </div>
             </div>
           </form>

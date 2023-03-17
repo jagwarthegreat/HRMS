@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,6 +31,7 @@ class UserProfileController extends Controller
 
         $image_path = '';
         $doc = [];
+        $user = User::find($id);
         if ($request->hasFile('user_avatar')) {
             $file = $request->file('user_avatar');
             $filename = $file->getClientOriginalName();
@@ -38,7 +40,6 @@ class UserProfileController extends Controller
 
             $image_path = $request->file('user_avatar')->store('user', 'public');
 
-            $user = User::find($id);
             if ($user->avatar_slug != null) {
                 if (Storage::disk('public')->exists($user->avatar_slug)) {
                     Storage::disk('public')->delete($user->avatar_slug);
@@ -47,12 +48,26 @@ class UserProfileController extends Controller
                 }
             }
 
-            User::where('id', $id)->update([
-                "avatar_slug" => $image_path,
-            ]);
+            $avatar = $image_path;
+
+        } else {
+            // update details not the employee avatar
+            // check docs if avatar is already present
+            $avatar = $user->avatar_slug;
         }
 
-
+        if(!is_null($request->password)){
+           User::where('id', $id)->update([
+                "username" => $request->username,
+                "password" => Hash::make($request->password),
+                "avatar_slug" => $avatar,
+            ]);
+        }else{
+            User::where('id', $id)->update([
+                "username" => $request->username,
+                "avatar_slug" => $avatar,
+            ]);
+        }
 
         // return redirect()->route('user.profile');
         return Inertia::location(route('user.profile'));

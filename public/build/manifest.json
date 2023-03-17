@@ -1218,81 +1218,25 @@
     "file": "assets/app.179954eb.css",
     "src": "resources/js/app.css"
   },
-  "resources/js/Pages/Employee/Profile/Tabs/JobTab.css": {
-    "file": "assets/JobTab.2aacc87b.css",
-    "src": "resources/js/Pages/Employee/Profile/Tabs/JobTab.css"
-  },
-  "resources/js/Pages/Client/modals/UpdateClientModal.css": {
-    "file": "assets/UpdateClientModal.71e2dfc0.css",
-    "src": "resources/js/Pages/Client/modals/UpdateClientModal.css"
-  },
-  "resources/js/Pages/Memo/Index.css": {
-    "file": "assets/Index.55462ec4.css",
-    "src": "resources/js/Pages/Memo/Index.css"
-  },
-  "resources/js/Pages/Deployment/Index.css": {
-    "file": "assets/Index.2d904264.css",
-    "src": "resources/js/Pages/Deployment/Index.css"
-  },
-  "resources/js/Pages/Lawsuit/Index.css": {
-    "file": "assets/Index.d352d854.css",
-    "src": "resources/js/Pages/Lawsuit/Index.css"
-  },
-  "resources/js/Pages/Notice/Index.css": {
-    "file": "assets/Index.fdf0e947.css",
-    "src": "resources/js/Pages/Notice/Index.css"
-  },
-  "resources/js/Pages/Auth/Login.css": {
-    "file": "assets/Login.7fc5e43f.css",
-    "src": "resources/js/Pages/Auth/Login.css"
-  },
-  "resources/js/Pages/Employee/Profile/Tabs/DocumentsTab.css": {
-    "file": "assets/DocumentsTab.e5e12854.css",
-    "src": "resources/js/Pages/Employee/Profile/Tabs/DocumentsTab.css"
-  },
-  "resources/js/Pages/Memo/details.css": {
-    "file": "assets/details.ad89c395.css",
-    "src": "resources/js/Pages/Memo/details.css"
-  },
-  "resources/js/Pages/Report/Employee/Status.css": {
-    "file": "assets/Status.ae1426d8.css",
-    "src": "resources/js/Pages/Report/Employee/Status.css"
-  },
-  "resources/js/Pages/Employee/Profile/Tabs/MemosTab.css": {
-    "file": "assets/MemosTab.1e97b661.css",
-    "src": "resources/js/Pages/Employee/Profile/Tabs/MemosTab.css"
-  },
-  "resources/js/Pages/Report/Employee/Contract.css": {
-    "file": "assets/Contract.90acdf41.css",
-    "src": "resources/js/Pages/Report/Employee/Contract.css"
-  },
-  "resources/js/Pages/Location/Index.css": {
-    "file": "assets/Index.70c48735.css",
-    "src": "resources/js/Pages/Location/Index.css"
-  },
-  "resources/js/Pages/User/Index.css": {
-    "file": "assets/Index.18d89df1.css",
-    "src": "resources/js/Pages/User/Index.css"
-  },
-  "resources/js/Pages/User/Profile/Index.css": {
-    "file": "assets/Index.3a7ee29a.css",
-    "src": "resources/js/Pages/User/Profile/Index.css"
-  },
-  "resources/js/Pages/Department/Index.css": {
-    "file": "assets/Index.0a2dedce.css",
-    "src": "resources/js/Pages/Department/Index.css"
+  "resources/js/Pages/Settings/EmployeeStatuses/Index.css": {
+    "file": "assets/Index.9b4e0d05.css",
+    "src": "resources/js/Pages/Settings/EmployeeStatuses/Index.css"
   },
   "resources/js/Pages/Client/Create.css": {
     "file": "assets/Create.f81e5c6b.css",
     "src": "resources/js/Pages/Client/Create.css"
   },
-  "resources/js/Pages/Employee/Create.css": {
-    "file": "assets/Create.cf9b8427.css",
-    "src": "resources/js/Pages/Employee/Create.css"
+  "resources/js/Pages/Location/Index.css": {
+    "file": "assets/Index.70c48735.css",
+    "src": "resources/js/Pages/Location/Index.css"
   },
-  "resources/js/Pages/Client/Profile/Tabs/LocationsTab.css": {
-    "file": "assets/LocationsTab.87a08080.css",
-    "src": "resources/js/Pages/Client/Profile/Tabs/LocationsTab.css"
+  "resources/js/Pages/Report/Employee/Contract.css": {
+    "file": "assets/Contract.90acdf41.css",
+    "src": "resources/js/Pages/Report/Employee/Contract.css"
+  },
+  "resources/js/Pages/Procurement/Details/CreateProcurementDetailsModal.css": {
+    "file": "assets/CreateProcurementDetailsModal.ba95357f.css",
+    "src": "resources/js/Pages/Procurement/Details/CreateProcurementDetailsModal.css"
   },
   "resources/js/Pages/Welcome.css": {
     "file": "assets/Welcome.24c1bc7b.css",
@@ -1302,96 +1246,152 @@
     "file": "assets/Index.0040b517.css",
     "src": "resources/js/Pages/Employee/Profile/Index.css"
   },
-  "resources/js/Pages/Employee/Profile/modals/UpdateEmployeeModal.css": {
-    "file": "assets/UpdateEmployeeModal.f7c44ee5.css",
-    "src": "resources/js/Pages/Employee/Profile/modals/UpdateEmployeeModal.css"
-  },
-  "resources/js/Pages/Position/Index.css": {
-    "file": "assets/Index.285af703.css",
-    "src": "resources/js/Pages/Position/Index.css"
-  },
-  "resources/js/Pages/Procurement/Details/CreateProcurementDetailsModal.css": {
-    "file": "assets/CreateProcurementDetailsModal.ba95357f.css",
-    "src": "resources/js/Pages/Procurement/Details/CreateProcurementDetailsModal.css"
-  },
-  "resources/js/Pages/Quitclaims/qprint.css": {
-    "file": "assets/qprint.2cc57dc7.css",
-    "src": "resources/js/Pages/Quitclaims/qprint.css"
-  },
-  "resources/js/Pages/Procurement/ShowProcurementInfo.css": {
-    "file": "assets/ShowProcurementInfo.9839d801.css",
-    "src": "resources/js/Pages/Procurement/ShowProcurementInfo.css"
-  },
-  "resources/js/Pages/Role/Edit.css": {
-    "file": "assets/Edit.588f3ea5.css",
-    "src": "resources/js/Pages/Role/Edit.css"
-  },
-  "resources/js/Pages/Role/Index.css": {
-    "file": "assets/Index.7562e308.css",
-    "src": "resources/js/Pages/Role/Index.css"
-  },
-  "resources/js/Pages/Client/Profile/Tabs/DocumentsTab.css": {
-    "file": "assets/DocumentsTab.bac115a7.css",
-    "src": "resources/js/Pages/Client/Profile/Tabs/DocumentsTab.css"
-  },
-  "resources/js/Pages/Quitclaims/Index.css": {
-    "file": "assets/Index.7b6f40eb.css",
-    "src": "resources/js/Pages/Quitclaims/Index.css"
-  },
-  "resources/js/Pages/Role/Create.css": {
-    "file": "assets/Create.170e4f87.css",
-    "src": "resources/js/Pages/Role/Create.css"
-  },
-  "SuppliesTab.css": {
-    "file": "assets/SuppliesTab.a907d0ff.css",
-    "src": "SuppliesTab.css"
-  },
-  "resources/js/Pages/Settings/EmployeeStatuses/Index.css": {
-    "file": "assets/Index.9b4e0d05.css",
-    "src": "resources/js/Pages/Settings/EmployeeStatuses/Index.css"
-  },
-  "resources/js/Pages/LoginParam/Index.css": {
-    "file": "assets/Index.833a5481.css",
-    "src": "resources/js/Pages/LoginParam/Index.css"
-  },
-  "resources/js/Pages/Settings/CompensationTypes/Index.css": {
-    "file": "assets/Index.ee3314ef.css",
-    "src": "resources/js/Pages/Settings/CompensationTypes/Index.css"
-  },
-  "resources/js/Pages/Report/Inventory/Index.css": {
-    "file": "assets/Index.e1bde5fe.css",
-    "src": "resources/js/Pages/Report/Inventory/Index.css"
-  },
-  "resources/js/Pages/Client/Profile/Tabs/GeneralInfoTab.css": {
-    "file": "assets/GeneralInfoTab.ec28fbaa.css",
-    "src": "resources/js/Pages/Client/Profile/Tabs/GeneralInfoTab.css"
+  "resources/js/Pages/Settings/EmployeeTypes/Index.css": {
+    "file": "assets/Index.8f63d66f.css",
+    "src": "resources/js/Pages/Settings/EmployeeTypes/Index.css"
   },
   "resources/js/Pages/Employee/Profile/Tabs/GeneralInfoTab.css": {
     "file": "assets/GeneralInfoTab.9e23f18a.css",
     "src": "resources/js/Pages/Employee/Profile/Tabs/GeneralInfoTab.css"
   },
-  "resources/js/Pages/Settings/EmployeeTypes/Index.css": {
-    "file": "assets/Index.8f63d66f.css",
-    "src": "resources/js/Pages/Settings/EmployeeTypes/Index.css"
+  "SuppliesTab.css": {
+    "file": "assets/SuppliesTab.a907d0ff.css",
+    "src": "SuppliesTab.css"
   },
-  "resources/js/Pages/Client/Profile/Index.css": {
-    "file": "assets/Index.37cfe3a3.css",
-    "src": "resources/js/Pages/Client/Profile/Index.css"
+  "resources/js/Pages/Auth/Login.css": {
+    "file": "assets/Login.7fc5e43f.css",
+    "src": "resources/js/Pages/Auth/Login.css"
+  },
+  "resources/js/Pages/Memo/Index.css": {
+    "file": "assets/Index.55462ec4.css",
+    "src": "resources/js/Pages/Memo/Index.css"
   },
   "resources/js/Pages/Settings/DocumentCategories/Index.css": {
     "file": "assets/Index.8c10fa81.css",
     "src": "resources/js/Pages/Settings/DocumentCategories/Index.css"
   },
+  "resources/js/Pages/Position/Index.css": {
+    "file": "assets/Index.285af703.css",
+    "src": "resources/js/Pages/Position/Index.css"
+  },
+  "resources/js/Pages/Employee/Create.css": {
+    "file": "assets/Create.cf9b8427.css",
+    "src": "resources/js/Pages/Employee/Create.css"
+  },
+  "resources/js/Pages/Department/Index.css": {
+    "file": "assets/Index.0a2dedce.css",
+    "src": "resources/js/Pages/Department/Index.css"
+  },
+  "resources/js/Pages/Deployment/Index.css": {
+    "file": "assets/Index.2d904264.css",
+    "src": "resources/js/Pages/Deployment/Index.css"
+  },
+  "resources/js/Pages/Role/Index.css": {
+    "file": "assets/Index.7562e308.css",
+    "src": "resources/js/Pages/Role/Index.css"
+  },
+  "resources/js/Pages/Settings/HiringRequirements/Index.css": {
+    "file": "assets/Index.1fc3a7b0.css",
+    "src": "resources/js/Pages/Settings/HiringRequirements/Index.css"
+  },
+  "resources/js/Pages/Client/Profile/Index.css": {
+    "file": "assets/Index.37cfe3a3.css",
+    "src": "resources/js/Pages/Client/Profile/Index.css"
+  },
+  "resources/js/Pages/Report/Inventory/Index.css": {
+    "file": "assets/Index.e1bde5fe.css",
+    "src": "resources/js/Pages/Report/Inventory/Index.css"
+  },
+  "resources/js/Pages/Report/Employee/Status.css": {
+    "file": "assets/Status.ae1426d8.css",
+    "src": "resources/js/Pages/Report/Employee/Status.css"
+  },
+  "resources/js/Pages/Employee/Profile/Tabs/MemosTab.css": {
+    "file": "assets/MemosTab.1e97b661.css",
+    "src": "resources/js/Pages/Employee/Profile/Tabs/MemosTab.css"
+  },
+  "resources/js/Pages/User/Index.css": {
+    "file": "assets/Index.18d89df1.css",
+    "src": "resources/js/Pages/User/Index.css"
+  },
+  "resources/js/Pages/Notice/Index.css": {
+    "file": "assets/Index.fdf0e947.css",
+    "src": "resources/js/Pages/Notice/Index.css"
+  },
+  "resources/js/Pages/Employee/Profile/Tabs/DocumentsTab.css": {
+    "file": "assets/DocumentsTab.e5e12854.css",
+    "src": "resources/js/Pages/Employee/Profile/Tabs/DocumentsTab.css"
+  },
   "resources/js/Pages/Settlement/Index.css": {
     "file": "assets/Index.3d92e46c.css",
     "src": "resources/js/Pages/Settlement/Index.css"
+  },
+  "resources/js/Pages/Lawsuit/Index.css": {
+    "file": "assets/Index.d352d854.css",
+    "src": "resources/js/Pages/Lawsuit/Index.css"
+  },
+  "resources/js/Pages/Memo/details.css": {
+    "file": "assets/details.ad89c395.css",
+    "src": "resources/js/Pages/Memo/details.css"
+  },
+  "resources/js/Pages/Role/Create.css": {
+    "file": "assets/Create.170e4f87.css",
+    "src": "resources/js/Pages/Role/Create.css"
   },
   "resources/js/Pages/Stock/Transfer/ShowStockTransferInfo.css": {
     "file": "assets/ShowStockTransferInfo.c60ae65c.css",
     "src": "resources/js/Pages/Stock/Transfer/ShowStockTransferInfo.css"
   },
-  "resources/js/Pages/Settings/HiringRequirements/Index.css": {
-    "file": "assets/Index.1fc3a7b0.css",
-    "src": "resources/js/Pages/Settings/HiringRequirements/Index.css"
+  "resources/js/Pages/LoginParam/Index.css": {
+    "file": "assets/Index.833a5481.css",
+    "src": "resources/js/Pages/LoginParam/Index.css"
+  },
+  "resources/js/Pages/Procurement/ShowProcurementInfo.css": {
+    "file": "assets/ShowProcurementInfo.9839d801.css",
+    "src": "resources/js/Pages/Procurement/ShowProcurementInfo.css"
+  },
+  "resources/js/Pages/User/Profile/Index.css": {
+    "file": "assets/Index.3a7ee29a.css",
+    "src": "resources/js/Pages/User/Profile/Index.css"
+  },
+  "resources/js/Pages/Quitclaims/Index.css": {
+    "file": "assets/Index.7b6f40eb.css",
+    "src": "resources/js/Pages/Quitclaims/Index.css"
+  },
+  "resources/js/Pages/Employee/Profile/modals/UpdateEmployeeModal.css": {
+    "file": "assets/UpdateEmployeeModal.f7c44ee5.css",
+    "src": "resources/js/Pages/Employee/Profile/modals/UpdateEmployeeModal.css"
+  },
+  "resources/js/Pages/Quitclaims/qprint.css": {
+    "file": "assets/qprint.2cc57dc7.css",
+    "src": "resources/js/Pages/Quitclaims/qprint.css"
+  },
+  "resources/js/Pages/Settings/CompensationTypes/Index.css": {
+    "file": "assets/Index.ee3314ef.css",
+    "src": "resources/js/Pages/Settings/CompensationTypes/Index.css"
+  },
+  "resources/js/Pages/Role/Edit.css": {
+    "file": "assets/Edit.588f3ea5.css",
+    "src": "resources/js/Pages/Role/Edit.css"
+  },
+  "resources/js/Pages/Client/Profile/Tabs/LocationsTab.css": {
+    "file": "assets/LocationsTab.87a08080.css",
+    "src": "resources/js/Pages/Client/Profile/Tabs/LocationsTab.css"
+  },
+  "resources/js/Pages/Client/Profile/Tabs/GeneralInfoTab.css": {
+    "file": "assets/GeneralInfoTab.ec28fbaa.css",
+    "src": "resources/js/Pages/Client/Profile/Tabs/GeneralInfoTab.css"
+  },
+  "resources/js/Pages/Employee/Profile/Tabs/JobTab.css": {
+    "file": "assets/JobTab.2aacc87b.css",
+    "src": "resources/js/Pages/Employee/Profile/Tabs/JobTab.css"
+  },
+  "resources/js/Pages/Client/modals/UpdateClientModal.css": {
+    "file": "assets/UpdateClientModal.71e2dfc0.css",
+    "src": "resources/js/Pages/Client/modals/UpdateClientModal.css"
+  },
+  "resources/js/Pages/Client/Profile/Tabs/DocumentsTab.css": {
+    "file": "assets/DocumentsTab.bac115a7.css",
+    "src": "resources/js/Pages/Client/Profile/Tabs/DocumentsTab.css"
   }
 }

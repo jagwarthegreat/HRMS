@@ -190,6 +190,15 @@ td {
                 </tr>
                 <tr>
                   <td class="basicInfoLabel">
+                    <span>Last Name</span>
+                    <span>:</span>
+                  </td>
+                  <td class="basicInfoData">
+                    {{ employee.lastname }}
+                  </td>
+                </tr>
+                <tr>
+                  <td class="basicInfoLabel">
                     <span>Employee ID</span>
                     <span>:</span>
                   </td>
@@ -203,11 +212,11 @@ td {
               <table>
                 <tr>
                   <td class="basicInfoLabel">
-                    <span>Last Name</span>
+                    <span>Middle Name</span>
                     <span>:</span>
                   </td>
                   <td class="basicInfoData">
-                    {{ employee.lastname }}
+                    {{ employee.middlename }}
                   </td>
                 </tr>
                 <tr>
@@ -397,15 +406,6 @@ td {
             </div>
             <div class="col-md-6">
               <table>
-                <tr>
-                  <td class="basicInfoLabel">
-                    <span>Middle Name</span>
-                    <span>:</span>
-                  </td>
-                  <td class="basicInfoData">
-                    {{ employee.middlename }}
-                  </td>
-                </tr>
                 <tr>
                   <td class="basicInfoLabel">
                     <span>Contact</span>

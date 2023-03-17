@@ -92,7 +92,7 @@
   <!-- SIDEBAR -->
   <div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
     <div class="sidebar-brand d-none d-md-flex">
-      <div class="sidebar-brand-full">HRMS</div>
+      <div class="sidebar-brand-full">SJS HRMS</div>
       <div class="sidebar-brand-narrow"></div>
     </div>
     <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">

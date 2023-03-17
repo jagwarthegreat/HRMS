@@ -128,7 +128,7 @@ function getEmployeeData(filterByBranch = '', filterByDept = '') {
         </div>
         <div class="card mb-4">
             <div class="card-header">
-                <strong>Employee List</strong>
+                Employee List
             </div>
             <div class="card-body">
                 <div class="col-md-12">

@@ -24,6 +24,8 @@ class DocumentController extends Controller
 
             $image_path = $request->file('doc_file')->store('employee', 'public');
 
+            $created = (Auth::user()->employee_id != 0) ? Auth::user()->employee_id : null;
+
             Document::create([
                 'employee_id' => $request->employee_id,
                 'category_id' => $request->doc_category,
@@ -31,7 +33,7 @@ class DocumentController extends Controller
                 'filetype' => $fileType,
                 'filesize' => $filesize,
                 'slug' => $image_path,
-                'created_by' => Auth::user()->employee_id,
+                'created_by' => $created,
             ]);
 
         }

@@ -9,6 +9,14 @@ const newprops = defineProps({
 function openClickedModal(modal) {
   $("#" + modal).modal("show");
 }
+
+function formatDate(date) {
+	const dateObj = new Date(date);
+      const year = dateObj.getFullYear();
+      const month = ('0' + (dateObj.getMonth() + 1)).slice(-2);
+      const day = ('0' + dateObj.getDate()).slice(-2);
+      return `${year}-${month}-${day}`;
+}
 </script>
 
 <style scoped>
@@ -63,13 +71,16 @@ td {
 						{{ empdocument.filename }}
 						<!-- <img :src="'/storage/' + empdocument.slug" style="width: 40px;"> -->
 					</td>
-					<td>{{ empdocument.created_at }}</td>
-					<td>
+					<td>{{ formatDate(empdocument.created_at) }}</td>
+					<td v-if="empdocument.created_by != null">
 						{{
 							empdocument.created_by.firstname +
 							" " +
 							empdocument.created_by.lastname
 						}}
+					</td>
+					<td v-else>
+						---
 					</td>
 					<td>{{ empdocument.filesize + "KB" }}</td>
 				</tr>

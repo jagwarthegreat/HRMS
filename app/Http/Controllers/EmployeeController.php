@@ -308,6 +308,12 @@ class EmployeeController extends Controller
                 'slug' => $image_path,
                 'created_by' => Auth::user()->id,
             ]);
+        }else{
+            // update details not the employee avatar
+            // check docs if avatar is already present
+            $doc = Document::where('employee_id', $id)
+                ->where('category_id', null)
+                ->first();
         }
 
         Employee::where('id', $id)->update([

@@ -15,6 +15,34 @@ const form = useForm({
 });
 
 const submit = () => {
+//   getLocation();
+  form.post(route("login"), {
+    onSuccess: () => {
+      form.reset("password");
+      location.reload();
+    },
+  });
+};
+
+let options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0
+};
+
+function getLocation() {
+   if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(success, error, options);
+   } else {
+      alert("Geolocation is not supported by this browser.");
+   }
+}
+
+function success(position) {
+  var pos = position.coords.latitude +","+ position.coords.longitude;
+  form.lat = position.coords.latitude;
+  form.long = position.coords.longitude;
+
   form.post(route("login"), {
     onSuccess: () => {
       form.reset("password");
@@ -29,6 +57,10 @@ const submit = () => {
       <div class="min-vh-100 d-flex flex-row align-items-center">
         <div class="container">
           <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+              <!--<img src="/theme/assets/img/sjs_logo_full.png" style="height: 100%; width: 70%; object-fit: contain;" />-->
+              <!-- LOGO HERE -->
+            </div>
             <div class="col-lg-4">
               <div class="card-group d-block d-md-flex row">
                 <div class="card col-md-4 p-4 mb-0">
@@ -102,7 +134,7 @@ const submit = () => {
                     </form>
                   </div>
                 </div>
-                
+
               </div>
             </div>
           </div>
@@ -111,3 +143,8 @@ const submit = () => {
     </div>
   </GuestLayout>
 </template>
+<style scoped>
+  .text-medium-emphasis {
+      color: #f7f7f7ad !important;
+  }
+</style>
